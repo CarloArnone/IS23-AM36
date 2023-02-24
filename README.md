@@ -1,11 +1,5 @@
 # IS23-AM36
 
-## Group Members
-- Carlo Arnone
-- Davide Chiorlin
-- Lorenzo Cattaneo
-- Vincenzo Donatelli
-
 ## Professors and Tutors
 - Ing. Alessandro Margara   ( In Charge Professor  )
 - Ing. Gian Enrico Conti    ( Practical Instructor )
@@ -13,8 +7,15 @@
 - Stefano Fossati           ( Laboratory Tutor     )
 - Ettore Zamponi            ( Laboratory Tutor     )
 
+## Group Members          
+- Carlo Arnone
+- Davide Chiorlin
+- Lorenzo Cattaneo
+- Vincenzo Donatelli
+
 ## Description
 In this repo there is the IngSoft2023 - Polimi Project 
+
 
 ### Development Tools
 **IDE**: IntelliJ IDEA <br>
