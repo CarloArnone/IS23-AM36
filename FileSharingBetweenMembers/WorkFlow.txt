@@ -21,7 +21,25 @@ Define Communication Port
 -- Game Evolution (Turn)
     List<ItemCard> draft = pickDraft()
     void giveDraftTo(Player p)
-    --- toDefine...
+    void updateLivingRoom()
+    Int col = selectCol()
+    void selectOrder()
+    void orderCards()
+    void placeCardsInCol(Int col, List<ItemCard> drawnCards)
+
+
+    --- End Turn Fase
+        void updateShelf(Player p)
+        void checkCommonGoals(Player p)  -- Server
+        void updateCommonGoals(Player p) -- Client
+        void updateScore(Player p)
+        void nextTurn()
+
+
+
+
+
+
 
 
 
