@@ -7,7 +7,7 @@ Choose Interface Type
 -- Server StartUp
 Define Communication Port
 
-Client Side Events
+-- Client Side Events
 login()
 launch ->  LivingRoom isThereAnyGameLeft(Player p)
 launch ->  void createOrJoinGame()
@@ -17,6 +17,8 @@ launch ->  void createOrJoinGame()
 
 -- Join Game
     simple method
+
+
 
 
 
