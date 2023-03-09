@@ -8,15 +8,23 @@ Choose Interface Type
 Define Communication Port
 
 -- Client Side Events
-login()
-launch ->  LivingRoom isThereAnyGameLeft(Player p)
-launch ->  void createOrJoinGame()
+    login()
+    LivingRoom isThereAnyGameLeft(Player p)
+    void createOrJoinGame()
 
 -- Create Game
     simple method
 
 -- Join Game
     simple method
+
+-- Game Evolution (Turn)
+    List<ItemCard> draft = pickDraft()
+    void giveDraftTo(Player p)
+    --- toDefine...
+
+
+
 
 
 
