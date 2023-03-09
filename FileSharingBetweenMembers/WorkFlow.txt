@@ -36,7 +36,7 @@ Define Communication Port
         void nextTurn()
         boolean isGameEnded()
 
--- Game Evolution (Play)
+-- Game Evolution (Play - InterTurn)
     boolean        checkRearrangeDesk()       -- Server                !--- da guardare lato server come gestire piu connessioni di diversi tipi
     List<Position> checkSelectablePositions() -- Server
     void           updateDesk()               -- Client
