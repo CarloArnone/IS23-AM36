@@ -34,6 +34,21 @@ Define Communication Port
         void updateCommonGoals(Player p) -- Client
         void updateScore(Player p)
         void nextTurn()
+        boolean isGameEnded()
+
+-- Game Evolution (Play)
+    boolean        checkRearrangeDesk()       -- Server                !--- da guardare lato server come gestire piu connessioni di diversi tipi
+    List<Position> checkSelectablePositions() -- Server
+    void           updateDesk()               -- Client
+
+
+-- EndGame Fase
+    void checkPersonalGoals()
+    Player winner = checkWinner()
+    void StatToJSON()
+    void updateStatsForGameEnded(File Stat.JSON)
+    void clearAllDataLeft()
+
 
 
 
