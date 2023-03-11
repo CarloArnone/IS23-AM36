@@ -1,12 +1,13 @@
 package it.polimi.ingsw.Model;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LivingRoomPosition extends Position{
 
-    private ItemCard card;
-    public List<Boolean> freeBorder = new ArrayList<Boolean>();
+    //private ItemCard card; Do we keep this??
+    private Map<Enum, Boolean> freeBorder = new HashMap<Enum, Boolean>();
 
     public LivingRoomPosition(ItemCard card) {
         this.card = card;

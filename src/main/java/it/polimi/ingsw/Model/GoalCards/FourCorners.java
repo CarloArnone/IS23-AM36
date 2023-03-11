@@ -6,8 +6,6 @@ import it.polimi.ingsw.Model.Player;
 
 public class FourCorners extends CommonGoalCard {
 
-    private int points = 8;
-
     @Override
     public boolean checkGoal(Player p) {
         ItemCard[][] mat = p.getMyShelf().getShelf();
@@ -20,7 +18,10 @@ public class FourCorners extends CommonGoalCard {
 
     @Override
     public int getPoints(Player p) {
-        if(checkGoal(p) && this.points >= 4) return this.points;
+        if(checkGoal(p)){
+            setBonus(this.getBonus() - 2);
+            return this.getBonus() + 2;
+        }
         else return 0;
     }
 }
