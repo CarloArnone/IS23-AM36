@@ -1,19 +1,22 @@
 package it.polimi.ingsw.Model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LivingRoom {
 
-    private LivingRoomPosition desk;
+    private Map<LivingRoomPosition, ItemCard> desk = new HashMap<LivingRoomPosition, ItemCard>();
     private String livingRoomId;
     private List<Player> players;
     private int turn;
-    private List<LivingRoomPosition> cardDraft;
+    //private List<LivingRoomPosition> cardDraft; should be dealt with by the view
     private List<CommonGoalCard> commonGoalSet;
+    private List<ItemCard> deck;
 
     /** Allows the player to pick a set of Item Cards. */
-    public void playerPick(Player player, List<ItemCard> pick){
-
+    public void givePlayerTheirPick(Player p, List<ItemCard> pick){
+        p.setDrawnCards(pick);
     }
 
     /** Refills the board with new Item Cards. */
@@ -27,20 +30,9 @@ public class LivingRoom {
     }
 
     /** Erases the draft that was being done by the player. */
-    public void undoDraft(){
-
+    public void undoDraft(Player p){
+        p.withdrawPicks();
     }
-
-    /** Updates the view for the player. Doesn't actually move the Item Cards. */
-    public void UpdateDraft(){
-
-    }
-
-
-    /** ???. */
-    /** public List<ItemCard> getDraft(){
-        return ???;
-    }*/
 
     /** Updates the view of the goals for the players. (All the goals at once? Both personal and common?) */
     public void updateGoals(){
