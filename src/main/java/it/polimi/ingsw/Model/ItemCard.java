@@ -1,0 +1,27 @@
+package it.polimi.ingsw.Model;
+
+public class ItemCard {
+    private char color;
+    private String image;
+
+    public ItemCard(char color, String image) {
+        this.color = color;
+        this.image = image;
+    }
+
+    public char getColor() {
+        return color;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setColor(char color) {
+        this.color = color;
+    }
+}
