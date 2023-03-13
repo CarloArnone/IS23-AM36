@@ -68,7 +68,7 @@ public class ObjectiveChecker {
      * │ - │ 1 │ - │ - │ - │
      * │ 1 │ - │ - │ - │ - │
      *
-     **/
+
 
 
 
@@ -96,11 +96,13 @@ public class ObjectiveChecker {
         return false;
     }
 
+     **/
+
     /** First I check the columns one by one, up until the second to last cell and until I reach the second to last column.
      * For each cell I check if it's equal with the right one and the bottom one.
      * Then for the last column, I only check the bottom cell, because there is no right one.
      * Finally, I check the last row, confronting each cell only with its right one because there are none below.
-     * The last cell, the one on the bottom right, has no cell under or to the right, so it's only confronted by its two adjacent one and doesn't need to check anything itself. **/
+     * The last cell, the one on the bottom right, has no cell under or to the right, so it's only confronted by its two adjacent one and doesn't need to check anything itself.
     public boolean adjacent(){
         int ret = 0;
 
@@ -120,6 +122,7 @@ public class ObjectiveChecker {
         else if(ret/6 == 1) return true;
         else return false; //consider this exception
     }
+     **/
 
     /** I check each cell one by one, up until the second to last column and row.
      * For each cell I check if it's equal with the right one and the bottom one and the diagonal one.
@@ -138,7 +141,7 @@ public class ObjectiveChecker {
      * │ - │ - │ - │ 1 │ 1 │
      * │ - │ - │ - │ - │ - │
      *
-     * The cells marked with a '2' would be the ones considered 2 times. **/
+     * The cells marked with a '2' would be the ones considered 2 times.
     public boolean square(){
         int ret = 0, control[] = {0, 0};
         char temp = 'z';
@@ -163,7 +166,7 @@ public class ObjectiveChecker {
         else if(ret/2 == 1) return true;
         else return false; //consider this exception
     }
-
+     **/
     /** Here we simply check each column and search for all different values.
      * The first (i) loop skims column by column.
      * The second (j) loop skims each element of each column.
@@ -187,7 +190,7 @@ public class ObjectiveChecker {
         return ret/2;
     }
 
-    /** C. **/
+    /** C.
     public int diffRows(){
         int ret = 0;
 
@@ -205,6 +208,7 @@ public class ObjectiveChecker {
 
         return ret/2;
     }
+     **/
     public int fourByFour(){
         int ret = 0;
 

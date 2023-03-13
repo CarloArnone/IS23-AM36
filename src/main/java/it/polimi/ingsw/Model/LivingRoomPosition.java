@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LivingRoomPosition extends Position{
 
-    //private ItemCard card; Do we keep this??
+    private ItemCard card; //Do we keep this??
     private Map<Enum, Boolean> freeBorder = new HashMap<Enum, Boolean>();
 
     public LivingRoomPosition(ItemCard card) {

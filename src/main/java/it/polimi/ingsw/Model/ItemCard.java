@@ -8,6 +8,10 @@ public class ItemCard {
         this.color = color;
         this.image = image;
     }
+    public ItemCard() {
+        this.color = 'z';
+        this.image = null;
+    }
 
     public char getColor() {
         return color;

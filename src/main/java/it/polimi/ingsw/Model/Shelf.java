@@ -1,13 +1,14 @@
 package it.polimi.ingsw.Model;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Shelf {
-    private ItemCard[][] shelf;
+    private Optional<ItemCard>[][] shelf;
 
 
     /** Returns the selected Shelf. */
-    public ItemCard[][] getShelf() {
+    public Optional<ItemCard>[][] getShelf() {
         return shelf;
     }
 
@@ -16,7 +17,7 @@ public class Shelf {
 
     }
 
-    public int checkAdjacent(){
+    public int getPointsForAdjacent(){
      return 0;
     }
 
