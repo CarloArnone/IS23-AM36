@@ -4,10 +4,10 @@ import it.polimi.ingsw.Model.CommonGoalCard;
 import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
 
+import java.util.List;
+import java.util.Optional;
+
 public class TwoSquares extends CommonGoalCard {
-
-    private int points = 8;
-
 
     /** I check each cell one by one, up until the second to last column and row.
      * For each cell I check if it's equal with the right one and the bottom one and the diagonal one.
@@ -30,22 +30,22 @@ public class TwoSquares extends CommonGoalCard {
     @Override
     public boolean checkGoal(Player p) {
 
-        int control[] = {0, 0};
-        ItemCard[][] mat = p.getMyShelf().getShelf();
-        char temp = 'z';
+        int[] firstMatchCoords = {0, 0};
+        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        boolean isFirstMatch = true;
 
-        for(int i = 0; i < mat.length - 1; i++){
-            for(int j = 0; j < mat[0].length - 1; j++) {
-                if (mat[i][j] == null) continue;
-                if (mat[i][j].getColor() != mat[i][j + 1].getColor()) continue;
-                if (mat[i][j].getColor() != mat[i + 1][j].getColor()) continue;
-                if (mat[i][j].getColor() != mat[i + 1][j + 1].getColor()) continue;
+        for(int i = 0; i < shelfCopy.length - 1; i++){
+            for(int j = 0; j < shelfCopy[0].length - 1; j++) {
+                if (shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty()) continue;
+                if (shelfCopy[i][j].get().getColor() != shelfCopy[i][j + 1].get().getColor()) continue;
+                if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j].get().getColor()) continue;
+                if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j + 1].get().getColor()) continue;
 
-                if(temp == 'z') {
-                    temp = mat[i][j].getColor();
-                    control[0] = i + 1;
-                    control[1] = j + 1;
-                }  else if(control[0] != i || control[1] != j) {
+                if(isFirstMatch) {
+                    isFirstMatch = false;
+                    firstMatchCoords[0] = i + 1;
+                    firstMatchCoords[1] = j + 1;
+                } else if(firstMatchCoords[0] != i || firstMatchCoords[1] != j) {
                     return true;
                 }
             }
@@ -53,12 +53,9 @@ public class TwoSquares extends CommonGoalCard {
         return false;
     }
 
+    //PLACEHOLDER
     @Override
-    public int getPoints(Player p) {
-        if(checkGoal(p) && this.points >= 4) {
-            this.points -= 2;
-            return this.points + 2;
-        }
-        else return 0;
+    public int getPoints(Player p, List<Integer> points) {
+        return 0;
     }
 }

@@ -5,16 +5,9 @@ import java.util.List;
 
 public abstract class CommonGoalCard implements Goal {
 
-    private List<Integer> point = new ArrayList<Integer>();
-    private int bonus = 8;
+    private List<Integer> points = new ArrayList<Integer>();
 
-    public int getBonus(){
-        return this.bonus;
-    }
+    public abstract int getPoints(Player p, List<Integer> points);
 
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
-    }
 
-    public abstract int getPoints(Player p);
 }
