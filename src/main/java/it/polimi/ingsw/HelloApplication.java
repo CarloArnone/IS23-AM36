@@ -17,13 +17,15 @@ public class HelloApplication extends Application {
     Button button;
 
     int playersNumber = 4;
-    static final int littleShelfSize = 150;
+    static final int shelfWidth = 5;
+    static final int shelfHeight = 6;
+    static final int littleShelfSize = 200;
     static final int livingroomsize = 800;
     static final int windowHeight = 800;
     static final int gameboardTileSize = 75;
-    static final int littleShelfTileSIze = 20;  //TODO: evaluate this constant
+    static final int littleShelfTileSIze = 23;  //TODO: evaluate this constant
     static final int gameBoardSize = 9;
-    static final double rescaleWhenSelected = 0.85;
+    static final double rescaleWhenSelected = 0.95;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,21 +37,11 @@ public class HelloApplication extends Application {
         windowSettings(window);
 
         StackPane center = new StackPane();
-
-        ArrayList<StackPane> littleShelveStackPane = new ArrayList<>();
-        for(int i = 0; i < playersNumber; i++){
-            littleShelveStackPane.add(new StackPane());
-        }
         GridPane livingRoomBoard = addLivingroomPane();
-
         HBox topMenu = new HBox();
-
         FlowPane littleShelvesMaster = new FlowPane();
-        littleShelvesMaster.getChildren().addAll(littleShelveStackPane); //Left hierarchy: littleShelvesMaster -> 3 stackpanes
-        ImageView shelvesImage = new ImageView("17_MyShelfie_BGA/boards/bookshelf.png");
-        for(int i = 0; i < playersNumber; i++){
-            //littleShelveStackPane.get(i).getChildren().addAll(shelvesImage,addLittleShelfPane());   //stackPanes -> imageview && gridpane
-        }
+
+
 
         FlowPane commonGoals = new FlowPane();
         //Border pane center
@@ -80,15 +72,29 @@ public class HelloApplication extends Application {
         commonGoals.setMinHeight(500);
 
         //Border pane left
-        leftPaneSettings(littleShelvesMaster);
-        //drawLittleShelves(shelves, tiles);
-        for(int i = 0; i < playersNumber; i++){
-            //littleShelveStackPane.get(i).getChildren().add()
-        }
-        //shelvesImage.getChildren().add(shelves);
+        ArrayList<GridPane> shelvesGridPanes = new ArrayList<>();   //This list gets filled inside the leftSidesettings function
+        leftPaneSettings(littleShelvesMaster,shelvesGridPanes);
+        //drawLittleShelves(shelvesGridPanes, tiles);
 
         drawGameboard(livingRoomBoard, tiles);
-
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,0,shelvesGridPanes.get(0));
+        }
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,1,shelvesGridPanes.get(1));
+        }
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,2,shelvesGridPanes.get(0));
+        }
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,3,shelvesGridPanes.get(2));
+        }
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,4,shelvesGridPanes.get(0));
+        }
+        for(int i = 0; i < shelfWidth; i++) {
+            drawTileLittleShelf(i,i,5,shelvesGridPanes.get(0));
+        }
 
         //Border pane creation
         BorderPane borderPane = new BorderPane();
@@ -113,7 +119,7 @@ public class HelloApplication extends Application {
     }
 
     private void rightPaneSettings(FlowPane rightPane) {
-        rightPane.setPadding(new Insets(5, 0, 5, 0));
+        rightPane.setPadding(new Insets(0, 0, 0, 0));
         rightPane.setVgap(20);
         rightPane.setHgap(20);
         rightPane.setPrefWrapLength(150); // preferred width allows for two columns
@@ -131,37 +137,32 @@ public class HelloApplication extends Application {
         }
     }
 
-    private void leftPaneSettings(FlowPane leftPane) {
+    private void leftPaneSettings(FlowPane leftPane,ArrayList<GridPane> gridPanes) {
         leftPane.setPadding(new Insets(5, 0, 5, 0));
         leftPane.setVgap(10);
         leftPane.setHgap(10);
         leftPane.setPrefWrapLength(150); // preferred width allows for two columns
         leftPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
-        ImageView pages[] = new ImageView[2];
-        for (int i = 0; i < 2; i++) {
-            Stage subWindow = new Stage();
-            subWindow.setHeight(800);   //This is the picture height
-            subWindow.setWidth(750);
-            pages[i] = new ImageView("/17_MyShelfie_BGA/boards/bookshelf.png");
-            pages[i].setPreserveRatio(true);
-            pages[i].setFitHeight(littleShelfSize);
-            pages[i].setFitWidth(littleShelfSize);
-            leftPane.getChildren().add(pages[i]);
-            pages[i].setOnMouseClicked(mouseEvent -> {
-
-                StackPane shelf = new StackPane();
-                ImageView shelfImage = new ImageView("/17_MyShelfie_BGA/boards/bookshelf.png");
-                shelfImage.setFitHeight(750);
-                shelfImage.setPreserveRatio(true);
-                shelf.getChildren().add(shelfImage);
-                Scene scene = new Scene(shelf, 800, 800);
-                subWindow.setScene(scene);
-                subWindow.showAndWait();
-
-            });
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
+        ArrayList<ImageView> imageviews = new ArrayList<>();
+        for (int i = 0; i < playersNumber; i++){
+            gridPanes.add(addLittleShelfGridPane());
         }
+        for(int i = 0; i < playersNumber; i++){
+            stackPanes.add(new StackPane());
+        }
+        for (int i = 0; i < playersNumber; i++) {
+            imageviews.add(new ImageView("/17_MyShelfie_BGA/boards/bookshelf_orth.png"));
+            imageviews.get(i).setPreserveRatio(true);
+            imageviews.get(i).setFitHeight(littleShelfSize);
+            imageviews.get(i).setFitWidth(littleShelfSize);
+        }
+        for(int k = 0; k < playersNumber; k++){
+            stackPanes.get(k).getChildren().add(imageviews.get(k));
+            stackPanes.get(k).getChildren().add(gridPanes.get(k));
+            leftPane.getChildren().add(stackPanes.get(k));
 
-
+        }
     }
 
     private void setPlayButtonAction(Button playButton) {
@@ -205,12 +206,14 @@ public class HelloApplication extends Application {
 
     private void drawTileLittleShelf(int tileNumber, int x, int y, GridPane littleShelf) {
 
-        Tile tile = addTile(tileNumber, x, y);
+        Tile tile = addTile(tileNumber % 18, x, y);
 
         tile.getImageView().setFitHeight(littleShelfTileSIze);
         tile.getImageView().setFitWidth(littleShelfTileSIze);
         //GridPane.setConstraints(tile,x,y);
-        littleShelf.add(tile.getImageView(), x, y);
+        if(x < shelfWidth && y < shelfHeight) {
+            littleShelf.add(tile.getImageView(), x, y);
+        }
     }
     private ArrayList<Tile> CreateTileList(ArrayList<Tile> tiles){
         for(int i = 0; i < gameBoardSize; i++){
@@ -247,10 +250,10 @@ public class HelloApplication extends Application {
 
         return commonGoalsList;
     }
-    public GridPane addLittleShelfPane(){
+    public GridPane addLittleShelfGridPane(){
         GridPane grid = new GridPane();
-        final int numCols = 5 ;
-        final int numRows = 5 ;
+        final int numCols = shelfWidth;
+        final int numRows = shelfHeight;
         for (int i = 0; i < numCols; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
             colConst.setPercentWidth(100.0 / numCols);
@@ -263,7 +266,7 @@ public class HelloApplication extends Application {
         }
         grid.setHgap(0);
         grid.setVgap(0);
-        grid.setPadding(new Insets(5, 5, 5, 5));
+        grid.setPadding(new Insets(11, 13, 22, 25));
         grid.setPrefSize(littleShelfSize, littleShelfSize);
 
         return grid;
@@ -303,10 +306,9 @@ public class HelloApplication extends Application {
         }
 
     }
-    private void drawLittleShelves(GridPane littleShelve,ArrayList<Tile> tiles){
-        ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);
-        for(int i = 0; i < tiles.size(); i++){
-            drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),littleShelve);
+    private void drawLittleShelves(List<GridPane> littleShelve,ArrayList<Tile> tiles){
+        for(int i = 0; i < littleShelve.size(); i++){
+            drawTileLittleShelf(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),littleShelve.get(i));
         }
 
     }
