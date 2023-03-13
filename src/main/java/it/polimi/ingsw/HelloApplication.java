@@ -35,6 +35,7 @@ public class HelloApplication extends Application {
         windowSettings(window);
 
         StackPane center = new StackPane();
+
         ArrayList<StackPane> littleShelveStackPane = new ArrayList<>();
         for(int i = 0; i < playersNumber; i++){
             littleShelveStackPane.add(new StackPane());
@@ -43,10 +44,14 @@ public class HelloApplication extends Application {
 
         HBox topMenu = new HBox();
 
-        GridPane shelves = addLittleShelfPane();
-        FlowPane shelvesImage = new FlowPane();
-        FlowPane commonGoals = new FlowPane();
+        FlowPane littleShelvesMaster = new FlowPane();
+        littleShelvesMaster.getChildren().addAll(littleShelveStackPane); //Left hierarchy: littleShelvesMaster -> 3 stackpanes
+        ImageView shelvesImage = new ImageView("17_MyShelfie_BGA/boards/bookshelf.png");
+        for(int i = 0; i < playersNumber; i++){
+            //littleShelveStackPane.get(i).getChildren().addAll(shelvesImage,addLittleShelfPane());   //stackPanes -> imageview && gridpane
+        }
 
+        FlowPane commonGoals = new FlowPane();
         //Border pane center
         livingRoomBoard.setMaxHeight(livingroomsize);
         livingRoomBoard.setMaxWidth(livingroomsize);
@@ -75,8 +80,8 @@ public class HelloApplication extends Application {
         commonGoals.setMinHeight(500);
 
         //Border pane left
-        leftPaneSettings(shelvesImage);
-        drawLittleShelves(shelves, tiles);
+        leftPaneSettings(littleShelvesMaster);
+        //drawLittleShelves(shelves, tiles);
         for(int i = 0; i < playersNumber; i++){
             //littleShelveStackPane.get(i).getChildren().add()
         }
@@ -89,7 +94,7 @@ public class HelloApplication extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(topMenu);
         borderPane.setCenter(center);    //Sets the livingroom in the middle
-        borderPane.setLeft(shelvesImage);
+        borderPane.setLeft(littleShelvesMaster);
         borderPane.setRight(commonGoals);
 
         Scene scene = new Scene(borderPane, 100, 100);
