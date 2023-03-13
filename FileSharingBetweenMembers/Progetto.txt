@@ -1,0 +1,6 @@
+gestione active non active player // nuova list nomi di cosa devo scrivere al posto dei player che hanno abbandonato
+Bot e player con counter entity per giocatori totali // 
+Dubbio se giocatore esce e vuole riconettersi con stesso nome come --> trovo la vecchia partita con vecchiio nome--> come gestisco?
+How to handle multiple type connection from server list// general controller/stategy pattern
+
+Implement a way to remember if a Player already completed a common goal, since you can only do that once per game.

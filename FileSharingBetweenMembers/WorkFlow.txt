@@ -21,7 +21,40 @@ Define Communication Port
 -- Game Evolution (Turn)
     List<ItemCard> draft = pickDraft()
     void giveDraftTo(Player p)
-    --- toDefine...
+    void updateLivingRoom()
+    Int col = selectCol()
+    void selectOrder()
+    void orderCards()
+    void placeCardsInCol(Int col, List<ItemCard> drawnCards)
+
+
+    --- End Turn Fase
+        void updateShelf(Player p)
+        void checkCommonGoals(Player p)  -- Server
+        void updateCommonGoals(Player p) -- Client
+        void updateScore(Player p)
+        void nextTurn()
+        boolean isGameEnded()
+
+-- Game Evolution (Play - InterTurn)
+    boolean        checkRearrangeDesk()       -- Server                !--- da guardare lato server come gestire piu connessioni di diversi tipi
+    List<Position> checkSelectablePositions() -- Server
+    void           updateDesk()               -- Client
+
+
+-- EndGame Fase
+    void checkPersonalGoals()
+    Player winner = checkWinner()
+    void StatToJSON()
+    void updateStatsForGameEnded(File Stat.JSON)
+    void clearAllDataLeft()
+
+
+
+
+
+
+
 
 
 
