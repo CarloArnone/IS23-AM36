@@ -1,0 +1,32 @@
+Avvio App
+Selection between server e client
+-- Client StartUp
+Choose Communication Type - (Socket / RMI) - Connection to Server
+Choose Interface Type
+
+-- Server StartUp
+Define Communication Port
+
+-- Client Side Events
+    login()
+    LivingRoom isThereAnyGameLeft(Player p)
+    void createOrJoinGame()
+
+-- Create Game
+    simple method
+
+-- Join Game
+    simple method
+
+-- Game Evolution (Turn)
+    List<ItemCard> draft = pickDraft()
+    void giveDraftTo(Player p)
+    --- toDefine...
+
+
+
+
+
+
+
+
