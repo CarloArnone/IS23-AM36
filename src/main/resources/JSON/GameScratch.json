@@ -1,0 +1,469 @@
+{
+  "GamesSetup" :
+  [
+    {
+      "playersNumber" : 2,
+      "board" : [
+        {
+          "position" : [1,3],
+          "isGood" : true
+        },
+        {
+          "position" : [1,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,3],
+          "isGood" : true
+        },
+        {
+          "position" : [2,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,2],
+          "isGood" : true
+        },
+        {
+          "position" : [3,3],
+          "isGood" : true
+        },
+        {
+          "position" : [3,4],
+          "isGood" : true
+        },
+        {
+          "position" : [3,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,6],
+          "isGood" : true
+        },
+        {
+          "position" : [3,7],
+          "isGood" : true
+        },
+        {
+          "position" : [4,1],
+          "isGood" : true
+        },
+        {
+          "position" : [4,2],
+          "isGood" : true
+        },
+        {
+          "position" : [4,3],
+          "isGood" : true
+        },
+        {
+          "position" : [4,4],
+          "isGood" : true
+        },
+        {
+          "position" : [4,5],
+          "isGood" : true
+        },
+        {
+          "position" : [4,6],
+          "isGood" : true
+        },
+        {
+          "position" : [4,7],
+          "isGood" : true
+        },
+        {
+          "position" : [5,1],
+          "isGood" : true
+        },
+        {
+          "position" : [5,2],
+          "isGood" : true
+        },
+        {
+          "position" : [5,3],
+          "isGood" : true
+        },
+        {
+          "position" : [5,4],
+          "isGood" : true
+        },
+        {
+          "position" : [5,5],
+          "isGood" : true
+        },
+        {
+          "position" : [5,6],
+          "isGood" : true
+        },
+        {
+          "position" : [6,3],
+          "isGood" : true
+        },
+        {
+          "position" : [6,4],
+          "isGood" : true
+        },
+        {
+          "position" : [6,5],
+          "isGood" : true
+        },
+        {
+          "position" : [7,4],
+          "isGood" : true
+        },
+        {
+          "position": [7,5],
+          "isGood": true
+        }
+      ],
+      "commonGoalPoints" : [8, 4]
+    },
+    {
+      "playersNumber" : 3,
+      "board" : [
+        {
+          "position" : [1,3],
+          "isGood" : true
+        },
+        {
+          "position" : [1,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,3],
+          "isGood" : true
+        },
+        {
+          "position" : [2,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,2],
+          "isGood" : true
+        },
+        {
+          "position" : [3,3],
+          "isGood" : true
+        },
+        {
+          "position" : [3,4],
+          "isGood" : true
+        },
+        {
+          "position" : [3,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,6],
+          "isGood" : true
+        },
+        {
+          "position" : [3,7],
+          "isGood" : true
+        },
+        {
+          "position" : [4,1],
+          "isGood" : true
+        },
+        {
+          "position" : [4,2],
+          "isGood" : true
+        },
+        {
+          "position" : [4,3],
+          "isGood" : true
+        },
+        {
+          "position" : [4,4],
+          "isGood" : true
+        },
+        {
+          "position" : [4,5],
+          "isGood" : true
+        },
+        {
+          "position" : [4,6],
+          "isGood" : true
+        },
+        {
+          "position" : [4,7],
+          "isGood" : true
+        },
+        {
+          "position" : [5,1],
+          "isGood" : true
+        },
+        {
+          "position" : [5,2],
+          "isGood" : true
+        },
+        {
+          "position" : [5,3],
+          "isGood" : true
+        },
+        {
+          "position" : [5,4],
+          "isGood" : true
+        },
+        {
+          "position" : [5,5],
+          "isGood" : true
+        },
+        {
+          "position" : [5,6],
+          "isGood" : true
+        },
+        {
+          "position" : [6,3],
+          "isGood" : true
+        },
+        {
+          "position" : [6,4],
+          "isGood" : true
+        },
+        {
+          "position" : [6,5],
+          "isGood" : true
+        },
+        {
+          "position" : [7,4],
+          "isGood" : true
+        },
+        {
+          "position": [7,5],
+          "isGood": true
+        },
+        {
+          "position": [0,3],
+          "isGood": true
+        },
+        {
+          "position": [2,2],
+          "isGood": true
+        },
+        {
+          "position": [2,6],
+          "isGood": true
+        },
+        {
+          "position": [3,8],
+          "isGood": true
+        },
+        {
+          "position": [5,0],
+          "isGood": true
+        },
+        {
+          "position": [6,2],
+          "isGood": true
+        },
+        {
+          "position": [6,6],
+          "isGood": true
+        },
+        {
+          "position": [8,5],
+          "isGood": true
+        }
+      ],
+      "commonGoalPoints" : [8, 6, 4]
+    },
+    {
+      "playersNumber" : 4,
+      "board" : [
+        {
+          "position" : [1,3],
+          "isGood" : true
+        },
+        {
+          "position" : [1,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,3],
+          "isGood" : true
+        },
+        {
+          "position" : [2,4],
+          "isGood" : true
+        },
+        {
+          "position" : [2,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,2],
+          "isGood" : true
+        },
+        {
+          "position" : [3,3],
+          "isGood" : true
+        },
+        {
+          "position" : [3,4],
+          "isGood" : true
+        },
+        {
+          "position" : [3,5],
+          "isGood" : true
+        },
+        {
+          "position" : [3,6],
+          "isGood" : true
+        },
+        {
+          "position" : [3,7],
+          "isGood" : true
+        },
+        {
+          "position" : [4,1],
+          "isGood" : true
+        },
+        {
+          "position" : [4,2],
+          "isGood" : true
+        },
+        {
+          "position" : [4,3],
+          "isGood" : true
+        },
+        {
+          "position" : [4,4],
+          "isGood" : true
+        },
+        {
+          "position" : [4,5],
+          "isGood" : true
+        },
+        {
+          "position" : [4,6],
+          "isGood" : true
+        },
+        {
+          "position" : [4,7],
+          "isGood" : true
+        },
+        {
+          "position" : [5,1],
+          "isGood" : true
+        },
+        {
+          "position" : [5,2],
+          "isGood" : true
+        },
+        {
+          "position" : [5,3],
+          "isGood" : true
+        },
+        {
+          "position" : [5,4],
+          "isGood" : true
+        },
+        {
+          "position" : [5,5],
+          "isGood" : true
+        },
+        {
+          "position" : [5,6],
+          "isGood" : true
+        },
+        {
+          "position" : [6,3],
+          "isGood" : true
+        },
+        {
+          "position" : [6,4],
+          "isGood" : true
+        },
+        {
+          "position" : [6,5],
+          "isGood" : true
+        },
+        {
+          "position" : [7,4],
+          "isGood" : true
+        },
+        {
+          "position": [7,5],
+          "isGood": true
+        },
+        {
+          "position": [0,3],
+          "isGood": true
+        },
+        {
+          "position": [2,2],
+          "isGood": true
+        },
+        {
+          "position": [2,6],
+          "isGood": true
+        },
+        {
+          "position": [3,8],
+          "isGood": true
+        },
+        {
+          "position": [5,0],
+          "isGood": true
+        },
+        {
+          "position": [6,2],
+          "isGood": true
+        },
+        {
+          "position": [6,6],
+          "isGood": true
+        },
+        {
+          "position": [8,5],
+          "isGood": true
+        },
+        {
+          "position": [0,4],
+          "isGood": true
+        },
+        {
+          "position": [1,5],
+          "isGood": true
+        },
+        {
+          "position": [3,1],
+          "isGood": true
+        },
+        {
+          "position": [4,0],
+          "isGood": true
+        },
+        {
+          "position": [4,8],
+          "isGood": true
+        },
+        {
+          "position": [5,7],
+          "isGood": true
+        },
+        {
+          "position": [7,3],
+          "isGood": true
+        },
+        {
+          "position": [8,4],
+          "isGood": true
+        }
+
+      ],
+      "commonGoalPoints" : [8, 6, 4, 2]
+    }
+  ]
+
+}
