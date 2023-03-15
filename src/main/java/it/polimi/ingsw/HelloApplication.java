@@ -1,6 +1,8 @@
 package it.polimi.ingsw;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,24 +13,27 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class HelloApplication extends Application {
     Stage window;
     Button button;
 
-    int playersNumber = 4;
+    int playersNumber = 2;
     static final int shelfWidth = 5;
     static final int shelfHeight = 6;
     static final int littleShelfSize = 200;
     static final int livingroomsize = 800;
     static final int windowHeight = 800;
     static final int gameboardTileSize = 75;
-    static final int littleShelfTileSIze = 23;  //TODO: evaluate this constant
+    static final int littleShelfTileSIze = 24;  //TODO: evaluate this constant
     static final int gameBoardSize = 9;
-    static final double rescaleWhenSelected = 0.95;
+    static final double rescaleWhenSelected = 0.85;
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        AtomicInteger PlayButtonChoice;
 
         ArrayList<Tile> tiles = new ArrayList<>();
         tiles = CreateTileList(tiles);
@@ -40,10 +45,8 @@ public class HelloApplication extends Application {
         GridPane livingRoomBoard = addLivingroomPane();
         HBox topMenu = new HBox();
         FlowPane littleShelvesMaster = new FlowPane();
-
-
-
         FlowPane commonGoals = new FlowPane();
+
         //Border pane center
         livingRoomBoard.setMaxHeight(livingroomsize);
         livingRoomBoard.setMaxWidth(livingroomsize);
@@ -51,49 +54,28 @@ public class HelloApplication extends Application {
         livingRoomImageSettings(livingroomImage);
         center.getChildren().add(livingroomImage);
         center.getChildren().add(livingRoomBoard);
-        livingroomImage.setOnMouseClicked(e ->
-        {
-            int x = (int) e.getX();
-            int y = (int) e.getY();
-            System.out.println("X: " + x + " Y: " + y);
-        });
 
         //Border pane top
         Button playButton = new Button(" Play ");
         Button exitButton = new Button(" Exit ");
         setExitButtonAction(exitButton);
-        setPlayButtonAction(playButton);
+        setPlayButtonAction(playButton,livingRoomBoard,tiles);
         topMenu.getChildren().addAll(playButton, exitButton);
 
         //BorderPane right
-        //rightPaneSettings(commonGoals);
+        rightPaneSettings(commonGoals);
         drawCommonGoals(commonGoals);
-        commonGoals.setMinWidth(500);
-        commonGoals.setMinHeight(500);
+        commonGoals.setMinWidth(littleShelfSize);
+        commonGoals.setMinHeight(littleShelfSize);
 
         //Border pane left
         ArrayList<GridPane> shelvesGridPanes = new ArrayList<>();   //This list gets filled inside the leftSidesettings function
         leftPaneSettings(littleShelvesMaster,shelvesGridPanes);
-        //drawLittleShelves(shelvesGridPanes, tiles);
 
         drawGameboard(livingRoomBoard, tiles);
         for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,0,shelvesGridPanes.get(0));
-        }
-        for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,1,shelvesGridPanes.get(1));
-        }
-        for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,2,shelvesGridPanes.get(0));
-        }
-        for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,3,shelvesGridPanes.get(2));
-        }
-        for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,4,shelvesGridPanes.get(0));
-        }
-        for(int i = 0; i < shelfWidth; i++) {
-            drawTileLittleShelf(i,i,5,shelvesGridPanes.get(0));
+            for (int j = 0; j <shelfHeight; j++)
+            drawTileLittleShelf(i*j,i,j,shelvesGridPanes.get(0));
         }
 
         //Border pane creation
@@ -124,17 +106,16 @@ public class HelloApplication extends Application {
         rightPane.setHgap(20);
         rightPane.setPrefWrapLength(150); // preferred width allows for two columns
         rightPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
+        /*
         ImageView pages[] = new ImageView[2];
         for (int i = 0; i < 2; i++) {
-            Stage subWindow = new Stage();
-            subWindow.setHeight(800);   //This is the picture height
-            subWindow.setWidth(750);
-            pages[i] = new ImageView("17_MyShelfie_BGA/common_goal_cards/1.jpg");
+            pages[i] = new ImageView("17_MyShelfie_BGA/common_goal_cards/"+ String.valueOf(i+1) +".jpg");
             pages[i].setPreserveRatio(true);
             pages[i].setFitHeight(littleShelfSize);
             pages[i].setFitWidth(littleShelfSize);
             rightPane.getChildren().add(pages[i]);
         }
+         */
     }
 
     private void leftPaneSettings(FlowPane leftPane,ArrayList<GridPane> gridPanes) {
@@ -156,6 +137,9 @@ public class HelloApplication extends Application {
             imageviews.get(i).setPreserveRatio(true);
             imageviews.get(i).setFitHeight(littleShelfSize);
             imageviews.get(i).setFitWidth(littleShelfSize);
+            imageviews.get(i).setOnMouseClicked(mouseEvent -> {
+                AlertBox.display("Helo","Sei un coglione");
+            });
         }
         for(int k = 0; k < playersNumber; k++){
             stackPanes.get(k).getChildren().add(imageviews.get(k));
@@ -165,14 +149,22 @@ public class HelloApplication extends Application {
         }
     }
 
-    private void setPlayButtonAction(Button playButton) {
-        playButton.setOnAction(e -> {
-            List<String> choices = new ArrayList<>();
-            choices.add("Restart a previous game");
-            choices.add("Start a game");
-            choices.add("Join a game");
-            System.out.println(ChoiceBox.display("Play", "How do you want to play?", choices));
-        });
+    private void setPlayButtonAction(Button playButton,GridPane livingroomBoard,ArrayList<Tile> tiles) {
+
+
+        playButton.setOnAction(clickEvent -> {
+                    int returnValue;
+                    List<String> choices = new ArrayList<>();
+                    choices.add("Restart a previous game");
+                    choices.add("Start a game");
+                    choices.add("Join a game");
+                    returnValue = (ChoiceBox.display("Play", "How do you want to play?", choices));
+                    if(returnValue == 0) {
+                        drawGameboard(livingroomBoard, tiles);
+                    }else if(returnValue == 1){
+                        clearGameBoard(livingroomBoard);
+                    }
+                });
     }
 
     private void setExitButtonAction(Button exitButton) {
@@ -266,7 +258,7 @@ public class HelloApplication extends Application {
         }
         grid.setHgap(0);
         grid.setVgap(0);
-        grid.setPadding(new Insets(11, 13, 22, 25));
+        grid.setPadding(new Insets(11, 14.5, 22.7, 24));
         grid.setPrefSize(littleShelfSize, littleShelfSize);
 
         return grid;
@@ -304,7 +296,9 @@ public class HelloApplication extends Application {
         for(int i = 0; i < tiles.size(); i++){
             drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
         }
-
+    }
+    public void clearGameBoard(GridPane gameBoard){
+                gameBoard.getChildren().clear();
     }
     private void drawLittleShelves(List<GridPane> littleShelve,ArrayList<Tile> tiles){
         for(int i = 0; i < littleShelve.size(); i++){
