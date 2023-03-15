@@ -21,52 +21,47 @@ public class SixCouples extends CommonGoalCard {
      * Finally, I check the last row, confronting each Item Card only with its right one because there are none below.
      * The last Item Card, the one on the bottom right, has no Item Card under or to the right, so it's only confronted by its two adjacent one and doesn't need to check anything itself.
      * Each time I consider an Item Card, I firstly see if it's null. In that case I continue the loop.**/
-    //checked
+
+    //CHECKED
     @Override
     public boolean checkGoal(Player p){
 
         int ret = 0;
-        Optional<ItemCard>[][] mat = p.getMyShelf().getShelf();
-        for(int i = 0; i < mat.length - 1; i++){
-            for(int j = 0; j < mat[0].length - 1; j++){
-                if(mat[i][j].isEmpty()) continue;
-                if(mat[i][j].get().getColor() == mat[i][j+1].orElse(control).getColor()){
-                    mat[i][j] = empty();
-                    mat[i][j+1] = empty();
+        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        for(int i = 0; i < shelfCopy.length - 1; i++){
+            for(int j = 0; j < shelfCopy[0].length - 1; j++){
+                if(shelfCopy[i][j].isEmpty()) continue;
+                if(shelfCopy[i][j].get().getColor() == shelfCopy[i][j+1].orElse(control).getColor()){
+                    shelfCopy[i][j] = empty();
+                    shelfCopy[i][j+1] = empty();
                     ret++;
                     continue;
                 }
-                if(mat[i][j].get().getColor() == mat[i+1][j].orElse(control).getColor()){
-                    mat[i][j] = empty();
-                    mat[i+1][j] = empty();
+                if(shelfCopy[i][j].get().getColor() == shelfCopy[i+1][j].orElse(control).getColor()){
+                    shelfCopy[i][j] = empty();
+                    shelfCopy[i+1][j] = empty();
                     ret++;
                 }
             }
-            if(mat[i][mat[0].length-1].isEmpty()) continue;
-            if(mat[i][mat[0].length-1].get().getColor() == mat[i+1][mat[0].length-1].orElse(control).getColor()){
-                mat[i][mat[0].length-1] = empty();
-                mat[i+1][mat[0].length-1] = empty();
+            if(shelfCopy[i][shelfCopy[0].length-1].isEmpty()) continue;
+            if(shelfCopy[i][shelfCopy[0].length-1].get().getColor() == shelfCopy[i+1][shelfCopy[0].length-1].orElse(control).getColor()){
+                shelfCopy[i][shelfCopy[0].length-1] = empty();
+                shelfCopy[i+1][shelfCopy[0].length-1] = empty();
                 ret++;
             }
         }
 
-        for(int i = 0; i < mat.length - 1; i++){
-            if(mat[mat.length-1][i].isEmpty()) continue;
-            if(mat[mat.length-1][i].get().getColor() == mat[mat.length-1][i+1].orElse(control).getColor()){
-                mat[mat.length-1][i] = empty();
-                mat[mat.length-1][i+1] = empty();
+        for(int i = 0; i < shelfCopy.length - 1; i++){
+            if(shelfCopy[shelfCopy.length-1][i].isEmpty()) continue;
+            if(shelfCopy[shelfCopy.length-1][i].get().getColor() == shelfCopy[shelfCopy.length-1][i+1].orElse(control).getColor()){
+                shelfCopy[shelfCopy.length-1][i] = empty();
+                shelfCopy[shelfCopy.length-1][i+1] = empty();
                 ret++;
             }
         }
 
         if(ret/6 == 0) return false;
-        else if(ret/6 >= 1) return true;
-        else return false; //TODO: consider this exception
-    }
-
-    //PLACEHOLDER
-    @Override
-    public int getPoints(Player p, List<Integer> points) {
-        return 0;
+        else if(ret/6 == 1) return true;
+        else return false; //TODO: consider this exception?
     }
 }

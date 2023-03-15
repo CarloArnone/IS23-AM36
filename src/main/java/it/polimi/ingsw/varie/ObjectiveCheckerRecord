@@ -2,6 +2,8 @@ package it.polimi.ingsw.varie;
 
 public class ObjectiveChecker {
 
+    /**
+
     private final char[][] mat;
     private final char emptyCell;
 
@@ -173,6 +175,8 @@ public class ObjectiveChecker {
      * The third (k) loop confronts the current cell with all the cells below it.
      * In this way we check all possibilities in a single column.
      * In case we find two equal cells in a column, we skip that column by updating the j counter and breaking the k loop. **/
+
+    /**
     public int diffColumn(){
         int ret = 0;
 
@@ -190,7 +194,7 @@ public class ObjectiveChecker {
         return ret/2;
     }
 
-    /** C.
+
     public int diffRows(){
         int ret = 0;
 
@@ -208,7 +212,7 @@ public class ObjectiveChecker {
 
         return ret/2;
     }
-     **/
+
     public int fourByFour(){
         int ret = 0;
 
@@ -221,3 +225,81 @@ public class ObjectiveChecker {
         return ret/2;
     }
 }
+
+
+
+    public int X_shape(){
+        for(int i=1;i<5;i++){
+            for (int j=1;j<4;j++){
+                if((mat[i][j]==mat[i+1][j+1])&&(mat[i][j]==mat[i+1][j-1])&&(mat[i][j]==mat[i-1][j-1])&&(mat[i][j]==mat[i-1][j+1])) {
+                   return 1;
+
+                }
+
+            }
+        }
+        return 0;
+    }
+    public int eight_equals(){
+     for(int i=0;i<6;i++){
+         for(int j=0;j<5;j++){int x=0;
+             for(int k=0;k<6;k++){
+                 for(int t=0;t<5;t++){
+                     if(mat[i][j]==mat[k][t])x++;
+                 }
+             }
+             if(x>=8)return 1;
+         }
+     }
+     return 0;
+    }
+    public int three_columns(){
+        int k=0;
+        int c=0;
+        int[] arr = new int[0];
+        for(int j=0;j<5;j++){
+            for(int i=0;i<6;i++){
+                k=mat[i][j];
+                arr[k]++;
+            }
+        }
+        for(k=0;k<6;k++){
+            if(arr[k]>0)c++;
+            if(c>=3)return 0;
+        }
+        return 1;
+
+    }
+    public int Pyramid(){
+        int i;
+        if(mat[0][0]==NULL||mat[0][4]==NULL)return 0;
+         else if (mat[1][0]!=NULL) {
+            for(i=0;i<6;i++){
+                if(mat[i+1][i]==NULL)return 0;
+            }for(i=0;i<4;i++){
+                if(mat[i+2][i]!=NULL)return 0;
+            }return 1;
+
+        }else if (mat[1][4] !=NULL) {
+             for(i=1;i<6;i++){
+                if (mat[i][5-i]==NULL)return 0;
+             }for(i=2;i<6;i++){
+                 if(mat[i][6-i]!=NULL)return 0;
+            }return 1;
+
+        } else if (mat[0][4]!=NULL) {
+             for(i=0;i<5;i++){
+                 if(mat[i][4-i]==NULL)return 0;
+             }for(i=1;i<6;i++){
+                 if(mat[i][5-i]!=NULL)return 0;
+            }return 1;
+
+        } else if (mat[0][0]!=NULL) {
+            for(i=0;i<5;i++){
+                if(mat[i][i]==NULL)return 0;
+            }for(i=0;i<5;i++){
+                if(mat[i+1][i]!=NULL)return 0;
+            }return 1;
+        }
+    return 1;
+    }

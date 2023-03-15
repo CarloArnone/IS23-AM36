@@ -1,8 +1,9 @@
 package it.polimi.ingsw.Model;
 
 public class ItemCard {
+
     private char color;
-    private String image;
+    private String image; //TODO: work in progress PD.
 
     public ItemCard(char color, String image) {
         this.color = color;

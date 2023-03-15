@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Shelf {
-    private Optional<ItemCard>[][] shelf;
 
+    private Optional<ItemCard>[][] shelf;
 
     /** Returns the selected Shelf. */
     public Optional<ItemCard>[][] getShelf() {

@@ -27,6 +27,8 @@ public class TwoSquares extends CommonGoalCard {
      * │ - │ - │ - │ - │ - │
      *
      * The cells marked with a '2' would be the ones considered 2 times. **/
+
+    //CHECKED
     @Override
     public boolean checkGoal(Player p) {
 
@@ -36,11 +38,12 @@ public class TwoSquares extends CommonGoalCard {
 
         for(int i = 0; i < shelfCopy.length - 1; i++){
             for(int j = 0; j < shelfCopy[0].length - 1; j++) {
-                if (shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty()) continue;
+                if (shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty() || shelfCopy[i + 1][j].isEmpty() || shelfCopy[i + 1][j + 1].isEmpty()) continue;
                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i][j + 1].get().getColor()) continue;
                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j].get().getColor()) continue;
                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j + 1].get().getColor()) continue;
 
+                //In case we decide to redo the checkGoal orientation and start checking from the bottom of the shelf, this part of the code to verify the fact that the squares do not overlap, need to be reviewed.
                 if(isFirstMatch) {
                     isFirstMatch = false;
                     firstMatchCoords[0] = i + 1;
@@ -51,11 +54,5 @@ public class TwoSquares extends CommonGoalCard {
             }
         }
         return false;
-    }
-
-    //PLACEHOLDER
-    @Override
-    public int getPoints(Player p, List<Integer> points) {
-        return 0;
     }
 }

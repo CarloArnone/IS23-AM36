@@ -9,28 +9,34 @@ import java.util.Optional;
 
 public class TwoColDiffTypes extends CommonGoalCard {
 
+    //CHECKED
     @Override
     public boolean checkGoal(Player p) {
 
         boolean firstMatchFound = false;
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
 
-        for (int i = 0; i <= shelfCopy.length - 1; i++) {
+        for(int k = 0; k < shelfCopy.length; k++) {
             for (int j = 0; j < shelfCopy[0].length - 1; j++) {
-                if(shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty()) break;
-                if (shelfCopy[i][j].get().getColor() == shelfCopy[i][j + 1].get().getColor()) break;
-                if (j == shelfCopy[0].length - 2){
-                    if(!firstMatchFound) firstMatchFound = true;
-                    else return true;
+                if(k == shelfCopy[0].length) return false;
+                for(int i = j+1; i < shelfCopy[0].length; i++) {
+                    if(shelfCopy[k][j].isEmpty() || shelfCopy[k][i].isEmpty()){
+                        k++;
+                        j = 0;
+                        break;
+                    }
+                    if(shelfCopy[k][j].get().getColor() == shelfCopy[k][i].get().getColor()){
+                        k++;
+                        j = 0;
+                        break;
+                    }
+                    if(i == shelfCopy[0].length - 1 && j == shelfCopy[0].length - 2){
+                        if(firstMatchFound) return true;
+                        else firstMatchFound = true;
+                    }
                 }
             }
         }
         return false;
-    }
-
-
-    @Override
-    public int getPoints(Player p, List<Integer> points) {
-        return 0;
     }
 }
