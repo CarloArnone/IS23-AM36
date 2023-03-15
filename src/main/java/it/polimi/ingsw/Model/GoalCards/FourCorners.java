@@ -13,10 +13,10 @@ public class FourCorners extends CommonGoalCard {
     @Override
     public boolean checkGoal(Player p) {
         Optional<ItemCard>[][] mat = p.getMyShelf().getShelf();
-        if(mat[0][0].isEmpty() || mat[0][mat[0].length - 1].isEmpty() || mat[mat.length - 1][0].isEmpty() || mat[mat.length - 1][mat[0].length - 1].isEmpty()) return false;
-        if(mat[0][0].get().getColor() != mat[0][mat[0].length - 1].get().getColor()) return false;
-        if(mat[0][0].get().getColor() != mat[mat.length - 1][0].get().getColor()) return false;
-        if(mat[0][0].get().getColor() != mat[mat.length - 1][mat[0].length - 1].get().getColor()) return false;
+        if(mat[0][0].isEmpty() || mat[0][mat[0].length-1].isEmpty() || mat[mat.length-1][0].isEmpty() || mat[mat.length-1][mat[0].length-1].isEmpty()) return false;
+        if(mat[0][0].get().getColor() != mat[0][mat[0].length-1].get().getColor()) return false;
+        if(mat[0][0].get().getColor() != mat[mat.length-1][0].get().getColor()) return false;
+        if(mat[0][0].get().getColor() != mat[mat.length-1][mat[0].length-1].get().getColor()) return false;
         return true;
     }
 

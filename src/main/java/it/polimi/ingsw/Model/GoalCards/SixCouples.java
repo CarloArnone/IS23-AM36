@@ -52,12 +52,16 @@ public class SixCouples extends CommonGoalCard {
 
         for(int i = 0; i < mat.length - 1; i++){
             if(mat[mat.length-1][i].isEmpty()) continue;
-            if(mat[mat.length-1][i].get().getColor() == mat[mat.length-1][i+1].orElse(control).getColor()) ret++;
+            if(mat[mat.length-1][i].get().getColor() == mat[mat.length-1][i+1].orElse(control).getColor()){
+                mat[mat.length-1][i] = empty();
+                mat[mat.length-1][i+1] = empty();
+                ret++;
+            }
         }
 
         if(ret/6 == 0) return false;
-        else if(ret/6 == 1) return true;
-        else return false; //consider this exception
+        else if(ret/6 >= 1) return true;
+        else return false; //TODO: consider this exception
     }
 
     //PLACEHOLDER
