@@ -15,27 +15,27 @@ public class Diagonals extends CommonGoalCard {
 
         Optional<ItemCard>[][] mat = p.getMyShelf().getShelf();
 
-        for (int i = 0; i < mat.length - 2; i++) {
+        for (int i = 0; i < mat.length - 1; i++) {
             if(mat[i][i].isEmpty() || mat[i + 1][i + 1].isEmpty()) break;
             if(mat[i][i].get().getColor() != mat[i + 1][i + 1].get().getColor()) break;
             if(i == mat.length - 2) return true;
         }
 
-        for (int i = 1; i < mat.length - 1; i++) {
-            if(mat[i][i].isEmpty() || mat[i + 1][i + 1].isEmpty()) break;
-            if(mat[i][i].get().getColor() != mat[i + 1][i + 1].get().getColor()) break;
+        for (int i = 0; i < mat.length - 1; i++) {
+            if(mat[i][i+1].isEmpty() || mat[i+1][i+2].isEmpty()) break;
+            if(mat[i][i+1].get().getColor() != mat[i+1][i+2].get().getColor()) break;
             if(i == mat.length - 2) return true;
         }
 
-        for (int i = 0; i < mat.length - 2; i++) {
-            if(mat[mat.length - i - 1][i].isEmpty() || mat[mat.length - i - 2][i + 1].isEmpty()) break;
-            if(mat[mat.length - i - 1][i].get().getColor() != mat[mat.length - i - 2][i + 1].get().getColor()) break;
+        for (int i = 0; i < mat.length - 1; i++) {
+            if(mat[mat.length-i-1][i].isEmpty() || mat[mat.length-i-2][i+1].isEmpty()) break;
+            if(mat[mat.length-i-1][i].get().getColor() != mat[mat.length-i-2][i+1].get().getColor()) break;
             if(i == mat.length - 2) return true;
         }
 
-        for (int i = 1; i < mat.length - 1; i++) {
-            if(mat[mat.length - i][i].isEmpty() || mat[mat.length - i - 1][i + 1].isEmpty()) break;
-            if(mat[mat.length - i][i].get().getColor() != mat[mat.length - i - 1][i + 1].get().getColor()) break;
+        for (int i = 0; i < mat.length - 1; i++) {
+            if(mat[mat.length-i-1][i+1].isEmpty() || mat[mat.length-i-2][i+2].isEmpty()) break;
+            if(mat[mat.length-i-1][i+1].get().getColor() != mat[mat.length-i-2][i+2].get().getColor()) break;
             if(i == mat.length - 2) return true;
         }
         return false;
