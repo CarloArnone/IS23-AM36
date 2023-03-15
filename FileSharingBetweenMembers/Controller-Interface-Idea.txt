@@ -1,0 +1,23 @@
+isCorrectInput()
+arrangeLivingRoom()
+confirmDraft(List<ItemCard> pick)
+confirmEndTurn(List<ItemCard> pick, Int Col) --pick should be sorted
+withdrawPick()
+leaveGame()
+disconnectedPlayer(Player p)
+reconnectPlayer(Player p, String gameId)
+
++ joinGame(Game, Player p){
+    if(Game.getPlayers().lenght < MaxPlayersNum){
+        Game.addPlayer(Player p);
+    }
+    else if (Game.getPlayers().lenght = MaxPlayersNum){
+        updateLivingRoom()
+    }
+}
++ createGame(String GameId, Player creator)
++ recreateGame(All the Arguments)
+
+
+
+Model
