@@ -9,40 +9,35 @@ import java.util.Optional;
 
 public class Diagonals extends CommonGoalCard {
 
-    //checked
+    //CHECKED
     @Override
     public boolean checkGoal(Player p) {
 
-        Optional<ItemCard>[][] mat = p.getMyShelf().getShelf();
+        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
 
-        for (int i = 0; i < mat.length - 1; i++) {
-            if(mat[i][i].isEmpty() || mat[i + 1][i + 1].isEmpty()) break;
-            if(mat[i][i].get().getColor() != mat[i + 1][i + 1].get().getColor()) break;
-            if(i == mat.length - 2) return true;
+        for (int i = 0; i < shelfCopy.length - 1; i++) {
+            if(shelfCopy[i][i].isEmpty() || shelfCopy[i + 1][i + 1].isEmpty()) break;
+            if(shelfCopy[i][i].get().getColor() != shelfCopy[i + 1][i + 1].get().getColor()) break;
+            if(i == shelfCopy.length - 2) return true;
         }
 
-        for (int i = 0; i < mat.length - 1; i++) {
-            if(mat[i][i+1].isEmpty() || mat[i+1][i+2].isEmpty()) break;
-            if(mat[i][i+1].get().getColor() != mat[i+1][i+2].get().getColor()) break;
-            if(i == mat.length - 2) return true;
+        for (int i = 0; i < shelfCopy.length - 1; i++) {
+            if(shelfCopy[i][i+1].isEmpty() || shelfCopy[i+1][i+2].isEmpty()) break;
+            if(shelfCopy[i][i+1].get().getColor() != shelfCopy[i+1][i+2].get().getColor()) break;
+            if(i == shelfCopy.length - 2) return true;
         }
 
-        for (int i = 0; i < mat.length - 1; i++) {
-            if(mat[mat.length-i-1][i].isEmpty() || mat[mat.length-i-2][i+1].isEmpty()) break;
-            if(mat[mat.length-i-1][i].get().getColor() != mat[mat.length-i-2][i+1].get().getColor()) break;
-            if(i == mat.length - 2) return true;
+        for (int i = 0; i < shelfCopy.length - 1; i++) {
+            if(shelfCopy[shelfCopy.length-i-1][i].isEmpty() || shelfCopy[shelfCopy.length-i-2][i+1].isEmpty()) break;
+            if(shelfCopy[shelfCopy.length-i-1][i].get().getColor() != shelfCopy[shelfCopy.length-i-2][i+1].get().getColor()) break;
+            if(i == shelfCopy.length - 2) return true;
         }
 
-        for (int i = 0; i < mat.length - 1; i++) {
-            if(mat[mat.length-i-1][i+1].isEmpty() || mat[mat.length-i-2][i+2].isEmpty()) break;
-            if(mat[mat.length-i-1][i+1].get().getColor() != mat[mat.length-i-2][i+2].get().getColor()) break;
-            if(i == mat.length - 2) return true;
+        for (int i = 0; i < shelfCopy.length - 1; i++) {
+            if(shelfCopy[shelfCopy.length-i-1][i+1].isEmpty() || shelfCopy[shelfCopy.length-i-2][i+2].isEmpty()) break;
+            if(shelfCopy[shelfCopy.length-i-1][i+1].get().getColor() != shelfCopy[shelfCopy.length-i-2][i+2].get().getColor()) break;
+            if(i == shelfCopy.length - 2) return true;
         }
         return false;
-    }
-
-    @Override
-    public int getPoints(Player p, List<Integer> points) {
-        return 0;
     }
 }

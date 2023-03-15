@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class LivingRoom {
 
-    private Map<LivingRoomPosition, ItemCard> desk = new HashMap<LivingRoomPosition, ItemCard>();
+    private Map<BoardPosition, ItemCard> desk = new HashMap<>();
     private String livingRoomId;
     private List<Player> players;
     private int turn;

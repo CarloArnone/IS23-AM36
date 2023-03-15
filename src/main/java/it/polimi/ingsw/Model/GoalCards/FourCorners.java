@@ -9,20 +9,14 @@ import java.util.Optional;
 
 public class FourCorners extends CommonGoalCard {
 
-    //checked
+    //CHECKED
     @Override
     public boolean checkGoal(Player p) {
-        Optional<ItemCard>[][] mat = p.getMyShelf().getShelf();
-        if(mat[0][0].isEmpty() || mat[0][mat[0].length-1].isEmpty() || mat[mat.length-1][0].isEmpty() || mat[mat.length-1][mat[0].length-1].isEmpty()) return false;
-        if(mat[0][0].get().getColor() != mat[0][mat[0].length-1].get().getColor()) return false;
-        if(mat[0][0].get().getColor() != mat[mat.length-1][0].get().getColor()) return false;
-        if(mat[0][0].get().getColor() != mat[mat.length-1][mat[0].length-1].get().getColor()) return false;
+        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        if(shelfCopy[0][0].isEmpty() || shelfCopy[0][shelfCopy[0].length-1].isEmpty() || shelfCopy[shelfCopy.length-1][0].isEmpty() || shelfCopy[shelfCopy.length-1][shelfCopy[0].length-1].isEmpty()) return false;
+        if(shelfCopy[0][0].get().getColor() != shelfCopy[0][shelfCopy[0].length-1].get().getColor()) return false;
+        if(shelfCopy[0][0].get().getColor() != shelfCopy[shelfCopy.length-1][0].get().getColor()) return false;
+        if(shelfCopy[0][0].get().getColor() != shelfCopy[shelfCopy.length-1][shelfCopy[0].length-1].get().getColor()) return false;
         return true;
-    }
-
-    //PLACEHOLDER
-    @Override
-    public int getPoints(Player p, List<Integer> points) {
-        return 0;
     }
 }

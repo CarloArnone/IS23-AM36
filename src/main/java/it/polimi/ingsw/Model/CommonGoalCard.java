@@ -11,6 +11,4 @@ public abstract class CommonGoalCard implements Goal {
         this.points.remove(0);
         return temp;
     }
-
-
 }
