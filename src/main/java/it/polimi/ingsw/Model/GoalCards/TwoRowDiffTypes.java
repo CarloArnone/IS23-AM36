@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class TwoRowDiffTypes extends CommonGoalCard {
+    public TwoRowDiffTypes(List<Integer> points) {
+        super(points);
+    }
 
     //CHECKED
     @Override

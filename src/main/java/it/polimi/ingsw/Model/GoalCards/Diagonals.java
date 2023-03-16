@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class Diagonals extends CommonGoalCard {
+    public Diagonals(List<Integer> points) {
+        super(points);
+    }
 
     //CHECKED
     @Override

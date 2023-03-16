@@ -7,10 +7,10 @@ import it.polimi.ingsw.Model.Player;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Optional.empty;
-
 public class eightEquals extends CommonGoalCard {
-
+    public eightEquals(List<Integer> points) {
+        super(points);
+    }
 
     @Override
     public boolean checkGoal(Player p) {

@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class xShape extends CommonGoalCard {
+    public xShape(List<Integer> points) {
+        super(points);
+    }
 
     //CHECKED
     @Override

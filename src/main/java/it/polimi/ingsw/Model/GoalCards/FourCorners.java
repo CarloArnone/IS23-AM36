@@ -9,6 +9,10 @@ import java.util.Optional;
 
 public class FourCorners extends CommonGoalCard {
 
+    public FourCorners(List<Integer> points) {
+        super(points);
+    }
+
     //CHECKED
     @Override
     public boolean checkGoal(Player p) {
