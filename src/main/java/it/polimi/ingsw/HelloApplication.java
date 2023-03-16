@@ -2,12 +2,14 @@ package it.polimi.ingsw;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,10 +25,10 @@ public class HelloApplication extends Application {
     static final int shelfHeight = 6;
     static final int littleShelfSize = 175;
     static final int livingroomsize = 800;
-    static final int windowHeight = 900;
+    static final int windowHeight = 830;
     static final int windowLenght = 1400;
     static final int gameboardTileSize = 75;
-    static final int firstPlayerTokenSize = 100;
+    static final int endgameTokenSize = 100;
     static final int commonGoalTileSize = 300;
     static final int littleShelfTileSIze = 22;  //TODO: evaluate this constant
     static final int gameBoardSize = 9;
@@ -68,10 +70,13 @@ public class HelloApplication extends Application {
 
         //Border pane top
         Button playButton = new Button(" Play ");
-        Button exitButton = new Button(" Exit ");
+        Button exitButton = new Button(" X ");
+        playButton.setStyle("-fx-background-color: green;-fx-font-weight: bold");
+        exitButton.setStyle("-fx-background-color: red;  -fx-font-weight: bold");
         setExitButtonAction(exitButton);
         setPlayButtonAction(playButton,livingRoomBoard,tiles);
-        topMenu.getChildren().addAll(playButton, exitButton);
+        topMenu.getChildren().addAll(playButton,exitButton);
+        topMenu.setAlignment(Pos.CENTER);
 
         //BorderPane right
         rightPaneSettings(commonGoals);
@@ -130,6 +135,7 @@ public class HelloApplication extends Application {
                 window.close();
             }
         });
+        window.initStyle(StageStyle.UNDECORATED);
         window.setWidth(1480);
         window.setHeight(windowHeight);
         window.setResizable(false);
@@ -360,20 +366,20 @@ public class HelloApplication extends Application {
      *
      */
     private void drawGameboard(GridPane gameBoard,ArrayList<Tile> tiles){
-        drawFirstPlayerToken(gameBoard);    //TODO: disegna solo se necessario
+        drawEndgameToken(gameBoard);    //TODO: disegna solo se necessario
         ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);
         for(int i = 0; i < tiles.size(); i++){
             drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
         }
     }
-    private void drawFirstPlayerToken(GridPane gameBoard){
+    private void drawEndgameToken(GridPane gameBoard){
         StackPane stackPane = new StackPane();
-        ImageView firstPlayerToken = new ImageView("17_MyShelfie_BGA/misc/firstplayertoken.png");
-        firstPlayerToken.setFitHeight(firstPlayerTokenSize);
-        firstPlayerToken.setFitWidth(firstPlayerTokenSize);
-        firstPlayerToken.setRotate(15);
-        firstPlayerToken.setTranslateX(-45);
-        stackPane.getChildren().add(firstPlayerToken);
+        ImageView endgameToken = new ImageView("17_MyShelfie_BGA/scoring tokens/end game.jpg");
+        endgameToken.setFitHeight(endgameTokenSize);
+        endgameToken.setFitWidth(endgameTokenSize);
+        endgameToken.setRotate(15);
+        endgameToken.setTranslateX(-45);
+        stackPane.getChildren().add(endgameToken);
         stackPane.setMaxSize(225,225);
 
         GridPane.setColumnSpan(stackPane,4);
