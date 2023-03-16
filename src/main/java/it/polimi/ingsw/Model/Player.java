@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Player {
     private String name;
@@ -10,6 +11,11 @@ public class Player {
     private List<Goal> achievedGoals = new ArrayList<Goal>();
     private Shelf myShelf;
     private PersonalGoalCards personalGoals;
+
+
+    public Player(String name) {
+        this.name = name;
+    }
 
     /** Places an Item Card in a selected column of the Player's Shelf. (????) */
     public void PlacePick(){
@@ -60,6 +66,14 @@ public class Player {
 
     /** Cancels the current process of positioning the Drafted Item Cards in the Shelf. */
     public void withdrawPicks(){
-
+        this.drawnCards.clear();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player player)) return false;
+        return Objects.equals(name, player.name);
+    }
+
 }

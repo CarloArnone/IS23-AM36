@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class TwoSquares extends CommonGoalCard {
+    public TwoSquares(List<Integer> points) {
+        super(points);
+    }
 
     /** I check each cell one by one, up until the second to last column and row.
      * For each cell I check if it's equal with the right one and the bottom one and the diagonal one.

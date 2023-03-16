@@ -1,32 +1,56 @@
 package it.polimi.ingsw.Model;
 
+import Exceptions.ToManyCardsException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LivingRoom {
 
-    private Map<BoardPosition, ItemCard> desk = new HashMap<>();
+    private Map<BoardPosition, Boolean> board = new HashMap<>();
     private String livingRoomId;
     private List<Player> players;
     private int turn;
-    //private List<LivingRoomPosition> cardDraft; should be dealt with by the view
     private List<CommonGoalCard> commonGoalSet;
-    private List<ItemCard> deck;
+
+
+    public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<Player> players, List<CommonGoalCard> commonGoalSet) {
+        this.board = board;
+        this.livingRoomId = livingRoomId;
+        this.players = players;
+        this.turn = 0;
+        this.commonGoalSet = commonGoalSet;
+    }
+
+    public LivingRoom(){
+        this.turn = 0;
+        this.players = new ArrayList<>();
+    }
+    public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<CommonGoalCard> commonGoalset){
+        this.livingRoomId = livingRoomId;
+        this.board = board;
+        this.commonGoalSet = commonGoalset;
+    }
 
     /** Allows the player to pick a set of Item Cards. */
-    public void givePlayerTheirPick(Player p, List<ItemCard> pick){
+    public void givePlayerTheirPick(Player p, List<ItemCard> pick) throws ToManyCardsException {
+        if(pick.size() > 3){
+            throw new ToManyCardsException();
+        }
+
         p.setDrawnCards(pick);
     }
 
     /** Refills the board with new Item Cards. */
     private void arrangeDesk(){
-
+        return; //TODO
     }
 
     /** Checks if its necessary to refill the board. Is called at the end/start of each turn. */
     public void checkRearrangeDesk(){
-
+        return; //TODO
     }
 
     /** Erases the draft that was being done by the player. */
@@ -34,15 +58,22 @@ public class LivingRoom {
         p.withdrawPicks();
     }
 
-    /** Updates the view of the goals for the players. (All the goals at once? Both personal and common?) */
-    public void updateGoals(){
+    /** Updates the score relative to the CommonGoals for the player p. */
+    public void updateGoals(Player p){
+        for(CommonGoalCard g : commonGoalSet){
+            if(!players.get(getTurn()).getAchievedGoals().contains(g)){
+                if(g.checkGoal(p)){
+                    p.addPoints(g.getPoints());
+                    p.addAchievedGoal(g);
+                }
+            }
+        }
 
     }
 
-    /** Handles the passage of turns.
-     * (Check if it's only a matter of incrementing the counter or if there are other things that we could have this do and make sense at the same time)*/
+    /** Handles the passage of turns.*/
     public void nextTurn(){
-
+        turn = (turn +1) % players.size();
     }
 
     /** Returns the current turn number. */
@@ -55,18 +86,22 @@ public class LivingRoom {
         return this.players;
     }
 
-    /** Adds a new player to the game. */
+    /** Adds a new player to the game. If the player is already present does nothing*/
     public void addPlayer(Player newPlayer){
-
+        //TODO : NEED TO CHECK WHETHER THE NUMBER OF PLAYERS IS THE LIMIT -- MUST DO IT IN CONTROLLER
+        if(!getPlayers().contains(newPlayer)){
+            players.add(newPlayer);
+        }
     }
 
     /** Removes a player from the game. */
     public void removePlayer(Player player){
-
+        players.remove(player);
     }
-    /** Actually removes a card from a position of the board. (Does this happen after you confirm the draft, or after you finish positioning the Item Cards in your Shelf?) */
-    public void removeCard(int x, int y){
 
+    /** Actually removes a card from a position of the board.*/
+    public void removeCard(BoardPosition position){
+        board.remove(position);
     }
 
     /** Return the ID of the current Living Room. */
@@ -79,8 +114,7 @@ public class LivingRoom {
         this.livingRoomId = livingRoomId;
     }
 
-    /** !!!PLACEHOLDER!!!
-     * Creates a list of 2 random Common Goals for the current game. */
+    /** Sets the list of the 2 random Common Goals for the current game. */
     public void setCommonGoalSet(List<CommonGoalCard> commonGoalSet) {
         this.commonGoalSet = commonGoalSet;
     }
@@ -88,4 +122,22 @@ public class LivingRoom {
     public List<CommonGoalCard> getCommonGoalSet() {
         return commonGoalSet;
     }
+
+    /**
+     * get the board Map<BoardPosition, Boolean>
+     * @return board
+     */
+    public Map<BoardPosition, Boolean> getBoard() {
+        return board;
+    }
+
+
+    /**
+     * Usage for testing - the real board is set on starting a game
+     * @param board
+     */
+    public void setBoard(Map<BoardPosition, Boolean> board) {
+        this.board = board;
+    }
+
 }

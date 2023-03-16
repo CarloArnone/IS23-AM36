@@ -1,16 +1,19 @@
 package it.polimi.ingsw.Model.GoalCards;
 
+import it.polimi.ingsw.Model.CommonGoalCard;
 import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
-import it.polimi.ingsw.Model.CommonGoalCard;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Optional.*;
+import static java.util.Optional.empty;
 
 public class SixCouples extends CommonGoalCard {
+
+    public SixCouples(List<Integer> points) {
+        super(points);
+    }
 
     private final ItemCard control = new ItemCard();
 
