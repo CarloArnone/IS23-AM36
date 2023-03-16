@@ -1,11 +1,7 @@
 package it.polimi.ingsw;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class HelloApplication extends Application {
     Stage window;
@@ -28,8 +23,11 @@ public class HelloApplication extends Application {
     static final int shelfHeight = 6;
     static final int littleShelfSize = 175;
     static final int livingroomsize = 800;
-    static final int windowHeight = 800;
+    static final int windowHeight = 900;
+    static final int windowLenght = 1400;
     static final int gameboardTileSize = 75;
+    static final int firstPlayerTokenSize = 100;
+    static final int commonGoalTileSize = 300;
     static final int littleShelfTileSIze = 22;  //TODO: evaluate this constant
     static final int gameBoardSize = 9;
     static final double rescaleWhenSelected = 0.85;
@@ -52,11 +50,13 @@ public class HelloApplication extends Application {
         AtomicInteger PlayButtonChoice;
         ArrayList<Tile> tiles = new ArrayList<>();
         tiles = CreateTileList(tiles);
+        StackPane general = new StackPane();
         StackPane center = new StackPane();
         GridPane livingRoomBoard = addLivingroomPane();
         HBox topMenu = new HBox();
         FlowPane littleShelvesMaster = new FlowPane();
         FlowPane commonGoals = new FlowPane();
+        FlowPane personalGoals = new FlowPane();
 
         //Border pane center
         livingRoomBoard.setMaxHeight(livingroomsize);
@@ -80,8 +80,13 @@ public class HelloApplication extends Application {
         commonGoals.setMinHeight(littleShelfSize);
 
         //Border pane left
+        HBox leftMenu = new HBox();
+        leftMenu.setMaxHeight(livingroomsize);
+        leftMenu.getChildren().add(littleShelvesMaster);
+        leftMenu.getChildren().add(personalGoals);
         ArrayList<GridPane> shelvesGridPanes = new ArrayList<>();   //This list gets filled inside the leftSidesettings function
-        leftPaneSettings(littleShelvesMaster,shelvesGridPanes);
+        shelvePaneSettings(littleShelvesMaster,shelvesGridPanes);
+        personalGoalsPaneSettings(personalGoals);
 
         drawGameboard(livingRoomBoard, tiles);
         for(int i = 0; i < shelfWidth; i++) {
@@ -91,12 +96,16 @@ public class HelloApplication extends Application {
 
         //Border pane creation
         BorderPane borderPane = new BorderPane();
-        //borderPane.setTop(topMenu); TODO: rimettilo
+        borderPane.setTop(topMenu);
         borderPane.setCenter(center);    //Sets the livingroom in the middle
-        borderPane.setLeft(littleShelvesMaster);
+        borderPane.setLeft(leftMenu);
         borderPane.setRight(commonGoals);
 
-        Scene scene = new Scene(borderPane, 100, 100);
+        ImageView backGround = new ImageView("17_MyShelfie_BGA/misc/base_pagina2.jpg");
+        //TODO: setta le dimensioni
+        general.getChildren().add(backGround);
+        general.getChildren().add(borderPane);
+        Scene scene = new Scene(general, 100, 100);
         return scene;
     }
     private Scene generateFirstScene(){
@@ -115,17 +124,25 @@ public class HelloApplication extends Application {
     private void windowSettings(Stage window) {
         //Window settings
         window.setTitle("My shelfie");
-        window.setWidth(1400);
-        window.setHeight(800);
+        window.setOnCloseRequest(windowEvent -> {
+            windowEvent.consume();
+            if (ConfirmBox.display("Warning", "Are you sure you want to quit?")) {
+                window.close();
+            }
+        });
+        window.setWidth(1480);
+        window.setHeight(windowHeight);
         window.setResizable(false);
     }
 
     private void rightPaneSettings(FlowPane rightPane) {
-        rightPane.setPadding(new Insets(0, 0, 0, 0));
+        rightPane.setMaxHeight(800);
+        rightPane.setMinWidth(commonGoalTileSize);
+        rightPane.setPadding(new Insets(20, 0, 0, 0));
         rightPane.setVgap(0);
         rightPane.setHgap(20);
         rightPane.setPrefWrapLength(150); // preferred width allows for two columns
-        rightPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
+        //rightPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
         /*
         ImageView pages[] = new ImageView[2];
         for (int i = 0; i < 2; i++) {
@@ -138,12 +155,12 @@ public class HelloApplication extends Application {
          */
     }
 
-    private void leftPaneSettings(FlowPane leftPane,ArrayList<GridPane> gridPanes) {
-        leftPane.setPadding(new Insets(5, 0, 5, 0));
-        leftPane.setVgap(10);
-        leftPane.setHgap(10);
-        leftPane.setPrefWrapLength(150); // preferred width allows for two columns
-        leftPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
+    private void shelvePaneSettings(FlowPane shelvePane, ArrayList<GridPane> gridPanes) {
+        shelvePane.setPadding(new Insets(30, 0, 5, 10));
+        shelvePane.setVgap(10);
+        shelvePane.setHgap(10);
+        shelvePane.setPrefWrapLength(150); // preferred width allows for two columns
+        //shelvePane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
         ArrayList<StackPane> stackPanes = new ArrayList<>();
         ArrayList<ImageView> imageviews = new ArrayList<>();
         for (int i = 0; i < playersNumber; i++){
@@ -158,13 +175,13 @@ public class HelloApplication extends Application {
             imageviews.get(i).setFitHeight(littleShelfSize);
             imageviews.get(i).setFitWidth(littleShelfSize);
             imageviews.get(i).setOnMouseClicked(mouseEvent -> {
-                AlertBox.display("Helo","Sei un coglione");
+                AlertBox.display("Helo","Sei un coglione"); //TODO: togli
             });
         }
         for(int k = 0; k < playersNumber; k++){
             stackPanes.get(k).getChildren().add(imageviews.get(k));
             stackPanes.get(k).getChildren().add(gridPanes.get(k));
-            leftPane.getChildren().add(stackPanes.get(k));
+            shelvePane.getChildren().add(stackPanes.get(k));
 
         }
     }
@@ -227,6 +244,37 @@ public class HelloApplication extends Application {
             littleShelf.add(tile.getImageView(), x, y);
         }
     }
+    private void personalGoalsPaneSettings(FlowPane personalGoalsPane){
+        personalGoalsPane.setPadding(new Insets(30, 0, 5, 30));
+        personalGoalsPane.setVgap(10);
+        personalGoalsPane.setHgap(10);
+        personalGoalsPane.setPrefWrapLength(150); // preferred width allows for two columns
+        //personalGoalsPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
+
+        ArrayList<StackPane> stackPanes = new ArrayList<>();
+        ArrayList<ImageView> imageviews = new ArrayList<>();
+
+        for(int i = 0; i < playersNumber; i++){
+            stackPanes.add(new StackPane());
+        }
+        for (int i = 0; i < playersNumber; i++) {
+            if(i == 0) {
+                imageviews.add(new ImageView("17_MyShelfie_BGA/personal goal cards/Personal_Goals.png"));
+            }
+            else {
+                imageviews.add(new ImageView("17_MyShelfie_BGA/personal goal cards/back.jpg"));
+
+            }
+            imageviews.get(i).setPreserveRatio(true);
+            imageviews.get(i).setFitHeight(littleShelfSize);
+            imageviews.get(i).setFitWidth(littleShelfSize);
+            imageviews.get(i).setOnMouseClicked(mouseEvent -> {
+                AlertBox.display("Helo","Sei un coglione"); //TODO: togli
+            });
+            personalGoalsPane.getChildren().add(imageviews.get(i));
+        }
+
+    }
     private ArrayList<Tile> CreateTileList(ArrayList<Tile> tiles){
         for(int i = 0; i < gameBoardSize; i++){
             for(int j = 0; j < gameBoardSize; j++){
@@ -257,7 +305,7 @@ public class HelloApplication extends Application {
         for(int i = 0; i < 2; i++){
             commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/" + String.valueOf(i +1) +".jpg"));
             commonGoalsList.get(i).setPreserveRatio(true);
-            commonGoalsList.get(i).setFitWidth(300);
+            commonGoalsList.get(i).setFitWidth(commonGoalTileSize);
         }
 
         return commonGoalsList;
@@ -312,11 +360,25 @@ public class HelloApplication extends Application {
      *
      */
     private void drawGameboard(GridPane gameBoard,ArrayList<Tile> tiles){
-        //drawFirstPlayerToken();
+        drawFirstPlayerToken(gameBoard);    //TODO: disegna solo se necessario
         ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);
         for(int i = 0; i < tiles.size(); i++){
             drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
         }
+    }
+    private void drawFirstPlayerToken(GridPane gameBoard){
+        StackPane stackPane = new StackPane();
+        ImageView firstPlayerToken = new ImageView("17_MyShelfie_BGA/misc/firstplayertoken.png");
+        firstPlayerToken.setFitHeight(firstPlayerTokenSize);
+        firstPlayerToken.setFitWidth(firstPlayerTokenSize);
+        firstPlayerToken.setRotate(15);
+        firstPlayerToken.setTranslateX(-45);
+        stackPane.getChildren().add(firstPlayerToken);
+        stackPane.setMaxSize(225,225);
+
+        GridPane.setColumnSpan(stackPane,4);
+
+        gameBoard.add(stackPane,8,6,2,2);
     }
     public void clearGameBoard(GridPane gameBoard){
                 gameBoard.getChildren().clear();
