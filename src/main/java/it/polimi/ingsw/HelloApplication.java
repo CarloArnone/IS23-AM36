@@ -1,11 +1,14 @@
 package it.polimi.ingsw;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -14,33 +17,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class HelloApplication extends Application {
     Stage window;
     Button button;
 
-    int playersNumber = 2;
+    int playersNumber = 4;
     static final int shelfWidth = 5;
     static final int shelfHeight = 6;
-    static final int littleShelfSize = 200;
+    static final int littleShelfSize = 175;
     static final int livingroomsize = 800;
     static final int windowHeight = 800;
     static final int gameboardTileSize = 75;
-    static final int littleShelfTileSIze = 24;  //TODO: evaluate this constant
+    static final int littleShelfTileSIze = 22;  //TODO: evaluate this constant
     static final int gameBoardSize = 9;
     static final double rescaleWhenSelected = 0.85;
+    static final double inputSceneSize = 700;
 
     @Override
     public void start(Stage stage) throws IOException {
 
-        AtomicInteger PlayButtonChoice;
-
-        ArrayList<Tile> tiles = new ArrayList<>();
-        tiles = CreateTileList(tiles);
 
         window = stage;
         windowSettings(window);
 
+
+        //Default window
+        window.setScene(generateGameBoardScene());
+        window.show();
+    }
+
+    private Scene generateGameBoardScene(){
+        AtomicInteger PlayButtonChoice;
+        ArrayList<Tile> tiles = new ArrayList<>();
+        tiles = CreateTileList(tiles);
         StackPane center = new StackPane();
         GridPane livingRoomBoard = addLivingroomPane();
         HBox topMenu = new HBox();
@@ -75,34 +86,43 @@ public class HelloApplication extends Application {
         drawGameboard(livingRoomBoard, tiles);
         for(int i = 0; i < shelfWidth; i++) {
             for (int j = 0; j <shelfHeight; j++)
-            drawTileLittleShelf(i*j,i,j,shelvesGridPanes.get(0));
+                drawTileLittleShelf(i*j,i,j,shelvesGridPanes.get(0));
         }
 
         //Border pane creation
         BorderPane borderPane = new BorderPane();
-        borderPane.setTop(topMenu);
+        //borderPane.setTop(topMenu); TODO: rimettilo
         borderPane.setCenter(center);    //Sets the livingroom in the middle
         borderPane.setLeft(littleShelvesMaster);
         borderPane.setRight(commonGoals);
 
         Scene scene = new Scene(borderPane, 100, 100);
-
-        //Default window
-        window.setScene(scene);
-        window.show();
+        return scene;
+    }
+    private Scene generateFirstScene(){
+        StackPane firstScene = new StackPane();
+        Label label = new Label("Welcome to shefie");
+        Button button = new Button("Start playing");
+        firstScene.getChildren().addAll(label,button);
+        ImageView inputBackground = new ImageView("17_MyShelfie_BGA/misc/base_pagina2.jpg");
+        inputBackground.setPreserveRatio(false);
+        inputBackground.setFitWidth(inputSceneSize);
+        inputBackground.setFitHeight(inputSceneSize);
+        Scene scene = new Scene(firstScene,inputSceneSize,inputSceneSize);
+        return scene;
     }
 
     private void windowSettings(Stage window) {
         //Window settings
         window.setTitle("My shelfie");
-        window.setWidth(1200);
-        window.setHeight(900);
+        window.setWidth(1400);
+        window.setHeight(800);
         window.setResizable(false);
     }
 
     private void rightPaneSettings(FlowPane rightPane) {
         rightPane.setPadding(new Insets(0, 0, 0, 0));
-        rightPane.setVgap(20);
+        rightPane.setVgap(0);
         rightPane.setHgap(20);
         rightPane.setPrefWrapLength(150); // preferred width allows for two columns
         rightPane.setStyle("-fx-background-image:url('/17_MyShelfie_BGA/misc/sfondo_parquet.jpg')");
@@ -235,8 +255,8 @@ public class HelloApplication extends Application {
     private List<ImageView> createCommonGoalsList(){
         List<ImageView> commonGoalsList = new ArrayList<>();
         for(int i = 0; i < 2; i++){
-            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/7.jpg"));
-            commonGoalsList.get(i).setFitHeight(300);
+            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/" + String.valueOf(i +1) +".jpg"));
+            commonGoalsList.get(i).setPreserveRatio(true);
             commonGoalsList.get(i).setFitWidth(300);
         }
 
@@ -258,7 +278,7 @@ public class HelloApplication extends Application {
         }
         grid.setHgap(0);
         grid.setVgap(0);
-        grid.setPadding(new Insets(11, 14.5, 22.7, 24));
+        grid.setPadding(new Insets(11, 14.5, 20, 20));
         grid.setPrefSize(littleShelfSize, littleShelfSize);
 
         return grid;
@@ -292,6 +312,7 @@ public class HelloApplication extends Application {
      *
      */
     private void drawGameboard(GridPane gameBoard,ArrayList<Tile> tiles){
+        //drawFirstPlayerToken();
         ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);
         for(int i = 0; i < tiles.size(); i++){
             drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
