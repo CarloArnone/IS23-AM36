@@ -60,7 +60,7 @@ class LivingRoomTest extends TestCase {
         livTest.addPlayer(p3);
 
 
-
+        //TODO MODIFY CREATION OF PLAYERS TO ADD SHELF IN COSTRUCTION TO TEST UPDATE GOALS
     }
 
 
@@ -128,13 +128,13 @@ class LivingRoomTest extends TestCase {
 
     @Test
     void updateGoals() {
-        List<Goal> testSet = new ArrayList<>();
-        testSet.add(livTest.getCommonGoalSet().get(0));
-        livTest.getPlayers().get(livTest.getTurn()).addAchievedGoal(livTest.getCommonGoalSet().get(0));
+
         livTest.updateGoals(livTest.getPlayers().get(livTest.getTurn()));
 
         assert livTest.getPlayers().get(livTest.getTurn()).getAchievedGoals().contains(livTest.getCommonGoalSet().get(0));
-        assert livTest.getPlayers().get(livTest.getTurn()).getAchievedGoals().equals(testSet);
+        assert livTest.getPlayers().get(livTest.getTurn()).getAchievedGoals().contains(livTest.getCommonGoalSet().get(1));
+
+        assert livTest.getPlayers().get(livTest.getTurn()).getScore() == 8;
 
         //TO BROAD
 
