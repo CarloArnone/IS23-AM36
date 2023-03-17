@@ -1,20 +1,24 @@
 package it.polimi.ingsw.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import com.google.gson.Gson;
+
+import java.util.*;
 
 public class Player {
     private String name;
-    private List<ItemCard> drawnCards = new ArrayList<ItemCard>();
+    private List<ItemCard> drawnCards = new ArrayList<>();
     private int score;
-    private List<Goal> achievedGoals = new ArrayList<Goal>();
+    private List<Goal> achievedGoals = new ArrayList<>();
     private Shelf myShelf;
-    private PersonalGoalCards personalGoals;
+    private PersonalGoalCard personalGoal;
 
 
     public Player(String name) {
         this.name = name;
+    }
+    public Player(String name, Shelf shelf){
+        this.name = name;
+        this.myShelf = shelf;
     }
 
     /** Places an Item Card in a selected column of the Player's Shelf. (????) */
@@ -24,7 +28,7 @@ public class Player {
 
     /** Registers a Goal completed by the player inside a List of Goals. */
     public void addAchievedGoal(Goal goal){
-
+        this.addAchievedGoal(goal);
     }
 
     /** Returns the score of the Player. */
@@ -46,7 +50,7 @@ public class Player {
 
     /** Updates the points of the selected Player. */
     public void addPoints(int points){
-
+        this.score += points;
     }
 
     /** Returns the list of Drafted Item Cards of the selected Player. */
@@ -74,6 +78,19 @@ public class Player {
         if (this == o) return true;
         if (!(o instanceof Player player)) return false;
         return Objects.equals(name, player.name);
+    }
+
+    public String toJSON(){
+        Map<String, Object> jsonMap = new HashMap<>();
+        jsonMap.put("name", this.name);
+        jsonMap.put("drawnCards", getDrawnCards());
+        jsonMap.put("score", this.score);
+        jsonMap.put("achievedGoals", getAchievedGoals());
+        jsonMap.put("personalGoal", this.personalGoal);
+        jsonMap.put("myShelf", this.myShelf);
+
+        Gson converter = new Gson();
+        return converter.toJson(jsonMap);
     }
 
 }
