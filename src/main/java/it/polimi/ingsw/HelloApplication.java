@@ -18,7 +18,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class HelloApplication extends Application {
     Stage window;
-    Button button;
 
     int playersNumber = 4;
     static final int shelfWidth = 5;
@@ -34,7 +33,7 @@ public class HelloApplication extends Application {
     static final int gameBoardSize = 9;
     static final double rescaleWhenSelected = 0.85;
     static final double inputSceneSize = 700;
-
+    static final int pointsImageSize = 90;
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -49,7 +48,6 @@ public class HelloApplication extends Application {
     }
 
     private Scene generateGameBoardScene(){
-        AtomicInteger PlayButtonChoice;
         ArrayList<Tile> tiles = new ArrayList<>();
         tiles = CreateTileList(tiles);
         StackPane general = new StackPane();
@@ -57,7 +55,7 @@ public class HelloApplication extends Application {
         GridPane livingRoomBoard = addLivingroomPane();
         HBox topMenu = new HBox();
         FlowPane littleShelvesMaster = new FlowPane();
-        FlowPane commonGoals = new FlowPane();
+        FlowPane commonGoalsPane = new FlowPane();
         FlowPane personalGoals = new FlowPane();
 
         //Border pane center
@@ -77,12 +75,19 @@ public class HelloApplication extends Application {
         setPlayButtonAction(playButton,livingRoomBoard,tiles);
         topMenu.getChildren().addAll(playButton,exitButton);
         topMenu.setAlignment(Pos.CENTER);
+        playButton.setTranslateY(3);
+        exitButton.setTranslateY(3);
 
         //BorderPane right
-        rightPaneSettings(commonGoals);
-        drawCommonGoals(commonGoals);
-        commonGoals.setMinWidth(littleShelfSize);
-        commonGoals.setMinHeight(littleShelfSize);
+        List<CommonGoalCard> commonGoalCards = new ArrayList<>();   //TODO: crea una funzione che estrae queste info dal json
+        for(int i = 0; i < 2; i++){
+            CommonGoalCard commonGoalCard = new CommonGoalCard(3*i + 1,2*i);
+            commonGoalCards.add(commonGoalCard);
+        }
+        rightPaneSettings(commonGoalsPane);
+        drawCommonGoals(commonGoalsPane,commonGoalCards);
+        commonGoalsPane.setMinWidth(littleShelfSize);
+        commonGoalsPane.setMinHeight(littleShelfSize);
 
         //Border pane left
         HBox leftMenu = new HBox();
@@ -104,7 +109,7 @@ public class HelloApplication extends Application {
         borderPane.setTop(topMenu);
         borderPane.setCenter(center);    //Sets the livingroom in the middle
         borderPane.setLeft(leftMenu);
-        borderPane.setRight(commonGoals);
+        borderPane.setRight(commonGoalsPane);
 
         ImageView backGround = new ImageView("17_MyShelfie_BGA/misc/base_pagina2.jpg");
         //TODO: setta le dimensioni
@@ -144,7 +149,7 @@ public class HelloApplication extends Application {
     private void rightPaneSettings(FlowPane rightPane) {
         rightPane.setMaxHeight(800);
         rightPane.setMinWidth(commonGoalTileSize);
-        rightPane.setPadding(new Insets(20, 0, 0, 0));
+        rightPane.setPadding(new Insets(10, 0, 0, 0));
         rightPane.setVgap(0);
         rightPane.setHgap(20);
         rightPane.setPrefWrapLength(150); // preferred width allows for two columns
@@ -300,21 +305,26 @@ public class HelloApplication extends Application {
     private void setSceneBackground(Pane scene,ImageView background){
         scene.getChildren().add(background);
     }
-    private void drawCommonGoals(Pane Scene){
-        Scene.getChildren().addAll(createCommonGoalsList());
+    private void drawCommonGoals(Pane Scene,List<CommonGoalCard> commonGoalCards){
+        Scene.getChildren().addAll(createCommonGoalsList(commonGoalCards));
         //TODO: create a createCommonGoalsList function which creates a list of common goals from a json file
         // Scene.getChildren().addAll(createCommonGoalsList);
     }
 
-    private List<ImageView> createCommonGoalsList(){
+    private List<StackPane> createCommonGoalsList(List<CommonGoalCard> commonGoalCards){
+        List<StackPane> stackPanes = new ArrayList<>();
         List<ImageView> commonGoalsList = new ArrayList<>();
+        for (int i = 0; i < 2; i++){
+            stackPanes.add(new StackPane());
+        }
         for(int i = 0; i < 2; i++){
-            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/" + String.valueOf(i +1) +".jpg"));
+            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/" + String.valueOf(commonGoalCards.get(i).getCommonGoalCardNumber()) +".jpg"));
             commonGoalsList.get(i).setPreserveRatio(true);
             commonGoalsList.get(i).setFitWidth(commonGoalTileSize);
+            stackPanes.get(i).getChildren().add(commonGoalsList.get(i));
+            drawPointsOnCommonGoal(stackPanes.get(i),commonGoalCards.get(i).getPoints());
         }
-
-        return commonGoalsList;
+        return stackPanes;
     }
     public GridPane addLittleShelfGridPane(){
         GridPane grid = new GridPane();
@@ -385,6 +395,21 @@ public class HelloApplication extends Application {
         GridPane.setColumnSpan(stackPane,4);
 
         gameBoard.add(stackPane,8,6,2,2);
+    }
+    private void drawPointsOnCommonGoal(StackPane commonGoalTile,int points){
+        if(points < 10 && points % 2 == 0) {
+            ImageView pointsImage = new ImageView("17_MyShelfie_BGA/scoring tokens/scoring_" + String.valueOf(points) + ".jpg");
+            pointsImage.setPreserveRatio(true);
+            pointsImage.setFitWidth(pointsImageSize);
+            pointsImage.setFitHeight(pointsImageSize);
+            pointsImage.setTranslateX(69);
+            pointsImage.setTranslateY(-9);
+            pointsImage.setRotate(-8);
+            commonGoalTile.getChildren().add(pointsImage);
+        }
+        else{
+            //TODO: aggiungi l'eccezione
+        }
     }
     public void clearGameBoard(GridPane gameBoard){
                 gameBoard.getChildren().clear();
