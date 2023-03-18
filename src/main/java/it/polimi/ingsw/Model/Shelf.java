@@ -2,6 +2,7 @@ package it.polimi.ingsw.Model;
 
 import Exceptions.NotEnoughSpacesInCol;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class Shelf {
      * @throws NotEnoughSpacesInCol in case the number of ItemCards is bigger then the remaining spaces inside the col
      */
     public void onClickCol(List<ItemCard> pick, int col) throws NotEnoughSpacesInCol{
-        if(remainingSpacesOnCol(col) < pick.size()){
+        if(remainingSpacesOnCol(col) < pick.size() || col < 0 || col > 4){
             throw new NotEnoughSpacesInCol();
         }
 
@@ -38,18 +39,17 @@ public class Shelf {
      * @param col -- the col to check
      * @return the number of spaces left in a col - COL
      */
-    private int remainingSpacesOnCol(int col) {
-        int posY = shelf[0].length;
-        int spaceLeft = 0;
-        while(shelf[col][posY].isEmpty()){
-            if(posY == 0){ //I'M ARRIVED TO THE BOTTOM OF THE COL.
+    public int remainingSpacesOnCol(int col) {
+        int posY = 0;
+
+        while(shelf[posY][col].isEmpty()){
+            posY ++;
+            if(posY == shelf.length){
                 break;
             }
-            posY --;
-            spaceLeft ++;
         }
 
-        return spaceLeft;
+        return posY;
     }
 
     public int getPointsForAdjacent(){
@@ -62,17 +62,34 @@ public class Shelf {
      * @param col -- col to place in.
      */
     private void place(List<ItemCard> pick, int col){
-        int posY = shelf[0].length;
-        while(shelf[col][posY].isEmpty()){
-            if(posY == 0){ //I'M ARRIVED TO THE BOTTOM OF THE COL.
-                break;
-            }
+        int posY = remainingSpacesOnCol(col);
+        posY = posY -1;
+
+
+        for(ItemCard card : pick){
+            shelf[posY][col] = Optional.of(card);   //I START FROM THE BOTTOM AND INSERT THE CARDS IN THE ORDER THE CONTROLLER GAVE ME.
             posY --;
         }
 
-        for(ItemCard card : pick){
-            shelf[col][posY] = Optional.of(card);   //I START FROM THE BOTTOM AND INSERT THE CARDS IN THE ORDER THE CONTROLLER GAVE ME.
-            posY ++;
+    }
+
+    /**
+     * Compute the sequence of selectable cols
+     * @param pickSize - size of the player drawnCards
+     * @return a list containing if the col in pos i is selectable or not.
+     */
+    public List<Boolean>  getSelectableCols(int pickSize){
+        List<Boolean> toReturn = new ArrayList<>();
+        for(int i = 0; i < shelf[0].length; i++){
+                System.out.println("On col " + i + " are " + remainingSpacesOnCol(i) + " spaces left");
+               if(remainingSpacesOnCol(i) < pickSize){
+                   toReturn.add(i, false);
+               }
+               else toReturn.add(i, true);
         }
+
+        System.out.println(toReturn);
+        return toReturn;
+
     }
 }
