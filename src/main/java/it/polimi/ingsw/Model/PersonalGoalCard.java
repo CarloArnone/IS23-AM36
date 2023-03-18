@@ -16,13 +16,13 @@ public class PersonalGoalCard implements Goal{
 
         checkedSubGoals = 0;
 
-        points.add(0);
-        points.add(1);
-        points.add(2);
-        points.add(4);
-        points.add(6);
-        points.add(9);
-        points.add(12);
+        points.add(0, 0);
+        points.add(1, 1);
+        points.add(2, 2);
+        points.add(3, 4);
+        points.add(4, 6);
+        points.add(5, 9);
+        points.add(6, 12);
     }
 
     /**
