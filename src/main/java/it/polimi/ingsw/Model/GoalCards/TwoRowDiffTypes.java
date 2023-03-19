@@ -15,7 +15,7 @@ public class TwoRowDiffTypes extends CommonGoalCard {
     public boolean checkGoal(Player p) {
 
         boolean firstMatchFound = false;
-        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        Optional<ItemCard>[][] shelfCopy = transposeMatrix(p.getMyShelf().getShelf());
 
         for (int i = 0; i < shelfCopy[0].length; i++) {
             if (checkRow(shelfCopy[i])) {

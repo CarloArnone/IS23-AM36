@@ -4,7 +4,6 @@ import it.polimi.ingsw.Model.CommonGoalCard;
 import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
 
-import java.util.List;
 import java.util.Optional;
 
 public class TwoSquares extends CommonGoalCard {
@@ -36,23 +35,57 @@ public class TwoSquares extends CommonGoalCard {
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
         boolean isFirstMatch = true;
 
-        for(int i = 0; i < shelfCopy.length - 1; i++){
-            for(int j = 0; j < shelfCopy[0].length - 1; j++) {
-                if (shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty() || shelfCopy[i + 1][j].isEmpty() || shelfCopy[i + 1][j + 1].isEmpty()) continue;
-                if (shelfCopy[i][j].get().getColor() != shelfCopy[i][j + 1].get().getColor()) continue;
-                if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j].get().getColor()) continue;
-                if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j + 1].get().getColor()) continue;
-
-                //In case we decide to redo the checkGoal orientation and start checking from the bottom of the shelf, this part of the code to verify the fact that the squares do not overlap, need to be reviewed.
-                if(isFirstMatch) {
-                    isFirstMatch = false;
-                    firstMatchCoords[0] = i + 1;
-                    firstMatchCoords[1] = j + 1;
-                } else if(firstMatchCoords[0] != i || firstMatchCoords[1] != j) {
-                    return true;
+        for (int i = 0; i < shelfCopy.length - 1; i++) {
+            for (int j = 0; j < shelfCopy[0].length - 1; j++) {
+                if (shelfCopy[i][j].isPresent() && checkSquare(shelfCopy, i, j, shelfCopy[i][j].get().getColor())) {
+                    if (isFirstMatch) {
+                        isFirstMatch = false;
+                        firstMatchCoords[0] = i + 1;
+                        firstMatchCoords[1] = j + 1;
+                    } else if (firstMatchCoords[0] != i || firstMatchCoords[1] != j) {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
+
+    private boolean checkSquare(Optional<ItemCard>[][] shelfCopy, int x, int y, char control){
+
+        if (shelfCopy[x][y + 1].isEmpty() || shelfCopy[x + 1][y].isEmpty() || shelfCopy[x + 1][y + 1].isEmpty()) return false;
+        if (control != shelfCopy[x][y + 1].get().getColor()) return false;
+        if (control != shelfCopy[x + 1][y].get().getColor()) return false;
+        return control == shelfCopy[x + 1][y + 1].get().getColor();
+    }
 }
+
+
+/**
+ * @Override
+ *     public boolean checkGoal(Player p) {
+ *
+ *         int[] firstMatchCoords = {0, 0};
+ *         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+ *         boolean isFirstMatch = true;
+ *
+ *         for(int i = 0; i < shelfCopy.length - 1; i++){
+ *             for(int j = 0; j < shelfCopy[0].length - 1; j++) {
+ *                 if (shelfCopy[i][j].isEmpty() || shelfCopy[i][j + 1].isEmpty() || shelfCopy[i + 1][j].isEmpty() || shelfCopy[i + 1][j + 1].isEmpty()) continue;
+ *                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i][j + 1].get().getColor()) continue;
+ *                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j].get().getColor()) continue;
+ *                 if (shelfCopy[i][j].get().getColor() != shelfCopy[i + 1][j + 1].get().getColor()) continue;
+ *
+ *                 //In case we decide to redo the checkGoal orientation and start checking from the bottom of the shelf, this part of the code to verify the fact that the squares do not overlap, need to be reviewed.
+ *                 if(isFirstMatch) {
+ *                     isFirstMatch = false;
+ *                     firstMatchCoords[0] = i + 1;
+ *                     firstMatchCoords[1] = j + 1;
+ *                 } else if(firstMatchCoords[0] != i || firstMatchCoords[1] != j) {
+ *                     return true;
+ *                 }
+ *             }
+ *         }
+ *         return false;
+ *     }
+ */

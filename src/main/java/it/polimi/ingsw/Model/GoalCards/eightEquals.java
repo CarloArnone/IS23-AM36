@@ -34,7 +34,7 @@ public class eightEquals extends CommonGoalCard {
                     case 'y':
                         matchCounter[5]++;
                     default:
-                        System.out.println("Error: color found = " + optionals[j].get().getColor());
+                        System.out.println("Error: color found = " + optionals[j].get().getColor()); //TODO: make this an exception?
                 }
             }
         }
@@ -42,7 +42,6 @@ public class eightEquals extends CommonGoalCard {
         for (int j : matchCounter) {
             if (j == 8) return true;
         }
-
         return false;
     }
 }
