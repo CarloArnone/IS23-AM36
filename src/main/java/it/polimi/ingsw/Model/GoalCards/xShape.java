@@ -14,8 +14,8 @@ public class xShape extends CommonGoalCard {
 
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
 
-        for(int i = 1; i < shelfCopy[0].length - 1; i++){
-            for (int j = 1; j < shelfCopy.length - 1; j++) {
+        for(int i = 1; i < shelfCopy.length - 1; i++){
+            for (int j = 1; j < shelfCopy[0].length - 1; j++) {
                 if (shelfCopy[i][j].isPresent() && checkXShape(shelfCopy, i, j)) return true;
             }
         }
@@ -38,7 +38,7 @@ public class xShape extends CommonGoalCard {
 }
 
 
-/**
+/*
  * @Override
  *     public boolean checkGoal(Player p){
  *

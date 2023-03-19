@@ -15,10 +15,10 @@ public class TwoColDiffTypes extends CommonGoalCard {
     public boolean checkGoal(Player p) {
 
         boolean firstMatchFound = false;
-        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        Optional<ItemCard>[][] shelfCopy = transposeMatrix(p.getMyShelf().getShelf());
 
         for (Optional<ItemCard>[] optionals : shelfCopy) {
-            if (checkColumn(optionals)) {
+            if (checkCol(optionals)) {
                 if (firstMatchFound) return true;
                 firstMatchFound = true;
             }
@@ -26,7 +26,7 @@ public class TwoColDiffTypes extends CommonGoalCard {
         return false;
     }
 
-    private boolean checkColumn(Optional<ItemCard>[] columnCopy){
+    private boolean checkCol(Optional<ItemCard>[] columnCopy){
 
         Set<Character> foundColors = new HashSet<>();
 
@@ -36,30 +36,43 @@ public class TwoColDiffTypes extends CommonGoalCard {
         }
         return foundColors.size() == 6;
     }
+
+    private Optional<ItemCard>[][] transposeMatrix(Optional<ItemCard>[][] shelfCopy){
+
+        Optional<ItemCard>[][] transposedShelf = new Optional[shelfCopy[0].length][shelfCopy.length];
+
+        for(int i = 0; i < shelfCopy[0].length; i++){
+            for(int j = 0; j < shelfCopy.length; j++){
+                transposedShelf[i][j] = Optional.of(shelfCopy[j][i].get());
+            }
+        }
+        return transposedShelf;
+    }
+
 }
 
-
-/**
- * public boolean checkGoal(Player p) {
+/*
+ * @Override
+ *     public boolean checkGoal(Player p) {
  *
  *         boolean firstMatchFound = false;
  *         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
  *
- *         for(int k = 0; k < shelfCopy.length; k++) {
- *             for (int j = 0; j < shelfCopy[0].length - 1; j++) {
+ *         for(int k = 0; k < shelfCopy[0].length; k++) {
+ *             for (int j = 0; j < shelfCopy.length - 1; j++) {
  *                 if(k == shelfCopy[0].length) return false;
- *                 for(int i = j+1; i < shelfCopy[0].length; i++) {
- *                     if(shelfCopy[k][j].isEmpty() || shelfCopy[k][i].isEmpty()){
+ *                 for(int i = j+1; i < shelfCopy.length; i++) {
+ *                     if(shelfCopy[j][k].isEmpty() || shelfCopy[i][k].isEmpty()){
  *                         k++;
  *                         j = 0;
  *                         break;
  *                     }
- *                     if(shelfCopy[k][j].get().getColor() == shelfCopy[k][i].get().getColor()){
+ *                     if(shelfCopy[j][k].get().getColor() == shelfCopy[i][k].get().getColor()){
  *                         k++;
  *                         j = 0;
  *                         break;
  *                     }
- *                     if(i == shelfCopy[0].length - 1 && j == shelfCopy[0].length - 2){
+ *                     if(i == shelfCopy.length - 1 && j == shelfCopy.length - 2){
  *                         if(firstMatchFound) return true;
  *                         else firstMatchFound = true;
  *                     }

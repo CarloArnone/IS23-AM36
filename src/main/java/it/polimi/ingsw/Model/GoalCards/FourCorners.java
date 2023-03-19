@@ -13,16 +13,16 @@ public class FourCorners extends CommonGoalCard {
     public boolean checkGoal(Player p) {
 
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
-        int nCol = shelfCopy.length, nRow = shelfCopy[0].length;
+        int nCol = shelfCopy[0].length, nRow = shelfCopy.length;
         char topLeftTile;
 
         if(shelfCopy[0][0].isEmpty()) return false;
 
         topLeftTile = shelfCopy[0][0].get().getColor();
 
-        if(shelfCopy[0][nRow-1].isEmpty() || shelfCopy[nCol-1][0].isEmpty() || shelfCopy[nCol-1][nRow-1].isEmpty()) return false;
-        if(topLeftTile != shelfCopy[0][nRow-1].get().getColor()) return false;
-        if(topLeftTile != shelfCopy[nCol-1][0].get().getColor()) return false;
-        return topLeftTile == shelfCopy[nCol - 1][nRow - 1].get().getColor();
+        if(shelfCopy[nRow-1][0].isEmpty() || shelfCopy[0][nCol-1].isEmpty() || shelfCopy[nRow-1][nCol-1].isEmpty()) return false;
+        if(topLeftTile != shelfCopy[nRow-1][0].get().getColor()) return false;
+        if(topLeftTile != shelfCopy[0][nCol-1].get().getColor()) return false;
+        return topLeftTile == shelfCopy[nRow - 1][nCol - 1].get().getColor();
     }
 }

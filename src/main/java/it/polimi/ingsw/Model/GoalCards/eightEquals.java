@@ -12,11 +12,13 @@ public class eightEquals extends CommonGoalCard {
     @Override
     public boolean checkGoal(Player p) {
 
-        int[] matchCounter = {0, 0, 0, 0, 0, 0};
+
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
+        int[] matchCounter = {0, 0, 0, 0, 0, 0};
+        int nCol = shelfCopy[0].length;
 
         for (Optional<ItemCard>[] optionals : shelfCopy) {
-            for (int j = 0; j < shelfCopy[0].length; j++) {
+            for (int j = 0; j < nCol; j++) {
 
                 if (optionals[j].isEmpty()) continue;
 
@@ -46,7 +48,7 @@ public class eightEquals extends CommonGoalCard {
     }
 }
 
-/**
+/*
  * public boolean checkGoal(Player p) {
  *
  *         int matchCounter = 0;

@@ -6,7 +6,7 @@ public class test {
 
     public static void main(String[] args){
 
-        Optional<Double>[][] x = (Optional<Double>[][]) new Optional<?>[3][3];
+        Optional<Double>[][] x = new Optional[5][6];
         Optional<Double>[][] t;
 
 
@@ -28,8 +28,8 @@ public class test {
         System.out.println("\n\n");
 
 
-        for(int i = 0; i < x.length; i++){
-            for(int j = 0; j < x[0].length; j++){
+        for(int i = 0; i < x[0].length; i++){
+            for(int j = 0; j < x.length; j++){
                 System.out.println(t[i][j]);
             }
         }
@@ -38,11 +38,11 @@ public class test {
 
     private static Optional<Double>[][] transposeMatrix(Optional<Double>[][] shelfCopy){
 
-        Optional<Double>[][] transposedShelf = (Optional<Double>[][]) new Optional<?>[shelfCopy[0].length][shelfCopy.length];
+        Optional<Double>[][] transposedShelf = new Optional[shelfCopy[0].length][shelfCopy.length];
 
-        for(int i = 0; i < shelfCopy.length; i++){
-            for(int j = 0; j < shelfCopy[0].length; j++){
-                transposedShelf[j][i] = Optional.of(shelfCopy[i][j].get());
+        for(int i = 0; i < shelfCopy[0].length; i++){
+            for(int j = 0; j < shelfCopy.length; j++){
+                transposedShelf[i][j] = Optional.of(shelfCopy[j][i].get());
             }
         }
         return transposedShelf;

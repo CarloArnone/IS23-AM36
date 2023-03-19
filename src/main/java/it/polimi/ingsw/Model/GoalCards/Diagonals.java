@@ -13,7 +13,7 @@ public class Diagonals extends CommonGoalCard {
     public boolean checkGoal(Player p) {
 
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
-        int nCol = shelfCopy.length, nRow = shelfCopy[0].length;
+        int nCol = shelfCopy[0].length, nRow = shelfCopy.length;
 
         if(shelfCopy[0][0].isPresent()){
             if(checkDiagonal(shelfCopy, 0, 0, nCol, 1)) return true;
@@ -23,14 +23,13 @@ public class Diagonals extends CommonGoalCard {
             if(checkDiagonal(shelfCopy, 0, 1, nCol, 1)) return true;
         }
 
-        if(shelfCopy[0][nRow - 2].isPresent()){
-            if(checkDiagonal(shelfCopy, 0, nRow - 2, nCol, -1)) return true;
+        if(shelfCopy[nRow - 2][0].isPresent()){
+            if(checkDiagonal(shelfCopy, nRow - 2, 0, nCol, -1)) return true;
         }
 
-        if(shelfCopy[0][nRow - 2].isPresent()){
-            if(checkDiagonal(shelfCopy, 0, nRow - 1, nCol, -1)) return true;
+        if(shelfCopy[nRow - 1][0].isPresent()){
+            if(checkDiagonal(shelfCopy, nRow - 1, 0, nCol, -1)) return true;
         }
-
         return false;
     }
 
@@ -50,7 +49,7 @@ public class Diagonals extends CommonGoalCard {
 }
 
 
-/**
+/*
  * public boolean checkGoal(Player p) {
  *
  *         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();

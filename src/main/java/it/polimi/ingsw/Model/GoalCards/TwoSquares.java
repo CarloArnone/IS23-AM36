@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class TwoSquares extends CommonGoalCard {
 
-    /** I check each cell one by one, up until the second to last column and row.
+    /* I check each cell one by one, up until the second to last column and row.
      * For each cell I check if it's equal with the right one and the bottom one and the diagonal one.
      * If I find one discrepancy, I discard that set and continue.
      * Once I find a suitable square of cells, I store the value of their color and the column in which i find it + 1.
@@ -25,7 +25,7 @@ public class TwoSquares extends CommonGoalCard {
      * │ - │ - │ - │ 1 │ 1 │
      * │ - │ - │ - │ - │ - │
      *
-     * The cells marked with a '2' would be the ones considered 2 times. **/
+     * The cells marked with a '2' would be the ones considered 2 times. */
 
     //CHECKED
     @Override
@@ -61,7 +61,7 @@ public class TwoSquares extends CommonGoalCard {
 }
 
 
-/**
+/*
  * @Override
  *     public boolean checkGoal(Player p) {
  *
