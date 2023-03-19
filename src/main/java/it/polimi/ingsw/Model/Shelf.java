@@ -52,9 +52,104 @@ public class Shelf {
         return posY;
     }
 
+    /**
+     * When Called the function call a recursive algorithm to calculate the points made in the lib.
+     * @return the total of points accumulated by the player possessing the shelf.
+     */
     public int getPointsForAdjacent(){
-     return 0;
-    } //TODO :  REVIEW
+
+        int points = 0;
+        ItemCard falseMatch = new ItemCard('Z', "falseMatch");
+
+        //Initialization of alreadySeen matrix useful to the optimality of the adjacent algorithm.
+        boolean[][] alreadySeen = new boolean[6][5];
+        for(int r = 0; r < shelf.length; r++){
+            for(int c = 0; c < shelf[0].length; c++){
+                //Initialize true because if the cell is empty, because I don't want to check anything on it
+                alreadySeen[r][c] = shelf[r][c].isEmpty();
+            }
+        }
+
+
+        for(int r = 0; r < shelf.length; r++){
+            for(int c = 0; c < shelf[0].length; c++){
+                if(!alreadySeen[r][c]){
+                    int adjacentCards = hasAdiacent(r, c, shelf[r][c].orElse(falseMatch).getColor(), alreadySeen, falseMatch);
+                    if(adjacentCards == 3){
+                        points += 2;
+                    }
+                    else if(adjacentCards == 4){
+                        points += 3;
+                    }
+                    else if(adjacentCards == 5){
+                        points += 5;
+                    }
+                    else if(adjacentCards >= 6){
+                        points += 8;
+                    }
+                }
+            }
+        }
+
+        return points;
+    }
+
+    /**
+     *  The function applies a common color visit of the matrix.
+     *
+     * @param i Y coordinate of the masterTile
+     * @param j X coordinate of the masterTile
+     * @param color Color of the master Tile
+     * @param alreadySeen matrix to check whether I already checked a cell
+     * @param falseMatch ItemCard useful for matching and security of the code.
+     * @return number of the element of the group of the tile in position (i, j)
+     */
+    public int hasAdiacent(int i, int j, char color, boolean[][] alreadySeen, ItemCard falseMatch){
+        if(alreadySeen[i][j] || color != shelf[i][j].orElse(falseMatch).getColor()){
+            return 0;
+        }
+
+        if(i == 0 && j == 0){
+            alreadySeen[i][j] = true;
+            return 1 + hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ + hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */;
+        }
+        else if(i == shelf.length -1 && j == 0){
+            alreadySeen[i][j] = true;
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ + hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */;
+        }
+        else if(i == 0 && j == shelf[0].length){
+            alreadySeen[i][j] = true;
+            return 1 + hasAdiacent(i + 1, j, color, alreadySeen, falseMatch) /* Down */ + hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+        else if(i == shelf.length && j == shelf[0].length){
+            alreadySeen[i][j] = true;
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ + hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+        else if(i == 0){
+            return 1 + hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
+                       hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
+                       hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+        else if(i == shelf.length -1){
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
+                       hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
+                       hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+        else if(j == 0){
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
+                       hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
+                       hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */;
+        }
+        else if(j == shelf[0].length - 1){
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
+                       hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
+                       hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+        else return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
+                        hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
+                        hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
+                        hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+    }
 
     /**
      * Actually place the Cards inside the shelf
@@ -93,3 +188,4 @@ public class Shelf {
 
     }
 }
+
