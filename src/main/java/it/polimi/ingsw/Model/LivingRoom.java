@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LivingRoom {
 
-    private Map<BoardPosition, Boolean> board = new HashMap<>();
+    private Map<BoardPosition, Boolean> board;
     private String livingRoomId;
     private List<Player> players;
     private int turn;
@@ -23,16 +23,18 @@ public class LivingRoom {
         this.turn = 0;
         this.commonGoalSet = commonGoalSet;
     }
-
-    public LivingRoom(){
-        this.turn = 0;
-        this.players = new ArrayList<>();
-    }
     public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<CommonGoalCard> commonGoalset){
         this.livingRoomId = livingRoomId;
         this.board = board;
         this.commonGoalSet = commonGoalset;
     }
+    public LivingRoom(String livingRoomId){
+        this.livingRoomId = livingRoomId;
+        this.turn = 0;
+        this.players = new ArrayList<>();
+        board = new HashMap<>();
+    }
+
 
     /** Allows the player to pick a set of Item Cards. */
     public void givePlayerTheirPick(Player p, List<ItemCard> pick) throws ToManyCardsException {
@@ -44,13 +46,15 @@ public class LivingRoom {
     }
 
     /** Refills the board with new Item Cards. */
-    private void arrangeDesk(){
+    public void arrangeDesk(){
         return; //TODO
     }
 
     /** Checks if its necessary to refill the board. Is called at the end/start of each turn. */
     public void checkRearrangeDesk(){
-        return; //TODO
+        if(board.entrySet().stream().allMatch(x -> x.getKey().isLonely())){
+            arrangeDesk();
+        }
     }
 
     /** Erases the draft that was being done by the player. */

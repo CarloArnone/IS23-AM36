@@ -126,29 +126,37 @@ public class Shelf {
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ + hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }
         else if(i == 0){
+            alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
                        hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
                        hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }
         else if(i == shelf.length -1){
+            alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
                        hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
                        hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }
         else if(j == 0){
+            alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
                        hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
                        hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */;
         }
         else if(j == shelf[0].length - 1){
+            alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
                        hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
                        hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }
-        else return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
-                        hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
-                        hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
-                        hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        else {
+            alreadySeen[i][j] = true;
+            return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ +
+                       hasAdiacent(i + 1, j, color, alreadySeen, falseMatch)/* Down */ +
+                       hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */ +
+                       hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
+        }
+
     }
 
     /**
