@@ -1,17 +1,26 @@
 package it.polimi.ingsw.Model;
 
+import javafx.scene.layout.Border;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class BoardPosition {
+    //TODO TESTING
 
     private int posX;
     private int posY;
 
     private ItemCard card; //Do we keep this??
-    private Map<Enum, Boolean> freeBorder = new HashMap<>();
+    private Map<Borders, Boolean> freeBorders = new HashMap<>();
 
+    public BoardPosition(int posX, int posY, ItemCard card, Map<Borders, Boolean> freeBorders) {
+        this.card = card;
+        this.posX = posX;
+        this.posY = posY;
+        this.freeBorders = freeBorders;
+    }
     public BoardPosition(int posX, int posY, ItemCard card) {
         this.card = card;
         this.posX = posX;
@@ -23,11 +32,11 @@ public class BoardPosition {
     }
 
     public boolean isFree(){
-        return false;
+        return freeBorders.entrySet().stream().anyMatch(Map.Entry::getValue);
     }
 
     public boolean isLonely(){
-        return false;
+        return freeBorders.entrySet().stream().allMatch(Map.Entry::getValue);
     }
 
     public ItemCard getCard(){
@@ -38,8 +47,8 @@ public class BoardPosition {
         this.card = card;
     }
 
-    public void freeBorder(Enum e){
-
+    public void freeBorder(Borders key){
+        freeBorders.replace(key, true);
     }
 
     public int getPosX() {

@@ -10,8 +10,8 @@ public class ItemCard {
         this.image = image;
     }
     public ItemCard() {
-        this.color = 'z';
-        this.image = null;
+        this.color = 'Z';
+        this.image = "falseMatch";
     }
 
     public char getColor() {

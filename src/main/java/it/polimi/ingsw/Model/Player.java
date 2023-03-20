@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Model;
 
+import Exceptions.NotEnoughSpacesInCol;
 import com.google.gson.Gson;
 
 import java.util.*;
@@ -22,8 +23,13 @@ public class Player {
     }
 
     /** Places an Item Card in a selected column of the Player's Shelf. (????) */
-    public void PlacePick(){
-
+    public void PlacePick(int col){
+        try{
+            myShelf.onClickCol(getDrawnCards(), col);
+        }
+        catch(NotEnoughSpacesInCol nes){
+            //TODO DEFINE BEHAVIOR
+        }
     }
 
     /** Registers a Goal completed by the player inside a List of Goals. */
