@@ -4,9 +4,7 @@ import it.polimi.ingsw.Model.CommonGoalCard;
 import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 public class TwoRowDiffTypes extends CommonGoalCard {
 
@@ -17,24 +15,13 @@ public class TwoRowDiffTypes extends CommonGoalCard {
         boolean firstMatchFound = false;
         Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
 
-        for (Optional<ItemCard>[] optionals : shelfCopy) {
-            if (checkRow(optionals)) {
+        for (Optional<ItemCard>[] row : shelfCopy) {
+            if (distinctArray(row, shelfCopy.length)) {
                 if (firstMatchFound) return true;
                 firstMatchFound = true;
             }
         }
         return false;
-    }
-
-    private boolean checkRow(Optional<ItemCard>[] columnCopy){
-
-        Set<Character> foundColors = new HashSet<>();
-
-        for (Optional<ItemCard> itemCard : columnCopy) {
-            if (itemCard.isEmpty()) return false;
-            foundColors.add(itemCard.get().getColor());
-        }
-        return foundColors.size() == 5;
     }
 }
 

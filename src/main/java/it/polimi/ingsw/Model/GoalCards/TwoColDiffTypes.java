@@ -4,9 +4,7 @@ import it.polimi.ingsw.Model.CommonGoalCard;
 import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 public class TwoColDiffTypes extends CommonGoalCard {
 
@@ -17,38 +15,14 @@ public class TwoColDiffTypes extends CommonGoalCard {
         boolean firstMatchFound = false;
         Optional<ItemCard>[][] shelfCopy = transposeMatrix(p.getMyShelf().getShelf());
 
-        for (Optional<ItemCard>[] optionals : shelfCopy) {
-            if (checkCol(optionals)) {
+        for (Optional<ItemCard>[] column : shelfCopy) {
+            if (distinctArray(column, shelfCopy.length)) {
                 if (firstMatchFound) return true;
                 firstMatchFound = true;
             }
         }
         return false;
     }
-
-    private boolean checkCol(Optional<ItemCard>[] columnCopy){
-
-        Set<Character> foundColors = new HashSet<>();
-
-        for (Optional<ItemCard> itemCard : columnCopy) {
-            if (itemCard.isEmpty()) return false;
-            foundColors.add(itemCard.get().getColor());
-        }
-        return foundColors.size() == 6;
-    }
-
-    private Optional<ItemCard>[][] transposeMatrix(Optional<ItemCard>[][] shelfCopy){
-
-        Optional<ItemCard>[][] transposedShelf = new Optional[shelfCopy[0].length][shelfCopy.length];
-
-        for(int i = 0; i < shelfCopy[0].length; i++){
-            for(int j = 0; j < shelfCopy.length; j++){
-                transposedShelf[i][j] = Optional.of(shelfCopy[j][i].get());
-            }
-        }
-        return transposedShelf;
-    }
-
 }
 
 /*

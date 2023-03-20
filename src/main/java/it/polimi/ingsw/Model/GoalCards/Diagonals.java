@@ -20,7 +20,7 @@ public class Diagonals extends CommonGoalCard {
         }
 
         if(shelfCopy[0][1].isPresent()){
-            if(checkDiagonal(shelfCopy, 0, 1, nCol, 1)) return true;
+            if(checkDiagonal(shelfCopy, 1, 0, nCol, 1)) return true;
         }
 
         if(shelfCopy[nRow - 2][0].isPresent()){
@@ -37,9 +37,9 @@ public class Diagonals extends CommonGoalCard {
 
         char control = shelfCopy[x][y].get().getColor();
 
-        while (x < nCol - 2) {
-            x++;
-            y += side;
+        while (y < nCol - 1) {
+            x += side;
+            y++;
             if(shelfCopy[x][y].isEmpty()) return false;
             if(control != shelfCopy[x][y].get().getColor()) return false;
         }

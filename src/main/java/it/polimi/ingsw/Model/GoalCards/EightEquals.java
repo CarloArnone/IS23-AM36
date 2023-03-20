@@ -6,7 +6,7 @@ import it.polimi.ingsw.Model.Player;
 
 import java.util.Optional;
 
-public class eightEquals extends CommonGoalCard {
+public class EightEquals extends CommonGoalCard {
 
 
     @Override
