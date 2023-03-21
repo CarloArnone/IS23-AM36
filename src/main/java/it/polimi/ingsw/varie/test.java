@@ -34,6 +34,8 @@ public class test {
             }
         }
 
+        System.out.println(t[7][7].isPresent());
+
     }
 
     private static Optional<Double>[][] transposeMatrix(Optional<Double>[][] shelfCopy){
