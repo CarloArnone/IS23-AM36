@@ -2,6 +2,8 @@ package it.polimi.ingsw.varie;
 
 import java.util.Optional;
 
+import static java.util.Optional.empty;
+
 public class test {
 
     public static void main(String[] args){
@@ -33,8 +35,9 @@ public class test {
                 System.out.println(t[i][j]);
             }
         }
-
-        System.out.println(t[7][7].isPresent());
+        System.out.println(t[0][0].get());
+        clear(t);
+        System.out.println(t[0][0].get());
 
     }
 
@@ -48,5 +51,9 @@ public class test {
             }
         }
         return transposedShelf;
+    }
+
+    private static void clear(Optional<Double>[][] copy){
+        copy[0][0] = empty();
     }
 }

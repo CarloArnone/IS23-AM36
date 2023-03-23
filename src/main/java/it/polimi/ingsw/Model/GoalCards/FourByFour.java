@@ -6,8 +6,6 @@ import it.polimi.ingsw.Model.Player;
 
 import java.util.Optional;
 
-import static java.util.Optional.empty;
-
 public class FourByFour extends CommonGoalCard {
 
     @Override
@@ -21,22 +19,21 @@ public class FourByFour extends CommonGoalCard {
         return false;
     }
 
-    private Optional<ItemCard>[][] checkFour(Optional<ItemCard>[][] shelfCopy, int x, int y, int nRow, int nCol){
-
-        char control = shelfCopy[x][y].get().getColor();
-        shelfCopy[x][y] = empty();
-        int counter = 1;
-        boolean searching = true;
-
-        while(searching){
-            if(x != nRow - 1 && shelfCopy[x + 1][y].isPresent()){
-                if(shelfCopy[x + 1][y].get().getColor() == control){
-                    counter++;
-                    x++;
-                    shelfCopy[x][y] = empty();
-                }
+    private boolean[][] getFalseMatrix(int x, int y){
+        boolean[][] mat = new boolean[x][y];
+        while (x >= 0) {
+            x--;
+            while (y >= 0) {
+                y--;
+                mat[x][y] = false;
             }
         }
+        return mat;
+    }
+
+    private Optional<ItemCard>[][] checkAdjacent(Optional<ItemCard>[][] shelfCopy, int counter, boolean[][] alreadySeen){
+
+
 
         return shelfCopy;
     }
