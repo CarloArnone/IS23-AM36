@@ -16,6 +16,8 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        myShelf = new Shelf(new Optional[6][5]);
+        personalGoal = new PersonalGoalCard(new HashMap<>());
     }
     public Player(String name, Shelf shelf){
         this.name = name;
