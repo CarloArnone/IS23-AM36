@@ -2,7 +2,7 @@ package it.polimi.ingsw.Model;
 
 public class ItemCard {
 
-    private char color;
+    private Character color;
     private String image; //TODO: work in progress PD.
 
     public ItemCard(char color, String image) {
@@ -14,7 +14,7 @@ public class ItemCard {
         this.image = "falseMatch";
     }
 
-    public char getColor() {
+    public Character getColor() {
         return color;
     }
 
@@ -26,7 +26,7 @@ public class ItemCard {
         this.image = image;
     }
 
-    public void setColor(char color) {
+    public void setColor(Character color) {
         this.color = color;
     }
 }
