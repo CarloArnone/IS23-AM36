@@ -1,12 +1,7 @@
 package it.polimi.ingsw.Model.GoalCards;
 
 import it.polimi.ingsw.Model.CommonGoalCard;
-import it.polimi.ingsw.Model.ItemCard;
 import it.polimi.ingsw.Model.Player;
-
-import java.util.Optional;
-
-import static java.util.Optional.empty;
 
 public class SixCouples extends CommonGoalCard {
 
@@ -21,48 +16,11 @@ public class SixCouples extends CommonGoalCard {
     @Override
     public boolean checkGoal(Player p){
 
-        int ret = 0;
-        Optional<ItemCard>[][] shelfCopy = p.getMyShelf().getShelf();
-        int nCol = shelfCopy[0].length, nRow = shelfCopy.length;
+        return false;
 
-        for(int i = 0; i < nCol - 1; i++){
-            for(int j = 0; j < nRow - 1; j++){
-                if(checkPair(shelfCopy[i][j], shelfCopy[i][j+1])) {
-                    shelfCopy[i][j] = empty();
-                    shelfCopy[i][j+1] = empty();
-                    ret++;
-                }
-                if(checkPair(shelfCopy[i][j], shelfCopy[i+1][j])) {
-                    shelfCopy[i][j] = empty();
-                    shelfCopy[i+1][j] = empty();
-                    ret++;
-                }
-            }
-            if(checkPair(shelfCopy[i][nRow-1], shelfCopy[i+1][nRow-1])){
-                shelfCopy[i][nRow-1] = empty();
-                shelfCopy[i+1][nRow-1] = empty();
-                ret++;
-            }
-        }
-
-        for(int i = 0; i < nRow - 1; i++){
-            if(checkPair(shelfCopy[nCol-1][i], shelfCopy[nCol-1][i+1])){
-                shelfCopy[nCol-1][i] = empty();
-                shelfCopy[nCol-1][i+1] = empty();
-                ret++;
-            }
-        }
-
-        if(ret/6 == 0) return false;
-        else if(ret/6 == 1) return true;
-        else return false; //TODO: consider this exception?
     }
 
-    private boolean checkPair(Optional<ItemCard> x, Optional<ItemCard> y){
 
-        if(x.isEmpty() || y.isEmpty()) return false;
-        return x.get().getColor() == y.get().getColor();
-    }
 }
 
 
