@@ -2,9 +2,7 @@ package it.polimi.ingsw.Model;
 
 import Exceptions.NotEnoughSpacesInCol;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Shelf {
 
@@ -194,6 +192,22 @@ public class Shelf {
         System.out.println(toReturn);
         return toReturn;
 
+    }
+
+
+    public boolean checkLine(int x, int y, int hInc, int vInc, int lineLength, int tileMatches, boolean full) {
+
+        Set<Character> foundColors = new HashSet<>();
+        int posX = x, posY = y;
+
+        for(int ll = 0; ll < lineLength; ll++){
+            //if(!full && shelf[posX][posY].isPresent()) return false; // Useful only when lineLength is very big.
+            if(full && shelf[posX][posY].isEmpty()) return false;
+            shelf[posX][posY].ifPresent(cell -> foundColors.add(cell.getColor()));
+            posX += vInc;
+            posY += hInc;
+        }
+        return tileMatches >= 5 ? foundColors.size() == tileMatches : foundColors.size() <= tileMatches;
     }
 }
 
