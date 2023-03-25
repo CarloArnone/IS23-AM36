@@ -2,6 +2,8 @@ package it.polimi.ingsw.Model;
 
 import Exceptions.NotEnoughSpacesInCol;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import it.polimi.ingsw.Utils.JSONInterface;
 
 import java.util.*;
 
@@ -16,12 +18,23 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        JSONInterface builder = new JSONInterface();
         myShelf = new Shelf(new Optional[6][5]);
-        personalGoal = new PersonalGoalCard(new HashMap<>());
+        personalGoal = builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath()));
     }
+
+    //TODO ADD CONSTRUCTOR WITH PERSONALGOAL NAME FOR PERSISTANCE
     public Player(String name, Shelf shelf){
         this.name = name;
         this.myShelf = shelf;
+    }
+
+    public Player(String name, int score, List<Goal> achievedGoals, Shelf myShelf, PersonalGoalCard personalGoal) {
+        this.name = name;
+        this.score = score;
+        this.achievedGoals = achievedGoals;
+        this.myShelf = myShelf;
+        this.personalGoal = personalGoal;
     }
 
     /** Places an Item Card in a selected column of the Player's Shelf. (????) */
@@ -31,6 +44,7 @@ public class Player {
         }
         catch(NotEnoughSpacesInCol nes){
             //TODO DEFINE BEHAVIOR
+            return;
         }
     }
 
@@ -50,7 +64,6 @@ public class Player {
     }
 
 
-    /**ADD TO UML*/
     /** Returns the Shelf of the selected Player. */
     public Shelf getMyShelf(){
         return myShelf;
@@ -72,8 +85,9 @@ public class Player {
     }
 
     /** ????. */
-    public void checkAdjacentPoints(){
-
+    public void updateAdjacentPoints(){
+       addPoints(getMyShelf().getPointsForAdjacent());
+       return;
     }
 
     /** Cancels the current process of positioning the Drafted Item Cards in the Shelf. */
@@ -101,4 +115,10 @@ public class Player {
         return converter.toJson(jsonMap);
     }
 
+    public String getName() {
+        return name;
+    }
+    public PersonalGoalCard getPersonalGoal() {
+        return personalGoal;
+    }
 }
