@@ -112,6 +112,15 @@ public class GeneralMethods {
         return diagonals;
     }
 
+    /**
+     *
+     * @param shelfCopy Copy of the shelf to analise.
+     * @param x Row coordinate of the starting point for the diagonal
+     * @param y Column coordinate of the starting point for the diagonal
+     * @param diagLength Length of the diagonal based on the dimension of the matrix.
+     * @param side Set to 1 for diagonals
+     * @return
+     */
     private Optional<ItemCard>[] getDiagonal(Optional<ItemCard>[][] shelfCopy, int x, int y, int diagLength, int side){
 
         Optional<ItemCard>[] diagonal = new Optional[diagLength];
@@ -122,5 +131,18 @@ public class GeneralMethods {
             y++;
         }
         return diagonal;
+    }
+
+    public boolean checkLine(Optional<ItemCard>[][] shelfCopy, int lineLength, int tileMatches, int x, int y, int hInc, int vInc) {
+
+        Set<Character> foundColors = new HashSet<>();
+        int posX = x, posY = y;
+
+        for(int ll = 0; ll < lineLength; ll++){
+            shelfCopy[posX][posY].ifPresent(cell -> foundColors.add(cell.getColor()));
+            posX += vInc;
+            posY += hInc;
+        }
+        return foundColors.size() <= tileMatches;
     }
 }
