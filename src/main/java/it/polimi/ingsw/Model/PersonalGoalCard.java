@@ -5,14 +5,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class PersonalGoalCard implements Goal{
+public class PersonalGoalCard extends Goal{
 
     private List<Integer> points = new ArrayList<>();
     private Map<List<Integer>,  Character> subGoals;
     private int checkedSubGoals;
 
-    public PersonalGoalCard(Map<List<Integer>, Character> subGoals) {
+    public PersonalGoalCard(String name, Map<List<Integer>, Character> subGoals) {
         this.subGoals = subGoals;
+        this.name = name;
 
         checkedSubGoals = 0;
 
@@ -59,4 +60,5 @@ public class PersonalGoalCard implements Goal{
     public int getCheckedSubGoals() {
         return checkedSubGoals;
     }
+
 }
