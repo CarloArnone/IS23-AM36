@@ -15,12 +15,10 @@ public class CommonGoalCard extends Goal {
         this.name = name;
         this.points = points;
     }
-
     public CommonGoalCard(String name, int obtainedPoints){
         this.name = name;
         this.obtainedPoints = obtainedPoints;
     }
-
     public CommonGoalCard(String name, List<Integer> points, List<Argument> arguments) {
         this.name = name;
         this.points = points;
@@ -32,7 +30,6 @@ public class CommonGoalCard extends Goal {
         this.points.remove(0);
         return temp;
     }
-
     @Override
     boolean checkGoal(Player p) {
         boolean isSatisfied = false;
@@ -44,16 +41,12 @@ public class CommonGoalCard extends Goal {
         }
         return isSatisfied;
     }
-
-
     public List<Integer> getPointsList(){
         return points;
     }
-
     public void setPoints(List<Integer> points) {
         this.points = points;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

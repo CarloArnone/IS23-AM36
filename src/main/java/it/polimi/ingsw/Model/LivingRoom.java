@@ -124,6 +124,10 @@ public class LivingRoom {
     }
     /** Actually removes a card from a position of the board.*/
     public void removeCard(BoardPosition position){
+        board.computeIfPresent(new BoardPosition(position.getPosX() + 1, position.getPosY()), (key, value) -> {key.freeBorder(Borders.UP); return true;});
+        board.computeIfPresent(new BoardPosition(position.getPosX() - 1, position.getPosY()), (key, value) -> {key.freeBorder(Borders.DOWN); return true;});
+        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() + 1), (key, value) -> {key.freeBorder(Borders.LEFT); return true;});
+        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() - 1), (key, value) -> {key.freeBorder(Borders.RIGHT); return true;});
         board.remove(position);
     }
     /** Return the ID of the current Living Room. */
