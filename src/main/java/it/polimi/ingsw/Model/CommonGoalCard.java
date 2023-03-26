@@ -15,6 +15,13 @@ public class CommonGoalCard extends Goal {
         this.name = name;
         this.points = points;
     }
+
+    public CommonGoalCard(String name, List<Integer> points, List<Argument> arguments) {
+        this.name = name;
+        this.points = points;
+        this.arguments = arguments;
+    }
+
     public int getPoints(){
         int temp = this.points.get(0);
         this.points.remove(0);
