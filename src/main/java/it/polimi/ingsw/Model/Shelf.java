@@ -209,5 +209,25 @@ public class Shelf {
         }
         return tileMatches >= 5 ? foundColors.size() == tileMatches : foundColors.size() <= tileMatches;
     }
+
+    public boolean checkQuadrilateral(int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full){
+
+        Set<Character> foundColors = new HashSet<>();
+        int posX = x, posY = y;
+
+        for(int ll = 0; ll < repetitions; ll++){
+            for(int r = posX; r < posX + height; r++ ){
+                for (int c = posY; c < posY + width; c++){
+                    if(full && shelf[r][c].isEmpty()) return false;
+                    shelf[r][c].ifPresent(cell -> foundColors.add(cell.getColor()));
+                }
+            }
+
+            posX += vInc;
+            posY += hInc;
+        }
+
+        return diffTypes == 3 ? foundColors.size() <= diffTypes : foundColors.size() == diffTypes;
+    }
 }
 
