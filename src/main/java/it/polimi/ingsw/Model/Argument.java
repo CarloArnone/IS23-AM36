@@ -21,10 +21,9 @@ public class Argument {
 
     public boolean callWithArgumentsOn(Player p) {
         return switch (type) {
-            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5), (Boolean) list.get(6)));
+            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5),(Integer) list.get(6), (Integer) list.get(7), (Boolean) list.get(8)));
             case "m2" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1)));
             case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, (Boolean) list.get(0)));
-            case "m4" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5),(Integer) list.get(6), (Integer) list.get(7), (Boolean) list.get(8)));
             default -> false;
         };
     }
