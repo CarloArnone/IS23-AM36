@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class HelloApplication extends Application {
     Stage window;
 
-    int playersNumber = 4;
+    int playersNumber = 2;
     static final int shelfWidth = 5;
     static final int shelfHeight = 6;
     static final int littleShelfSize = 175;
@@ -36,7 +36,6 @@ public class HelloApplication extends Application {
     static final int pointsImageSize = 90;
     @Override
     public void start(Stage stage) throws IOException {
-
 
         window = stage;
         windowSettings(window);
@@ -208,6 +207,7 @@ public class HelloApplication extends Application {
                     choices.add("Join a game");
                     returnValue = (ChoiceBox.display("Play", "How do you want to play?", choices));
                     if(returnValue == 0) {
+                        clearGameBoard(livingroomBoard);
                         drawGameboard(livingroomBoard, tiles);
                     }else if(returnValue == 1){
                         clearGameBoard(livingroomBoard);
@@ -377,7 +377,7 @@ public class HelloApplication extends Application {
      */
     private void drawGameboard(GridPane gameBoard,ArrayList<Tile> tiles){
         drawEndgameToken(gameBoard);    //TODO: disegna solo se necessario
-        ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);
+        ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);//TODO: toglilo
         for(int i = 0; i < tiles.size(); i++){
             drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
         }
@@ -435,6 +435,7 @@ public class HelloApplication extends Application {
         ArrayList<Integer> row6 = new ArrayList<>();
         ArrayList<Integer> row7 = new ArrayList<>();
         ArrayList<Integer> row8 = new ArrayList<>();
+        //TODO: add other players
         if(playersNumber == 4) {
             row0.add(0, 0);
             row0.add(1, 0);
