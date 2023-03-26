@@ -227,7 +227,8 @@ public class Shelf {
             posY += hInc;
         }
 
-        return diffTypes == 3 ? foundColors.size() <= diffTypes : foundColors.size() == diffTypes;
+        return (diffTypes == 3 || diffTypes > 6) ? foundColors.size() <= diffTypes : foundColors.size() == diffTypes;
+        //TODO REDO OF RETURN STATEMENT
     }
 }
 
