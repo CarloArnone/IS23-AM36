@@ -11,59 +11,6 @@ import java.util.*;
 public class JSONInterface {
     public static void main(String[] args) throws IOException {
         JSONInterface builder = new JSONInterface();
-
-
-        Optional<ItemCard>[][] propershelf = new Optional[6][5];
-
-        for(int r = 0; r<propershelf.length; r++){
-            for(int c = 0; c <propershelf[0].length; c++){
-                propershelf[r][c] = Optional.of(new ItemCard('P', ""));
-            }
-        }
-
-        Shelf shelfp = new Shelf(propershelf);
-
-        List<CommonGoalCard> commonGoalSet = new ArrayList<>();
-        List<Integer> pointsLeft = new ArrayList<>();
-        pointsLeft.add(0, 6);
-        pointsLeft.add(1, 4);
-        CommonGoalCard c1 = new CommonGoalCard("FourByFour", pointsLeft);
-        CommonGoalCard c2 = new CommonGoalCard("SixCols", pointsLeft);
-        commonGoalSet.add(c1);
-        commonGoalSet.add(c2);
-
-        List<Goal> achievedGoals = new ArrayList<>();
-        achievedGoals.add(0, c1);
-        achievedGoals.add(1, c2);
-
-        Player p = new Player("carlo", 123, achievedGoals, shelfp, builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath())));
-        Player p1 = new Player("franco", 862, achievedGoals, shelfp, builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath())));
-        Player p2= new Player("luigi", 56, achievedGoals, shelfp, builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath())));
-        Player p3 = new Player("mario", 156, achievedGoals, shelfp, builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath())));
-
-        List<Player> playerList4 = new ArrayList<>();
-        playerList4.add(p);
-        playerList4.add(p1);
-        playerList4.add(p2);
-        playerList4.add(p3);
-
-        List<Player> playerList3 = new ArrayList<>();
-        playerList3.add(p);
-        playerList3.add(p1);
-        playerList3.add(p2);
-
-        List<Player> playerList2 = new ArrayList<>();
-        playerList2.add(p);
-        playerList2.add(p1);
-
-        Map<BoardPosition, Boolean> board1 = builder.getBoardFromJson(playerList4.size());
-        Map<BoardPosition, Boolean> board2 = builder.getBoardFromJson(playerList3.size());
-        Map<BoardPosition, Boolean> board3 = builder.getBoardFromJson(playerList2.size());
-
-        builder.writeLivingRoomToJson(new LivingRoom("12345", board1, playerList4, commonGoalSet), "12345");
-        builder.writeLivingRoomToJson(new LivingRoom("45678", board2, playerList3, commonGoalSet), "45678");
-        builder.writeLivingRoomToJson(new LivingRoom("89076", board3, playerList2, commonGoalSet), "89076");
-
     }
 
     Gson converter;
@@ -93,7 +40,7 @@ public class JSONInterface {
         return jsonString;
     }
 
-    public String writeAShelfToJson(Shelf shelf, String Shelf_ID) {
+    public String writeShelfToJson(Shelf shelf, String Shelf_ID) {
         JsonObject jsonObject = new JsonObject();
         for(int r = 0; r<shelf.getShelf().length; r++){
             for(int c = 0; c <shelf.getShelf()[0].length; c++){
@@ -137,7 +84,7 @@ public class JSONInterface {
         JsonElement je = achivedGoals.getAsJsonObject();
         jsonObject.add("achievedGoals", je);
 
-        JsonElement shelf = converter.fromJson(writeAShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf"), JsonObject.class).getAsJsonObject();
+        JsonElement shelf = converter.fromJson(writeShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf"), JsonObject.class).getAsJsonObject();
         jsonObject.add("shelf", shelf);
 
         saveIntoFile(player.getName(), jsonObject, getPlayersPath());
@@ -261,11 +208,57 @@ public class JSONInterface {
         return personalGoals.get(randomizer.nextInt(0, personalGoals.size()));
     }
 
-   public CommonGoalCard getCommonGoalCardFromJson(String jsonString){
-       return null;
+   public CommonGoalCard getCommonGoalCardFromJson(int playersNum){
+        JsonArray commonGoalsArray = converter.fromJson(getJsonStringFrom(getCommonGoalsPath()), JsonObject.class).get("commonGoals").getAsJsonArray();
+
+        Random randomizer = new Random();
+
+        JsonObject commonGoalJObj = commonGoalsArray.get(randomizer.nextInt(0, commonGoalsArray.size())).getAsJsonObject();
+       return getCommonGoalCard(playersNum, commonGoalJObj);
    }
 
-   public Map<BoardPosition, Boolean> getBoardFromJson(int playersNum){
+   public CommonGoalCard getCommonGoalFromID(String ID, int playersNum) {
+
+       JsonArray commonGoalsArray = converter.fromJson(getJsonStringFrom(getCommonGoalsPath()), JsonObject.class).get("commonGoals").getAsJsonArray();
+
+       JsonObject commonGoalJObj = commonGoalsArray.get(0).getAsJsonObject();
+       for (JsonElement el : commonGoalsArray.getAsJsonArray()) {
+           if (el.getAsJsonObject().get("id").getAsString().equals(ID)) {
+               commonGoalJObj = el.getAsJsonObject();
+           }
+       }
+
+       return getCommonGoalCard(playersNum, commonGoalJObj);
+   }
+
+    private CommonGoalCard getCommonGoalCard(int playersNum, JsonObject commonGoalJObj) {
+        List<Argument> argumentList = new ArrayList<>();
+
+        for (JsonElement arrayOfArgumentsArray : commonGoalJObj.get("argumentsList").getAsJsonArray()) {
+            List<List<Object>> constructorOfArgument = new ArrayList<>();
+            for (JsonElement argumentsArray : arrayOfArgumentsArray.getAsJsonArray()) {
+                List<Object> properArgumentsList = new ArrayList<>();
+                for (int i = 0; i < argumentsArray.getAsJsonArray().size(); i++) {
+                    properArgumentsList.add(i, argumentsArray.getAsJsonArray().get(i));
+                }
+                constructorOfArgument.add(properArgumentsList);
+            }
+            argumentList.add(new Argument(commonGoalJObj.get("type").getAsString(), constructorOfArgument));
+        }
+        List<Integer> pointsOfCommonGoal = new ArrayList<>();
+        int i = 0;
+        for (JsonElement points : converter.fromJson(getJsonStringFrom("src/main/resources/JSON/GameScratch.json"), JsonObject.class).get("GamesSetup")
+                .getAsJsonArray().get(playersNum - 2)
+                .getAsJsonObject().get("commonGoalPoints")
+                .getAsJsonArray()) {
+            pointsOfCommonGoal.add(i, points.getAsInt());
+            i++;
+        }
+
+        return new CommonGoalCard(commonGoalJObj.get("id").getAsString(), pointsOfCommonGoal, argumentList);
+    }
+
+    public Map<BoardPosition, Boolean> getBoardFromJson(int playersNum){
         Map<BoardPosition, Boolean> toReturn = new HashMap<>();
         JsonArray gameSetups = converter.fromJson(getJsonStringFrom("src/main/resources/JSON/GameScratch.json"), JsonObject.class)
                                         .getAsJsonObject().get("GamesSetup")
