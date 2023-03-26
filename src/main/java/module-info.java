@@ -5,8 +5,9 @@ module it.polimi.ingsw {
 
 
     opens it.polimi.ingsw to javafx.fxml;
-    exports it.polimi.ingsw;
-    exports it.polimi.ingsw.Model;
-    opens it.polimi.ingsw.Model to javafx.fxml, com.google.gson;
-    opens it.polimi.ingsw.Utils to com.google.gson;
+    exports it.polimi.ingsw.Server.Model;
+    opens it.polimi.ingsw.Server.Model to javafx.fxml, com.google.gson;
+    opens it.polimi.ingsw.Common.Utils to com.google.gson;
+    exports it.polimi.ingsw.StartUp;
+    opens it.polimi.ingsw.StartUp to javafx.fxml;
 }

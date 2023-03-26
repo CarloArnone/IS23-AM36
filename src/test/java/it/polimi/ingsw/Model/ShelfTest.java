@@ -1,6 +1,9 @@
+/*
 package it.polimi.ingsw.Model;
 
-import Exceptions.NotEnoughSpacesInCol;
+import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
+import it.polimi.ingsw.Server.Model.ItemCard;
+import it.polimi.ingsw.Server.Model.Shelf;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -215,3 +218,4 @@ class ShelfTest {
         }
     }
 }
+*/

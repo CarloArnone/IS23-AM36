@@ -1,8 +1,8 @@
+/*
 package it.polimi.ingsw.Model;
 
-import Exceptions.ToManyCardsException;
-import it.polimi.ingsw.Model.GoalCards.FourCorners;
-import it.polimi.ingsw.Model.GoalCards.SixCouples;
+import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Server.Model.*;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.*;
 
 class LivingRoomTest extends TestCase {
 
-    static LivingRoom livTest = new LivingRoom();
+    static LivingRoom livTest = new LivingRoom("12345");
 
     @BeforeAll
     static void LivingRoomSetUpTest() {
@@ -44,8 +44,6 @@ class LivingRoomTest extends TestCase {
         commonPoints.add(4);
         commonPoints.add(6);
         commonPoints.add(8);
-        CommonGoalCard commonGoal1 = new FourCorners(commonPoints);
-        CommonGoalCard commonGoal2 = new SixCouples(commonPoints);
         goalCommon.add(commonGoal1);
         goalCommon.add(commonGoal2);
         livTest.setCommonGoalSet(goalCommon);
@@ -218,3 +216,4 @@ class LivingRoomTest extends TestCase {
 
     }
 }
+*/

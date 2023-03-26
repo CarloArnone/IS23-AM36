@@ -26,7 +26,7 @@
       "id" : "EightSame",
       "type" : "m3",
       "argumentsList" : [
-        [true]
+        [[true]]
       ]
     },
     {

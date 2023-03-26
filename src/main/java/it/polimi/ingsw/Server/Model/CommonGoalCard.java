@@ -1,11 +1,7 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Server.Model;
 
-import javafx.util.Pair;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class CommonGoalCard extends Goal {
 
