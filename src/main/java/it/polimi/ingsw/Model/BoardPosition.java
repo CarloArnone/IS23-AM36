@@ -12,7 +12,7 @@ public class BoardPosition {
     private int posX;
     private int posY;
 
-    private ItemCard card; //Do we keep this??
+    private ItemCard card;
     private Map<Borders, Boolean> freeBorders = new HashMap<>();
 
     public BoardPosition(int posX, int posY, ItemCard card, Map<Borders, Boolean> freeBorders) {

@@ -7,239 +7,1180 @@
           "name": "carlo",
           "score": 123,
           "personalGoalName": "Personal_Goals11",
-          "achievedGoals": {
-            "commonGoal_0": {
-              "name": "FourByFour",
-              "points": 0
+          "achievedGoals": [
+            {
+              "name": "FourCorners",
+              "points": 8
             },
-            "commonGoal_1": {
-              "name": "SixCols",
+            {
+              "name": "SixCouples",
               "points": 0
             }
-          },
-          "shelf": {
-            "Position (0, 0)": "P",
-            "Position (0, 1)": "P",
-            "Position (0, 2)": "P",
-            "Position (0, 3)": "P",
-            "Position (0, 4)": "P",
-            "Position (1, 0)": "P",
-            "Position (1, 1)": "P",
-            "Position (1, 2)": "P",
-            "Position (1, 3)": "P",
-            "Position (1, 4)": "P",
-            "Position (2, 0)": "P",
-            "Position (2, 1)": "P",
-            "Position (2, 2)": "P",
-            "Position (2, 3)": "P",
-            "Position (2, 4)": "P",
-            "Position (3, 0)": "P",
-            "Position (3, 1)": "P",
-            "Position (3, 2)": "P",
-            "Position (3, 3)": "P",
-            "Position (3, 4)": "P",
-            "Position (4, 0)": "P",
-            "Position (4, 1)": "P",
-            "Position (4, 2)": "P",
-            "Position (4, 3)": "P",
-            "Position (4, 4)": "P",
-            "Position (5, 0)": "P",
-            "Position (5, 1)": "P",
-            "Position (5, 2)": "P",
-            "Position (5, 3)": "P",
-            "Position (5, 4)": "P"
-          }
+          ],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
         },
         {
           "name": "franco",
           "score": 862,
           "personalGoalName": "Personal_Goals7",
-          "achievedGoals": {
-            "commonGoal_0": {
-              "name": "FourByFour",
-              "points": 0
+          "achievedGoals": [
+            {
+              "name": "FourCorners",
+              "points": 8
             },
-            "commonGoal_1": {
-              "name": "SixCols",
+            {
+              "name": "SixCouples",
               "points": 0
             }
-          },
-          "shelf": {
-            "Position (0, 0)": "P",
-            "Position (0, 1)": "P",
-            "Position (0, 2)": "P",
-            "Position (0, 3)": "P",
-            "Position (0, 4)": "P",
-            "Position (1, 0)": "P",
-            "Position (1, 1)": "P",
-            "Position (1, 2)": "P",
-            "Position (1, 3)": "P",
-            "Position (1, 4)": "P",
-            "Position (2, 0)": "P",
-            "Position (2, 1)": "P",
-            "Position (2, 2)": "P",
-            "Position (2, 3)": "P",
-            "Position (2, 4)": "P",
-            "Position (3, 0)": "P",
-            "Position (3, 1)": "P",
-            "Position (3, 2)": "P",
-            "Position (3, 3)": "P",
-            "Position (3, 4)": "P",
-            "Position (4, 0)": "P",
-            "Position (4, 1)": "P",
-            "Position (4, 2)": "P",
-            "Position (4, 3)": "P",
-            "Position (4, 4)": "P",
-            "Position (5, 0)": "P",
-            "Position (5, 1)": "P",
-            "Position (5, 2)": "P",
-            "Position (5, 3)": "P",
-            "Position (5, 4)": "P"
-          }
+          ],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
         },
         {
           "name": "luigi",
           "score": 56,
           "personalGoalName": "Personal_Goals8",
-          "achievedGoals": {
-            "commonGoal_0": {
-              "name": "FourByFour",
-              "points": 0
+          "achievedGoals": [
+            {
+              "name": "FourCorners",
+              "points": 8
             },
-            "commonGoal_1": {
-              "name": "SixCols",
+            {
+              "name": "SixCouples",
               "points": 0
             }
-          },
-          "shelf": {
-            "Position (0, 0)": "P",
-            "Position (0, 1)": "P",
-            "Position (0, 2)": "P",
-            "Position (0, 3)": "P",
-            "Position (0, 4)": "P",
-            "Position (1, 0)": "P",
-            "Position (1, 1)": "P",
-            "Position (1, 2)": "P",
-            "Position (1, 3)": "P",
-            "Position (1, 4)": "P",
-            "Position (2, 0)": "P",
-            "Position (2, 1)": "P",
-            "Position (2, 2)": "P",
-            "Position (2, 3)": "P",
-            "Position (2, 4)": "P",
-            "Position (3, 0)": "P",
-            "Position (3, 1)": "P",
-            "Position (3, 2)": "P",
-            "Position (3, 3)": "P",
-            "Position (3, 4)": "P",
-            "Position (4, 0)": "P",
-            "Position (4, 1)": "P",
-            "Position (4, 2)": "P",
-            "Position (4, 3)": "P",
-            "Position (4, 4)": "P",
-            "Position (5, 0)": "P",
-            "Position (5, 1)": "P",
-            "Position (5, 2)": "P",
-            "Position (5, 3)": "P",
-            "Position (5, 4)": "P"
-          }
+          ],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
         },
         {
           "name": "mario",
           "score": 156,
           "personalGoalName": "Personal_Goals7",
-          "achievedGoals": {
-            "commonGoal_0": {
-              "name": "FourByFour",
-              "points": 0
+          "achievedGoals": [
+            {
+              "name": "FourCorners",
+              "points": 8
             },
-            "commonGoal_1": {
-              "name": "SixCols",
+            {
+              "name": "SixCouples",
               "points": 0
             }
-          },
-          "shelf": {
-            "Position (0, 0)": "P",
-            "Position (0, 1)": "P",
-            "Position (0, 2)": "P",
-            "Position (0, 3)": "P",
-            "Position (0, 4)": "P",
-            "Position (1, 0)": "P",
-            "Position (1, 1)": "P",
-            "Position (1, 2)": "P",
-            "Position (1, 3)": "P",
-            "Position (1, 4)": "P",
-            "Position (2, 0)": "P",
-            "Position (2, 1)": "P",
-            "Position (2, 2)": "P",
-            "Position (2, 3)": "P",
-            "Position (2, 4)": "P",
-            "Position (3, 0)": "P",
-            "Position (3, 1)": "P",
-            "Position (3, 2)": "P",
-            "Position (3, 3)": "P",
-            "Position (3, 4)": "P",
-            "Position (4, 0)": "P",
-            "Position (4, 1)": "P",
-            "Position (4, 2)": "P",
-            "Position (4, 3)": "P",
-            "Position (4, 4)": "P",
-            "Position (5, 0)": "P",
-            "Position (5, 1)": "P",
-            "Position (5, 2)": "P",
-            "Position (5, 3)": "P",
-            "Position (5, 4)": "P"
-          }
+          ],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                0,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
         }
       ],
       "turn": 0,
-      "board": {
-        "Position : (4, 3)": true,
-        "Position : (6, 5)": true,
-        "Position : (4, 4)": true,
-        "Position : (2, 2)": true,
-        "Position : (6, 6)": true,
-        "Position : (2, 3)": true,
-        "Position : (4, 5)": true,
-        "Position : (2, 4)": true,
-        "Position : (4, 6)": true,
-        "Position : (2, 5)": true,
-        "Position : (4, 7)": true,
-        "Position : (0, 3)": true,
-        "Position : (2, 6)": true,
-        "Position : (0, 4)": true,
-        "Position : (4, 8)": true,
-        "Position : (5, 0)": true,
-        "Position : (5, 1)": true,
-        "Position : (7, 3)": true,
-        "Position : (5, 2)": true,
-        "Position : (7, 4)": true,
-        "Position : (5, 3)": true,
-        "Position : (7, 5)": true,
-        "Position : (3, 1)": true,
-        "Position : (3, 2)": true,
-        "Position : (5, 4)": true,
-        "Position : (3, 3)": true,
-        "Position : (5, 5)": true,
-        "Position : (3, 4)": true,
-        "Position : (5, 6)": true,
-        "Position : (1, 3)": true,
-        "Position : (3, 5)": true,
-        "Position : (5, 7)": true,
-        "Position : (1, 4)": true,
-        "Position : (3, 6)": true,
-        "Position : (3, 7)": true,
-        "Position : (1, 5)": true,
-        "Position : (3, 8)": true,
-        "Position : (6, 2)": true,
-        "Position : (4, 0)": true,
-        "Position : (8, 4)": true,
-        "Position : (4, 1)": true,
-        "Position : (6, 3)": true,
-        "Position : (8, 5)": true,
-        "Position : (4, 2)": true,
-        "Position : (6, 4)": true
-      },
+      "board": [
+        {
+          "position": [4, 3],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "color" : "C",
+          "isAvailable": true
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "color" : "C",
+          "isAvailable": true
+        }
+      ],
       "commonGoals": [
         {
           "goalName": "FourByFour",

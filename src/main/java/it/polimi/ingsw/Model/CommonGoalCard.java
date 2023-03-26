@@ -50,6 +50,10 @@ public class CommonGoalCard extends Goal {
         return points;
     }
 
+    public void setPoints(List<Integer> points) {
+        this.points = points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

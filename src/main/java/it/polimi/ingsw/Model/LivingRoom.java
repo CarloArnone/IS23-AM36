@@ -23,6 +23,13 @@ public class LivingRoom {
         this.turn = 0;
         this.commonGoalSet = commonGoalSet;
     }
+    public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<Player> players, List<CommonGoalCard> commonGoalSet, int turn) {
+        this.board = board;
+        this.livingRoomId = livingRoomId;
+        this.players = players;
+        this.turn = turn;
+        this.commonGoalSet = commonGoalSet;
+    }
     public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<CommonGoalCard> commonGoalset){
         this.livingRoomId = livingRoomId;
         this.board = board;
