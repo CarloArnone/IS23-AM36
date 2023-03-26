@@ -217,7 +217,7 @@ public class JSONInterface {
        return getCommonGoalCard(playersNum, commonGoalJObj);
    }
 
-   public CommonGoalCard getCommonGoalFromID(String ID, int playersNum) {
+   public CommonGoalCard getCommonGoalCardFromID(String ID, int playersNum) {
 
        JsonArray commonGoalsArray = converter.fromJson(getJsonStringFrom(getCommonGoalsPath()), JsonObject.class).get("commonGoals").getAsJsonArray();
 
