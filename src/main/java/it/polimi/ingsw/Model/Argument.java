@@ -24,6 +24,7 @@ public class Argument {
             case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5), (Boolean) list.get(6)));
             case "m2" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1)));
             case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, (Boolean) list.get(0)));
+            case "m4" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5),(Integer) list.get(6), (Integer) list.get(7), (Boolean) list.get(8)));
             default -> false;
         };
     }
@@ -69,5 +70,9 @@ public class Argument {
     private boolean parseArguments(Player p, boolean isGroupOfEight){
         //TODO
         return true;
+    }
+
+    private boolean parseArguments(Player p, int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full){
+        return p.getMyShelf().checkQuadrilateral(x, y, hInc, vInc, width, height, repetitions, diffTypes, full);
     }
 }
