@@ -16,6 +16,11 @@ public class CommonGoalCard extends Goal {
         this.points = points;
     }
 
+    public CommonGoalCard(String name, int obtainedPoints){
+        this.name = name;
+        this.obtainedPoints = obtainedPoints;
+    }
+
     public CommonGoalCard(String name, List<Integer> points, List<Argument> arguments) {
         this.name = name;
         this.points = points;
@@ -43,6 +48,14 @@ public class CommonGoalCard extends Goal {
 
     public List<Integer> getPointsList(){
         return points;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CommonGoalCard that = (CommonGoalCard) o;
+        return Objects.equals(name, that.name);
     }
 
 }
