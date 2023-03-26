@@ -1,6 +1,4 @@
-package it.polimi.ingsw.Model;
-
-import javafx.scene.layout.Border;
+package it.polimi.ingsw.Server.Model;
 
 import java.util.HashMap;
 import java.util.Map;

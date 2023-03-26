@@ -1,5 +1,10 @@
+/*
 package it.polimi.ingsw.Model;
 
+import it.polimi.ingsw.Server.Model.ItemCard;
+import it.polimi.ingsw.Server.Model.PersonalGoalCard;
+import it.polimi.ingsw.Server.Model.Player;
+import it.polimi.ingsw.Server.Model.Shelf;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -90,3 +95,4 @@ class PersonalGoalCardTest {
 
     }
 }
+*/

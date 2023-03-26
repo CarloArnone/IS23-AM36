@@ -1,7 +1,7 @@
-package it.polimi.ingsw.Utils;
+package it.polimi.ingsw.Common.Utils;
 
 import com.google.gson.*;
-import it.polimi.ingsw.Model.*;
+import it.polimi.ingsw.Server.Model.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -9,12 +9,12 @@ import java.util.*;
 
 public class JSONInterface {
     Gson converter;
-    String shelvesPath = "src/main/resources/JSON/Shelves.json";
-    String boardsPath = "src/main/resources/JSON/Boards.json";
-    String playersPath = "src/main/resources/JSON/Players.json";
+    String shelvesPath = "src/main/resources/JSON/ShelvesTEST.json";
+    String boardsPath = "src/main/resources/JSON/BoardsTEST.json";
+    String playersPath = "src/main/resources/JSON/PlayersTEST.json";
     String personalGoalsPath = "src/main/resources/JSON/PersonalGoals.json";
     String commonGoalsPath = "src/main/resources/JSON/CommonGoals.json";
-    String livingRoomsPath = "src/main/resources/JSON/LivingRooms.json";
+    String livingRoomsPath = "src/main/resources/JSON/LivingRoomsTEST.json";
 
    public JSONInterface() {
         converter = new Gson();
@@ -56,6 +56,28 @@ public class JSONInterface {
        saveIntoFile(Shelf_ID, jsonArray, getShelvesPath());
        return converter.toJson(jsonArray);
    }
+   public String writeShelfToJson(Shelf shelf, String Shelf_ID, String filePath) {
+
+        JsonArray jsonArray = new JsonArray();
+
+
+        for(int r = 0; r<shelf.getShelf().length; r++){
+            for(int c = 0; c <shelf.getShelf()[0].length; c++){
+                if(shelf.getShelf()[r][c].isPresent()){
+                    JsonObject jsonObject = new JsonObject();
+                    JsonArray coordinates = new JsonArray();
+                    coordinates.add(r);
+                    coordinates.add(c);
+                    jsonObject.add("position", coordinates);
+                    jsonObject.addProperty("color", shelf.getShelf()[r][c].get().getColor());
+                    jsonArray.add(jsonObject);
+                }
+            }
+        }
+
+        saveIntoFile(Shelf_ID, jsonArray, "src/main/resources/JSONForTesting/ShelvesTEST.json");
+        return converter.toJson(jsonArray);
+    }
    public String writeBoardToJson(Map<BoardPosition, Boolean> board, String Board_ID){
 
         JsonArray jsonArray = new JsonArray();
@@ -71,6 +93,25 @@ public class JSONInterface {
         }
 
         saveIntoFile(Board_ID, jsonArray, getBoardsPath());
+
+        return converter.toJson(jsonArray);
+
+    }
+   public String writeBoardToJson(Map<BoardPosition, Boolean> board, String Board_ID, String filePath){
+
+        JsonArray jsonArray = new JsonArray();
+        for (Map.Entry<BoardPosition, Boolean> entry : board.entrySet()){
+            JsonObject jsonObject = new JsonObject();
+            JsonArray coordinates = new JsonArray();
+            coordinates.add(entry.getKey().getPosX());
+            coordinates.add(entry.getKey().getPosY());
+            jsonObject.add("position", coordinates);
+            jsonObject.addProperty("isAvailable", entry.getValue());
+            jsonObject.addProperty("color", entry.getKey().getCard().getColor());
+            jsonArray.add(jsonObject);
+        }
+
+        saveIntoFile(Board_ID, jsonArray, "src/main/resources/JSONForTesting/BoardsTEST.json");
 
         return converter.toJson(jsonArray);
 
@@ -98,6 +139,32 @@ public class JSONInterface {
         jsonObject.add("shelf", shelf);
 
         saveIntoFile(player.getName(), jsonObject, getPlayersPath());
+
+        return converter.toJson(jsonObject);
+    }
+   public String writePlayerToJson(Player player, String filePath){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", player.getName());
+        jsonObject.addProperty("score", player.getScore());
+        jsonObject.addProperty("personalGoalName", player.getPersonalGoal().getName());
+
+        JsonArray achievedGoals = new JsonArray();
+        for(Goal g : player.getAchievedGoals()){
+            JsonObject goalG = new JsonObject();
+
+            goalG.addProperty("name", g.getName() );
+            goalG.addProperty("points", g.getObtainedPoints());
+            JsonElement je = goalG.getAsJsonObject();
+
+            achievedGoals.add(je);
+        }
+        JsonElement je = achievedGoals.getAsJsonArray();
+        jsonObject.add("achievedGoals", je);
+
+        JsonElement shelf = converter.fromJson(writeShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf", filePath), JsonArray.class);
+        jsonObject.add("shelf", shelf);
+
+        saveIntoFile(player.getName(), jsonObject, "src/main/resources/JSONForTesting/PlayersTEST.json");
 
         return converter.toJson(jsonObject);
     }
@@ -141,6 +208,48 @@ public class JSONInterface {
         livingRoomJObj.add("commonGoals", commonGoalSetEl);
 
         saveIntoFile(livingRoomJObj, getLivingRoomsPath(), "livingRooms");
+        return converter.toJson(livingRoomJObj);
+    }
+   public String writeLivingRoomToJson(LivingRoom livingRoom, String filePath){
+        JsonObject livingRoomJObj = new JsonObject();
+        livingRoomJObj.addProperty("livingRoomID", livingRoom.getLivingRoomId());
+
+        JsonArray players = new JsonArray();
+        for(Player p : livingRoom.getPlayers()){
+            JsonElement pJel = converter.fromJson(writePlayerToJson(p, filePath), JsonObject.class);
+            players.add(pJel);
+        }
+        JsonElement playersEl = players.getAsJsonArray();
+
+        livingRoomJObj.add("players", playersEl);
+
+        livingRoomJObj.addProperty("turn", livingRoom.getTurn());
+
+
+        JsonElement board = converter.fromJson(writeBoardToJson(livingRoom.getBoard(), "" + livingRoom.getLivingRoomId() + "_board", filePath), JsonArray.class);
+        livingRoomJObj.add("board", board);
+
+
+        JsonArray commonGoalSet = new JsonArray();
+        for(CommonGoalCard cg : livingRoom.getCommonGoalSet()){
+            JsonArray points = new JsonArray();
+            for(Integer point : cg.getPointsList()){
+                points.add(point);
+            }
+
+            JsonObject commonGoal = new JsonObject();
+            JsonElement pointsEl = points.getAsJsonArray();
+
+            commonGoal.addProperty("goalName", cg.getName());
+            commonGoal.add("pointsLeft", pointsEl);
+
+            JsonElement commonGoalEl = commonGoal.getAsJsonObject();
+            commonGoalSet.add(commonGoalEl);
+        }
+        JsonElement commonGoalSetEl = commonGoalSet.getAsJsonArray();
+        livingRoomJObj.add("commonGoals", commonGoalSetEl);
+
+        saveIntoFile(livingRoomJObj, "src/main/resources/JSONForTesting/LivingRoomsTEST.json", "livingRooms");
         return converter.toJson(livingRoomJObj);
     }
    public Shelf getShelfFromJson(String jsonString, String Shelf_ID, int Shelf_Width, int Shelf_Height){
@@ -260,7 +369,7 @@ public class JSONInterface {
                 getShelfFromJson(converter.toJson(playerObj.getAsJsonArray("shelf")), 5, 6),
                 getPersonalGoalsFromJson(getJsonStringFrom(getPersonalGoalsPath()), playerObj.get("personalGoalName").getAsString()));
     }
-   public  PersonalGoalCard getPersonalGoalsFromJson(String JsonString){
+   public PersonalGoalCard getPersonalGoalsFromJson(String JsonString){
         JsonObject obj = converter.fromJson(JsonString, JsonObject.class);
         List<PersonalGoalCard> personalGoals =  new ArrayList<>();
         JsonArray array = obj.get("personalGoals").getAsJsonArray();

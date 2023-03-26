@@ -1,0 +1,9466 @@
+{
+  "livingRooms": [
+    {
+      "livingRoomID": "00000",
+      "players": [],
+      "turn": 0,
+      "board": [],
+      "commonGoals": []
+    },
+    {
+      "livingRoomID": "90510",
+      "players": [
+        {
+          "name": "487020",
+          "score": 846,
+          "personalGoalName": "Personal_Goals3",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "747756",
+          "score": 319,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "442178",
+          "score": 1226,
+          "personalGoalName": "Personal_Goals",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoRowsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "68465",
+      "players": [
+        {
+          "name": "968581",
+          "score": 1303,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "261671",
+          "score": 1874,
+          "personalGoalName": "Personal_Goals3",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "206191",
+          "score": 1246,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "DiagonalsOfFive",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoRowsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "15228",
+      "players": [
+        {
+          "name": "317823",
+          "score": 736,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "671612",
+          "score": 188,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "W"
+            }
+          ]
+        },
+        {
+          "name": "992629",
+          "score": 1791,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FiveTilesXShape",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "SixCouples",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "10739",
+      "players": [
+        {
+          "name": "500376",
+          "score": 1437,
+          "personalGoalName": "Personal_Goals11",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "220812",
+          "score": 1899,
+          "personalGoalName": "Personal_Goals10",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "767350",
+          "score": 1004,
+          "personalGoalName": "Personal_Goals5",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "W"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FiveTilesXShape",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "ThreeColsMaxThreeTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "23603",
+      "players": [
+        {
+          "name": "675240",
+          "score": 546,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "W"
+            }
+          ]
+        },
+        {
+          "name": "524768",
+          "score": 961,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "704550",
+          "score": 1176,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                0,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoSquares",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoRowsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "28308",
+      "players": [
+        {
+          "name": "298882",
+          "score": 488,
+          "personalGoalName": "Personal_Goals",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "592309",
+          "score": 1619,
+          "personalGoalName": "Personal_Goals12",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "153686",
+          "score": 1413,
+          "personalGoalName": "Personal_Goals5",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "18570",
+      "players": [
+        {
+          "name": "928758",
+          "score": 1576,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "494963",
+          "score": 885,
+          "personalGoalName": "Personal_Goals5",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "544609",
+          "score": 1301,
+          "personalGoalName": "Personal_Goals11",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourRowsMaxThreeTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "SixCouples",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "43125",
+      "players": [
+        {
+          "name": "198573",
+          "score": 1207,
+          "personalGoalName": "Personal_Goals9",
+          "achievedGoals": [],
+          "shelf": []
+        },
+        {
+          "name": "875444",
+          "score": 1988,
+          "personalGoalName": "Personal_Goals12",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "384685",
+          "score": 1192,
+          "personalGoalName": "Personal_Goals4",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "G"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "Pyramid",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "74617",
+      "players": [
+        {
+          "name": "568162",
+          "score": 1679,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "189055",
+          "score": 459,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "772351",
+          "score": 1592,
+          "personalGoalName": "Personal_Goals9",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "Y"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FourRowsMaxThreeTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "30802",
+      "players": [
+        {
+          "name": "873588",
+          "score": 1393,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "467938",
+          "score": 1670,
+          "personalGoalName": "Personal_Goals4",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "W"
+            }
+          ]
+        },
+        {
+          "name": "544571",
+          "score": 1948,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "Pyramid",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "56471",
+      "players": [
+        {
+          "name": "258912",
+          "score": 1443,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "648868",
+          "score": 121,
+          "personalGoalName": "Personal_Goals11",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "621330",
+          "score": 985,
+          "personalGoalName": "Personal_Goals10",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "DiagonalsOfFive",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "EightSame",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "26698",
+      "players": [
+        {
+          "name": "440930",
+          "score": 739,
+          "personalGoalName": "Personal_Goals12",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "308921",
+          "score": 155,
+          "personalGoalName": "Personal_Goals12",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "849833",
+          "score": 1349,
+          "personalGoalName": "Personal_Goals10",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoRowsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "48431",
+      "players": [
+        {
+          "name": "184298",
+          "score": 776,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "W"
+            }
+          ]
+        },
+        {
+          "name": "233165",
+          "score": 667,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "819000",
+          "score": 170,
+          "personalGoalName": "Personal_Goals5",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "EightSame",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "93273",
+      "players": [
+        {
+          "name": "370810",
+          "score": 644,
+          "personalGoalName": "Personal_Goals4",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "738517",
+          "score": 1486,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "895719",
+          "score": 890,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "DiagonalsOfFive",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "51443",
+      "players": [
+        {
+          "name": "810258",
+          "score": 654,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "613999",
+          "score": 1916,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                4
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "552900",
+          "score": 1536,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "EightSame",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FiveTilesXShape",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "56451",
+      "players": [
+        {
+          "name": "643263",
+          "score": 722,
+          "personalGoalName": "Personal_Goals4",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "434719",
+          "score": 947,
+          "personalGoalName": "Personal_Goals3",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                2,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                2,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                3,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "448308",
+          "score": 1756,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourCorners",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "SixCouples",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "36493",
+      "players": [
+        {
+          "name": "646514",
+          "score": 1944,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "750926",
+          "score": 160,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "216858",
+          "score": 1877,
+          "personalGoalName": "Personal_Goals5",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "B"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "DiagonalsOfFive",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "78495",
+      "players": [
+        {
+          "name": "266762",
+          "score": 1756,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                2,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                2,
+                4
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                4
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "Y"
+            }
+          ]
+        },
+        {
+          "name": "359514",
+          "score": 923,
+          "personalGoalName": "Personal_Goals12",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "492339",
+          "score": 945,
+          "personalGoalName": "Personal_Goals9",
+          "achievedGoals": [],
+          "shelf": []
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "13641",
+      "players": [
+        {
+          "name": "501056",
+          "score": 1048,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            }
+          ]
+        },
+        {
+          "name": "951395",
+          "score": 972,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                1
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "843406",
+          "score": 909,
+          "personalGoalName": "Personal_Goals7",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "W"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoColsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "DiagonalsOfFive",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "22779",
+      "players": [
+        {
+          "name": "684161",
+          "score": 279,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "B"
+            }
+          ]
+        },
+        {
+          "name": "417830",
+          "score": 740,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "G"
+            }
+          ]
+        },
+        {
+          "name": "544497",
+          "score": 1175,
+          "personalGoalName": "Personal_Goals4",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                1,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                2,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "W"
+            },
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                4
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "C"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "Y"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "TwoRowsDiffTypes",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "Pyramid",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "61008",
+      "players": [
+        {
+          "name": "267177",
+          "score": 985,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                4
+              ],
+              "color": "C"
+            }
+          ]
+        },
+        {
+          "name": "655224",
+          "score": 1941,
+          "personalGoalName": "Personal_Goals8",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                3,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                0
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                0
+              ],
+              "color": "G"
+            },
+            {
+              "position": [
+                5,
+                1
+              ],
+              "color": "Y"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "W"
+            }
+          ]
+        },
+        {
+          "name": "573046",
+          "score": 381,
+          "personalGoalName": "Personal_Goals2",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                2
+              ],
+              "color": "P"
+            },
+            {
+              "position": [
+                5,
+                2
+              ],
+              "color": "G"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            4,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            2,
+            2
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            6,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            0,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            2,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            0
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            8
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            8,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FourCorners",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        },
+        {
+          "goalName": "FourQuadruplets",
+          "pointsLeft": [
+            8,
+            6,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

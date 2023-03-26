@@ -1,9 +1,7 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Server.Model;
 
-import Exceptions.NotEnoughSpacesInCol;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import it.polimi.ingsw.Utils.JSONInterface;
+import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
+import it.polimi.ingsw.Common.Utils.JSONInterface;
 
 import java.util.*;
 

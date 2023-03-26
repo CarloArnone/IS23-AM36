@@ -1,6 +1,6 @@
-package it.polimi.ingsw.Model;
+package it.polimi.ingsw.Server.Model;
 
-import Exceptions.NotEnoughSpacesInCol;
+import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 
 import java.util.*;
 
