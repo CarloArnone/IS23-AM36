@@ -25,7 +25,10 @@ public class CommonGoalCard extends Goal {
     boolean checkGoal(Player p) {
         boolean isSatisfied = false;
         for(Argument argument : arguments){
-            isSatisfied = isSatisfied || argument.callWithArgumentsOn(p);
+            if(isSatisfied){
+                return true;
+            }
+            isSatisfied = argument.callWithArgumentsOn(p);
         }
         return isSatisfied;
     }
