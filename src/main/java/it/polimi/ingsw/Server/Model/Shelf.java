@@ -11,6 +11,16 @@ public class Shelf {
     public Shelf(Optional<ItemCard>[][] shelf) {
         this.shelf = shelf;
     }
+
+    public Shelf() {
+        shelf = new Optional[6][5];
+        for(int r = 0; r < shelf.length; r++){
+            for(int c = 0; c < shelf[0].length; c++){
+                shelf[r][c] = Optional.empty();
+            }
+        }
+    }
+
     /** Returns the selected Shelf. */
     public Optional<ItemCard>[][] getShelf() {
         return shelf;

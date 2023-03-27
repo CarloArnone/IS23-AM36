@@ -161,4 +161,7 @@ public class LivingRoom {
         this.board = board;
     }
 
+    public void setTurn(int newTurn) {
+        this.turn = newTurn;
+    }
 }

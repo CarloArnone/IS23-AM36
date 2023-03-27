@@ -60,5 +60,8 @@ public class PersonalGoalCard extends Goal{
     public int getCheckedSubGoals() {
         return checkedSubGoals;
     }
+    public Map<List<Integer>,  Character> getSubGoals(){
+        return this.subGoals;
+    }
 
 }
