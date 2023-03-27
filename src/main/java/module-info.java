@@ -2,6 +2,7 @@ module it.polimi.ingsw {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.google.gson;
+    requires lanterna;
 
 
     opens it.polimi.ingsw to javafx.fxml;
