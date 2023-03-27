@@ -93,4 +93,13 @@ public class Player {
     public PersonalGoalCard getPersonalGoal() {
         return personalGoal;
     }
+
+    public void updateScore() {
+        score = 0;
+        for(Goal g : achievedGoals){
+            score += g.getObtainedPoints();
+        }
+
+        score += getMyShelf().getPointsForAdjacent();
+    }
 }

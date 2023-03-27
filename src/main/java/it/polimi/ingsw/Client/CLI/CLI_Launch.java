@@ -1,8 +1,11 @@
 package it.polimi.ingsw.Client.CLI;
 
+import it.polimi.ingsw.Server.Controller.Controller;
+
 public class CLI_Launch {
-    public static void main(String[] args) {
-        CLI view = new CLI(0);
-        view.start();
+    static Controller c = new Controller();
+    public static void start() {
+        CLI cli1 = new CLI(c);
+        cli1.start();
     }
 }

@@ -2,6 +2,7 @@ package it.polimi.ingsw.Client.CLI;
 
 
 import it.polimi.ingsw.Common.Exceptions.*;
+import it.polimi.ingsw.Common.Supplier;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.TestGenerator;
 import it.polimi.ingsw.Common.eventObserver;
@@ -14,9 +15,9 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public class CLI {
+public class CLI implements Supplier {
 
-    private LivingRoom viewLivingRoom;
+    private LivingRoom viewLivingRoom = new LivingRoom("ciaoPippo");
     private List<BoardPosition> pick;
     private int me; // It means MyTURN
     private String name;
@@ -51,6 +52,10 @@ public class CLI {
         controller = new Controller();
     }
 
+    public CLI(eventObserver controller) {
+        this.controller = controller;
+    }
+
     public void start() {
         AtomicBoolean exit = new AtomicBoolean(false);
         Scanner sc = new Scanner(System.in);
@@ -62,6 +67,22 @@ public class CLI {
         canProceed = false;
         //TODO CHOICE TO JOIN OR CREATE.
         startingChoicesView(sc);
+
+
+        System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("                                                    ----------------------------------");
+        System.out.println("                                                   |    waiting for players to join   |");
+        System.out.println("                                                    ----------------------------------");
+        System.out.printf("\n");
+        System.out.print("                                                                    .");
+        System.out.print(".");
+        System.out.println(".");
+        System.out.println("");
+        System.out.printf("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+        while(!controller.isGamesStarted(viewLivingRoom)){
+            continue;
+        }
 
         new Thread(() ->{
             boolean exitIn = false;
@@ -93,7 +114,7 @@ public class CLI {
                 }
                 return;
             }
-            else controller.disconnectedPlayer(viewLivingRoom, name, true);
+            else controller.leaveGameEvent(name, activeLivingRoom);
         }
         System.out.flush();
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
@@ -101,7 +122,8 @@ public class CLI {
         System.out.println("                                 Create Game      Join Game");
         System.out.println("                                      c        /      j      ");
         System.out.print("                                               > ");
-        if(sc.nextLine().split(" ")[0].equals("c")){
+        String commandCreateOrJoin = sc.nextLine().split(" ")[0];
+        if(commandCreateOrJoin.equals("c")){
             List<String> parameters = new ArrayList<>();
             System.out.print("                                          Game ID:    "); parameters.add(0, sc.nextLine().split(" ")[0]); System.out.print("\n");
             System.out.print("                                      Players Num:    " ); parameters.add(1, sc.nextLine().split(" ")[0]); System.out.print("\n");
@@ -131,9 +153,9 @@ public class CLI {
 
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                Game Created Successfully !");
         }
-        else if(sc.nextLine().split(" ")[0].equals("j")){
+        else if(commandCreateOrJoin.equals("j")){
             boolean hasJoinedAGame = false;
-            int groupID = 0;
+            int groupID = 1;
             while(!hasJoinedAGame){
                 List<String> activeLivingRooms = controller.getActiveLivingRooms(10, groupID);
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -376,7 +398,7 @@ public class CLI {
 
     private boolean parseCommand(String command) {
         if(command.equals("exit") || command.equals("q")){
-            controller.leaveGameEvent(viewLivingRoom.getPlayers().get(viewLivingRoom.getTurn()));
+            controller.leaveGameEvent(name, viewLivingRoom);
             return true;
         }
 
@@ -432,7 +454,6 @@ public class CLI {
         }
         return false;
     }
-
     private void selectTilesFromBoard(String command) {
             String[] args = command.split(" ");
             List<BoardPosition> possiblePick = new ArrayList<>();
@@ -482,7 +503,7 @@ public class CLI {
     private void checkColAndPlaceTiles(int col) {
             try{
                 viewLivingRoom.getPlayers().get(me).getMyShelf().onClickCol(viewLivingRoom.getPlayers().get(me).getDrawnCards(), col -1);
-                controller.confirmEndTurn(pick, col);
+                controller.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(me), pick, col );
                 viewLivingRoom.nextTurn();
             }
             catch (NotEnoughSpacesInCol nes){
@@ -525,4 +546,17 @@ public class CLI {
         viewLivingRoom.setTurn(newTurn - 1);
     }
 
+    @Override
+    public void notifyListener() {
+        try {
+            viewLivingRoom = controller.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+        } catch (NoMatchingIDException e) {
+            return;
+        }
+    }
+
+    @Override
+    public void notifyAllListeners() {
+        return;
+    }
 }
