@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Client.CLI;
 
 
-import it.polimi.ingsw.Common.Exceptions.InvalidGameIDException;
-import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
-import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
-import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Exceptions.*;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.TestGenerator;
 import it.polimi.ingsw.Common.eventObserver;
@@ -56,7 +53,6 @@ public class CLI {
 
     public void start() {
         AtomicBoolean exit = new AtomicBoolean(false);
-        viewLivingRoom = initializeGame(3);
         Scanner sc = new Scanner(System.in);
         //TODO LOGIN.
         boolean canProceed = false;
@@ -65,9 +61,7 @@ public class CLI {
         }
         canProceed = false;
         //TODO CHOICE TO JOIN OR CREATE.
-        while(!canProceed){
-            startingChoicesView(sc);
-        }
+        startingChoicesView(sc);
 
         new Thread(() ->{
             boolean exitIn = false;
@@ -86,7 +80,11 @@ public class CLI {
             System.out.println("                                            There is a game you were playing : " + activeLivingRoom.getLivingRoomId());
             System.out.print("                                                            Do you want to rejoin ?  y/* ...  ");
             if(sc.nextLine().split(" ")[0].equals("y")){
-                viewLivingRoom = controller.retrieveOldGameEvent(activeLivingRoom.getLivingRoomId());
+                try {
+                    viewLivingRoom = controller.retrieveOldGameEvent(activeLivingRoom.getLivingRoomId());
+                } catch (NoMatchingIDException e) {
+                    return;
+                }
                 controller.reconnectPlayer(viewLivingRoom, name);
                 for (int i = 0; i < viewLivingRoom.getPlayers().size(); i++) {
                     if(viewLivingRoom.getPlayers().get(i).getName().equals(name)){
@@ -150,8 +148,13 @@ public class CLI {
                 if(activeLivingRooms.contains(command)){
                     JSONInterface parser = new JSONInterface();
                     hasJoinedAGame = controller.joinGameEvent(command, new Player(name, 0, new ArrayList<>(), new Shelf(), parser.getPersonalGoalsFromJson(parser.getJsonStringFrom(parser.getPersonalGoalsPath()))));
+                    try {
+                        viewLivingRoom = controller.retrieveOldGameEvent(command);
+                    } catch (NoMatchingIDException e) {
+                        return;
+                    }
                 }
-                else if(sc.nextLine().split(" ")[0].equals("u")){
+                else if(command.equals("u")){
                     groupID ++;
                 }
             }
@@ -162,7 +165,7 @@ public class CLI {
 
     private boolean loginView(Scanner sc) {
         System.out.flush();
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n");
         System.out.print("                            UserName: ");
         String name = sc.nextLine();
 
