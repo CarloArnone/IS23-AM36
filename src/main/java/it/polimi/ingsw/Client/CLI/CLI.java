@@ -25,6 +25,24 @@ public class CLI {
 
     private eventObserver controller;
 
+    private final String blueCard = "[48;2;0;119;182m   ";
+    private final String purpleCard = "[48;2;255;0;110m   ";
+    private final String whiteCard = "[48;2;255;236;209m   ";
+    private final String greenCard = "[48;2;106;153;69m   ";
+    private final String cyanCard = "[48;2;0;180;216m   ";
+    private final String yellowCard = "[48;2;232;170;20m   ";
+
+    private final String blueCardDark = "[48;2;0;119;182m   ";
+    private final String purpleCardDark = "[48;2;0;119;182m   ";
+    private final String whiteCardDark = "[48;2;237;237;233m   ";
+    private final String greenCardDark = "[48;2;163;177;138m   ";
+    private final String cyanCardDark = "[48;2;173;232;244m   ";
+    private final String yellowCardDark = "[48;2;246;189;96m   ";
+
+    private final String shelfBackGorund = "[48;2;164;113;72m   ";
+    private final String shelfSeparator = "[48;2;96;56;8m ";
+    private final String shelfBase = "[48;2;96;56;8m    ";
+
     public CLI(LivingRoom viewLivingRoom) {
         this.viewLivingRoom = viewLivingRoom;
         controller = new Controller();
@@ -55,7 +73,9 @@ public class CLI {
     private void updateView() throws IOException {
         Character[][] pb = getPrintableBoard(viewLivingRoom.getBoard());
         System.out.flush();
+        System.out.println("    0  1  2  3  4  5  6  7  8");
         for(int r = 0; r<9; r++){
+            System.out.print(" " + r + " ");
             for(int c = 0; c<9; c++){
                 if(pb[r][c] != null){
 
@@ -74,58 +94,67 @@ public class CLI {
                     }*/
 
                     if(pb[r][c] == 'P'){
-                        System.out.print((char)27 + "[48;2;255;0;111m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + purpleCard + (char)27 + "[0m");
                     }else if (pb[r][c] == 'W') {
-                        System.out.print((char)27 + "[48;2;241;250;238m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + whiteCard + (char)27 + "[0m");
                     }else if (pb[r][c] == 'C') {
-                        System.out.print((char)27 + "[48;2;130;221;240m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + cyanCard + (char)27 + "[0m");
                     }else if (pb[r][c] == 'B') {
-                        System.out.print((char)27 + "[48;2;69;123;157m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + blueCard + (char)27 + "[0m");
                     }else if (pb[r][c] == 'G') {
-                        System.out.print((char)27 + "[48;2;74;120;86m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + greenCard + (char)27 + "[0m");
                     }else if (pb[r][c] == 'Y') {
-                        System.out.print((char)27 + "[48;2;232;170;20m   " + (char)27 + "[0m");
+                        System.out.print((char)27 + yellowCard + (char)27 + "[0m");
                     }
                 }
-                else System.out.print((char)27 + "[48;2;252;215;173m   " + (char)27 + "[0m");
+                else System.out.print((char)27 + shelfBackGorund + (char)27 + "[0m");
+
             }
-            System.out.print("\n");
+            System.out.print(" " + r + " \n");
         }
+        System.out.println("    0  1  2  3  4  5  6  7  8");
 
         System.out.println("\n");
+        System.out.print("    ");
         for(int i = 0; i < me; i++){
             System.out.print("                                       ");
         }
         for(ItemCard cardSelected : viewLivingRoom.getPlayers().get(me).getDrawnCards()){
             if(cardSelected.getColor() == 'P'){
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;255;0;110m   " + (char)27 + "[0m");
+                System.out.print((char)27 + purpleCard + (char)27 + "[0m");
             }else if (cardSelected.getColor() == 'W') {
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;255;236;209m   " + (char)27 + "[0m");
+                System.out.print((char)27 + whiteCard + (char)27 + "[0m");
             }else if (cardSelected.getColor() == 'C') {
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;0;180;216m   " + (char)27 + "[0m");
+                System.out.print((char)27 + cyanCard + (char)27 + "[0m");
             }else if (cardSelected.getColor() == 'B') {
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;0;119;182m   " + (char)27 + "[0m");
+                System.out.print((char)27 + blueCard + (char)27 + "[0m");
             }else if (cardSelected.getColor() == 'G') {
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;106;153;69m   " + (char)27 + "[0m");
+                System.out.print((char)27 + greenCard + (char)27 + "[0m");
             }else if (cardSelected.getColor() == 'Y') {
                 System.out.print(" "); // space BetweenTiles
-                System.out.print((char)27 + "[48;2;232;170;20m   " + (char)27 + "[0m");
+                System.out.print((char)27 + yellowCard + (char)27 + "[0m");
             }
         }
 
         System.out.println("");
-        for(int i = 0; i < me; i++){
-            System.out.print("                                       ");
+        if(viewLivingRoom.getPlayers().get(me).getDrawnCards().size() != 0){
+            System.out.print("    ");
+            for(int i = 0; i < me; i++){
+                System.out.print("                                       ");
+            }
+
+            System.out.print("  1");
+            for(int i = 2; i <= viewLivingRoom.getPlayers().get(me).getDrawnCards().size(); i++){
+                System.out.print("   " + i);
+            }
+            System.out.println("");
         }
 
-        System.out.println("  1   2   3");
-
-        System.out.println("");
 
         for(int p = 0; p<viewLivingRoom.getPlayers().size(); p++){
             System.out.print("" + viewLivingRoom.getPlayers().get(p).getName() + "                                 ");
@@ -134,9 +163,9 @@ public class CLI {
 
         for(int p = 0; p<viewLivingRoom.getPlayers().size(); p++){
             for(int c = 0; c < viewLivingRoom.getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
-                System.out.print((char)27 + "[48;2;96;56;8m    " + (char)27 + "[0m"); //brownOfLib
+                System.out.print((char)27 + shelfBase + (char)27 + "[0m"); //brownOfLib
             }
-            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
+            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
             System.out.print("                  ");
         }
         System.out.println("");
@@ -147,32 +176,60 @@ public class CLI {
                 for(int c = 0; c < viewLivingRoom.getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
                     if(playerShelf[r][c].isPresent()){
                         if(playerShelf[r][c].get().getColor() == 'P'){
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;255;0;110m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + purpleCard + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'W') {
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;255;236;209m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + whiteCard + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'C') {
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;0;180;216m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + cyanCard + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'B') {
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;0;119;182m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + blueCard + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'G') {
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;106;153;69m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + greenCard + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'Y') {
-                            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + "[48;2;232;170;20m   " + (char)27 + "[0m");
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + yellowCard+ (char)27 + "[0m");
                         }
                     }
                     else {
-                        System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
-                        System.out.print((char)27 + "[48;2;164;113;72m   " + (char)27 + "[0m"); //shelfBackground
+                        List<Integer> position = new ArrayList<>();
+                        position.add(0, r);
+                        position.add(1, c);
+                        if(viewLivingRoom.getPlayers().get(me).getPersonalGoal().getSubGoals().containsKey(position)){
+                            char color = viewLivingRoom.getPlayers().get(me).getPersonalGoal().getSubGoals().get(position);
+                            if(color == 'P'){
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + purpleCardDark + (char)27 + "[0m");
+                            }else if (color == 'W') {
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + whiteCardDark + (char)27 + "[0m");
+                            }else if (color == 'C') {
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + cyanCardDark + (char)27 + "[0m");
+                            }else if (color == 'B') {
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + blueCardDark + (char)27 + "[0m");
+                            }else if (color == 'G') {
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + greenCardDark + (char)27 + "[0m");
+                            }else if (color == 'Y') {
+                                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + yellowCardDark + (char)27 + "[0m");
+                            }
+                        }
+                        else{
+                            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + shelfBackGorund + (char)27 + "[0m"); //shelfBackground
+                        }
+
                     }
 
                 }
-                System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
+                System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
                 System.out.print("                  ");
             }
 
@@ -180,9 +237,9 @@ public class CLI {
         }
         for(int p = 0; p<viewLivingRoom.getPlayers().size(); p++){
             for(int c = 0; c < viewLivingRoom.getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
-                System.out.print((char)27 + "[48;2;96;56;8m    " + (char)27 + "[0m"); //brownOfLib
+                System.out.print((char)27 + shelfBase + (char)27 + "[0m"); //brownOfLib
             }
-            System.out.print((char)27 + "[48;2;96;56;8m " + (char)27 + "[0m"); //brownOfLib
+            System.out.print((char)27 + shelfSeparator + (char)27 + "[0m"); //brownOfLib
             System.out.print("                  ");
         }
         System.out.print("\nnewCommand > ");
@@ -306,7 +363,8 @@ public class CLI {
         boolean canPass = false;
         while(!canPass){
             try{
-                viewLivingRoom.getPlayers().get(viewLivingRoom.getTurn()).getMyShelf().onClickCol(viewLivingRoom.getPlayers().get(me).getDrawnCards(), col);
+                viewLivingRoom.getPlayers().get(me).getMyShelf().onClickCol(viewLivingRoom.getPlayers().get(me).getDrawnCards(), col -1);
+
                 canPass = true;
                 controller.confirmEndTurn(pick, col);
                 viewLivingRoom.nextTurn();
@@ -316,6 +374,9 @@ public class CLI {
                 col = Integer.parseInt(new Scanner(System.in).nextLine().split(" ")[1]);
             }
         }
+
+        viewLivingRoom.getPlayers().get(me).withdrawPicks();
+
     }
     private void moveFromBoardToShelf(List<BoardPosition> pick) {
         for (BoardPosition position : pick){
