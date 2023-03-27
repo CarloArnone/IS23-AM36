@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Common;
 
 import it.polimi.ingsw.Common.Exceptions.InvalidGameIDException;
+import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.LivingRoom;
@@ -15,7 +16,7 @@ public interface eventObserver {
     LivingRoom previousGamesRequestEvent(String name);
     LivingRoom createGameEvent(String livingRoomID, int PlayersNum) throws InvalidGameIDException, PlayersOutOfBoundException;
 
-    LivingRoom retrieveOldGameEvent(String livingRoomID);
+    LivingRoom retrieveOldGameEvent(String livingRoomID) throws NoMatchingIDException;
     boolean leaveGameEvent(Player p);
     boolean joinGameEvent(String livingRoomID, Player p);
     boolean reconnectPlayer(LivingRoom livingRoom, String name);

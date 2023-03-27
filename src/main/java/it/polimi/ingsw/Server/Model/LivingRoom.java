@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Server.Model;
 
+import com.google.gson.JsonArray;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Utils.JSONInterface;
 
 import java.util.*;
 
@@ -33,6 +35,13 @@ public class LivingRoom {
         this.board = board;
         this.commonGoalSet = commonGoalset;
         arrangeDesk();
+    }
+    public LivingRoom(String livingRoomId, int playersNum){
+        JSONInterface jint = new JSONInterface();
+        this.livingRoomId = livingRoomId;
+        this.turn = 0;
+        this.players = new ArrayList<>();
+        board = jint.getBoardFromJson(playersNum);
     }
     public LivingRoom(String livingRoomId){
         this.livingRoomId = livingRoomId;
