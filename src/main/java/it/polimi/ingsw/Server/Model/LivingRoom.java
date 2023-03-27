@@ -1,14 +1,17 @@
 package it.polimi.ingsw.Server.Model;
 
 import com.google.gson.JsonArray;
+import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Supplier;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 
 import java.util.*;
 
-public class LivingRoom {
+public class LivingRoom implements Supplier{
 
     private Map<BoardPosition, Boolean> board;
+    private List<Supplier> viewList;
     private String livingRoomId;
     private List<Player> players;
     private int turn;
@@ -21,6 +24,7 @@ public class LivingRoom {
         this.players = players;
         this.turn = 0;
         this.commonGoalSet = commonGoalSet;
+        this.viewList = new ArrayList<>();
         arrangeDesk();
     }
     public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<Player> players, List<CommonGoalCard> commonGoalSet, int turn) {
@@ -29,12 +33,14 @@ public class LivingRoom {
         this.players = players;
         this.turn = turn;
         this.commonGoalSet = commonGoalSet;
+        this.viewList = new ArrayList<>();
     }
     public LivingRoom(String livingRoomId, Map<BoardPosition, Boolean> board, List<CommonGoalCard> commonGoalset){
         this.livingRoomId = livingRoomId;
         this.board = board;
         this.commonGoalSet = commonGoalset;
         arrangeDesk();
+        this.viewList = new ArrayList<>();
     }
     public LivingRoom(String livingRoomId, int playersNum){
         JSONInterface jint = new JSONInterface();
@@ -42,12 +48,14 @@ public class LivingRoom {
         this.turn = 0;
         this.players = new ArrayList<>();
         board = jint.getBoardFromJson(playersNum);
+        this.viewList = new ArrayList<>();
     }
     public LivingRoom(String livingRoomId){
         this.livingRoomId = livingRoomId;
         this.turn = 0;
         this.players = new ArrayList<>();
         board = new HashMap<>();
+        this.viewList = new ArrayList<>();
     }
 
     /** Allows the player to pick a set of Item Cards. */
@@ -169,8 +177,24 @@ public class LivingRoom {
     public void setBoard(Map<BoardPosition, Boolean> board) {
         this.board = board;
     }
-
     public void setTurn(int newTurn) {
         this.turn = newTurn;
+    }
+
+    public void addSupplier(Supplier s){
+        this.viewList.add(s);
+    }
+
+
+    @Override
+    public void notifyListener() {
+        return;
+    }
+
+    @Override
+    public void notifyAllListeners() {
+        for (Supplier s : viewList){
+            s.notifyListener();
+        }
     }
 }

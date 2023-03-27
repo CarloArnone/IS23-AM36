@@ -6,24 +6,22 @@ import java.util.*;
 
 public class TestGenerator {
     static Random randomizer = new Random();
-    static JSONInterface builder = new JSONInterface();
 
     public static LivingRoom generateLivingRoom(int playersNum){
-        LivingRoom l = builder.getLivingRoomFromJson(builder.getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), "00000");
+        LivingRoom l = JSONInterface.getLivingRoomFromJson(JSONInterface.getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), "00000");
         //<Map<BoardPosition, Boolean> testBoard = builder.getBoardFromJson(3);
-        l.setBoard(builder.getBoardFromJson(playersNum));
+        l.setBoard(JSONInterface.getBoardFromJson(playersNum));
         l.arrangeDesk();
         for (int i = 0; i < playersNum; i++) {
             l.addPlayer(generatePlayer(randomizer.nextBoolean()));
         }
         List<CommonGoalCard> commonGoals = new ArrayList<>();
-        commonGoals.add(builder.getCommonGoalCardFromJson(playersNum));
-        commonGoals.add(builder.getCommonGoalCardFromJson(playersNum));
+        commonGoals.add(JSONInterface.getCommonGoalCardFromJson(playersNum));
+        commonGoals.add(JSONInterface.getCommonGoalCardFromJson(playersNum));
 
         l.setCommonGoalSet(commonGoals);
 
         l.setLivingRoomId( String.valueOf(randomizer.nextInt(10000, 99999)));
-        builder.writeLivingRoomToJson(l, "src/main/resources/JSONForTesting/LivingRoomsTEST.json");
         return l;
     }
 
@@ -32,9 +30,9 @@ public class TestGenerator {
         int score = randomizer.nextInt(100, 2000);
         List<Goal> achievedGoals = new ArrayList<>();
         if(hasAchievedGoals){
-            achievedGoals.add(builder.getCommonGoalCardFromJson(2));
+            achievedGoals.add(JSONInterface.getCommonGoalCardFromJson(2));
         }
-        PersonalGoalCard personalGoalCard = builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.personalGoalsPath));
+        PersonalGoalCard personalGoalCard = JSONInterface.getPersonalGoalsFromJson(JSONInterface.getJsonStringFrom(JSONInterface.personalGoalsPath));
         Shelf shelf = generateShelf();
 
         return new Player(name, score, achievedGoals, shelf, personalGoalCard);
