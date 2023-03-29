@@ -1,17 +1,15 @@
 package it.polimi.ingsw.Server.Model;
 
-import com.google.gson.JsonArray;
-import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
-import it.polimi.ingsw.Common.Supplier;
+import it.polimi.ingsw.Common.Listener;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 
 import java.util.*;
 
-public class LivingRoom implements Supplier{
+public class LivingRoom {
 
     private Map<BoardPosition, Boolean> board;
-    private List<Supplier> viewList;
+    private List<Listener> viewList;
     private String livingRoomId;
     private List<Player> players;
     private int turn;
@@ -43,11 +41,10 @@ public class LivingRoom implements Supplier{
         this.viewList = new ArrayList<>();
     }
     public LivingRoom(String livingRoomId, int playersNum){
-        JSONInterface jint = new JSONInterface();
         this.livingRoomId = livingRoomId;
         this.turn = 0;
         this.players = new ArrayList<>();
-        board = jint.getBoardFromJson(playersNum);
+        board = JSONInterface.getBoardFromJson(playersNum);
         this.viewList = new ArrayList<>();
     }
     public LivingRoom(String livingRoomId){
@@ -181,19 +178,12 @@ public class LivingRoom implements Supplier{
         this.turn = newTurn;
     }
 
-    public void addSupplier(Supplier s){
+    public void addSupplier(Listener s){
         this.viewList.add(s);
     }
 
-
-    @Override
-    public void notifyListener() {
-        return;
-    }
-
-    @Override
     public void notifyAllListeners() {
-        for (Supplier s : viewList){
+        for (Listener s : viewList){
             s.notifyListener();
         }
     }

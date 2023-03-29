@@ -1,0 +1,122 @@
+{
+  "FourCorners" : [
+    ["                      ", "whiteSpace", "whiteSpace" , "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "equalBlock" , "hLink"     , "hLink"     , "hLink"     , "equalBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "vLink"      , "whiteSpace", "whiteSpace", "whiteSpace", "vLink"     , "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "vLink"      , "whiteSpace", "whiteSpace", "whiteSpace", "vLink"     , "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "vLink"      , "whiteSpace", "whiteSpace", "whiteSpace", "vLink"     , "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "vLink"      , "whiteSpace", "whiteSpace", "whiteSpace", "vLink"     , "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "equalBlock" , "hLink"     , "hLink"     , "hLink"     , "equalBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace" , "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ]
+  ],
+  "SixCouples" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", " x6", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ]
+  ],
+  "FourQuadruplets" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", " x4", "whiteSpace", "whiteSpace"       , "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ]
+  ],
+  "EightSame" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "DiagonalsOfFive" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "Pyramid" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "emptyBlock", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "emptyBlock", "emptyBlock", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "emptyBlock", "emptyBlock", "emptyBlock", "emptyBlock", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "ThreeColsMaxThreeTypes" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", "dfrntBlock", " <3", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", " x3"       , "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "emptyBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "FourRowsMaxThreeTypes" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "emptyBlock", "emptyBlock", "emptyBlock", "emptyBlock", "emptyBlock", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", " <3"       , "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", " x4"       , "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "TwoColsDiffTypes" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", " x2", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "dfrntBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ]
+  ],
+  "TwoRowsDiffTypes" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "dfrntBlock", "dfrntBlock", "dfrntBlock", "dfrntBlock", "dfrntBlock", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", " x2"       , "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "FiveTilesXShape" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "whiteSpace", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ],
+  "TwoSquares" : [
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "equalBlock", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalName"      , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "equalBlock", "equalBlock", "whiteSpace", " x2"       , "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite" , "whiteSpace" ],
+    ["                      ", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "whiteSpace", "GoalNameWhite"  , "whiteSpace" ]
+  ]
+}

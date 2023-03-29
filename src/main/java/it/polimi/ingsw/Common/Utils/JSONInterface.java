@@ -8,13 +8,13 @@ import java.lang.reflect.Type;
 import java.util.*;
 
 public class JSONInterface {
-    static Gson converter = new Gson();
-    static String shelvesPath = "src/main/resources/JSON/ShelvesTEST.json";
-    static String boardsPath = "src/main/resources/JSON/BoardsTEST.json";
-    static String playersPath = "src/main/resources/JSON/PlayersTEST.json";
+    static public Gson converter = new Gson();
+    static String shelvesPath = "src/main/resources/JSON/Shelves.json";
+    static String boardsPath = "src/main/resources/JSON/Boards.json";
+    static String playersPath = "src/main/resources/JSON/Players.json";
     static String personalGoalsPath = "src/main/resources/JSON/PersonalGoals.json";
     static String commonGoalsPath = "src/main/resources/JSON/CommonGoals.json";
-    static String livingRoomsPath = "src/main/resources/JSON/LivingRoomsTEST.json";
+    static String livingRoomsPath = "src/main/resources/JSON/LivingRooms.json";
 
     public JSONInterface() {
         converter = new Gson();
@@ -97,7 +97,7 @@ public class JSONInterface {
         JsonElement je = achievedGoals.getAsJsonArray();
         jsonObject.add("achievedGoals", je);
 
-        JsonElement shelf = converter.fromJson(writeShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf"), JsonObject.class).getAsJsonObject();
+        JsonElement shelf = converter.fromJson(writeShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf"), JsonArray.class).getAsJsonArray();
         jsonObject.add("shelf", shelf);
 
         saveIntoFile(player.getName(), jsonObject, getPlayersPath());
@@ -121,7 +121,7 @@ public class JSONInterface {
         livingRoomJObj.addProperty("turn", livingRoom.getTurn());
 
 
-        JsonElement board = converter.fromJson(writeBoardToJson(livingRoom.getBoard(), "" + livingRoom.getLivingRoomId() + "_board"), JsonObject.class);
+        JsonElement board = converter.fromJson(writeBoardToJson(livingRoom.getBoard(), "" + livingRoom.getLivingRoomId() + "_board"), JsonArray.class);
         livingRoomJObj.add("board", board);
 
 
@@ -169,6 +169,26 @@ public class JSONInterface {
         }
 
         return new LivingRoom(livingRoomJson.get("livingRoomID").getAsString(), board, playersList, commonGoalSet, turn);
+    }
+
+    public static LivingRoom generateLivingRoom(int playersNum, String livingRoomID){
+        LivingRoom l = JSONInterface.getLivingRoomFromJson(JSONInterface.getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), "00000");
+        l.setBoard(JSONInterface.getBoardFromJson(playersNum));
+        l.arrangeDesk();
+        List<CommonGoalCard> commonGoals = new ArrayList<>();
+        CommonGoalCard c0 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        CommonGoalCard c1 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        while(c1.equals(c0)){
+            c1 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        }
+
+        commonGoals.add(c0);
+        commonGoals.add(c1);
+
+        l.setCommonGoalSet(commonGoals);
+
+        l.setLivingRoomId(livingRoomID);
+        return l;
     }
 
     public static Shelf getShelfFromJson(String jsonString, int Shelf_Width, int Shelf_Height) {

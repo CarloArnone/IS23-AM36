@@ -1,7 +1,7 @@
 {
-  "livingRooms" : [
+  "livingRooms": [
     {
-      "livingRoomID": "PartitaDiProva",
+      "livingRoomID": "12345",
       "players": [
         {
           "name": "carlo",
@@ -447,8 +447,11 @@
       "turn": 0,
       "board": [
         {
-          "position": [4, 3],
-          "color" : "C",
+          "position": [
+            4,
+            3
+          ],
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -456,8 +459,7 @@
             6,
             5
           ],
-
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -465,7 +467,7 @@
             4,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -473,7 +475,7 @@
             2,
             2
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -481,7 +483,7 @@
             6,
             6
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -489,7 +491,7 @@
             2,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -497,7 +499,7 @@
             4,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -505,7 +507,7 @@
             2,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -513,7 +515,7 @@
             4,
             6
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -521,7 +523,7 @@
             2,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -529,7 +531,7 @@
             4,
             7
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -537,7 +539,7 @@
             0,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -545,7 +547,7 @@
             2,
             6
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -553,7 +555,7 @@
             5,
             0
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -561,7 +563,7 @@
             5,
             1
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -569,7 +571,7 @@
             5,
             2
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -577,7 +579,7 @@
             7,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -585,7 +587,7 @@
             5,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -593,7 +595,7 @@
             7,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -601,7 +603,7 @@
             3,
             2
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -609,7 +611,7 @@
             5,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -617,7 +619,7 @@
             3,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -625,7 +627,7 @@
             5,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -633,7 +635,7 @@
             3,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -641,7 +643,7 @@
             5,
             6
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -649,7 +651,7 @@
             1,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -657,7 +659,7 @@
             3,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -665,7 +667,7 @@
             1,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -673,7 +675,7 @@
             3,
             6
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -681,7 +683,7 @@
             3,
             7
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -689,7 +691,7 @@
             3,
             8
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -697,7 +699,7 @@
             6,
             2
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -705,7 +707,7 @@
             4,
             1
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -713,7 +715,7 @@
             6,
             3
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -721,7 +723,7 @@
             8,
             5
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -729,7 +731,7 @@
             4,
             2
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         },
         {
@@ -737,7 +739,7 @@
             6,
             4
           ],
-          "color" : "C",
+          "color": "C",
           "isAvailable": true
         }
       ],
@@ -751,6 +753,268 @@
         },
         {
           "goalName": "SixCols",
+          "pointsLeft": [
+            8,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "livingRoomID": "carlogame",
+      "players": [
+        {
+          "name": "carlo 123",
+          "score": 0,
+          "personalGoalName": "Personal_Goals6",
+          "achievedGoals": [],
+          "shelf": [
+            {
+              "position": [
+                4,
+                3
+              ],
+              "color": "B"
+            },
+            {
+              "position": [
+                5,
+                3
+              ],
+              "color": "G"
+            }
+          ]
+        }
+      ],
+      "turn": 0,
+      "board": [
+        {
+          "position": [
+            4,
+            3
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            3
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            2,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            4,
+            6
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            2,
+            5
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            7
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            5,
+            1
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            5,
+            2
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            4
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            5,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            7,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            2
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            5,
+            4
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            3,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            5,
+            5
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            3,
+            4
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            5,
+            6
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            1,
+            3
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            5
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            1,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        },
+        {
+          "position": [
+            3,
+            6
+          ],
+          "isAvailable": true,
+          "color": "C"
+        },
+        {
+          "position": [
+            3,
+            7
+          ],
+          "isAvailable": true,
+          "color": "G"
+        },
+        {
+          "position": [
+            4,
+            1
+          ],
+          "isAvailable": true,
+          "color": "Y"
+        },
+        {
+          "position": [
+            6,
+            3
+          ],
+          "isAvailable": true,
+          "color": "B"
+        },
+        {
+          "position": [
+            4,
+            2
+          ],
+          "isAvailable": true,
+          "color": "P"
+        },
+        {
+          "position": [
+            6,
+            4
+          ],
+          "isAvailable": true,
+          "color": "W"
+        }
+      ],
+      "commonGoals": [
+        {
+          "goalName": "FiveTilesXShape",
+          "pointsLeft": [
+            8,
+            4
+          ]
+        },
+        {
+          "goalName": "TwoSquares",
           "pointsLeft": [
             8,
             4
