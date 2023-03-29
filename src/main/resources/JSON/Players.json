@@ -218,5 +218,27 @@
         "color": "P"
       }
     ]
+  },
+  "carlo 123": {
+    "name": "carlo 123",
+    "score": 0,
+    "personalGoalName": "Personal_Goals6",
+    "achievedGoals": [],
+    "shelf": [
+      {
+        "position": [
+          4,
+          3
+        ],
+        "color": "B"
+      },
+      {
+        "position": [
+          5,
+          3
+        ],
+        "color": "G"
+      }
+    ]
   }
 }

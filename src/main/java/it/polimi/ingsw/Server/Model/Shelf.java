@@ -155,11 +155,11 @@ public class Shelf {
             alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ + hasAdiacent(i, j + 1, color, alreadySeen, falseMatch)/* Right */;
         }
-        else if(i == 0 && j == shelf[0].length){
+        else if(i == 0 && j == shelf[0].length-1){
             alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i + 1, j, color, alreadySeen, falseMatch) /* Down */ + hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }
-        else if(i == shelf.length && j == shelf[0].length){
+        else if(i == shelf.length-1 && j == shelf[0].length-1){
             alreadySeen[i][j] = true;
             return 1 + hasAdiacent(i - 1, j, color, alreadySeen, falseMatch) /* Up */ + hasAdiacent(i, j - 1, color, alreadySeen, falseMatch)/* Left */;
         }

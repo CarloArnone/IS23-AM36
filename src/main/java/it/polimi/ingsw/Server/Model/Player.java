@@ -16,9 +16,14 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        JSONInterface builder = new JSONInterface();
-        myShelf = new Shelf(new Optional[6][5]);
-        personalGoal = builder.getPersonalGoalsFromJson(builder.getJsonStringFrom(builder.getPersonalGoalsPath()));
+        Optional<ItemCard>[][] shelf = new Optional[6][5];
+        for(int r = 0; r < shelf.length; r++){
+            for(int c = 0; c < shelf[0].length; c++){
+                shelf[r][c] = Optional.empty();
+            }
+        }
+        myShelf = new Shelf(shelf);
+        personalGoal = JSONInterface.getPersonalGoalsFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPersonalGoalsPath()));
     }
 
     //TODO ADD CONSTRUCTOR WITH PERSONALGOAL NAME FOR PERSISTANCE

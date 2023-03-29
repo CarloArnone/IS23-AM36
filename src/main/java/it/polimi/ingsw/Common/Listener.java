@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Common;
 
-public interface Supplier {
+public interface Listener {
     void notifyListener();
-    void notifyAllListeners();
 }

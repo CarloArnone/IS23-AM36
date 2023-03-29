@@ -9,15 +9,20 @@ public class TestGenerator {
 
     public static LivingRoom generateLivingRoom(int playersNum){
         LivingRoom l = JSONInterface.getLivingRoomFromJson(JSONInterface.getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), "00000");
-        //<Map<BoardPosition, Boolean> testBoard = builder.getBoardFromJson(3);
         l.setBoard(JSONInterface.getBoardFromJson(playersNum));
         l.arrangeDesk();
         for (int i = 0; i < playersNum; i++) {
             l.addPlayer(generatePlayer(randomizer.nextBoolean()));
         }
         List<CommonGoalCard> commonGoals = new ArrayList<>();
-        commonGoals.add(JSONInterface.getCommonGoalCardFromJson(playersNum));
-        commonGoals.add(JSONInterface.getCommonGoalCardFromJson(playersNum));
+        CommonGoalCard c0 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        CommonGoalCard c1 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        while(c1.equals(c0)){
+            c1 = JSONInterface.getCommonGoalCardFromJson(playersNum);
+        }
+
+        commonGoals.add(c0);
+        commonGoals.add(c1);
 
         l.setCommonGoalSet(commonGoals);
 
