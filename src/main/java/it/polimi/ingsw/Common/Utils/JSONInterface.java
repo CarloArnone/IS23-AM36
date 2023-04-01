@@ -128,7 +128,7 @@ public class JSONInterface {
         JsonArray commonGoalSet = new JsonArray();
         for (CommonGoalCard cg : livingRoom.getCommonGoalSet()) {
             JsonArray points = new JsonArray();
-            for (Integer point : cg.getPointsList()) {
+            for (Integer point : cg.getPointsList()) { //TODO CHECK IF THE LIST IS EMPTY
                 points.add(point);
             }
 
@@ -259,6 +259,8 @@ public class JSONInterface {
         for (JsonElement commonGoal : livingRoomJson.getAsJsonArray("commonGoals")) {
             commonGoalSet.add(getCommonGoalCardFromString(converter.toJson(commonGoal)));
         }
+
+
 
         return new LivingRoom(LivingRoom_ID, board, playersList, commonGoalSet, turn);
 
@@ -403,7 +405,15 @@ public class JSONInterface {
 
         JsonObject commonGoalJObj = converter.fromJson(jsonString, JsonObject.class);
         CommonGoalCard cmg = getCommonGoalCardFromID(commonGoalJObj.get("goalName").getAsString(), 2);
-        cmg.setPoints(getAsListOfT(commonGoalJObj.getAsJsonArray("pointsLeft"), Integer.class));
+
+        List<Integer> oldPoints = new ArrayList<>();
+        int i = 0;
+        for(JsonElement point : commonGoalJObj.getAsJsonArray("pointsLeft")){
+            oldPoints.add(i, point.getAsInt());
+            i++;
+        }
+
+        cmg.setPoints(oldPoints);
 
         return cmg;
     }

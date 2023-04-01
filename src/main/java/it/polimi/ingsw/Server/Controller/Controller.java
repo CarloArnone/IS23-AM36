@@ -9,15 +9,9 @@ import it.polimi.ingsw.Common.LobbyLivingRoom;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.WaitingPlayer;
 import it.polimi.ingsw.Common.eventObserver;
-import it.polimi.ingsw.Server.Model.BoardPosition;
-import it.polimi.ingsw.Server.Model.ItemCard;
-import it.polimi.ingsw.Server.Model.LivingRoom;
-import it.polimi.ingsw.Server.Model.Player;
+import it.polimi.ingsw.Server.Model.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Controller implements eventObserver {
     List<LobbyLivingRoom> livingRooms;
@@ -44,7 +38,7 @@ public class Controller implements eventObserver {
             if(liv.getLivingRoom().equals(livingRoom)){
                 List<ItemCard> pickItemCards = new ArrayList<>();
                 liv.getLivingRoom().nextTurn();
-                //liv.getLivingRoom().updateGoals(p); //TODO TESTING
+
                 int i = 0;
                 for(BoardPosition bps : pick){
                     pickItemCards.add(i, bps.getCard());
@@ -58,6 +52,7 @@ public class Controller implements eventObserver {
                         } catch (NotEnoughSpacesInCol e) {
                             throw new NotEnoughSpacesInCol();
                         }
+                        //liv.getLivingRoom().updateGoals(player); //TODO TESTING
                         player.updateScore();
                         break;
                     }
@@ -74,19 +69,12 @@ public class Controller implements eventObserver {
     public synchronized boolean logInTryEvent(String name, CLI c) {
         //TODO FIX IS IMPOSIIBLE TO RETRIEVE AN OLD GAME
 
-        for (LobbyLivingRoom liv : livingRooms){
-            for(Player p : liv.getLivingRoom().getPlayers()){
-                if(p.getName().equals(name)){
-                    return false;
-                }
-            }
-        }
-
         for(WaitingPlayer wp : waitingForChoice){
             if(wp.getPlayer().getName().equals(name)){
                 if(wp.isOnline()){
                     return false;
                 }
+                break;
             }
         }
 
@@ -117,7 +105,6 @@ public class Controller implements eventObserver {
         LivingRoom l = JSONInterface.generateLivingRoom(PlayersNum, livingRoomID);
         l.addPlayer(p);
         l.addSupplier(getPlayerView(p));
-        waitingForChoice.remove(new WaitingPlayer(p));
         livingRooms.add(new LobbyLivingRoom(l, PlayersNum));
         return  l;
     }
@@ -134,20 +121,27 @@ public class Controller implements eventObserver {
     }
 
     @Override
-    public synchronized void leaveGameEvent(String name, LivingRoom livingRoom, CLI c) {
+    public void leaveGameEvent(String name, LivingRoom livingRoom, CLI c) {
         disconnectedPlayer(livingRoom, name, true, c);
     }
 
     @Override
-    public synchronized boolean joinGameEvent(String livingRoomID, Player p) {
-        for(LobbyLivingRoom liv : livingRooms){
-            if(liv.getLivingRoom().getLivingRoomId().equals(livingRoomID)){
-                liv.getLivingRoom().addSupplier(getPlayerView(p));
-                liv.getLivingRoom().addPlayer(p);
+    public synchronized Player joinGameEvent(String livingRoomID, String name) {
+        Player p = new Player(name);
+        for (LobbyLivingRoom liv : livingRooms) {
+            if (liv.getLivingRoom().getLivingRoomId().equals(livingRoomID)) {
+                if(liv.getLivingRoom().getPlayers().contains(p)){
+                    p = JSONInterface.getPlayerFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPlayersPath()), name);
+                    break;
+                }
+                else{
+                    liv.getLivingRoom().addSupplier(getPlayerView(p));
+                    liv.getLivingRoom().addPlayer(p);
+                    return p;
+                }
             }
         }
-        waitingForChoice.remove(new WaitingPlayer(p));
-        return true;
+        return p;
     }
 
     @Override

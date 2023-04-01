@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CLI implements Listener {
 
-    private LivingRoom viewLivingRoom = new LivingRoom("ciaoPippo");
+    private LivingRoom viewLivingRoom;
     private List<BoardPosition> pick;
     private int me; // It means MyTURN
     private String name;
@@ -35,6 +35,14 @@ public class CLI implements Listener {
     private final String greenCard = "[48;2;106;153;69m   ";
     private final String cyanCard = "[48;2;0;180;216m   ";
     private final String yellowCard = "[48;2;232;170;20m   ";
+
+
+    private final String blueCardNot = "[38;2;0;0;0;48;2;0;119;182m X ";
+    private final String purpleCardNot = "[38;2;0;0;0;48;2;255;0;110m X ";
+    private final String whiteCardNot = "[38;2;0;0;0;48;2;255;236;209m X ";
+    private final String greenCardNot = "[38;2;0;0;0;48;2;106;153;69m X ";
+    private final String cyanCardNot = "[38;2;0;0;0;48;2;0;180;216m X ";
+    private final String yellowCardNot = "[38;2;0;0;0;48;2;232;170;20m X ";
 
     private final String blueCardDark = "[38;2;0;0;0;48;2;0;119;182m * ";
     private final String purpleCardDark = "[38;2;0;0;0;48;2;255;0;110m * ";
@@ -92,13 +100,13 @@ public class CLI implements Listener {
         //TODO CHOICE TO JOIN OR CREATE.
         startingChoicesView(sc);
 
-        while(controller.isGamesStarted(viewLivingRoom)){
+        /*while(controller.isGamesStarted(viewLivingRoom)){
             try {
                 updateView("Waiting for PLayers to join");
             } catch (IOException e) {
                 exit.set(true);
             }
-        }
+        }*/
 
         try {
             updateView("new Command >");
@@ -190,14 +198,21 @@ public class CLI implements Listener {
 
                 String command = sc.nextLine().split(" ")[0];
                 if(activeLivingRooms.contains(command)){
-                    hasJoinedAGame = controller.joinGameEvent(command, new Player(name, 0, new ArrayList<>(), new Shelf(), JSONInterface.getPersonalGoalsFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPersonalGoalsPath()))));
+                    mySelf =  controller.joinGameEvent(command, name);
+
                     try {
                         viewLivingRoom = controller.retrieveOldGameEvent(command);
                     } catch (NoMatchingIDException e) {
-                        return;
+                        continue; //TODO PRINT NO LIVINGROOMS WITH THE NAME ID
                     }
 
-                    viewLivingRoom.addPlayer(mySelf);
+                    for (int i = 0; i < viewLivingRoom.getPlayers().size(); i++){
+                        if (mySelf.equals(viewLivingRoom.getPlayers().get(i))){
+                            me = i;
+                            break;
+                        }
+                    }
+                    hasJoinedAGame = true;
                 }
                 else if(command.equals("u")){
                     groupID ++;
@@ -229,7 +244,7 @@ public class CLI implements Listener {
     }
 
     private void updateView(String message) throws IOException {
-        Character[][] pb = getPrintableBoard(viewLivingRoom.getBoard());
+        Pair<Character, Boolean>[][] pb = getPrintableBoard(viewLivingRoom.getBoard());
         System.out.flush();
         List<List<List<String>>> commonGoalsRepresentation = new ArrayList<>();
         commonGoalsRepresentation.add(getCommonGoalRepresentation(viewLivingRoom.getCommonGoalSet().get(0)));
@@ -239,37 +254,38 @@ public class CLI implements Listener {
             System.out.print(" " + r + " ");
             for(int c = 0; c<9; c++){
                 if(pb[r][c] != null){
-
-                    /*if(pb[r][c] == 'P'){
-                        System.out.print((char)27 + "[48;2;255;0;111m \uD83C\uDF3C " + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'W') {
-                        System.out.print((char)27 + "[48;2;241;250;238m \uD83D\uDCD8 " + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'C') {
-                        System.out.print((char)27 + "[48;2;168;218;220m \uD83C\uDFC6 " + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'B') {
-                        System.out.print((char)27 + "[48;2;69;123;157m \uD83D\uDDBC " + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'G') {
-                        System.out.print((char)27 + "[48;2;74;120;86m \uD83D\uDC08 " + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'Y') {
-                        System.out.print((char)27 + "[48;2;232;170;20m \uD83D\uDD79 " + (char)27 + "[0m");
-                    }*/
-
-                    if(pb[r][c] == 'P'){
-                        System.out.print((char)27 + purpleCard + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'W') {
-                        System.out.print((char)27 + whiteCard + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'C') {
-                        System.out.print((char)27 + cyanCard + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'B') {
-                        System.out.print((char)27 + blueCard + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'G') {
-                        System.out.print((char)27 + greenCard + (char)27 + "[0m");
-                    }else if (pb[r][c] == 'Y') {
-                        System.out.print((char)27 + yellowCard + (char)27 + "[0m");
+                    if(pb[r][c].getValue()){
+                        if(pb[r][c].getKey() == 'P'){
+                            System.out.print((char)27 + purpleCard + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'W') {
+                            System.out.print((char)27 + whiteCard + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'C') {
+                            System.out.print((char)27 + cyanCard + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'B') {
+                            System.out.print((char)27 + blueCard + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'G') {
+                            System.out.print((char)27 + greenCard + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'Y') {
+                            System.out.print((char)27 + yellowCard + (char)27 + "[0m");
+                        }
+                    }
+                    else {
+                        if(pb[r][c].getKey() == 'P'){
+                            System.out.print((char)27 + purpleCardNot + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'W') {
+                            System.out.print((char)27 + whiteCardNot + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'C') {
+                            System.out.print((char)27 + cyanCardNot + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'B') {
+                            System.out.print((char)27 + blueCardNot + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'G') {
+                            System.out.print((char)27 + greenCardNot + (char)27 + "[0m");
+                        }else if (pb[r][c].getKey() == 'Y') {
+                            System.out.print((char)27 + yellowCardNot + (char)27 + "[0m");
+                        }
                     }
                 }
                 else System.out.print((char)27 + shelfBackGorund + (char)27 + "[0m");
-
             }
             System.out.print(" " + r);
             for(int i = 0; i<commonGoalsRepresentation.get(0).get(r).size(); i++){
@@ -283,7 +299,8 @@ public class CLI implements Listener {
         }
         System.out.println("    0  1  2  3  4  5  6  7  8");
 
-        System.out.println("\n");
+        System.out.println("\n\n\n");
+        System.out.println("It's " + viewLivingRoom.getPlayers().get(viewLivingRoom.getTurn()).getName() + " turn");
         System.out.print("    ");
         for(int i = 0; i < me; i++){
             System.out.print("                                       ");
@@ -330,6 +347,11 @@ public class CLI implements Listener {
 
         for(int p = 0; p<viewLivingRoom.getPlayers().size(); p++){
             System.out.print("" + viewLivingRoom.getPlayers().get(p).getName() + "                                 ");
+        }
+        System.out.println("");
+
+        for(int p = 0; p<viewLivingRoom.getPlayers().size(); p++){
+            System.out.print("" + viewLivingRoom.getPlayers().get(p).getScore() + "                                      ");
         }
         System.out.println("");
 
@@ -425,10 +447,10 @@ public class CLI implements Listener {
         System.out.print("\n" + message);
     }
 
-    public static Character[][] getPrintableBoard(Map<BoardPosition, Boolean> b){
-        Character[][] mat = new Character[9][9];
+    public static Pair<Character, Boolean>[][] getPrintableBoard(Map<BoardPosition, Boolean> b){
+        Pair<Character, Boolean>[][] mat = new Pair[9][9];
         for(Map.Entry<BoardPosition, Boolean> entry : b.entrySet()){
-            mat[entry.getKey().getPosX()][entry.getKey().getPosY()] = entry.getKey().getCard().getColor();
+            mat[entry.getKey().getPosX()][entry.getKey().getPosY()] = new Pair<>(entry.getKey().getCard().getColor(), entry.getValue());
         }
         return mat;
     }
@@ -532,9 +554,7 @@ public class CLI implements Listener {
                     //IF A CARD IS OUT OF BOUND IS AUTOMATICALLY NOT SELECTED
                 }
                 catch (IndexOutOfBoundsException e){
-                    return "You selected a tile out of the board\n" +
-                            "Please retry\n" +
-                            "newCommand > ";
+                    continue;
                 }
             }
 
@@ -585,11 +605,10 @@ public class CLI implements Listener {
                     Select another Col
                     newCommand >\s""";
         }
-        viewLivingRoom.nextTurn();
         pick.clear();
 
         viewLivingRoom.undoDraft(viewLivingRoom.getPlayers().get(me));
-        return "newCommand > ";
+        return "\n newCommand > ";
     }
     private void moveFromBoardToShelf(List<BoardPosition> pick) {
         List<ItemCard> pickList = new ArrayList<>();

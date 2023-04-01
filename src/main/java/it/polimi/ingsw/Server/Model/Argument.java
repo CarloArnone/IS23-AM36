@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Server.Model;
 
+import it.polimi.ingsw.Common.Utils.TestGenerator;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -63,8 +64,10 @@ public class Argument {
         numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('G')).count());
         numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('B')).count());
 
+
         return numbersOfGroups.stream().anyMatch(x -> x >= groupsNumber);
     }
+
 
     private boolean parseArguments(Player p, boolean isGroupOfEight){
         //TODO

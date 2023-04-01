@@ -20,7 +20,7 @@ public interface eventObserver {
     LivingRoom createGameEvent(String livingRoomID, Player p, int PlayersNum) throws InvalidGameIDException, PlayersOutOfBoundException;
 
     LivingRoom retrieveOldGameEvent(String livingRoomID) throws NoMatchingIDException;
-    boolean joinGameEvent(String livingRoomID, Player p);
+    Player joinGameEvent(String livingRoomID, String name);
     boolean reconnectPlayer(LivingRoom livingRoom, String name);
     boolean disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, CLI c);
 
