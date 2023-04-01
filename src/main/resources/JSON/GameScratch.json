@@ -18,7 +18,7 @@
         },
         {
           "position" : [2,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,5],
@@ -30,15 +30,15 @@
         },
         {
           "position" : [3,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,6],
@@ -54,23 +54,23 @@
         },
         {
           "position" : [4,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,7],
@@ -86,15 +86,15 @@
         },
         {
           "position" : [5,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,6],
@@ -106,7 +106,7 @@
         },
         {
           "position" : [6,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [6,5],
@@ -136,11 +136,11 @@
         },
         {
           "position" : [2,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,5],
@@ -152,19 +152,19 @@
         },
         {
           "position" : [3,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,7],
@@ -176,23 +176,23 @@
         },
         {
           "position" : [4,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,7],
@@ -204,19 +204,19 @@
         },
         {
           "position" : [5,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,6],
@@ -228,11 +228,11 @@
         },
         {
           "position" : [6,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [6,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [7,4],
@@ -286,39 +286,39 @@
         },
         {
           "position" : [1,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [2,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [3,7],
@@ -326,31 +326,31 @@
         },
         {
           "position" : [4,1],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [4,7],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,1],
@@ -358,39 +358,39 @@
         },
         {
           "position" : [5,2],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [5,6],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [6,3],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [6,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [6,5],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position" : [7,4],
-          "isGood" : true
+          "isGood" : false
         },
         {
           "position": [7,5],
