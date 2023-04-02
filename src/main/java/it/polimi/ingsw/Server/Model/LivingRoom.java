@@ -93,10 +93,17 @@ public class LivingRoom {
     }
     /** Checks if its necessary to refill the board. Is called at the end/start of each turn. */
     public void checkRearrangeDesk(){
-        if(board.entrySet().stream().allMatch(x -> x.getKey().isLonely())){
+
+        if(board.entrySet().stream().allMatch(pos -> {
+            return !(board.containsKey(new BoardPosition(pos.getKey().getPosX() +1, pos.getKey().getPosY()))) &&
+                    !(board.containsKey(new BoardPosition(pos.getKey().getPosX() -1, pos.getKey().getPosY()))) &&
+                    !(board.containsKey(new BoardPosition(pos.getKey().getPosX(), pos.getKey().getPosY() +1))) &&
+                    !(board.containsKey(new BoardPosition(pos.getKey().getPosX(), pos.getKey().getPosY() -1)));
+        })){
             board = JSONInterface.getBoardFromJson(getPlayers().size());
             arrangeDesk();
         }
+
     }
     /** Erases the draft that was being done by the player. */
     public void undoDraft(Player p){
@@ -139,10 +146,11 @@ public class LivingRoom {
     }
     /** Actually removes a card from a position of the board.*/
     public void removeCard(BoardPosition position){
-        board.computeIfPresent(new BoardPosition(position.getPosX() + 1, position.getPosY()), (key, value) -> {key.freeBorder(Borders.UP); return true;});
-        board.computeIfPresent(new BoardPosition(position.getPosX() - 1, position.getPosY()), (key, value) -> {key.freeBorder(Borders.DOWN); return true;});
-        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() + 1), (key, value) -> {key.freeBorder(Borders.LEFT); return true;});
-        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() - 1), (key, value) -> {key.freeBorder(Borders.RIGHT); return true;});
+
+        board.computeIfPresent(new BoardPosition(position.getPosX() + 1, position.getPosY()), (key, value) -> true);
+        board.computeIfPresent(new BoardPosition(position.getPosX() - 1, position.getPosY()), (key, value) -> true);
+        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() + 1), (key, value) -> true);
+        board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() - 1), (key, value) -> true);
 
         //TODO IT FREES THE NEARBY TILES BUT DOES NOT UPDATE THE TILES INTERN BORDERS VALUES
         board.remove(position);
