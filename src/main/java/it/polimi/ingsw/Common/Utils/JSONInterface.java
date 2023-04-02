@@ -422,11 +422,11 @@ public class JSONInterface {
         List<Argument> argumentList = new ArrayList<>();
 
         for (JsonElement arrayOfArgumentsArray : commonGoalJObj.get("argumentsList").getAsJsonArray()) {
-            List<List<Object>> constructorOfArgument = new ArrayList<>();
+            List<List<String>> constructorOfArgument = new ArrayList<>();
             for (JsonElement argumentsArray : arrayOfArgumentsArray.getAsJsonArray()) {
-                List<Object> properArgumentsList = new ArrayList<>();
+                List<String> properArgumentsList = new ArrayList<>();
                 for (int i = 0; i < argumentsArray.getAsJsonArray().size(); i++) {
-                    properArgumentsList.add(i, argumentsArray.getAsJsonArray().get(i));
+                    properArgumentsList.add(i, argumentsArray.getAsJsonArray().get(i).getAsString());
                 }
                 constructorOfArgument.add(properArgumentsList);
             }

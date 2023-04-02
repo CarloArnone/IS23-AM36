@@ -37,7 +37,6 @@ public class Controller implements eventObserver {
         for (LobbyLivingRoom liv : livingRooms){
             if(liv.getLivingRoom().equals(livingRoom)){
                 List<ItemCard> pickItemCards = new ArrayList<>();
-                liv.getLivingRoom().nextTurn();
 
                 int i = 0;
                 for(BoardPosition bps : pick){
@@ -52,11 +51,13 @@ public class Controller implements eventObserver {
                         } catch (NotEnoughSpacesInCol e) {
                             throw new NotEnoughSpacesInCol();
                         }
-                        //liv.getLivingRoom().updateGoals(player); //TODO TESTING
+                        liv.getLivingRoom().updateGoals(player); //TODO TESTING
                         player.updateScore();
                         break;
                     }
                 }
+                liv.getLivingRoom().nextTurn();
+                liv.getLivingRoom().checkRearrangeDesk();
                 liv.getLivingRoom().notifyAllListeners();
                 JSONInterface.writeLivingRoomToJson(liv.getLivingRoom());
                 return true;

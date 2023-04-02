@@ -51,7 +51,7 @@ public class Player {
     }
     /** Registers a Goal completed by the player inside a List of Goals. */
     public void addAchievedGoal(Goal goal){
-        this.addAchievedGoal(goal);
+        this.achievedGoals.add(goal);
     }
     /** Returns the score of the Player. */
     public int getScore(){

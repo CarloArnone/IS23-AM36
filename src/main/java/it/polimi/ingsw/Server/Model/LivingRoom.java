@@ -94,6 +94,7 @@ public class LivingRoom {
     /** Checks if its necessary to refill the board. Is called at the end/start of each turn. */
     public void checkRearrangeDesk(){
         if(board.entrySet().stream().allMatch(x -> x.getKey().isLonely())){
+            board = JSONInterface.getBoardFromJson(getPlayers().size());
             arrangeDesk();
         }
     }
@@ -104,10 +105,10 @@ public class LivingRoom {
     /** Updates the score relative to the CommonGoals for the player p. */
     public void updateGoals(Player p){
         for(CommonGoalCard g : commonGoalSet){
-            if(!players.get(getTurn()).getAchievedGoals().contains(g)){
+            if(!(players.get(getTurn()).getAchievedGoals().contains((Goal)g))){
                 if(g.checkGoal(p)){
-                    p.addPoints(g.getPoints());
-                    p.addAchievedGoal(g);
+                    Goal toAdd = new CommonGoalCard(g.getName(), g.getPoints());
+                    p.addAchievedGoal(toAdd);
                 }
             }
         }
@@ -142,6 +143,8 @@ public class LivingRoom {
         board.computeIfPresent(new BoardPosition(position.getPosX() - 1, position.getPosY()), (key, value) -> {key.freeBorder(Borders.DOWN); return true;});
         board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() + 1), (key, value) -> {key.freeBorder(Borders.LEFT); return true;});
         board.computeIfPresent(new BoardPosition(position.getPosX(), position.getPosY() - 1), (key, value) -> {key.freeBorder(Borders.RIGHT); return true;});
+
+        //TODO IT FREES THE NEARBY TILES BUT DOES NOT UPDATE THE TILES INTERN BORDERS VALUES
         board.remove(position);
     }
     /** Return the ID of the current Living Room. */
