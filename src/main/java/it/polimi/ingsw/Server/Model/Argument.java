@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Argument {
     private String type;
-    private List<List<Object>> arguments;
+    private List<List<String>> arguments;
 
-    public Argument(String type, List<List<Object>> arguments) {
+    public Argument(String type, List<List<String>> arguments) {
         this.type = type;
         this.arguments = arguments;
     }
@@ -22,9 +22,9 @@ public class Argument {
 
     public boolean callWithArgumentsOn(Player p) {
         return switch (type) {
-            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1), (Integer) list.get(2), (Integer) list.get(3), (Integer) list.get(4), (Integer) list.get(5),(Integer) list.get(6), (Integer) list.get(7), (Boolean) list.get(8)));
-            case "m2" -> arguments.stream().allMatch(list -> parseArguments(p, (Integer) list.get(0), (Integer) list.get(1)));
-            case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, (Boolean) list.get(0)));
+            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1)), Integer.parseInt(list.get(2)), Integer.parseInt(list.get(3)), Integer.parseInt(list.get(4)), Integer.parseInt(list.get(5)),Integer.parseInt(list.get(6)), Integer.parseInt(list.get(7)), Boolean.getBoolean(list.get(8))));
+            case "m2" -> arguments.stream().allMatch(list -> parseArguments(p, Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1))));
+            case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, Boolean.getBoolean(list.get(0))));
             default -> false;
         };
     }

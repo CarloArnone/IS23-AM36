@@ -23,10 +23,19 @@ public class BoardPosition {
         this.card = card;
         this.posX = posX;
         this.posY = posY;
+        freeBorders.put(Borders.UP, false);
+        freeBorders.put(Borders.DOWN, false);
+        freeBorders.put(Borders.LEFT, false);
+        freeBorders.put(Borders.RIGHT, false);
     }
     public BoardPosition(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
+
+        freeBorders.put(Borders.UP, false);
+        freeBorders.put(Borders.DOWN, false);
+        freeBorders.put(Borders.LEFT, false);
+        freeBorders.put(Borders.RIGHT, false);
     }
 
     public boolean isFree(){
