@@ -23,19 +23,36 @@ public class BoardPosition {
         this.card = card;
         this.posX = posX;
         this.posY = posY;
-        freeBorders.put(Borders.UP, false);
-        freeBorders.put(Borders.DOWN, false);
-        freeBorders.put(Borders.LEFT, false);
-        freeBorders.put(Borders.RIGHT, false);
+
     }
     public BoardPosition(int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
 
-        freeBorders.put(Borders.UP, false);
-        freeBorders.put(Borders.DOWN, false);
-        freeBorders.put(Borders.LEFT, false);
-        freeBorders.put(Borders.RIGHT, false);
+        if(posX == 0){
+            freeBorders.put(Borders.UP, true);
+            freeBorders.put(Borders.DOWN, false);
+            freeBorders.put(Borders.LEFT, false);
+            freeBorders.put(Borders.RIGHT, false);
+        }
+        else if(posX == 5){
+            freeBorders.put(Borders.UP, false);
+            freeBorders.put(Borders.DOWN, true);
+            freeBorders.put(Borders.LEFT, false);
+            freeBorders.put(Borders.RIGHT, false);
+        }
+        else if(posY == 0){
+            freeBorders.put(Borders.UP, false);
+            freeBorders.put(Borders.DOWN, false);
+            freeBorders.put(Borders.LEFT, true);
+            freeBorders.put(Borders.RIGHT, false);
+        }
+        else if(posY == 4){
+            freeBorders.put(Borders.UP, false);
+            freeBorders.put(Borders.DOWN, false);
+            freeBorders.put(Borders.LEFT, false);
+            freeBorders.put(Borders.RIGHT, true);
+        }
     }
 
     public boolean isFree(){
