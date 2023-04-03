@@ -143,7 +143,7 @@ public class JSONInterface {
         }
         JsonElement commonGoalSetEl = commonGoalSet.getAsJsonArray();
         livingRoomJObj.add("commonGoals", commonGoalSetEl);
-
+        //deleteLivingRoomIfExists(converter.toJson(livingRoomJObj, JsonObject.class));
         saveIntoFile(livingRoomJObj, getLivingRoomsPath(), "livingRooms");
         return converter.toJson(livingRoomJObj);
     }
@@ -526,6 +526,16 @@ public class JSONInterface {
             writer = new FileWriter(newFile);
             writer.write(converter.toJson(toSave));
             writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void deleteLivingRoomIfExists(String jsonLivingRoom){
+        File livingRoomFile = new File(getLivingRoomsPath());
+        try {
+           Scanner sc = new Scanner(livingRoomFile);
+           sc.findAll(jsonLivingRoom).findFirst().get().toString().replace(jsonLivingRoom, "");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

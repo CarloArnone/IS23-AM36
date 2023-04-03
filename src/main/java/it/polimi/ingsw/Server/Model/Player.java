@@ -26,7 +26,6 @@ public class Player {
         personalGoal = JSONInterface.getPersonalGoalsFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPersonalGoalsPath()));
     }
 
-    //TODO ADD CONSTRUCTOR WITH PERSONALGOAL NAME FOR PERSISTANCE
     public Player(String name, Shelf shelf){
         this.name = name;
         this.myShelf = shelf;
