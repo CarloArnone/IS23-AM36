@@ -68,7 +68,7 @@ public class Controller implements eventObserver {
 
     @Override
     public synchronized boolean logInTryEvent(String name, CLI c) {
-        //TODO FIX IS IMPOSIIBLE TO RETRIEVE AN OLD GAME
+        //TODO FIX IS IMPOSSIBLE TO RETRIEVE AN OLD GAME
 
         for(WaitingPlayer wp : waitingForChoice){
             if(wp.getPlayer().getName().equals(name)){
@@ -107,6 +107,7 @@ public class Controller implements eventObserver {
         l.addPlayer(p);
         l.addSupplier(getPlayerView(p));
         livingRooms.add(new LobbyLivingRoom(l, PlayersNum));
+        saveGame(l);
         return  l;
     }
 
@@ -133,11 +134,13 @@ public class Controller implements eventObserver {
             if (liv.getLivingRoom().getLivingRoomId().equals(livingRoomID)) {
                 if(liv.getLivingRoom().getPlayers().contains(p)){
                     p = JSONInterface.getPlayerFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPlayersPath()), name);
+                    saveGame(liv.getLivingRoom());
                     break;
                 }
                 else{
                     liv.getLivingRoom().addSupplier(getPlayerView(p));
                     liv.getLivingRoom().addPlayer(p);
+                    saveGame(liv.getLivingRoom());
                     return p;
                 }
             }
@@ -156,8 +159,11 @@ public class Controller implements eventObserver {
             if(liv.getLivingRoom().equals(livingRoom)){
                 for(Player p : liv.getLivingRoom().getPlayers()){
                     if(p.getName().equals(name)){
-                        liv.getLivingRoom().removePlayer(p);
-                        waitingForChoice.add(new WaitingPlayer(new Player(name), c));
+                        if(voluntaryLeft){
+                            liv.getLivingRoom().removePlayer(p);
+                        }
+                        else waitingForChoice.remove(new WaitingPlayer(new Player(name), c)); //TODO MODIFY SET PLAYER OFFLINE
+                        saveGame(liv.getLivingRoom());
                         return true;
                     }
                 }
@@ -195,8 +201,17 @@ public class Controller implements eventObserver {
         return false;
     }
 
+    public synchronized boolean endGame(LivingRoom livingRoom){
+        return false;
+    }
+
     public synchronized CLI getPlayerView(Player p){
         return waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().getView();
+    }
+
+    public boolean saveGame(LivingRoom liv){
+        JSONInterface.writeLivingRoomToJson(liv);
+        return true;
     }
 
 }

@@ -14,6 +14,8 @@ import it.polimi.ingsw.Server.Controller.Controller;
 import it.polimi.ingsw.Server.Model.*;
 import javafx.util.Pair;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,6 +30,7 @@ public class CLI implements Listener {
     private Player mySelf;
 
     private eventObserver controller;
+    private File inputFile = null;
 
     private final String blueCard = "[48;2;0;119;182m   ";
     private final String purpleCard = "[48;2;255;0;110m   ";
@@ -84,9 +87,22 @@ public class CLI implements Listener {
         pick = new ArrayList<>();
     }
 
+    public CLI(File inputFile, eventObserver controller){
+        this.controller = controller;
+        pick = new ArrayList<>();
+        this.inputFile = inputFile;
+    }
+
     public void start() {
         AtomicBoolean exit = new AtomicBoolean(false);
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = null;
+
+        try {
+            sc = new Scanner(inputFile);
+        } catch (FileNotFoundException e) {
+            sc = new Scanner(System.in);
+        }
+
         String message;
         boolean canProceed = false;
         while(!canProceed){
@@ -109,15 +125,16 @@ public class CLI implements Listener {
         }*/
 
         try {
-            updateView("new Command >");
+            updateView("new Command >\n");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        Scanner finalSc = sc;
         new Thread(() ->{
             boolean exitIn = false;
             while(!exitIn){
-                String command = sc.nextLine();
+                String command = finalSc.nextLine();
                 exitIn = parseCommand(command);
             }
             exit.set(true);
@@ -455,9 +472,9 @@ public class CLI implements Listener {
         return mat;
     }
 
-    private boolean parseCommand(String command) {
+    public boolean parseCommand(String command) {
         if(command.equals("exit") || command.equals("q")){
-            controller.leaveGameEvent(name, viewLivingRoom, this);
+            controller.disconnectedPlayer(viewLivingRoom,name,false, this);
             return true;
         }
 
@@ -515,7 +532,7 @@ public class CLI implements Listener {
         }
 
         try {
-            updateView(message);
+            updateView(message + "\n");
         } catch (IOException e) {
             return true;
         }

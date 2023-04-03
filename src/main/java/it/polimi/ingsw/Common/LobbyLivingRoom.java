@@ -21,7 +21,10 @@ public class LobbyLivingRoom {
     }
 
     public boolean isGameEnded(){
-        return liv.getPlayers().size() == 1;
+        if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull())){
+            return getLivingRoom().getTurn() == 0;
+        }
+        return false;
     }
 
     public LivingRoom getLivingRoom() {
