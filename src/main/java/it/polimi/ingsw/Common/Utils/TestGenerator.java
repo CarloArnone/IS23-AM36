@@ -27,6 +27,7 @@ public class TestGenerator {
         l.setCommonGoalSet(commonGoals);
 
         l.setLivingRoomId( String.valueOf(randomizer.nextInt(10000, 99999)));
+        JSONInterface.writeLivingRoomToJson(l, "src/main/resources/JSONForTesting/LivingRoomsTEST.json");
         return l;
     }
 
@@ -84,6 +85,16 @@ public class TestGenerator {
             return new ItemCard('Y', "" + randomizer.nextInt(1, 3));
         }
         else return null;
+    }
+
+
+    public static List<LivingRoom> generateNTests(int n){
+        List<LivingRoom> livList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            livList.add(generateLivingRoom(randomizer.nextInt(2, 4)));
+        }
+
+        return livList;
     }
 
 }
