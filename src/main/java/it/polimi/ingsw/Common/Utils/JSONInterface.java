@@ -148,6 +148,48 @@ public class JSONInterface {
         return converter.toJson(livingRoomJObj);
     }
 
+    public static String writeLivingRoomToJson(LivingRoom livingRoom, String filePath) {
+        JsonObject livingRoomJObj = new JsonObject();
+        livingRoomJObj.addProperty("livingRoomID", livingRoom.getLivingRoomId());
+
+        JsonArray players = new JsonArray();
+        for (Player p : livingRoom.getPlayers()) {
+            JsonElement pJel = converter.fromJson(writePlayerToJson(p), JsonObject.class);
+            players.add(pJel);
+        }
+        JsonElement playersEl = players.getAsJsonArray();
+
+        livingRoomJObj.add("players", playersEl);
+
+        livingRoomJObj.addProperty("turn", livingRoom.getTurn());
+
+
+        JsonElement board = converter.fromJson(writeBoardToJson(livingRoom.getBoard(), "" + livingRoom.getLivingRoomId() + "_board"), JsonArray.class);
+        livingRoomJObj.add("board", board);
+
+
+        JsonArray commonGoalSet = new JsonArray();
+        for (CommonGoalCard cg : livingRoom.getCommonGoalSet()) {
+            JsonArray points = new JsonArray();
+            for (Integer point : cg.getPointsList()) { //TODO CHECK IF THE LIST IS EMPTY
+                points.add(point);
+            }
+
+            JsonObject commonGoal = new JsonObject();
+            JsonElement pointsEl = points.getAsJsonArray();
+
+            commonGoal.addProperty("goalName", cg.getName());
+            commonGoal.add("pointsLeft", pointsEl);
+
+            JsonElement commonGoalEl = commonGoal.getAsJsonObject();
+            commonGoalSet.add(commonGoalEl);
+        }
+        JsonElement commonGoalSetEl = commonGoalSet.getAsJsonArray();
+        livingRoomJObj.add("commonGoals", commonGoalSetEl);
+        //deleteLivingRoomIfExists(converter.toJson(livingRoomJObj, JsonObject.class));
+        saveIntoFile(livingRoomJObj, filePath, "livingRooms");
+        return converter.toJson(livingRoomJObj);
+    }
     public static LivingRoom getRandomLivingForTest() {
         JsonArray livingRooms = converter.fromJson(getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), JsonObject.class).getAsJsonArray("livingRooms");
         Random r = new Random();

@@ -132,6 +132,7 @@ public class Shelf {
         return toReturn;
 
     }
+
     /**
      *  The function applies a common color visit of the matrix.
      *

@@ -624,7 +624,7 @@ public class CLI implements Listener {
         }
         pick.clear();
 
-        viewLivingRoom.undoDraft(viewLivingRoom.getPlayers().get(me));
+        //viewLivingRoom.undoDraft(viewLivingRoom.getPlayers().get(me));
         return "\n newCommand > ";
     }
     private void moveFromBoardToShelf(List<BoardPosition> pick) {

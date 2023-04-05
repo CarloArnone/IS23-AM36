@@ -53,6 +53,7 @@ public class Controller implements eventObserver {
                         }
                         liv.getLivingRoom().updateGoals(player); //TODO TESTING
                         player.updateScore();
+                        liv.getLivingRoom().undoDraft(player);
                         break;
                     }
                 }
@@ -162,7 +163,9 @@ public class Controller implements eventObserver {
                         if(voluntaryLeft){
                             liv.getLivingRoom().removePlayer(p);
                         }
-                        else waitingForChoice.remove(new WaitingPlayer(new Player(name), c)); //TODO MODIFY SET PLAYER OFFLINE
+                        else waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
+
+                        waitingForChoice.remove(new WaitingPlayer(new Player(name), c)); //TODO MODIFY SET PLAYER OFFLINE
                         saveGame(liv.getLivingRoom());
                         return true;
                     }

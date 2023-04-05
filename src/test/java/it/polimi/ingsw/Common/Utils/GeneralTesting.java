@@ -41,13 +41,13 @@ class GeneralTesting {
 
     @Test
     void emptyPAP(){
-
     }
 
     @Test
     void completeGameCarloLorenzo(){
         gms.simulate("carloPlayerStartUp.txt");
         gms.simulate("lorenzoPlayerStartUp.txt");
+        //retrieve Old Game
         gms.simulate("gameCarloLorenzo.txt");
         assert true;
     }
