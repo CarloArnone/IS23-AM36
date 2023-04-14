@@ -99,7 +99,7 @@ public class CLI implements Listener {
 
         try {
             sc = new Scanner(inputFile);
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             sc = new Scanner(System.in);
         }
 
@@ -111,18 +111,17 @@ public class CLI implements Listener {
 
 
         mySelf = new Player(name);
-        //viewLivingRoom = TestGenerator.generateLivingRoom(3);//JSONInterface.getRandomLivingForTest();
 
-        //TODO CHOICE TO JOIN OR CREATE.
         startingChoicesView(sc);
 
-        /*while(controller.isGamesStarted(viewLivingRoom)){
-            try {
-                updateView("Waiting for PLayers to join");
-            } catch (IOException e) {
-                exit.set(true);
-            }
-        }*/
+        try {
+            updateView("Waiting for PLayers to join");
+        } catch (IOException e) {
+            exit.set(true);
+        }
+        while(controller.isGamesStarted(viewLivingRoom)){
+            continue;
+        }
 
         try {
             updateView("new Command >\n");

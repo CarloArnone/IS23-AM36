@@ -183,7 +183,6 @@ public class Controller implements eventObserver {
         }
         else return livingRooms.stream().map(x -> x.getLivingRoom().getLivingRoomId()).toList();
     }
-
     @Override
     public synchronized boolean isGamesStarted(LivingRoom livingRoom) {
         for(LobbyLivingRoom liv : livingRooms){

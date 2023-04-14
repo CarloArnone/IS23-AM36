@@ -10,11 +10,13 @@ import java.util.List;
 
 public class CLI_Launch {
 
-    static Controller c = new Controller();
+    public static Controller c;
 
     public static void main(String[] args) {
+        if (c == null){
+            c = new Controller();
+        }
         CLI cli1 = new CLI(c);
-
         new Thread(cli1::start).start();
     }
 }

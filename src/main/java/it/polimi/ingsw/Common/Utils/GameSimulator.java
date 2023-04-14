@@ -4,8 +4,6 @@ import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Server.Controller.Controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class GameSimulator {
     File simulation;
