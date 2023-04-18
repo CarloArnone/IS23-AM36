@@ -14,12 +14,11 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class HelloApplication extends Application {
+public class GUIApplication extends Application {
     Stage window;
 
-    int playersNumber = 2;
+    int playersNumber = 4;
     static final int shelfWidth = 5;
     static final int shelfHeight = 6;
     static final int littleShelfSize = 175;
@@ -42,9 +41,11 @@ public class HelloApplication extends Application {
 
 
         //Default window
+
         window.setScene(generateGameBoardScene());
         window.show();
     }
+
 
     private Scene generateGameBoardScene(){
         ArrayList<Tile> tiles = new ArrayList<>();
