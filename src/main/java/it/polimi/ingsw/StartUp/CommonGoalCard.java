@@ -1,4 +1,4 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.StartUp;
 
 public class CommonGoalCard {
     private int points;

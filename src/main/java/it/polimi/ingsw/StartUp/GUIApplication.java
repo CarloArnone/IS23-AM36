@@ -1,4 +1,4 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.StartUp;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
