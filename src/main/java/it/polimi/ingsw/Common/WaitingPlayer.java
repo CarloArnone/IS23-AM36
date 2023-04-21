@@ -1,16 +1,16 @@
 package it.polimi.ingsw.Common;
 
-import it.polimi.ingsw.Client.CLI.CLI;
+import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Server.Model.Player;
 
 import java.util.Objects;
 
 public class WaitingPlayer {
     Player player;
-    CLI view;
+    IUI view;
     boolean online;
 
-    public WaitingPlayer(Player player, CLI view) {
+    public WaitingPlayer(Player player, IUI view) {
         this.player = player;
         this.view = view;
         online = true;
@@ -29,11 +29,11 @@ public class WaitingPlayer {
         this.player = player;
     }
 
-    public CLI getView() {
+    public IUI getView() {
         return view;
     }
 
-    public void setView(CLI view) {
+    public void setView(IUI view) {
         this.view = view;
     }
 

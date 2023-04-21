@@ -16,7 +16,7 @@ public class GameSimulator {
 
 
     public boolean simulate(String simulationName){
-        simulation = new File("src/main/resources/TestCommands/" + simulationName);
+        simulation = new File(String.valueOf(this.getClass().getClassLoader().getResourceAsStream(simulationName)));
         cliTest = new CLI(simulation, controllerTest);
         cliTest.start();
         return true;

@@ -9,12 +9,12 @@ import java.util.*;
 
 public class JSONInterface {
     static public Gson converter = new Gson();
-    static String shelvesPath = "JSON/Shelves.json";
-    static String boardsPath = "JSON/Boards.json";
-    static String playersPath = "JSON/Players.json";
-    static String personalGoalsPath = "JSON/PersonalGoals.json";
-    static String commonGoalsPath = "JSON/CommonGoals.json";
-    static String livingRoomsPath = "JSON/LivingRooms.json";
+    static String shelvesPath = "src/main/resources/JSON/Shelves.json";
+    static String boardsPath = "src/main/resources/JSON/Boards.json";
+    static String playersPath = "src/main/resources/JSON/Players.json";
+    static String personalGoalsPath = "src/main/resources/JSON/PersonalGoals.json";
+    static String commonGoalsPath = "src/main/resources/JSON/CommonGoals.json";
+    static String livingRoomsPath = "src/main/resources/JSON/LivingRooms.json";
 
     public JSONInterface() {
         converter = new Gson();
@@ -558,11 +558,20 @@ public class JSONInterface {
 
     private static void saveIntoFile(JsonObject jsonObject, String filePath, String ID_array) {
         File newFile = new File(filePath);
-        JsonArray js1 = converter.fromJson(getJsonStringFrom(filePath), JsonObject.class).getAsJsonArray(ID_array);
+        JsonArray livingRoomsArray = converter.fromJson(getJsonStringFrom(filePath), JsonObject.class).getAsJsonArray(ID_array);
         JsonElement n = jsonObject.getAsJsonObject();
-        js1.add(n);
+
+        for(JsonElement el : livingRoomsArray){
+            if(el.getAsJsonObject().get("livingRoomID").equals(n.getAsJsonObject().get("livingRoomID"))){
+                livingRoomsArray.remove(el);
+                break;
+            }
+        }
+
+        livingRoomsArray.add(n);
+
         JsonObject toSave = new JsonObject();
-        toSave.add(ID_array, js1);
+        toSave.add(ID_array, livingRoomsArray);
         FileWriter writer = null;
         try {
             writer = new FileWriter(newFile);

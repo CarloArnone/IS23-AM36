@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GeneralTesting {
 
-    Controller controller = new Controller();
+    Controller controller = Controller.getInstance();;
     GameSimulator gms = new GameSimulator(controller);
 
     @Test
