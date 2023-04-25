@@ -4,7 +4,9 @@ import it.polimi.ingsw.Common.Utils.TestGenerator;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class Argument {
     private String type;
@@ -22,9 +24,9 @@ public class Argument {
 
     public boolean callWithArgumentsOn(Player p) {
         return switch (type) {
-            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1)), Integer.parseInt(list.get(2)), Integer.parseInt(list.get(3)), Integer.parseInt(list.get(4)), Integer.parseInt(list.get(5)),Integer.parseInt(list.get(6)), Integer.parseInt(list.get(7)), Boolean.getBoolean(list.get(8))));
+            case "m1" -> arguments.stream().allMatch(list -> parseArguments(p, Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1)), Integer.parseInt(list.get(2)), Integer.parseInt(list.get(3)), Integer.parseInt(list.get(4)), Integer.parseInt(list.get(5)),Integer.parseInt(list.get(6)), Integer.parseInt(list.get(7)), Boolean.parseBoolean(String.valueOf(list.get(8))), Boolean.parseBoolean(String.valueOf(list.get(9)))));
             case "m2" -> arguments.stream().allMatch(list -> parseArguments(p, Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1))));
-            case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, Boolean.getBoolean(list.get(0))));
+            case "m3" -> arguments.stream().allMatch(list -> parseArguments(p, Boolean.parseBoolean(String.valueOf(list.get(0)))));
             default -> false;
         };
     }
@@ -56,25 +58,34 @@ public class Argument {
             }
         }
 
-        List<Integer> numbersOfGroups = new ArrayList<>();
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('W')).count());
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('P')).count());
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('C')).count());
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('Y')).count());
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('G')).count());
-        numbersOfGroups.add((int) groupList.stream().filter(x -> x.getKey() >= groupSize).filter(x -> x.getValue().equals('B')).count());
+         return groupList.stream().filter(x -> x.getKey() >= groupSize).count() >= groupsNumber;
 
-
-        return numbersOfGroups.stream().anyMatch(x -> x >= groupsNumber);
     }
 
 
     private boolean parseArguments(Player p, boolean isGroupOfEight){
-        //TODO
-        return true;
+
+        Optional<ItemCard>[][] shelf = p.getMyShelf().getShelf();
+        ItemCard falseMatch = new ItemCard();
+        ItemCard falseMatchOther = new ItemCard('Q', "falseMatchOther");
+
+        for(int r = 0; r < shelf.length; r++){
+            for(int c = 0; c < shelf[0].length; c++){
+                int finalR = r;
+                int finalC = c;
+                if( Arrays.stream(shelf).map(row -> Arrays.stream(row)
+                                            .filter(card -> card.orElse(falseMatchOther).getColor()
+                                                                .equals(shelf[finalR][finalC].orElse(falseMatch).getColor()))
+                                            .count())
+                                        .reduce(0L, Long::sum) >= 8){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    private boolean parseArguments(Player p, int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full){
-        return p.getMyShelf().checkQuadrilateral(x, y, hInc, vInc, width, height, repetitions, diffTypes, full);
+    private boolean parseArguments(Player p, int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full, boolean exactNum){
+        return p.getMyShelf().checkQuadrilateral(x, y, hInc, vInc, width, height, repetitions, diffTypes, full, exactNum);
     }
 }

@@ -211,7 +211,7 @@ public class Shelf {
         }
         return tileMatches >= 5 ? foundColors.size() == tileMatches : foundColors.size() <= tileMatches;
     }
-    public boolean checkQuadrilateral(int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full){
+    public boolean checkQuadrilateral(int x, int y, int hInc, int vInc,int width, int height, int repetitions, int diffTypes, boolean full, boolean exactNum){
 
         Set<Character> foundColors = new HashSet<>();
         int posX = x, posY = y;
@@ -228,8 +228,7 @@ public class Shelf {
             posY += hInc;
         }
 
-        return (diffTypes == 3 || diffTypes > 6) ? foundColors.size() <= diffTypes : foundColors.size() == diffTypes;
-        //TODO REDO OF RETURN STATEMENT
+        return exactNum ? foundColors.size() == diffTypes : foundColors.size() <= diffTypes;
     }
     public boolean isFull(){
         for (int i = 0; i < shelf[0].length; i++) {

@@ -1,0 +1,2420 @@
+{
+  "SixCouples" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "C"
+    }
+  ],
+  "SixCouplesNotSatisfied" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "P"
+    }
+  ],
+  "FourQuadruplets" : [],
+  "EightSameGroup" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    }
+  ],
+  "EightSameSparse" :  [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "EightSameFalse" :  [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    }
+  ],
+  "DiagonalsOfFive1" : [
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "DiagonalsOfFive2" : [
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "DiagonalsOfFive-1" : [
+    {
+      "position": [
+        0,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "DiagonalsOfFive-2" : [
+    {
+      "position": [
+        1,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "DiagonalsOfFiveFalse" : [
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        0,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    }
+  ],
+  "Pyramid1" :  [
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "Pyramid-1" : [
+    {
+      "position": [
+        1,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "PyramidFalseOccupied" : [
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "W"
+    }
+  ],
+  "PyramidFalseUnderline" : [
+    {
+      "position": [
+        2,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    }
+  ],
+  "ThreeColsMaxThreeTypesFalseMissingTile": [
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "P"
+    }
+  ],
+  "ThreeColsMaxThreeTypesFalseFourColors": [
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        2
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "P"
+    }
+  ],
+  "ThreeColsMaxThreeTypes": [
+    {
+      "position": [
+        0,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        0,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "P"
+    }
+  ],
+  "FourRowsMaxThreeTypesFalseMissingTile": [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "B"
+    }
+  ],
+  "FourRowsMaxThreeTypesFalseFourColours": [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "FourRowsMaxThreeTypes": [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        4
+      ],
+      "color": "B"
+    }
+  ],
+  "TwoColsDiffTypes" : [
+    {
+      "position": [
+        0,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        0,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoColsDiffTypesFalseTwoSameColours" : [
+    {
+      "position": [
+        0,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        1,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        1
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        0,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoColsDiffTypesFalseMissingCol" : [
+    {
+      "position": [
+        0,
+        2
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        1,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoRowsDiffTypes" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "W"
+    }
+  ],
+  "TwoRowsDiffTypesFalseTwoSameColours" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "C"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "Y"
+    }
+  ],
+  "TwoRowsDiffTypesFalseMissingRow" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "Y"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "P"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    }
+  ],
+  "FiveTilesXShape" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "FiveTilesXShapeFalseDiffColour" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "W"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "FiveTilesXShapeFalseNotComplete" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    }
+  ],
+  "FiveTilesXShapeFullSquare" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        1
+      ],
+      "color": "B"
+    }
+  ],
+  "FiveTilesXShapeFalseMissingCenter" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    }
+  ],
+  "TwoSquares" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoSquaresFalseTooNear" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        2
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        2
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoSquaresFalseMissingTileSecondSquare" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoSquaresFalseNotSquareGroup" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        3,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        2,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "G"
+    }
+  ],
+  "TwoSquaresWithGroupOfEight" : [
+    {
+      "position": [
+        5,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        0
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        4,
+        1
+      ],
+      "color": "B"
+    },
+    {
+      "position": [
+        5,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        5,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        4,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        3,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        2,
+        3
+      ],
+      "color": "G"
+    },
+    {
+      "position": [
+        2,
+        4
+      ],
+      "color": "G"
+    }
+  ]
+}
