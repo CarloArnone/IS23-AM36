@@ -38,7 +38,7 @@ In this repo there is the IngSoft2023 - Polimi Project
 | ClientResilience | All               | <span style="color:green">50%</span>  🟠 | Communication needs to be implemented to complete this topic             |
 | MultiGameServer  | All               | <span style="color:green">100%</span> 🟢 | Complete                                                                 |
 | RMI              | Vincenzo          | <span style="color:red">0%</span>     🔴 |                                                                          |
-| Socket           | Carlo Lorenzo     | <span style="color:red">0%</span>      🟠| In Progress                                                              |
+| Socket           | Carlo Lorenzo     | <span style="color:red">30%</span>     🟠| In Progress                                                              |
 
 
 
