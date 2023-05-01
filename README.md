@@ -37,8 +37,8 @@ In this repo there is the IngSoft2023 - Polimi Project
 | Persistence      | All               | <span style="color:green">95%</span> 🟢  | the 5% remaining is due to a duplicating error while saving              |
 | ClientResilience | All               | <span style="color:green">50%</span>  🟠 | Communication needs to be implemented to complete this topic             |
 | MultiGameServer  | All               | <span style="color:green">100%</span> 🟢 | Complete                                                                 |
-| RMI              | TBD               | <span style="color:red">0%</span>     🔴 |                                                                          |
-| Socket           | TBD               | <span style="color:red">0%</span>     🔴 |                                                                          |
+| RMI              | Vincenzo          | <span style="color:red">0%</span>     🔴 |                                                                          |
+| Socket           | Carlo Lorenzo     | <span style="color:red">30%</span>     🟠| In Progress                                                              |
 
 
 
