@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Common;
+package it.polimi.ingsw.Server.Controller;
 
 import it.polimi.ingsw.Server.Model.LivingRoom;
 

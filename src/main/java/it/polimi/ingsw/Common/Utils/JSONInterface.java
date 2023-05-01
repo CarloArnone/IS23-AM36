@@ -1,20 +1,25 @@
 package it.polimi.ingsw.Common.Utils;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.Server.Model.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.*;
+
 
 public class JSONInterface {
     static public Gson converter = new Gson();
-    static String shelvesPath = "src/main/resources/JSON/Shelves.json";
-    static String boardsPath = "src/main/resources/JSON/Boards.json";
-    static String playersPath = "src/main/resources/JSON/Players.json";
-    static String personalGoalsPath = "src/main/resources/JSON/PersonalGoals.json";
-    static String commonGoalsPath = "src/main/resources/JSON/CommonGoals.json";
-    static String livingRoomsPath = "src/main/resources/JSON/LivingRooms.json";
+    static String shelvesPath = "/JSON/Shelves.json";
+    static String boardsPath = "/JSON/Boards.json";
+    static String playersPath = "/JSON/Players.json";
+    static String personalGoalsPath = "/JSON/PersonalGoals.json";
+    static String commonGoalsPath = "/JSON/CommonGoals.json";
+    static String livingRoomsPath = "/JSON/LivingRooms.json";
 
     public JSONInterface() {
         converter = new Gson();
@@ -33,6 +38,20 @@ public class JSONInterface {
         }
 
         return jsonString;
+    }
+
+    public static String generateCommand(String command, List<String> args, String description){
+        Gson converter = new Gson();
+        JsonObject commandObj = new JsonObject();
+        JsonArray argsArray = new JsonArray();
+
+        args.forEach(argsArray::add);
+        commandObj.addProperty("command", command);
+        commandObj.add("args", argsArray);
+        commandObj.addProperty("description", description);
+
+        return converter.toJson(commandObj, JsonObject.class);
+
     }
 
     public static String writeShelfToJson(Shelf shelf, String Shelf_ID) {
@@ -308,6 +327,29 @@ public class JSONInterface {
 
     }
 
+    public static LivingRoom getLivingRoomFromJsonString(String jsonString) {
+        JsonObject livingRoomJson = converter.fromJson(jsonString, JsonObject.class);
+        Map<BoardPosition, Boolean> board = getBoardFromJson(converter.toJson(livingRoomJson.get("board")));
+
+        JsonArray players = livingRoomJson.getAsJsonArray("players");
+        List<Player> playersList = new ArrayList<>();
+        for (JsonElement player : players) {
+            playersList.add(getPlayerFromJson(converter.toJson(player)));
+        }
+
+        int turn = livingRoomJson.get("turn").getAsInt();
+        List<CommonGoalCard> commonGoalSet = new ArrayList<>();
+
+        for (JsonElement commonGoal : livingRoomJson.getAsJsonArray("commonGoals")) {
+            commonGoalSet.add(getCommonGoalCardFromString(converter.toJson(commonGoal)));
+        }
+
+
+
+        return new LivingRoom(livingRoomJson.get("livingRoomID").getAsString(), board, playersList, commonGoalSet, turn);
+
+    }
+
     public static Player getPlayerFromJson(String jsonString, String Player_ID) {
         JsonObject playerObj = converter.fromJson(getJsonStringFrom(getPlayersPath()), JsonObject.class).getAsJsonObject(Player_ID);
         List<Goal> achievedGoals = new ArrayList<>();
@@ -331,11 +373,11 @@ public class JSONInterface {
             achievedGoals.add(new CommonGoalCard(el.getAsJsonObject().get("name").getAsString(), el.getAsJsonObject().get("points").getAsInt()));
         }
 
-        return new Player(playerObj.get("name").getAsString(),
-                playerObj.get("score").getAsInt(),
-                achievedGoals,
-                getShelfFromJson(converter.toJson(playerObj.getAsJsonArray("shelf")), 5, 6),
-                getPersonalGoalsFromJson(getJsonStringFrom(getPersonalGoalsPath()), playerObj.get("personalGoalName").getAsString()));
+        return new Player(  playerObj.get("name").getAsString(),
+                            playerObj.get("score").getAsInt(),
+                            achievedGoals,
+                            getShelfFromJson(converter.toJson(playerObj.getAsJsonArray("shelf")), 5, 6),
+                            getPersonalGoalsFromJson(getJsonStringFrom(getPersonalGoalsPath()), playerObj.get("personalGoalName").getAsString()));
     }
 
     public static PersonalGoalCard getPersonalGoalsFromJson(String JsonString) {
@@ -593,26 +635,61 @@ public class JSONInterface {
     }
 
     public static String getShelvesPath() {
-        return shelvesPath;
+        return findCorrectPathFromResources(shelvesPath);
     }
 
     public static String getBoardsPath() {
-        return boardsPath;
+        return findCorrectPathFromResources(boardsPath);
     }
 
     public static String getPlayersPath() {
-        return playersPath;
+        return findCorrectPathFromResources(playersPath);
     }
 
     public static String getPersonalGoalsPath() {
-        return personalGoalsPath;
+        return findCorrectPathFromResources(personalGoalsPath);
     }
 
     public static String getCommonGoalsPath() {
-        return commonGoalsPath;
+        return findCorrectPathFromResources(commonGoalsPath);
     }
 
     public static String getLivingRoomsPath() {
-        return livingRoomsPath;
+        return findCorrectPathFromResources(livingRoomsPath);
     }
+
+    public static Map<String, Object> recreateCommand(String inputLine) {
+        JsonObject command = converter.fromJson(inputLine, JsonObject.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("command",command.get("command").getAsString());
+        JsonArray argument = command.getAsJsonArray("args");
+        List<String> args = new ArrayList<>();
+        for (int i = 0; i < argument.size(); i++) {
+            args.add(i, argument.get(i).getAsString());
+        }
+        map.put("args",args);
+        map.put("description",command.get("description").getAsString());
+
+        return map;
+    }
+
+    public static String findCorrectPathFromResources(String pathFromRes){
+        URL location = JSONInterface.class.getProtectionDomain().getCodeSource().getLocation();
+        try {
+            String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
+            System.out.println(path);
+            return path;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String generatePick(List<BoardPosition> pick){
+        return converter.toJson(pick, new TypeToken<List<BoardPosition>>(){}.getType());
+    }
+
+    public static List<BoardPosition> recreatePick(String pickJson){
+        return converter.fromJson(pickJson, new TypeToken<List<BoardPosition>>(){}.getType());
+    }
+
 }

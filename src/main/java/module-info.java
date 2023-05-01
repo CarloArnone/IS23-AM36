@@ -4,7 +4,7 @@ module it.polimi.ingsw {
     requires com.google.gson;
 
 
-    opens it.polimi.ingsw to javafx.fxml;
+    opens it.polimi.ingsw to javafx.fxml, com.google.gson;
     exports it.polimi.ingsw.Server.Model;
     opens it.polimi.ingsw.Server.Model to javafx.fxml, com.google.gson;
     opens it.polimi.ingsw.Common.Utils to com.google.gson;

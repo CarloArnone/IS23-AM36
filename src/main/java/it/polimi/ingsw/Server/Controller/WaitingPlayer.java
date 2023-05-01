@@ -1,18 +1,18 @@
-package it.polimi.ingsw.Common;
+package it.polimi.ingsw.Server.Controller;
 
-import it.polimi.ingsw.Common.Utils.IUI;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Server.Model.Player;
 
 import java.util.Objects;
 
 public class WaitingPlayer {
     Player player;
-    IUI view;
+    ICommunication virtualView;
     boolean online;
 
-    public WaitingPlayer(Player player, IUI view) {
+    public WaitingPlayer(Player player, ICommunication virtualView) {
         this.player = player;
-        this.view = view;
+        this.virtualView = virtualView;
         online = true;
     }
 
@@ -29,12 +29,12 @@ public class WaitingPlayer {
         this.player = player;
     }
 
-    public IUI getView() {
-        return view;
+    public ICommunication getView() {
+        return virtualView;
     }
 
-    public void setView(IUI view) {
-        this.view = view;
+    public void setView(ICommunication virtualView) {
+        this.virtualView = virtualView;
     }
 
     public boolean isOnline() {
@@ -55,6 +55,6 @@ public class WaitingPlayer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(player, view);
+        return Objects.hash(player, virtualView);
     }
 }

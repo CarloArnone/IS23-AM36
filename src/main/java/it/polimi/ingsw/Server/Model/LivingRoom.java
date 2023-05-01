@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Server.Model;
 
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
-import it.polimi.ingsw.Common.Listener;
+import it.polimi.ingsw.Common.Utils.Listener;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 
 import java.util.*;

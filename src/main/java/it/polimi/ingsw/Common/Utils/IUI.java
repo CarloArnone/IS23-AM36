@@ -3,8 +3,7 @@ package it.polimi.ingsw.Common.Utils;
 import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
-import it.polimi.ingsw.Common.Listener;
-import it.polimi.ingsw.Common.eventObserver;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
 import it.polimi.ingsw.Server.Model.LivingRoom;
@@ -12,18 +11,20 @@ import it.polimi.ingsw.Server.Model.Player;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
 
 public abstract class IUI implements Listener {
     private LivingRoom viewLivingRoom;
     private List<BoardPosition> pick;
-    private int me; // It means MyTURN
-    private String name;
+    private int myTurn; // It means MyTURN
     private Player mySelf;
 
-    private eventObserver virtualViewClient;
+    private ICommunication virtualViewClient;
+
+    public IUI(ICommunication virtualViewClient){
+        this.virtualViewClient = virtualViewClient;
+    }
 
     public LivingRoom getViewLivingRoom() {
         return viewLivingRoom;
@@ -41,20 +42,12 @@ public abstract class IUI implements Listener {
         this.pick = pick;
     }
 
-    public int getMe() {
-        return me;
+    public int getMyTurn() {
+        return myTurn;
     }
 
-    public void setMe(int me) {
-        this.me = me;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setMyTurn(int me) {
+        this.myTurn = me;
     }
 
     public Player getMySelf() {
@@ -65,11 +58,11 @@ public abstract class IUI implements Listener {
         this.mySelf = mySelf;
     }
 
-    public eventObserver getVirtualViewClient() {
+    public ICommunication getVirtualViewClient() {
         return virtualViewClient;
     }
 
-    public void addVirtualViewClient(eventObserver virtualViewClient) {
+    public void addVirtualViewClient(ICommunication virtualViewClient) {
         this.virtualViewClient = virtualViewClient;
     }
 
@@ -92,25 +85,25 @@ public abstract class IUI implements Listener {
             pickList.add(position.getCard());
         }
 
-        viewLivingRoom.givePlayerTheirPick(viewLivingRoom.getPlayers().get(me), pickList);
+        viewLivingRoom.givePlayerTheirPick(viewLivingRoom.getPlayers().get(myTurn), pickList);
         //UPDATE SERVER SIDE ???
     }
 
 
     public boolean isEligiblePick(List<BoardPosition> possiblePick){
-        return virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
+        virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
+        return Boolean.parseBoolean(BlackBoard.read("isPossiblePickReturn"));
     }
 
     private void checkColAndPlaceTiles(int col) throws NotEnoughSpacesInCol {
 
         List<BoardPosition> pickToSave = new ArrayList<>();
         for(int i = 0; i<pick.size(); i++){
-            pickToSave.add(new BoardPosition(pick.get(i).getPosX(), pick.get(i).getPosY(), viewLivingRoom.getPlayers().get(me).getDrawnCards().get(i)));
+            pickToSave.add(new BoardPosition(pick.get(i).getPosX(), pick.get(i).getPosY(), viewLivingRoom.getPlayers().get(myTurn).getDrawnCards().get(i)));
         }
 
-        try {
-            virtualViewClient.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(me), pickToSave, col -1);
-        } catch (NotEnoughSpacesInCol e) {
+        virtualViewClient.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(myTurn), pickToSave, col -1);
+        if(!Boolean.parseBoolean(BlackBoard.read("disconnectionReturn"))){
             throw new NotEnoughSpacesInCol();
         }
         pick.clear();
@@ -118,29 +111,39 @@ public abstract class IUI implements Listener {
 
     private void orderPickInsert(List<Pair<Integer, ItemCard>> order) throws ToManyCardsException {
         List<ItemCard> pickCopy = new ArrayList<>();
-        order.sort((x, y) -> { return x.getKey() - y.getKey();});
+        order.sort(Comparator.comparingInt(Pair::getKey));
 
         for(Pair<Integer, ItemCard> positionsOrdered : order){
             pickCopy.add(positionsOrdered.getKey(), positionsOrdered.getValue());
         }
 
         try {
-            viewLivingRoom.givePlayerTheirPick(viewLivingRoom.getPlayers().get(me), pickCopy );
+            viewLivingRoom.givePlayerTheirPick(viewLivingRoom.getPlayers().get(myTurn), pickCopy );
         } catch (ToManyCardsException e) {
             throw new ToManyCardsException();
         }
     }
 
-    private void quitAGame() {
-        virtualViewClient.leaveGameEvent(name, viewLivingRoom,this );
+    private boolean quitAGame() {
+        virtualViewClient.leaveGameEvent(mySelf.getName(), viewLivingRoom, virtualViewClient);
+        return Boolean.parseBoolean(BlackBoard.read("disconnectionReturn"));
     }
 
-    private void resetBoard() throws NoMatchingIDException {
-        try {
-            viewLivingRoom = virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
-        } catch (NoMatchingIDException e) {
-            throw new NoMatchingIDException();
-        }
-
+    private boolean resetBoard(){
+        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+        return Boolean.parseBoolean(BlackBoard.read("livingRoomFoundReturn"));
     }
+
+    public void updateLivingRoom(LivingRoom livingRoom) {
+        this.viewLivingRoom = livingRoom;
+    }
+
+    public void updatePlayer(Player player) {
+        this.mySelf = player;
+    }
+
+    public void notifyListener() {
+        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+    }
+
 }
