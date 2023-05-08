@@ -9,6 +9,14 @@ public enum Printer {
      yellowCard("[48;2;232;170;20m   "),
 
 
+     blueCardShelf("[48;2;0;119;182m B "),
+     purpleCardShelf("[48;2;255;0;110m P "),
+     whiteCardShelf("[48;2;255;236;209m W "),
+     greenCardShelf("[48;2;106;153;69m G "),
+     cyanCardShelf("[48;2;0;180;216m C "),
+     yellowCardShelf("[48;2;232;170;20m Y "),
+
+
      blueCardNot("[38;2;0;0;0;48;2;0;119;182m X "),
      purpleCardNot("[38;2;0;0;0;48;2;255;0;110m X "),
      whiteCardNot("[38;2;0;0;0;48;2;255;236;209m X "),

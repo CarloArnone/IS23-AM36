@@ -22,12 +22,17 @@ public abstract class IUI implements Listener {
 
     private ICommunication virtualViewClient;
 
-    public IUI(ICommunication virtualViewClient){
-        this.virtualViewClient = virtualViewClient;
-    }
 
     public LivingRoom getViewLivingRoom() {
         return viewLivingRoom;
+    }
+
+    public void initalizeVirtualView(ICommunication virtualViewClient){
+        this.virtualViewClient = virtualViewClient;
+    }
+
+    public void launch(){
+        this.launch();
     }
 
     public void setViewLivingRoom(LivingRoom viewLivingRoom) {
@@ -92,7 +97,7 @@ public abstract class IUI implements Listener {
 
     public boolean isEligiblePick(List<BoardPosition> possiblePick){
         virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
-        return Boolean.parseBoolean(BlackBoard.read("isPossiblePickReturn"));
+        return Boolean.parseBoolean(BlackBoard.readNew("isPossiblePickReturn"));
     }
 
     private void checkColAndPlaceTiles(int col) throws NotEnoughSpacesInCol {
@@ -103,7 +108,7 @@ public abstract class IUI implements Listener {
         }
 
         virtualViewClient.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(myTurn), pickToSave, col -1);
-        if(!Boolean.parseBoolean(BlackBoard.read("disconnectionReturn"))){
+        if(!Boolean.parseBoolean(BlackBoard.readNew("disconnectionReturn"))){
             throw new NotEnoughSpacesInCol();
         }
         pick.clear();
@@ -126,12 +131,12 @@ public abstract class IUI implements Listener {
 
     private boolean quitAGame() {
         virtualViewClient.leaveGameEvent(mySelf.getName(), viewLivingRoom, virtualViewClient);
-        return Boolean.parseBoolean(BlackBoard.read("disconnectionReturn"));
+        return Boolean.parseBoolean(BlackBoard.readNew("disconnectionReturn"));
     }
 
     private boolean resetBoard(){
         virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
-        return Boolean.parseBoolean(BlackBoard.read("livingRoomFoundReturn"));
+        return Boolean.parseBoolean(BlackBoard.readNew("livingRoomFoundReturn"));
     }
 
     public void updateLivingRoom(LivingRoom livingRoom) {

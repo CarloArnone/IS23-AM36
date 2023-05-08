@@ -1,23 +1,36 @@
 package it.polimi.ingsw.Common.Utils;
 
+import javafx.util.Pair;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 public class BlackBoard {
-    private static Map<String, String> blackBoard;
+    private static final Map<String, Pair<String, Boolean>> blackBoard = new ConcurrentHashMap<>();
     private static BlackBoard Instance;
 
 
-    public BlackBoard() {
-        blackBoard = new HashMap<>();
+    public static void write(String messageName, String message){
+            blackBoard.put(messageName, new Pair<>(message, true));
     }
 
-    public synchronized static void write(String messageName, String message){
-        blackBoard.put(messageName, message);
+    public static String readAsync(String messageName){
+        String toReturn = blackBoard.get(messageName).getKey();
+        blackBoard.put(messageName, new Pair<>(blackBoard.get(messageName).getKey(), false));
+        return toReturn;
     }
 
-    public synchronized static String read(String messageName){
-        return blackBoard.get(messageName);
+    public static String readNew(String messageName){
+        while(!blackBoard.containsKey(messageName)){
+            continue;
+        }
+        while(!blackBoard.get(messageName).getValue()){
+            continue;
+        }
+
+        return readAsync(messageName);
     }
 
 
@@ -28,4 +41,5 @@ public class BlackBoard {
         else return Instance;
 
     }
+
 }
