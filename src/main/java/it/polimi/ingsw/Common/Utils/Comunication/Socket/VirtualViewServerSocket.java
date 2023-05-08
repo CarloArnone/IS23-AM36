@@ -115,7 +115,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.logInTryEvent(name, virtualView)){
             List<String> args = new ArrayList<>();
             args.add("LoginDoneSuccessfully");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else {
             List<String> args = new ArrayList<>();
@@ -135,7 +137,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             String livingRoomJson = JSONInterface.writeLivingRoomToJson(livingRoom);
             args.add(0, "LivingRoomFound");
             args.add(1, livingRoomJson);
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else {
             args.add("LivingRoomNotFound");
@@ -155,7 +159,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "GameCreated");
             args.add(1, livingRoomJson);
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         } catch (InvalidGameIDException e) {
             List<String> args = new ArrayList<>();
             args.add("InvalidGameID");
@@ -177,7 +183,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "LivingRoomFound");
             args.add(1, livingRoomJson);
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         } catch (NoMatchingIDException e) {
             List<String> args = new ArrayList<>();
             args.add("LivingRoomNotFound");
@@ -195,7 +203,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         List<String> args = new ArrayList<>();
         args.add(0, "JoinedGame");
         args.add(1, playerString);
-        out.println(JSONInterface.generateCommand("Success", args, ""));
+        String command = JSONInterface.generateCommand("Success", args, "");
+        out.println(command);
+        System.out.println("Sent: " + command);
 
         //TODO ADD SOME NOT CORRECT INPUT CASES (LIVID NOT VALID)
     }
@@ -212,7 +222,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.disconnectedPlayer(livingRoom, name, voluntaryLeft, virtualView)){
             List<String> args = new ArrayList<>();
             args.add(0, "DisconnectedPlayer");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -223,14 +235,16 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
     /**
      * @param listLength
-     * @param occurrence
+     * @param occurency
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
+    public void getActiveLivingRooms(int listLength, int occurency) {
         List<String> args = new ArrayList<>();
         args.add(0, "LivingRoomsList");
-        args.addAll(controller.getActiveLivingRooms(listLength, occurrence));
-        out.println(JSONInterface.generateCommand("Success", args, ""));
+        args.addAll(controller.getActiveLivingRooms(listLength, occurency));
+        String command = JSONInterface.generateCommand("Success", args, "");
+        out.println(command);
+        System.out.println("Sent: " + command);
     }
 
     /**
@@ -241,7 +255,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.isGamesStarted(livingRoom)){
             List<String> args = new ArrayList<>();
             args.add(0, "GameStarted");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -260,7 +276,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.disconnectedPlayer(activeLivingRoom, name, true, virtualView)){
             List<String> args = new ArrayList<>();
             args.add(0, "DisconnectedPlayer");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -277,7 +295,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.isGameEnded(livingRoom)){
             List<String> args = new ArrayList<>();
             args.add(0, "GameEnded");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -294,7 +314,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.endGame(livingRoom)){
             List<String> args = new ArrayList<>();
             args.add(0, "GameEnded");
-            out.println(JSONInterface.generateCommand("Success", args, ""));
+            String command = JSONInterface.generateCommand("Success", args, "");
+            out.println(command);
+            System.out.println("Sent: " + command);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -329,6 +351,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
     public void notifyListener() {
         List<String> args = new ArrayList<>();
         args.add(0, "NotifyListener");
-        out.println(JSONInterface.generateCommand("Success", args, ""));
+        String command = JSONInterface.generateCommand("Success", args, "");
+        out.println(command);
+        System.out.println("Sent: " + command);
     }
 }

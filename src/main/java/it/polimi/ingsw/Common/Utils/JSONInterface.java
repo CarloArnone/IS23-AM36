@@ -677,7 +677,6 @@ public class JSONInterface {
         URL location = JSONInterface.class.getProtectionDomain().getCodeSource().getLocation();
         try {
             String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
-            System.out.println(path);
             return path;
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);

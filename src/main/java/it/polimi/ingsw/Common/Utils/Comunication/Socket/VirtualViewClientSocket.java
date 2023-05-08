@@ -42,6 +42,10 @@ public class VirtualViewClientSocket implements ICommunication {
         System.out.println(msg);
     }
 
+    public IUI getUI(){
+        return UI;
+    }
+
     private void handleReturn() {
         Map<String, Object> response = JSONInterface.recreateCommand(in.nextLine());
         if(response.get("command").equals("Success")){
@@ -72,7 +76,9 @@ public class VirtualViewClientSocket implements ICommunication {
 
         switch (args.get(0)){
             case "TurnEndedSuccessfully" -> BlackBoard.write("confirmEndTurnReturn", "true");
-            case "LoginDoneSuccessfully" -> BlackBoard.write("loginReturn", "true");
+            case "LoginDoneSuccessfully" -> {
+                BlackBoard.write("loginReturn", "true");
+            }
             case "GameCreated", "LivingRoomFound" -> {
                 UI.updateLivingRoom(JSONInterface.getLivingRoomFromJsonString(args.get(1)));
                 BlackBoard.write("livingRoomFoundReturn", "true");
