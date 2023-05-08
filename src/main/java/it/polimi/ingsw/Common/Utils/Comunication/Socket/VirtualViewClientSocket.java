@@ -190,13 +190,13 @@ public class VirtualViewClientSocket implements ICommunication {
 
     /**
      * @param listLength
-     * @param occurency
+     * @param occurrence
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurency) {
+    public void getActiveLivingRooms(int listLength, int occurrence) {
         List<String> args = new ArrayList<>();
         args.add(0, String.valueOf(listLength));
-        args.add(1, String.valueOf(occurency));
+        args.add(1, String.valueOf(occurrence));
         sendMessage(JSONInterface.generateCommand("getLivingRoomsList", args, ""));
 
     }

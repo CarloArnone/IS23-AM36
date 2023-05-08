@@ -40,7 +40,7 @@ public class SocketComunicationMethod implements ICommunication {
      */
     @Override
     public void logInTryEvent(String name, IUI c) {
-
+        name = "";
     }
 
     /**
@@ -103,10 +103,10 @@ public class SocketComunicationMethod implements ICommunication {
 
     /**
      * @param listLength
-     * @param occurency
+     * @param occurrence
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurency) {
+    public void getActiveLivingRooms(int listLength, int occurrence) {
 
     }
 
