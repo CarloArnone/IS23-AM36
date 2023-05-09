@@ -81,4 +81,12 @@ public class Virtual_View_RMI implements ICommunication, RMI_Interface {
     public void notifyListener() {
 
     }
+
+    public String echo(String echoString) {
+        return echoString;
+    }
+
+    public String upper(String upperString) {
+     return upperString.toUpperCase();
+    }
 }

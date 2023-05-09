@@ -37,5 +37,9 @@ public interface RMI_Interface extends Remote {
 
     void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick) throws RemoteException;
 
+    public String echo(String echoString) throws RemoteException;
+
+    public String upper(String upperString) throws RemoteException;
+
     void notifyListener();
 }
