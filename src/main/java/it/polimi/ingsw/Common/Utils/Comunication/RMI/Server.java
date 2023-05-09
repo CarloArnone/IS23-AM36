@@ -4,6 +4,7 @@ import it.polimi.ingsw.Server.Controller.Controller;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -21,18 +22,29 @@ public class Server extends UnicastRemoteObject {
 
     }
 
+    private static RMI_Interface lookUp;
+
     public static void main(String[] args) {
         try {
-            Naming.rebind("//localhost/server", new Server());
+
+            if(args[0].equals("Server")) {
+                Naming.rebind("//localhost/server", new Server());
+            } else {
+                lookUp = (RMI_Interface) Naming.lookup("//localhost/server");
+                String s = lookUp.echo("args[0]");
+                while(true) System.out.println(s);
+            }
         } catch (RemoteException | MalformedURLException e) {
             System.out.println("Server not started");
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
-//    public String echo(String echoString){
-//        System.out.println(echoString);
-//        return echoString;
-//    }
+    public String echo(String echoString){
+        System.out.println(echoString);
+        return echoString;
+    }
 //
 //    public String upper(String upperString){
 //        System.out.println(upperString);
