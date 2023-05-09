@@ -22,7 +22,7 @@ public class Server extends UnicastRemoteObject {
 
     }
 
-    private static RMI_Interface lookUp;
+    private static fanculo lookUp;
 
     public static void main(String[] args) {
         try {
@@ -30,7 +30,7 @@ public class Server extends UnicastRemoteObject {
             if(args[0].equals("Server")) {
                 Naming.rebind("//localhost/server", new Server());
             } else {
-                lookUp = (RMI_Interface) Naming.lookup("//localhost/server");
+                lookUp = (fanculo)Naming.lookup("//localhost/server");
                 String s = lookUp.echo("args[0]");
                 while(true) System.out.println(s);
             }
