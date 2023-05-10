@@ -7,11 +7,11 @@ import java.rmi.RemoteException;
 
 public class Client {
 
-    private static fanculo lookUp;
+    private static Interface lookUp;
 
     public static void main(String[] args){
         try{
-            lookUp = (fanculo) Naming.lookup("//localhost/server");
+            lookUp = (Interface) Naming.lookup("//localhost/server");
             String s = lookUp.echo(args[0]);
             while(true) System.out.println(s);
         } catch (MalformedURLException | NotBoundException | RemoteException e) {

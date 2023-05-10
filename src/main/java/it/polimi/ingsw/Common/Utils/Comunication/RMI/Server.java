@@ -22,15 +22,18 @@ public class Server extends UnicastRemoteObject {
 
     }
 
-    private static fanculo lookUp;
+    private static Interface lookUp;
 
     public static void main(String[] args) {
         try {
 
-            if(args[0].equals("Server")) {
+            if(args.length>0 && args[0].equals("Server")) {
+
                 Naming.rebind("//localhost/server", new Server());
+
             } else {
-                lookUp = (fanculo)Naming.lookup("//localhost/server");
+                java.rmi.Remote temp = Naming.lookup( "//localhost/server" );
+                lookUp = (Interface)temp;
                 String s = lookUp.echo("args[0]");
                 while(true) System.out.println(s);
             }

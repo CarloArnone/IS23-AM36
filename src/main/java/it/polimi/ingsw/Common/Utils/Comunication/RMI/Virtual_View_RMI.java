@@ -8,7 +8,7 @@ import it.polimi.ingsw.Server.Model.Player;
 
 import java.util.List;
 
-public class Virtual_View_RMI implements ICommunication, fanculo {
+public class Virtual_View_RMI implements ICommunication, Interface {
 
     Controller controller = Controller.getInstance();
 

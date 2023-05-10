@@ -9,7 +9,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public interface fanculo extends Remote {
+public interface Interface extends Remote {
 
     void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) throws RemoteException;
 
