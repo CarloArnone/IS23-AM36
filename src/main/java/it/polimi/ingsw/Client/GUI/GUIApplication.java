@@ -285,10 +285,14 @@ public class GUIApplication extends Application {
         ArrayList<StackPane> stackPanes = new ArrayList<>();
         ArrayList<ImageView> imageviews = new ArrayList<>();
 
-        for(int i = 0; i < playersNumber; i++){
+        for(int i = 0; i < playersNumber; i++) {
             stackPanes.add(new StackPane());
         }
-        System.out.println(livingRoom.getPlayers().size());
+        livingRoom.getCommonGoalSet().forEach(e ->{
+            System.out.print(e.getName()+ " ");
+            System.out.println(e.getPoints());
+        });
+
         for (int i = 0; i < playersNumber; i++) {
             if(i == 0) {
                 imageviews.add(new ImageView("17_MyShelfie_BGA/personal goal cards/Personal_Goals.png"));
@@ -328,11 +332,11 @@ public class GUIApplication extends Application {
             stackPanes.add(new StackPane());
         }
         for(int i = 0; i < 2; i++){
-            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/" + String.valueOf(commonGoalCards.get(i).getCommonGoalCardNumber()) +".jpg"));
+            commonGoalsList.add(new ImageView("17_MyShelfie_BGA/common_goal_cards/"+ livingRoom.getCommonGoalSet().get(i).getName() +".jpg"));
             commonGoalsList.get(i).setPreserveRatio(true);
             commonGoalsList.get(i).setFitWidth(commonGoalTileSize);
             stackPanes.get(i).getChildren().add(commonGoalsList.get(i));
-            drawPointsOnCommonGoal(stackPanes.get(i),commonGoalCards.get(i).getPoints());
+            drawPointsOnCommonGoal(stackPanes.get(i),livingRoom.getCommonGoalSet().get(i).getPoints());
         }
         return stackPanes;
     }
@@ -390,7 +394,6 @@ public class GUIApplication extends Application {
         ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);//TODO: toglilo
         for(int i = 0; i < tiles.size(); i++){
             //drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
-            System.out.println("");
         }
     }
     private boolean isBoardPositionAvailable(int x, int y){
@@ -412,7 +415,8 @@ public class GUIApplication extends Application {
     }
     private void drawPointsOnCommonGoal(StackPane commonGoalTile,int points){
         if(points < 10 && points % 2 == 0) {
-            ImageView pointsImage = new ImageView("17_MyShelfie_BGA/scoring tokens/scoring_" + String.valueOf(points) + ".jpg");
+                System.out.println(points);
+            ImageView pointsImage = new ImageView("17_MyShelfie_BGA/scoring tokens/scoring_" + points + ".jpg");
             pointsImage.setPreserveRatio(true);
             pointsImage.setFitWidth(pointsImageSize);
             pointsImage.setFitHeight(pointsImageSize);
