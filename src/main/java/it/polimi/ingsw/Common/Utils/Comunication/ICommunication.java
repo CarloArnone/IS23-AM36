@@ -16,7 +16,7 @@ public interface ICommunication extends Listener {
     void retrieveOldGameEvent(String livingRoomID);
     void joinGameEvent(String livingRoomID, String name);
     void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView);
-    void getActiveLivingRooms(int listLength, int occurency);
+    void getActiveLivingRooms(int listLength, int occurrence);
     void isGamesStarted(LivingRoom livingRoom);
     void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView);
     void isGameEnded(LivingRoom livingRoom);

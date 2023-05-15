@@ -4,10 +4,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class Server extends Virtual_View_RMI {
+public class Server extends VirtualViewRMI_Server {
 
     private int port;
-    private Interface stub;
+    private RMI_ServerInterface stub;
     private Registry reg;
 
     public Server(int port) {
@@ -15,7 +15,7 @@ public class Server extends Virtual_View_RMI {
         System.out.println("Hello from Server!");
         this.port = port;
         try{
-            this.stub = (Interface) UnicastRemoteObject.exportObject(this, this.port);
+            this.stub = (RMI_ServerInterface) UnicastRemoteObject.exportObject(this, this.port);
             this.reg = LocateRegistry.createRegistry(this.port);
             reg.bind("//localhost/mainServer", this.stub);
         } catch (Exception e) {

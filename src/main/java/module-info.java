@@ -12,4 +12,5 @@ module it.polimi.ingsw {
     exports it.polimi.ingsw.StartUp;
     opens it.polimi.ingsw.StartUp to javafx.fxml;
     opens it.polimi.ingsw.Common.Utils.Comunication.RMI to com.google.gson;
+    exports it.polimi.ingsw.Common.Utils.Comunication.RMI to java.rmi;
 }

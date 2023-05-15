@@ -235,13 +235,13 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
     /**
      * @param listLength
-     * @param occurency
+     * @param occurrence
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurency) {
+    public void getActiveLivingRooms(int listLength, int occurrence) {
         List<String> args = new ArrayList<>();
         args.add(0, "LivingRoomsList");
-        args.addAll(controller.getActiveLivingRooms(listLength, occurency));
+        args.addAll(controller.getActiveLivingRooms(listLength, occurrence));
         String command = JSONInterface.generateCommand("Success", args, "");
         out.println(command);
         System.out.println("Sent: " + command);
