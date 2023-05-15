@@ -1,56 +1,27 @@
 package it.polimi.ingsw.Common.Utils.Comunication.RMI;
 
-import it.polimi.ingsw.Server.Controller.Controller;
-
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class Server extends UnicastRemoteObject {
+public class Server extends Virtual_View_RMI {
 
-    private Controller c = Controller.getInstance();
-    private static final long serialVersionUID = 1L;
+    private int port;
+    private Interface stub;
+    private Registry reg;
 
-    public Server() throws RemoteException {
-        super();
-        System.out.println("Server started");
-    }
+    public Server(int port) {
 
-    public void stop() throws RemoteException {
-
-    }
-
-    private static Interface lookUp;
-
-    public static void main(String[] args) {
-        try {
-
-            if(args.length>0 && args[0].equals("Server")) {
-
-                Naming.rebind("//localhost/server", new Server());
-
-            } else {
-                java.rmi.Remote temp = Naming.lookup( "//localhost/server" );
-                lookUp = (Interface)temp;
-                String s = lookUp.echo("args[0]");
-                while(true) System.out.println(s);
-            }
-        } catch (RemoteException | MalformedURLException e) {
-            System.out.println("Server not started");
-        } catch (NotBoundException e) {
-            throw new RuntimeException(e);
+        System.out.println("Hello from Server!");
+        this.port = port;
+        try{
+            this.stub = (Interface) UnicastRemoteObject.exportObject(this, this.port);
+            this.reg = LocateRegistry.createRegistry(this.port);
+            reg.bind("//localhost/mainServer", this.stub);
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
         }
+        System.err.println("Server ready--");
     }
-
-    public String echo(String echoString){
-        System.out.println(echoString);
-        return echoString;
-    }
-//
-//    public String upper(String upperString){
-//        System.out.println(upperString);
-//        return upperString.toUpperCase();
-//    }
 }

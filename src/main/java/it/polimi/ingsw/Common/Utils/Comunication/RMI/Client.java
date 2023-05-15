@@ -1,22 +1,30 @@
 package it.polimi.ingsw.Common.Utils.Comunication.RMI;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class Client {
 
-    private static Interface lookUp;
+    private int port;
+    public Interface stub;
+    private Registry reg;
+    public Client(int port){
+
+        this.port = port;
+
+        try {
+            // Getting the registry
+            reg = LocateRegistry.getRegistry("127.0.0.1", this.port);
+            // Looking up the registry for the remote object
+            this.stub = (Interface) reg.lookup("//localhost/mainServer");
+        } catch (Exception e) {
+            System.err.println("Client exception: " + e.toString());
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args){
-        try{
-            lookUp = (Interface) Naming.lookup("//localhost/server");
-            String s = lookUp.echo(args[0]);
-            while(true) System.out.println(s);
-        } catch (MalformedURLException | NotBoundException | RemoteException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
 }

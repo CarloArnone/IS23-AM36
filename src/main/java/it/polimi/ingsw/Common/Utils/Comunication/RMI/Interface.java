@@ -40,6 +40,4 @@ public interface Interface extends Remote {
     public String echo(String echoString) throws RemoteException;
 
     public String upper(String upperString) throws RemoteException;
-
-    void notifyListener();
 }

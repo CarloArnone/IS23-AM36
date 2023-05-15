@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Common.Utils.Comunication.RMI;
 
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
-import it.polimi.ingsw.Server.Controller.Controller;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class Virtual_View_RMI implements ICommunication, Interface {
 
-    Controller controller = Controller.getInstance();
+    //Controller controller = Controller.getInstance();
 
     @Override
     public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
@@ -82,10 +81,12 @@ public class Virtual_View_RMI implements ICommunication, Interface {
 
     }
 
+    @Override
     public String echo(String echoString) {
         return echoString;
     }
 
+    @Override
     public String upper(String upperString) {
      return upperString.toUpperCase();
     }
