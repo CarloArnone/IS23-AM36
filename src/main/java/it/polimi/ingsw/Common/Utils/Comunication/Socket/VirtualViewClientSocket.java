@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Common.Utils.Comunication.Socket;
 
-import it.polimi.ingsw.Common.Utils.BlackBoard;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
@@ -58,14 +57,14 @@ public class VirtualViewClientSocket implements ICommunication {
         System.out.println("Failure : " + args);
 
         switch (args.get(0)){
-            case "NotEnoughSpacesInCol" -> BlackBoard.write("confirmEndTurnReturn", "false");
-            case "LoginUnsuccessful" -> BlackBoard.write("loginReturn", "false");
-            case "LivingRoomNotFound" -> BlackBoard.write("livingRoomExists", "false");
-            case "InvalidGameID", "PlayerOutOfBound" -> BlackBoard.write("GameCreated", args.get(0));
-            case "NotDisconnectedPlayer" -> BlackBoard.write("disconnectionReturn", "false");
-            case "GameNotStarted" -> BlackBoard.write("createGameReturn", "false");
-            case "GameNotEnded" -> BlackBoard.write("endGameReturn", "false");
-            case "NotPossiblePick" -> BlackBoard.write("isPossiblePickReturn", "false");
+            case "NotEnoughSpacesInCol" -> UI.retryPlacement();
+            case "LoginUnsuccessful" -> UI.retryLogin();
+            case "LivingRoomNotFound" -> UI.livingRoomNotFound();
+            case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame();
+            case "NotDisconnectedPlayer" -> UI.notDisconnected();
+            case "GameNotStarted" -> UI.gameNotStarted();
+            case "GameNotEnded" ->  UI.gameNotEnded();
+            case "NotPossiblePick" ->  UI.retryPick();
         }
 
 
@@ -75,23 +74,15 @@ public class VirtualViewClientSocket implements ICommunication {
         System.out.println("Success : " + args);
 
         switch (args.get(0)){
-            case "TurnEndedSuccessfully" -> BlackBoard.write("confirmEndTurnReturn", "true");
-            case "LoginDoneSuccessfully" -> {
-                BlackBoard.write("loginReturn", "true");
-            }
-            case "GameCreated", "LivingRoomFound" -> {
-                UI.updateLivingRoom(JSONInterface.getLivingRoomFromJsonString(args.get(1)));
-                BlackBoard.write("livingRoomFoundReturn", "true");
-            }
-            case "JoinedGame" -> {
-                UI.updatePlayer(JSONInterface.getPlayerFromJson(args.get(1)));
-                BlackBoard.write("GameJoined", "true");
-            }
-            case "DisconnectedPlayer" -> BlackBoard.write("disconnectionReturn", "true");
-            case "LivingRoomsList" -> BlackBoard.write("activeLivingRooms", args.get(1));
-            case "GameStarted" -> BlackBoard.write("createGameReturn", "true");
-            case "GameEnded" -> BlackBoard.write("endGameReturn", "true");
-            case "PossiblePick" -> BlackBoard.write("isPossiblePickReturn", "true");
+            case "TurnEndedSuccessfully" -> UI.turnPassed();
+            case "LoginDoneSuccessfully" -> UI.loginSuccessful();
+            case "GameCreated", "LivingRoomFound" -> UI.livingRoomFound(JSONInterface.getLivingRoomFromJsonString(args.get(1)));
+            case "JoinedGame" -> UI.joinedGame(JSONInterface.getPlayerFromJson(args.get(1)), args.get(2));
+            case "DisconnectedPlayer" -> UI.disconnected();
+            case "LivingRoomsList" ->  UI.livingRoomsList(args.get(1));
+            case "GameStarted" -> UI.gameStarted();
+            case "GameEnded" -> UI.gameEnded();
+            case "PossiblePick" -> UI.possiblePick();
             case "NotifyListener" -> notifyListener();
         }
 
@@ -266,3 +257,5 @@ public class VirtualViewClientSocket implements ICommunication {
         sendMessage(JSONInterface.generateCommand("isPossiblePick", args, ""));
     }
 }
+
+

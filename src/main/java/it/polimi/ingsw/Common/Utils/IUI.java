@@ -19,6 +19,7 @@ public abstract class IUI implements Listener {
     private List<BoardPosition> pick;
     private int myTurn; // It means MyTURN
     private Player mySelf;
+    private String name;
 
     private ICommunication virtualViewClient;
 
@@ -47,6 +48,14 @@ public abstract class IUI implements Listener {
         this.pick = pick;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getMyTurn() {
         return myTurn;
     }
@@ -71,15 +80,17 @@ public abstract class IUI implements Listener {
         this.virtualViewClient = virtualViewClient;
     }
 
-    private void selectTilesFromBoard(List<BoardPosition> possiblePick) throws ToManyCardsException {
+    private void selectTilesFromBoard(List<BoardPosition> possiblePick) {
+        virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
 
-        if(isEligiblePick(possiblePick)){
+        /*if(isEligiblePick(possiblePick)){
             try {
+            Add in return of is ElegiblePick
                 moveFromBoardToShelf(possiblePick);
             } catch (ToManyCardsException e) {
                 throw new ToManyCardsException();
             }
-        }
+        }*/
     }
 
     private void moveFromBoardToShelf(List<BoardPosition> pick) throws ToManyCardsException {
@@ -94,13 +105,7 @@ public abstract class IUI implements Listener {
         //UPDATE SERVER SIDE ???
     }
 
-
-    public boolean isEligiblePick(List<BoardPosition> possiblePick){
-        virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
-        return Boolean.parseBoolean(BlackBoard.readNew("isPossiblePickReturn"));
-    }
-
-    private void checkColAndPlaceTiles(int col) throws NotEnoughSpacesInCol {
+    private void checkColAndPlaceTiles(int col){
 
         List<BoardPosition> pickToSave = new ArrayList<>();
         for(int i = 0; i<pick.size(); i++){
@@ -108,9 +113,7 @@ public abstract class IUI implements Listener {
         }
 
         virtualViewClient.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(myTurn), pickToSave, col -1);
-        if(!Boolean.parseBoolean(BlackBoard.readNew("disconnectionReturn"))){
-            throw new NotEnoughSpacesInCol();
-        }
+        // To add in the return of conferimend turn successfull
         pick.clear();
     }
 
@@ -129,14 +132,12 @@ public abstract class IUI implements Listener {
         }
     }
 
-    private boolean quitAGame() {
+    private void quitAGame() {
         virtualViewClient.leaveGameEvent(mySelf.getName(), viewLivingRoom, virtualViewClient);
-        return Boolean.parseBoolean(BlackBoard.readNew("disconnectionReturn"));
     }
 
-    private boolean resetBoard(){
+    private void resetBoard(){
         virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
-        return Boolean.parseBoolean(BlackBoard.readNew("livingRoomFoundReturn"));
     }
 
     public void updateLivingRoom(LivingRoom livingRoom) {
@@ -151,4 +152,42 @@ public abstract class IUI implements Listener {
         virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
     }
 
+    public void startGame() {
+        notifyListener();
+    }
+
+
+    public abstract void retryPlacement();
+
+    public abstract void retryLogin();
+
+    public abstract void livingRoomNotFound();
+
+    public abstract void retryCreateGame();
+
+    public abstract void notDisconnected();
+
+    public abstract void gameNotStarted();
+
+    public abstract void gameNotEnded();
+
+    public abstract void retryPick();
+
+    public abstract void turnPassed();
+
+    public abstract void loginSuccessful();
+
+    public abstract void disconnected();
+
+    public abstract void livingRoomsList(String s);
+
+    public abstract void gameStarted();
+
+    public abstract void gameEnded();
+
+    public abstract void possiblePick();
+
+    public abstract void livingRoomFound(LivingRoom livingRoomFromJsonString);
+
+    public abstract void joinedGame(Player playerFromJson, String livingRoomId);
 }

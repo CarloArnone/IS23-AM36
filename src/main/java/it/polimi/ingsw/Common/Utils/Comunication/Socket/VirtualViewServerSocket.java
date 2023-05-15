@@ -45,32 +45,37 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
         String inputLine;
         Map<String, Object> command;
-        while (!(inputLine = in.nextLine()).equals("stop")) {
+        try{
+            while (!(inputLine = in.nextLine()).equals("stop")) {
 
-            command = JSONInterface.recreateCommand(inputLine);
-            List<String> args = (List<String>)command.get("args");
+                command = JSONInterface.recreateCommand(inputLine);
+                List<String> args = (List<String>)command.get("args");
 
-            System.out.println(command);
+                System.out.println(command);
 
-            switch ((String) command.get("command")){
-                case "confirmEndTurn" -> confirmEndTurn(controller.getLivingRoomById(args.get(0)), controller.getPlayerByName(args.get(1)), JSONInterface.recreatePick(args.get(2)), Integer.parseInt(args.get(3)));
-                case "login" -> logInTryEvent(args.get(0), this);
-                case "previousGame" -> previousGamesRequestEvent(args.get(0));
-                case "createGame" -> createGameEvent(args.get(0), controller.getPlayerByName(args.get(1)), Integer.parseInt(args.get(2)));
-                case "retrieveGame" -> retrieveOldGameEvent(args.get(0));
-                case "joinGame" -> joinGameEvent(args.get(0), args.get(1));
-                case "disconnectPlayer" -> disconnectedPlayer(controller.getLivingRoomById(args.get(0)), args.get(1), Boolean.parseBoolean(args.get(2)), this);
-                case "getLivingRoomsList" -> getActiveLivingRooms(Integer.parseInt(args.get(0)), Integer.parseInt(args.get(1)));
-                case "isGameStarted" -> isGamesStarted(controller.getLivingRoomById(args.get(0)));
-                case "isGameEnded" -> isGameEnded(controller.getLivingRoomById(args.get(0)));
-                case "leaveGame" -> leaveGameEvent(args.get(0), controller.getLivingRoomById(args.get(0)), this );
-                case "endGame" -> endGame(controller.getLivingRoomById(args.get(0)));
-                case "isPossiblePick" -> isPossiblePick(controller.getPlayerByName(args.get(0)), args.get(1), JSONInterface.recreatePick(args.get(2)));
-                default -> out.println("command invalid");
+                switch ((String) command.get("command")){
+                    case "confirmEndTurn" -> confirmEndTurn(controller.getLivingRoomById(args.get(0)), controller.getPlayerByName(args.get(1)), JSONInterface.recreatePick(args.get(2)), Integer.parseInt(args.get(3)));
+                    case "login" -> logInTryEvent(args.get(0), this);
+                    case "previousGame" -> previousGamesRequestEvent(args.get(0));
+                    case "createGame" -> createGameEvent(args.get(0), controller.getPlayerByName(args.get(1)), Integer.parseInt(args.get(2)));
+                    case "retrieveGame" -> retrieveOldGameEvent(args.get(0));
+                    case "joinGame" -> joinGameEvent(args.get(0), args.get(1));
+                    case "disconnectPlayer" -> disconnectedPlayer(controller.getLivingRoomById(args.get(0)), args.get(1), Boolean.parseBoolean(args.get(2)), this);
+                    case "getLivingRoomsList" -> getActiveLivingRooms(Integer.parseInt(args.get(0)), Integer.parseInt(args.get(1)));
+                    case "isGameStarted" -> isGamesStarted(controller.getLivingRoomById(args.get(0)));
+                    case "isGameEnded" -> isGameEnded(controller.getLivingRoomById(args.get(0)));
+                    case "leaveGame" -> leaveGameEvent(args.get(0), controller.getLivingRoomById(args.get(0)), this );
+                    case "endGame" -> endGame(controller.getLivingRoomById(args.get(0)));
+                    case "isPossiblePick" -> isPossiblePick(controller.getPlayerByName(args.get(0)), args.get(1), JSONInterface.recreatePick(args.get(2)));
+                    default -> out.println("command invalid");
+                }
+
             }
-
-
         }
+        catch(Exception e){
+            //Find Game he is in and advertise the players con timer
+        }
+
 
 
         in.close();
@@ -203,6 +208,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         List<String> args = new ArrayList<>();
         args.add(0, "JoinedGame");
         args.add(1, playerString);
+        args.add(2, livingRoomID);
         String command = JSONInterface.generateCommand("Success", args, "");
         out.println(command);
         System.out.println("Sent: " + command);
