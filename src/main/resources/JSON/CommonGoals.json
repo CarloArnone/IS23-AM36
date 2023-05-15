@@ -1,0 +1,233 @@
+{
+  "commonGoals" : [
+
+    {
+      "id" : "FourCorners",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 4, 0, 1, 1, 2, 1, true, true ], [ 0, 0, 0, 5, 1, 1, 2, 1, true, true ], [ 5, 0, 4, 0, 1, 1, 2, 1, true, true ]]
+      ]
+    },
+    {
+      "id" : "SixCouples",
+      "type" : "m2",
+      "argumentsList" : [
+        [[2, 6]]
+      ]
+    },
+    {
+      "id" : "FourQuadruplets",
+      "type" : "m2",
+      "argumentsList" : [
+        [[4, 4]]
+      ]
+    },
+    {
+      "id" : "EightSame",
+      "type" : "m3",
+      "argumentsList" : [
+        [[true ]]
+      ]
+    },
+    {
+      "id" : "DiagonalsOfFive",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 1, 1, 1, 1, 5, 1, true, true ]],
+        [[ 1, 0, 1, 1, 1, 1, 5, 1, true, true ]],
+        [[ 5, 0, 1, -1, 1, 1, 5, 1, true, true ]],
+        [[ 4, 0, 1, -1, 1, 1, 5, 1, true, true ]]
+      ]
+    },
+    {
+      "id" : "Pyramid",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 1, 1, 1, 1, 5, 0, false, true ],[ 1, 0, 1, 1, 1, 1, 5, 6, true, false]],
+        [[ 4, 0, 1, -1, 1, 1, 5, 0, false, true ],[ 5, 0, 1, -1, 1, 1, 5, 6, true, false]]
+      ]
+    },
+    {
+      "id" : "ThreeColsMaxThreeTypes",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]],
+        [[ 0, 2, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 3, 0, 1, 1, 1, 6, 3, true, false ],[ 0, 4, 0, 1, 1, 1, 6, 3, true, false ]]
+      ]
+    },
+    {
+      "id" : "FourRowsMaxThreeTypes",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]],
+        [[ 2, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 3, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 4, 0, 1, 0, 1, 1, 5, 3, true, false ], [ 5, 0, 1, 0, 1, 1, 5, 3, true, false ]]
+      ]
+    },
+    {
+      "id" : "TwoColsDiffTypes",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 1, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 2, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 3, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 0, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 4, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 2, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 3, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 1, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 4, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 2, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 3, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 2, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 4, 0, 1, 1, 1, 6, 6, true, true ]],
+        [[ 0, 3, 0, 1, 1, 1, 6, 6, true, true ], [ 0, 4, 0, 1, 1, 1, 6, 6, true, true ]]
+      ]
+    },
+    {
+      "id" : "TwoRowsDiffTypes",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 1, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 2, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 3, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 0, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 4, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 5, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 2, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 3, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 4, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 1, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 5, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 2, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 3, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 2, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 4, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 2, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 5, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 3, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 4, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 3, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 5, 0, 1, 0, 1, 1, 5, 5, true, true ]],
+        [[ 4, 0, 1, 0, 1, 1, 5, 5, true, true ], [ 5, 0, 1, 0, 1, 1, 5, 5, true, true ]]
+      ]
+    },
+    {
+      "id" : "FiveTilesXShape",
+      "type" : "m1",
+      "argumentsList" : [
+        [[ 0, 0, 1, 1, 1, 1, 3, 1, true, true ], [ 0, 2, -1, 1, 1, 1, 3, 1, true, true ], [ 0, 0, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 0, 1, 1, 1, 1, 1, 3, 1, true, true ], [ 0, 3, -1, 1, 1, 1, 3, 1, true, true ], [ 0, 1, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 0, 2, 1, 1, 1, 1, 3, 1, true, true ], [ 0, 4, -1, 1, 1, 1, 3, 1, true, true ], [ 0, 2, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 1, 0, 1, 1, 1, 1, 3, 1, true, true ], [ 1, 2, -1, 1, 1, 1, 3, 1, true, true ], [ 1, 0, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 1, 1, 1, 1, 1, 1, 3, 1, true, true ], [ 1, 3, -1, 1, 1, 1, 3, 1, true, true ], [ 1, 1, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 1, 2, 1, 1, 1, 1, 3, 1, true, true ], [ 1, 4, -1, 1, 1, 1, 3, 1, true, true ], [ 1, 2, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 2, 0, 1, 1, 1, 1, 3, 1, true, true ], [ 2, 2, -1, 1, 1, 1, 3, 1, true, true ], [ 2, 0, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 2, 1, 1, 1, 1, 1, 3, 1, true, true ], [ 2, 3, -1, 1, 1, 1, 3, 1, true, true ], [ 2, 1, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 2, 2, 1, 1, 1, 1, 3, 1, true, true ], [ 2, 4, -1, 1, 1, 1, 3, 1, true, true ], [ 2, 2, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 3, 0, 1, 1, 1, 1, 3, 1, true, true ], [ 3, 2, -1, 1, 1, 1, 3, 1, true, true ], [ 3, 0, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 3, 1, 1, 1, 1, 1, 3, 1, true, true ], [ 3, 3, -1, 1, 1, 1, 3, 1, true, true ], [ 3, 1, 2, 0, 1, 1, 1, 1, true, true ]],
+        [[ 3, 2, 1, 1, 1, 1, 3, 1, true, true ], [ 3, 4, -1, 1, 1, 1, 3, 1, true, true ], [ 3, 2, 2, 0, 1, 1, 1, 1, true, true ]]
+      ]
+    },
+    {
+      "id" : "TwoSquares",
+      "type" : "m1",
+      "argumentsList" : [
+        [[0, 0, 3, 0, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 3, 1, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 3, 2, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 3, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 3, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 2, 2, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 2, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 2, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 0, 0, 4, 2, 2, 2, 2, true, false ]],
+
+        [[0, 1, 2, 2, 2, 2, 2, 2, true, false ]],
+        [[0, 1, -1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 2, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 1, -1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 0, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 1, 2, 4, 2, 2, 2, 2, true, false ]],
+
+        [[0, 2, -2, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 2, -1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 2, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 2, 1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 2, -2, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 2, -1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 2, 0, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 2, 1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 2, -2, 2, 2, 2, 2, 2, true, false ]],
+
+        [[0, 3, -3, 1, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -3, 2, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -3, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -3, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -2, 2, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -2, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -2, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -1, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 3, -1, 4, 2, 2, 2, 2, true, false ]],
+        [[0, 3, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[0, 3, 0, 4, 2, 2, 2, 2, true, false ]],
+
+        [[1, 0, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 1, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 2, 2, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 2, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 3, 0, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 3, 1, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 3, 2, 2, 2, 2, 2, true, false ]],
+        [[1, 0, 3, 3, 2, 2, 2, 2, true, false ]],
+
+        [[1, 1, 2, 2, 2, 2, 2, 2, true, false ]],
+        [[1, 1, 2, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 1, 1, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 1, 0, 3, 2, 2, 2, 2, true, false ]],
+        [[1, 1, -1, 3, 2, 2, 2, 2, true, false ]],
+
+        [[2, 0, 2, -2, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 2, 2, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 3, -2, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 3, -1, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 3, 0, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 3, 1, 2, 2, 2, 2, true, false ]],
+        [[2, 0, 3, 2, 2, 2, 2, 2, true, false ]],
+
+        [[2, 1, 2, 2, 2, 2, 2, 2, true, false ]],
+
+        [[2, 2, -2, 2, 2, 2, 2, 2, true, false ]],
+
+        [[2, 3, -2, -2, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -2, 2, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -3, -2, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -3, -1, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -3, 0, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -3, 1, 2, 2, 2, 2, true, false ]],
+        [[2, 3, -3, 2, 2, 2, 2, 2, true, false ]],
+
+        [[3, 0, 3, 0, 2, 2, 2, 2, true, false ]],
+        [[3, 0, 3, 1, 2, 2, 2, 2, true, false ]],
+        [[3, 3, -3, 1, 2, 2, 2, 2, true, false ]],
+        [[4, 0, 3, 0, 2, 2, 2, 2, true, false ]]
+      ]
+    }
+  ]
+}

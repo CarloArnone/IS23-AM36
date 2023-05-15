@@ -1,0 +1,6 @@
+luigi
+y
+play-as 2
+select 3 4 3 5
+col 4
+exit
