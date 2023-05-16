@@ -18,6 +18,8 @@ public class Tile extends ItemCard {
 
     public Tile(ItemCard fatherCard, int xpos, int ypos, ImageView imageView,boolean available) {
         int startingTileNumber = 0;
+        this.available = true;
+        this.selected = false;
         switch (fatherCard.getColor()) {
             case 'B' -> startingTileNumber = 0;
             case 'G' -> startingTileNumber = 3;
@@ -73,5 +75,9 @@ public class Tile extends ItemCard {
 
     public void toggle(){
         this.selected = !this.selected;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

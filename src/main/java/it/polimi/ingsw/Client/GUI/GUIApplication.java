@@ -18,6 +18,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
@@ -93,7 +94,6 @@ public class GUIApplication extends Application {
             commonGoalCards.add(commonGoalCard);
         }
         rightPaneSettings(commonGoalsPane);
-        drawCommonGoals(commonGoalsPane,commonGoalCards);
         commonGoalsPane.setMinWidth(littleShelfSize);
         commonGoalsPane.setMinHeight(littleShelfSize);
 
@@ -105,14 +105,13 @@ public class GUIApplication extends Application {
         ArrayList<GridPane> shelvesGridPanes = new ArrayList<>();   //This list gets filled inside the leftSidesettings function
         shelvePaneSettings(littleShelvesMaster,shelvesGridPanes);
         personalGoalsPaneSettings(personalGoals);
-        //Selects number of players
-        //drawGameboard
-        livingRoom.getBoard().forEach((key, value) -> { //key = position e card, boolean = selectable
-            drawTileLivingroom(key.getCard(),key.getPosX(),key.getPosY(),livingRoomBoard);
-        });
 
-
-
+        //drawGameboard, only the center
+        drawGameboard(livingRoomBoard);
+        //drawShelves
+        drawShelves(shelvesGridPanes);
+        //drawCommonGoals
+        drawCommonGoals(commonGoalsPane);
         //Border pane creation
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(topMenu);
@@ -227,7 +226,7 @@ public class GUIApplication extends Application {
                     returnValue = (ChoiceBox.display("Play", "How do you want to play?", choices));
                     if(returnValue == 0) {
                         clearGameBoard(livingroomBoard);
-                        drawGameboard(livingroomBoard, tiles);
+                        drawGameboard(livingroomBoard);
                     }else if(returnValue == 1){
                         clearGameBoard(livingroomBoard);
                     }
@@ -242,31 +241,36 @@ public class GUIApplication extends Application {
         });
     }
 
-    private void drawTileLivingroom(ItemCard itemCard, int x, int y, GridPane livingroom) {
+    private void drawTileLivingroom(ItemCard itemCard, int x, int y, GridPane livingroomBoard) {
         //Blue = (0,B),Green = (1,G),Yellow = (2,Y),white = (3,W),Purple = (4,P),Cyan = (5,C)
         Tile tile = addTile(itemCard, x, y);
-
+        tile.setAvailable(livingRoom.getBoard().get(new BoardPosition(x,y)));
         tile.getImageView().setFitHeight(gameboardTileSize);
         tile.getImageView().setFitWidth(gameboardTileSize);
         tile.getImageView().setOnMouseClicked(mouseEvent -> {
-            if (tile.isSelected() && tile.isAvailable()) {
-                tile.toggle();
-                tile.getImageView().setScaleX(rescaleWhenSelected);
-                tile.getImageView().setScaleY(rescaleWhenSelected);
+            System.out.println(tile.getXpos() + " " + tile.getYpos());
+            tile.toggle();
+            if(tile.isAvailable()) {
+                if (tile.isSelected()) {
+                    tile.getImageView().setScaleX(rescaleWhenSelected);
+                    tile.getImageView().setScaleY(rescaleWhenSelected);
+                }
+                if (!tile.isSelected()) {
+                    tile.getImageView().setScaleX(1);
+                    tile.getImageView().setScaleY(1);
+                }
             }
-            if (!tile.isSelected()) {
-                tile.toggle();
-                tile.getImageView().setScaleX(1);
-                tile.getImageView().setScaleY(1);
+            else{
+                tile.setSelected(false);
             }
         });
         //GridPane.setConstraints(tile,x,y);
-        livingroom.add(tile.getImageView(),x,8 - y);
+        livingroomBoard.add(tile.getImageView(),x,8 - y);
     }
 
     private void drawTileLittleShelf(ItemCard itemCard, int x, int y, GridPane littleShelf) {
 
-        Tile tile = addTile(itemCard, x, y);
+        Tile tile = addTileLittleShelf(itemCard, x, y);
 
         tile.getImageView().setFitHeight(littleShelfTileSIze);
         tile.getImageView().setFitWidth(littleShelfTileSIze);
@@ -288,10 +292,6 @@ public class GUIApplication extends Application {
         for(int i = 0; i < playersNumber; i++) {
             stackPanes.add(new StackPane());
         }
-        livingRoom.getCommonGoalSet().forEach(e ->{
-            System.out.print(e.getName()+ " ");
-            System.out.println(e.getPoints());
-        });
 
         for (int i = 0; i < playersNumber; i++) {
             if(i == 0) {
@@ -319,13 +319,11 @@ public class GUIApplication extends Application {
     private void setSceneBackground(Pane scene,ImageView background){
         scene.getChildren().add(background);
     }
-    private void drawCommonGoals(Pane Scene,List<CommonGoalCard> commonGoalCards){
-        Scene.getChildren().addAll(createCommonGoalsList(commonGoalCards));
-        //TODO: create a createCommonGoalsList function which creates a list of common goals from a json file
-        // Scene.getChildren().addAll(createCommonGoalsList);
+    private void drawCommonGoals(Pane Scene){
+        Scene.getChildren().addAll(createCommonGoalsList());
     }
 
-    private List<StackPane> createCommonGoalsList(List<CommonGoalCard> commonGoalCards){
+    private List<StackPane> createCommonGoalsList(){
         List<StackPane> stackPanes = new ArrayList<>();
         List<ImageView> commonGoalsList = new ArrayList<>();
         for (int i = 0; i < 2; i++){
@@ -336,7 +334,7 @@ public class GUIApplication extends Application {
             commonGoalsList.get(i).setPreserveRatio(true);
             commonGoalsList.get(i).setFitWidth(commonGoalTileSize);
             stackPanes.get(i).getChildren().add(commonGoalsList.get(i));
-            drawPointsOnCommonGoal(stackPanes.get(i),livingRoom.getCommonGoalSet().get(i).getPoints());
+            drawPointsOnCommonGoal(stackPanes.get(i),livingRoom.getCommonGoalSet().get(i).getPointsList().get(0));
         }
         return stackPanes;
     }
@@ -389,15 +387,30 @@ public class GUIApplication extends Application {
      * @param gameBoard
      *
      */
-    private void drawGameboard(GridPane gameBoard,ArrayList<Tile> tiles){
+    private void drawGameboard(GridPane gameBoard){
         drawEndgameToken(gameBoard);    //TODO: disegna solo se necessario
-        ArrayList<ArrayList<Integer>> matrix = nonUsedMatrix(4);//TODO: toglilo
-        for(int i = 0; i < tiles.size(); i++){
-            //drawTileLivingroom(tiles.get(i).getTileNumber(),tiles.get(i).getXpos(), tiles.get(i).getYpos(),gameBoard);
+        livingRoom.getBoard().forEach((key, value) -> { //key = position e card, boolean = selectable
+            drawTileLivingroom(key.getCard(),key.getPosX(),key.getPosY(),gameBoard);
+        });
+    }
+    private void drawShelves(ArrayList<GridPane> shelves){
+        for(int i = 0; i < livingRoom.getPlayers().size(); i++){
+
+            Optional<ItemCard>[][] shelf = livingRoom.getPlayers().get(i).getMyShelf().getShelf();
+            for(int x = 0; x < shelfHeight;x++){
+                for(int y=0; y < shelfWidth;y++){
+                    if(shelf[x][y].isPresent()) {
+                        drawTileLittleShelf(shelf[x][y].get(), x, y, shelves.get(i));
+                    }
+                }
+            }
         }
     }
     private boolean isBoardPositionAvailable(int x, int y){
-        return livingRoom.getBoard().get(new BoardPosition(x,y));
+        if(!livingRoom.getBoard().get(new BoardPosition(x,y)).equals(null))
+            return livingRoom.getBoard().get(new BoardPosition(x,y));
+        else
+            return false;
     }
     private void drawEndgameToken(GridPane gameBoard){
         StackPane stackPane = new StackPane();
@@ -415,7 +428,6 @@ public class GUIApplication extends Application {
     }
     private void drawPointsOnCommonGoal(StackPane commonGoalTile,int points){
         if(points < 10 && points % 2 == 0) {
-                System.out.println(points);
             ImageView pointsImage = new ImageView("17_MyShelfie_BGA/scoring tokens/scoring_" + points + ".jpg");
             pointsImage.setPreserveRatio(true);
             pointsImage.setFitWidth(pointsImageSize);
@@ -444,7 +456,22 @@ public class GUIApplication extends Application {
         }
         if(!fatherCard.getImage().equals(""))
             tileNumber = tileNumber + parseInt(fatherCard.getImage());
-        Tile tile = new Tile(fatherCard,x,y,new ImageView("17_MyShelfie_BGA/item tiles/"+ String.valueOf(tileNumber % 18)+".png"),isBoardPositionAvailable(x,y));
+        Tile tile = new Tile(fatherCard,x,y,new ImageView("17_MyShelfie_BGA/item tiles/"+ tileNumber % 18 +".png"),isBoardPositionAvailable(x,y));
+        return tile;
+    }
+    private Tile addTileLittleShelf(ItemCard fatherCard, int x, int y){
+        int tileNumber = 0;
+        switch (fatherCard.getColor()){
+            case 'B' -> tileNumber = 0;
+            case 'G' -> tileNumber = 3;
+            case 'Y' -> tileNumber = 6;
+            case 'W' -> tileNumber = 9;
+            case 'P' -> tileNumber = 12;
+            case 'C' -> tileNumber = 15;
+        }
+        if(!fatherCard.getImage().equals(""))
+            tileNumber = tileNumber + parseInt(fatherCard.getImage());
+        Tile tile = new Tile(fatherCard,x,y,new ImageView("17_MyShelfie_BGA/item tiles/"+ tileNumber % 18 +".png"),false);
         return tile;
     }
     private ArrayList<ArrayList<Integer>> nonUsedMatrix(int playersNumber){
