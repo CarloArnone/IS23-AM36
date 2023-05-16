@@ -21,12 +21,21 @@ public abstract class IUI implements Listener {
     private Player mySelf;
     private String name;
 
+    private boolean firstEnter;
     private ICommunication virtualViewClient;
 
+    public boolean isFirstEnter() {
+        return firstEnter;
+    }
+
+    public void setFirstEnter(boolean firstEnter) {
+        this.firstEnter = firstEnter;
+    }
 
     public LivingRoom getViewLivingRoom() {
         return viewLivingRoom;
     }
+
 
     public void initalizeVirtualView(ICommunication virtualViewClient){
         this.virtualViewClient = virtualViewClient;
@@ -80,20 +89,11 @@ public abstract class IUI implements Listener {
         this.virtualViewClient = virtualViewClient;
     }
 
-    private void selectTilesFromBoard(List<BoardPosition> possiblePick) {
+    public void selectTilesFromBoard(List<BoardPosition> possiblePick) {
         virtualViewClient.isPossiblePick(mySelf, viewLivingRoom.getLivingRoomId(), possiblePick);
-
-        /*if(isEligiblePick(possiblePick)){
-            try {
-            Add in return of is ElegiblePick
-                moveFromBoardToShelf(possiblePick);
-            } catch (ToManyCardsException e) {
-                throw new ToManyCardsException();
-            }
-        }*/
     }
 
-    private void moveFromBoardToShelf(List<BoardPosition> pick) throws ToManyCardsException {
+    public void moveFromBoardToShelf(List<BoardPosition> pick) throws ToManyCardsException {
         List<ItemCard> pickList = new ArrayList<>();
         this.pick = pick;
         for (BoardPosition position : pick){
@@ -105,7 +105,7 @@ public abstract class IUI implements Listener {
         //UPDATE SERVER SIDE ???
     }
 
-    private void checkColAndPlaceTiles(int col){
+    public void checkColAndPlaceTiles(int col){
 
         List<BoardPosition> pickToSave = new ArrayList<>();
         for(int i = 0; i<pick.size(); i++){
@@ -113,11 +113,9 @@ public abstract class IUI implements Listener {
         }
 
         virtualViewClient.confirmEndTurn(viewLivingRoom, viewLivingRoom.getPlayers().get(myTurn), pickToSave, col -1);
-        // To add in the return of conferimend turn successfull
-        pick.clear();
     }
 
-    private void orderPickInsert(List<Pair<Integer, ItemCard>> order) throws ToManyCardsException {
+    public void orderPickInsert(List<Pair<Integer, ItemCard>> order) throws ToManyCardsException {
         List<ItemCard> pickCopy = new ArrayList<>();
         order.sort(Comparator.comparingInt(Pair::getKey));
 
@@ -132,11 +130,11 @@ public abstract class IUI implements Listener {
         }
     }
 
-    private void quitAGame() {
+    public void quitAGame() {
         virtualViewClient.leaveGameEvent(mySelf.getName(), viewLivingRoom, virtualViewClient);
     }
 
-    private void resetBoard(){
+    public void resetBoard(){
         virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
     }
 
@@ -161,9 +159,9 @@ public abstract class IUI implements Listener {
 
     public abstract void retryLogin();
 
-    public abstract void livingRoomNotFound();
+    public abstract void livingRoomNotFound(String type);
 
-    public abstract void retryCreateGame();
+    public abstract void retryCreateGame(String error, String livId);
 
     public abstract void notDisconnected();
 
@@ -179,15 +177,15 @@ public abstract class IUI implements Listener {
 
     public abstract void disconnected();
 
-    public abstract void livingRoomsList(String s);
+    public abstract void livingRoomsList(String s, int section);
 
     public abstract void gameStarted();
 
     public abstract void gameEnded();
 
-    public abstract void possiblePick();
+    public abstract void possiblePick(List<BoardPosition> pick);
 
-    public abstract void livingRoomFound(LivingRoom livingRoomFromJsonString);
+    public abstract void livingRoomFound(LivingRoom livingRoomFromJsonString, String command);
 
     public abstract void joinedGame(Player playerFromJson, String livingRoomId);
 }
