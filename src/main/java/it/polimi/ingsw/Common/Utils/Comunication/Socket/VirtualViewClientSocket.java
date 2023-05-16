@@ -10,10 +10,7 @@ import it.polimi.ingsw.Server.Model.Player;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class VirtualViewClientSocket implements ICommunication {
 
@@ -46,11 +43,12 @@ public class VirtualViewClientSocket implements ICommunication {
     }
 
     private void handleReturn() {
-        Map<String, Object> response = JSONInterface.recreateCommand(in.nextLine());
-        if(response.get("command").equals("Success")){
-            handleSuccess((List<String>)response.get("args"), (String) response.get("description"));
+        if(in.hasNextLine()){
+            Map<String, Object> response = JSONInterface.recreateCommand(in.nextLine());
+            if (response.get("command").equals("Success")) {
+                handleSuccess((List<String>) response.get("args"), (String) response.get("description"));
+            } else handleError((List<String>) response.get("args"), (String) response.get("description"));
         }
-        else handleError((List<String>)response.get("args"), (String) response.get("description"));
     }
 
     private void handleError(List<String> args,  String description) {
@@ -59,8 +57,8 @@ public class VirtualViewClientSocket implements ICommunication {
         switch (args.get(0)){
             case "NotEnoughSpacesInCol" -> UI.retryPlacement();
             case "LoginUnsuccessful" -> UI.retryLogin();
-            case "LivingRoomNotFound" -> UI.livingRoomNotFound();
-            case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame();
+            case "LivingRoomNotFound" -> UI.livingRoomNotFound(args.get(1));
+            case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame(args.get(1), args.get(2));
             case "NotDisconnectedPlayer" -> UI.notDisconnected();
             case "GameNotStarted" -> UI.gameNotStarted();
             case "GameNotEnded" ->  UI.gameNotEnded();
@@ -76,13 +74,13 @@ public class VirtualViewClientSocket implements ICommunication {
         switch (args.get(0)){
             case "TurnEndedSuccessfully" -> UI.turnPassed();
             case "LoginDoneSuccessfully" -> UI.loginSuccessful();
-            case "GameCreated", "LivingRoomFound" -> UI.livingRoomFound(JSONInterface.getLivingRoomFromJsonString(args.get(1)));
+            case "GameCreated", "LivingRoomFound" -> UI.livingRoomFound(JSONInterface.getLivingRoomFromJsonString(args.get(1)), args.get(2));
             case "JoinedGame" -> UI.joinedGame(JSONInterface.getPlayerFromJson(args.get(1)), args.get(2));
             case "DisconnectedPlayer" -> UI.disconnected();
-            case "LivingRoomsList" ->  UI.livingRoomsList(args.get(1));
+            case "LivingRoomsList" ->  UI.livingRoomsList(args.get(1), Integer.parseInt(args.get(2)));
             case "GameStarted" -> UI.gameStarted();
             case "GameEnded" -> UI.gameEnded();
-            case "PossiblePick" -> UI.possiblePick();
+            case "PossiblePick" -> UI.possiblePick(JSONInterface.recreatePick(args.get(1)));
             case "NotifyListener" -> notifyListener();
         }
 
