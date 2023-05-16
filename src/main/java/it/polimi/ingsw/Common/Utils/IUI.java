@@ -8,13 +8,14 @@ import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
+import javafx.application.Application;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public abstract class IUI implements Listener {
+public abstract class IUI extends Application implements Listener{
     private LivingRoom viewLivingRoom;
     private List<BoardPosition> pick;
     private int myTurn; // It means MyTURN
@@ -41,9 +42,7 @@ public abstract class IUI implements Listener {
         this.virtualViewClient = virtualViewClient;
     }
 
-    public void launch(){
-        this.launch();
-    }
+    public abstract void startIUI();
 
     public void setViewLivingRoom(LivingRoom viewLivingRoom) {
         this.viewLivingRoom = viewLivingRoom;

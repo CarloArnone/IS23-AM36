@@ -10,6 +10,7 @@ import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.Printer;
 import it.polimi.ingsw.Server.Model.*;
 import javafx.scene.control.skin.TableHeaderRow;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 import java.io.IOException;
@@ -27,9 +28,13 @@ public class CLI extends IUI {
         sc = new Scanner(System.in);
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        startIUI();
+    }
 
-    public void launch(){
-
+    @Override
+    public void startIUI() {
         new Thread(() -> {
 
             loginTry(false);

@@ -1,10 +1,11 @@
 package it.polimi.ingsw.Client.GUI;
 
+import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
 import it.polimi.ingsw.Server.Model.LivingRoom;
-import javafx.application.Application;
+import it.polimi.ingsw.Server.Model.Player;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,8 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
+import static javafx.application.Application.launch;
 
-public class GUIApplication extends Application {
+public class GUI extends IUI {
     Stage window;
 
     int playersNumber;
@@ -40,15 +42,14 @@ public class GUIApplication extends Application {
     static final double rescaleWhenSelected = 0.85;
     static final double inputSceneSize = 100;
     static final int pointsImageSize = 90;
-    LivingRoom livingRoom  = JSONInterface.generateLivingRoom(3, "stucazz");
-    @Override
-    public void start(Stage stage) throws IOException {
+    LivingRoom livingRoom;
 
+    GridPane livingRoomBoard;
+
+    public void start(Stage stage) throws IOException {
         window = stage;
         windowSettingsMainScene(window);
-        livingRoom = JSONInterface.getRandomLivingForTest();
 
-        playersNumber = livingRoom.getPlayers().size();
         //Default window
         Scene firstScene = generateFirstScene();
         Scene mainScene = generateGameBoardScene();
@@ -61,7 +62,7 @@ public class GUIApplication extends Application {
         ArrayList<Tile> tiles = new ArrayList<>();
         StackPane general = new StackPane();
         StackPane center = new StackPane();
-        GridPane livingRoomBoard = addLivingroomPane();
+        livingRoomBoard = addLivingroomPane();
         HBox topMenu = new HBox();
         FlowPane littleShelvesMaster = new FlowPane();
         FlowPane commonGoalsPane = new FlowPane();
@@ -107,11 +108,13 @@ public class GUIApplication extends Application {
         personalGoalsPaneSettings(personalGoals);
 
         //drawGameboard, only the center
-        drawGameboard(livingRoomBoard);
+        //drawGameboard(livingRoomBoard);
         //drawShelves
-        drawShelves(shelvesGridPanes);
-        //drawCommonGoals
-        drawCommonGoals(commonGoalsPane);
+        if(livingRoom != null) {
+            drawShelves(shelvesGridPanes);
+            //drawCommonGoals
+            drawCommonGoals(commonGoalsPane);
+        }
         //Border pane creation
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(topMenu);
@@ -226,9 +229,9 @@ public class GUIApplication extends Application {
                     returnValue = (ChoiceBox.display("Play", "How do you want to play?", choices));
                     if(returnValue == 0) {
                         clearGameBoard(livingroomBoard);
-                        drawGameboard(livingroomBoard);
+                        //drawGameboard(livingroomBoard);
                     }else if(returnValue == 1){
-                        clearGameBoard(livingroomBoard);
+                        getVirtualViewClient().createGameEvent("Pero",new Player("Davide"),3);
                     }
                 });
     }
@@ -248,7 +251,6 @@ public class GUIApplication extends Application {
         tile.getImageView().setFitHeight(gameboardTileSize);
         tile.getImageView().setFitWidth(gameboardTileSize);
         tile.getImageView().setOnMouseClicked(mouseEvent -> {
-            System.out.println(tile.getXpos() + " " + tile.getYpos());
             tile.toggle();
             if(tile.isAvailable()) {
                 if (tile.isSelected()) {
@@ -592,6 +594,97 @@ public class GUIApplication extends Application {
     }
 
     public static void main(String[] args) {
+        IUI Gui = new GUI();
+        Gui.startIUI();
+    }
+    @Override
+    public void startIUI() {
         launch();
+    }
+    @Override
+    public void retryPlacement() {
+
+    }
+
+    @Override
+    public void retryLogin() {
+
+    }
+
+    @Override
+    public void livingRoomNotFound(String type) {
+
+    }
+
+    @Override
+    public void retryCreateGame(String error, String livId) {
+
+    }
+
+    @Override
+    public void notDisconnected() {
+
+    }
+
+    @Override
+    public void gameNotStarted() {
+
+    }
+
+    @Override
+    public void gameNotEnded() {
+
+    }
+
+    @Override
+    public void retryPick() {
+
+    }
+
+    @Override
+    public void turnPassed() {
+
+    }
+
+    @Override
+    public void loginSuccessful() {
+
+    }
+
+    @Override
+    public void disconnected() {
+
+    }
+
+    @Override
+    public void livingRoomsList(String s, int section) {
+
+    }
+
+    @Override
+    public void gameStarted() {
+
+    }
+
+    @Override
+    public void gameEnded() {
+
+    }
+
+    @Override
+    public void possiblePick(List<BoardPosition> pick) {
+
+    }
+
+    @Override
+    public void livingRoomFound(LivingRoom livingRoomFromJsonString, String command) {
+        setViewLivingRoom(livingRoomFromJsonString);
+        playersNumber = livingRoomFromJsonString.getPlayers().size();
+        drawGameboard(livingRoomBoard);
+    }
+
+    @Override
+    public void joinedGame(Player playerFromJson, String livingRoomId) {
+
     }
 }

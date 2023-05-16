@@ -15,8 +15,6 @@ import java.util.List;
 public class ChoiceBox{
     static int answer;
 
-    GridPane gameBoard;
-
     public static int display(String title, String message, List<String> Choices){
         Stage window = new Stage();     //Blank page
         window.initModality(Modality.APPLICATION_MODAL);
