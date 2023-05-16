@@ -4,13 +4,11 @@ import it.polimi.ingsw.Common.Exceptions.InvalidGameIDException;
 import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
-import it.polimi.ingsw.Common.LobbyLivingRoom;
-import it.polimi.ingsw.Common.Utils.IUI;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
-import it.polimi.ingsw.Common.WaitingPlayer;
-import it.polimi.ingsw.Common.eventObserver;
+import it.polimi.ingsw.Common.Utils.eventObserver;
 import it.polimi.ingsw.Server.Model.*;
-import javafx.util.Pair;
+import com.google.gson.Gson.*;
 
 import java.util.*;
 
@@ -20,6 +18,9 @@ public enum Controller implements eventObserver {
     List<LobbyLivingRoom> livingRooms;
     Set<WaitingPlayer> waitingForChoice;
 
+    public Set<WaitingPlayer> getWaitingForChoice() {
+        return waitingForChoice;
+    }
 
     public static Controller getInstance(){
         INSTANCE.buildController();
@@ -60,7 +61,7 @@ public enum Controller implements eventObserver {
                         break;
                     }
                 }
-                liv.getLivingRoom().nextTurn();
+                passTurn(liv.getLivingRoom());
                 liv.getLivingRoom().checkRearrangeDesk();
                 liv.getLivingRoom().notifyAllListeners();
                 JSONInterface.writeLivingRoomToJson(liv.getLivingRoom());
@@ -69,9 +70,20 @@ public enum Controller implements eventObserver {
         }
         return true;
     }
+
+    private void passTurn(LivingRoom livingRoom) {
+        livingRoom.nextTurn();
+        while(!getWaitingPlayerByName(livingRoom.getPlayers().get(livingRoom.getTurn()).getName()).isOnline()){
+            livingRoom.nextTurn();
+        }
+    }
+
+    private WaitingPlayer getWaitingPlayerByName(String name) {
+        return waitingForChoice.stream().filter(p -> p.getPlayer().getName().equals(name)).findFirst().get();
+    }
+
     @Override
-    public synchronized boolean logInTryEvent(String name, IUI c) {
-        //TODO FIX IS IMPOSSIBLE TO RETRIEVE AN OLD GAME
+    public synchronized boolean logInTryEvent(String name, ICommunication virtualView) {
 
         for(WaitingPlayer wp : waitingForChoice){
             if(wp.getPlayer().getName().equals(name)){
@@ -82,7 +94,7 @@ public enum Controller implements eventObserver {
             }
         }
 
-        waitingForChoice.add(new WaitingPlayer(new Player(name), c));
+        waitingForChoice.add(new WaitingPlayer(new Player(name),virtualView));
         return true;
     }
     @Override
@@ -122,8 +134,8 @@ public enum Controller implements eventObserver {
 
     }
     @Override
-    public void leaveGameEvent(String name, LivingRoom livingRoom, IUI c) {
-        disconnectedPlayer(livingRoom, name, true, c);
+    public void leaveGameEvent(String name, LivingRoom livingRoom, ICommunication virtualView) {
+        disconnectedPlayer(livingRoom, name, true, virtualView);
     }
     @Override
     public synchronized Player joinGameEvent(String livingRoomID, String name) {
@@ -146,12 +158,9 @@ public enum Controller implements eventObserver {
         }
         return p;
     }
+
     @Override
-    public synchronized boolean reconnectPlayer(LivingRoom livingRoom, String name) {
-        return true;
-    }
-    @Override
-    public synchronized boolean disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, IUI c) {
+    public synchronized boolean disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
         for(LobbyLivingRoom liv : livingRooms){
             if(liv.getLivingRoom().equals(livingRoom)){
                 for(Player p : liv.getLivingRoom().getPlayers()){
@@ -161,7 +170,7 @@ public enum Controller implements eventObserver {
                         }
                         else waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
 
-                        waitingForChoice.remove(new WaitingPlayer(new Player(name), c)); //TODO MODIFY SET PLAYER OFFLINE
+                        //waitingForChoice.remove(new WaitingPlayer(new Player(name), virtualView)); //TODO MODIFY SET PLAYER OFFLINE
                         saveGame(liv.getLivingRoom());
                         return true;
                     }
@@ -182,7 +191,7 @@ public enum Controller implements eventObserver {
     public synchronized boolean isGamesStarted(LivingRoom livingRoom) {
         for(LobbyLivingRoom liv : livingRooms){
             if(liv.getLivingRoom().equals(livingRoom)){
-                return liv.isGameStarted();
+                return liv.isGameStarted(); // check if all players are online;
             }
         }
         return false;
@@ -200,8 +209,8 @@ public enum Controller implements eventObserver {
     public synchronized boolean endGame(LivingRoom livingRoom){
         return false;
     }
-    private synchronized IUI getPlayerView(Player p){
-        return waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().getView();
+    private synchronized ICommunication getPlayerView(Player p){
+        return waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().orElse(new WaitingPlayer(new Player("no View"))).getView();
     }
     private boolean saveGame(LivingRoom liv){
         JSONInterface.writeLivingRoomToJson(liv);
@@ -283,5 +292,15 @@ public enum Controller implements eventObserver {
                 pick.contains(new BoardPosition(pos.getPosX(), pos.getPosY() -1)) ||
                 pick.contains(new BoardPosition(pos.getPosX(), pos.getPosY() +1));
     }
+
+    public LivingRoom getLivingRoomById(String livingRoomId){
+        return livingRooms.stream().filter(liv -> liv.getLivingRoom().getLivingRoomId().equals(livingRoomId)).findFirst().get().getLivingRoom();
+    }
+
+    public Player getPlayerByName(String name){
+        return waitingForChoice.stream().filter(p -> p.getPlayer().getName().equals(name)).findFirst().get().getPlayer();
+    }
+
+
 
 }
