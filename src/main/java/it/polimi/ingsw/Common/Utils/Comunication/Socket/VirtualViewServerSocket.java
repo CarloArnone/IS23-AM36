@@ -74,6 +74,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         }
         catch(Exception e){
             //Find Game he is in and advertise the players con timer
+            System.out.println(e.getMessage());
         }
 
 
