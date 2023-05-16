@@ -142,13 +142,16 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             String livingRoomJson = JSONInterface.writeLivingRoomToJson(livingRoom);
             args.add(0, "LivingRoomFound");
             args.add(1, livingRoomJson);
+            args.add(2, "fetchOldGame");
             String command = JSONInterface.generateCommand("Success", args, "");
             out.println(command);
             System.out.println("Sent: " + command);
         }
         else {
             args.add("LivingRoomNotFound");
+            args.add(1, "fetchOldGame");
             out.println(JSONInterface.generateCommand("Error", args, "The id is incorrect"));
+            System.out.println("Sent: " + JSONInterface.generateCommand("Error", args, ""));
         }
     }
 
@@ -164,6 +167,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "GameCreated");
             args.add(1, livingRoomJson);
+            args.add(2, "createGame");
             String command = JSONInterface.generateCommand("Success", args, "");
             out.println(command);
             System.out.println("Sent: " + command);
@@ -171,10 +175,12 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add("InvalidGameID");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
         } catch (PlayersOutOfBoundException e) {
             List<String> args = new ArrayList<>();
             args.add("PlayerOutOfBound");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
         }
     }
 
@@ -188,6 +194,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "LivingRoomFound");
             args.add(1, livingRoomJson);
+            args.add(2, "retrieveOldGame");
             String command = JSONInterface.generateCommand("Success", args, "");
             out.println(command);
             System.out.println("Sent: " + command);
@@ -195,6 +202,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add("LivingRoomNotFound");
             out.println(JSONInterface.generateCommand("Error", args, "The id is incorrect"));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
@@ -236,18 +245,26 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "NotDisconnectedPlayer");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
     /**
      * @param listLength
-     * @param occurency
+     * @param section
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurency) {
+    public void getActiveLivingRooms(int listLength, int section) {
         List<String> args = new ArrayList<>();
         args.add(0, "LivingRoomsList");
-        args.addAll(controller.getActiveLivingRooms(listLength, occurency));
+        List<String> actimel = controller.getActiveLivingRooms(listLength, section);
+        String livstring = "";
+        for (String st: actimel) {
+            livstring += st + "-";
+        }
+        args.add(1, livstring);
+        args.add(2, String.valueOf(section+1));
         String command = JSONInterface.generateCommand("Success", args, "");
         out.println(command);
         System.out.println("Sent: " + command);
@@ -269,6 +286,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "GameNotStarted");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
@@ -290,6 +309,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "NotDisconnectedPlayer");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
@@ -309,6 +330,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "GameNotEnded");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
@@ -328,6 +351,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             List<String> args = new ArrayList<>();
             args.add(0, "GameNotEnded");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
@@ -341,12 +366,17 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.isPossiblePick(player, livingRoomId, pick)){
             List<String> args = new ArrayList<>();
             args.add(0, "PossiblePick");
+            args.add(1, JSONInterface.generatePick(pick));
             out.println(JSONInterface.generateCommand("Success", args, ""));
+            System.out.println(JSONInterface.generateCommand("Success", args, ""));
+
         }
         else{
             List<String> args = new ArrayList<>();
             args.add(0, "NotPossiblePick");
             out.println(JSONInterface.generateCommand("Error", args, ""));
+            System.out.println(JSONInterface.generateCommand("Error", args, ""));
+
         }
     }
 
