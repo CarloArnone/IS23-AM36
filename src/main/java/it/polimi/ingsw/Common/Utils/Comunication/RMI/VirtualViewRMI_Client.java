@@ -19,8 +19,9 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
 
     private IUI ui;
     private int port;
-    private RMI_ClientInterface clientStub;
+    private RMI_ServerInterface clientStub;
     private Registry reg;
+    private String clientName;
 
     public VirtualViewRMI_Client(IUI ui, int port) throws Exception {
 
@@ -29,14 +30,9 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
         this.port = port;
         System.out.println("Port saved.");
 
-        this.clientStub = (RMI_ClientInterface) UnicastRemoteObject.exportObject(this, this.port);
-        System.out.println("Stub created.");
-
-        this.reg = LocateRegistry.createRegistry(this.port);
-        System.out.println("Registry created.");
-
-        reg.bind("Client", this.clientStub);
-        System.out.println("Stub bound to registry.");
+        reg = LocateRegistry.getRegistry("127.0.0.1", this.port);
+        // Looking up the registry for the remote object
+        this.clientStub = (RMI_ServerInterface) reg.lookup("//localhost/mainServer");
     }
 
 
@@ -149,12 +145,20 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
         args.add(2, JSONInterface.generatePick(pick));
         args.add(3, String.valueOf(col));
 
+        Command command = new Command("confirmEndTurn", args, "1)Livingroom 2)Player 3)PickList 4)Columns");
 
+        try {
+            clientStub.confirmEndTurn(command);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void logInTryEvent(String name, ICommunication virtualView) {
 
+        List<String> args = new ArrayList<>();
+        args.add(0, name);
     }
 
     @Override
