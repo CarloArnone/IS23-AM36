@@ -146,12 +146,23 @@ public abstract class IUI implements Listener {
         this.mySelf = player;
     }
 
-    public void notifyListener() {
-        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+    public void notifyListener(String message) {
+        String[] messageToControl = message.split(" ");
+        switch (messageToControl[0]){
+            case "GameStarted" -> gameStarted();
+            case "Update" -> getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+            case "LeftGame" -> otherPlayerDisconnected(messageToControl[1], true);
+            case "LeftGameCrush" -> otherPlayerDisconnected(messageToControl[1], false);
+            case "GameEnded" -> gameEnded( messageToControl[1]);
+        }
+        //virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
     }
 
+    public abstract void otherPlayerDisconnected(String s, boolean b);
+
     public void startGame() {
-        notifyListener();
+        gameStarted();
+        notifyListener("Update");
     }
 
 
@@ -181,11 +192,13 @@ public abstract class IUI implements Listener {
 
     public abstract void gameStarted();
 
-    public abstract void gameEnded();
+    public abstract void gameEnded(String message);
 
     public abstract void possiblePick(List<BoardPosition> pick);
 
     public abstract void livingRoomFound(LivingRoom livingRoomFromJsonString, String command);
 
-    public abstract void joinedGame(Player playerFromJson, String livingRoomId);
+    public abstract void joinedGame(Player playerFromJson, LivingRoom livingRoom);
+
+    public abstract void gameNotJoined(String arg);
 }

@@ -12,7 +12,10 @@ import it.polimi.ingsw.Server.Model.*;
 import javafx.scene.control.skin.TableHeaderRow;
 import javafx.util.Pair;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import static java.lang.Thread.getAllStackTraces;
@@ -25,6 +28,7 @@ public class CLI extends IUI {
 
     public CLI() {
         sc = new Scanner(System.in);
+        setPick(new ArrayList<>());
     }
 
 
@@ -36,6 +40,20 @@ public class CLI extends IUI {
 
         }).start();
 
+    }
+
+    /**
+     * @param s
+     * @param b
+     */
+    @Override
+    public void otherPlayerDisconnected(String s, boolean b) {
+        if(b){
+            updateCLI("Player " + s + " left the game on purpose");
+        }
+        else{
+            updateCLI("Player " + s + " is momentainly disconnected due to some crushes");
+        }
     }
 
     /**
@@ -115,6 +133,7 @@ public class CLI extends IUI {
     @Override
     public void notDisconnected() {
         System.out.println("Player Not disconnected");
+
     }
 
     /**
@@ -123,6 +142,7 @@ public class CLI extends IUI {
     @Override
     public void gameNotStarted() {
         //NOTHING
+        //getVirtualViewClient().isGamesStarted(getViewLivingRoom());
     }
 
     /**
@@ -204,18 +224,19 @@ public class CLI extends IUI {
 
     private void startParsingCommands() {
         new Thread(() ->{
-            Scanner scannerCommand = sc;
             boolean exitIn = false;
             while(!exitIn){
-                String command = scannerCommand.nextLine();
-                exitIn = parseCommand(command);
+                if(sc.hasNextLine()){
+                    String command = sc.nextLine();
+                    exitIn = parseCommand(command);
+                }
             }
         }).start();
     }
 
     public boolean parseCommand(String command) {
         if (command.equals("exit") || command.equals("q")) {
-            getVirtualViewClient().disconnectedPlayer(getViewLivingRoom(), getName(), false, getVirtualViewClient());
+            getVirtualViewClient().disconnectedPlayer(getViewLivingRoom(), getName(), true, getVirtualViewClient());
             return true;
         }
 
@@ -223,14 +244,20 @@ public class CLI extends IUI {
         switch (commandPrefix) {
             case "select" -> selectTilesFromBoard(command);
             case "col" -> checkColAndPlaceTiles(Integer.parseInt(command.split(" ")[1]));
-            case "order" -> orderPickInsert(command);
+            case "order" -> {
+                orderPickInsert(command);
+                updateCLI("");
+            }
             case "quit" -> quitAGame();
-            case "reset" -> resetBoard();
+            case "reset" -> {
+                resetBoard();
+                updateCLI("");
+            }
 
             //TODO ADD OTHER COMMANDS
         };
 
-        updateCLI();
+        //updateCLI("");
         return false;
     }
 
@@ -248,8 +275,7 @@ public class CLI extends IUI {
         try {
             orderPickInsert(order);
         } catch (ToManyCardsException e) {
-            updateCLI();
-            System.out.println("There were to many cards");
+            updateCLI("There where to many Tiles in you pick - the maximum is 3 tiles");
         }
 
     }
@@ -258,25 +284,23 @@ public class CLI extends IUI {
     private void selectTilesFromBoard(String command) {
 
         if(getMyTurn() != getViewLivingRoom().getTurn()){
-            updateCLI();
-            System.out.println("This is not your turn please wait");
+            updateCLI("This is not your turn please wait");
             return;
         }
         String[] args = command.split(" ");
         List<BoardPosition> possiblePick = new ArrayList<>();
         for (int i = 1; i<=(args.length -1)/2; i++){
-            if(i == 4){
-                throw new IndexOutOfBoundsException();
-            }
             try{
+                if(i == 4){
+                    throw new IndexOutOfBoundsException();
+                }
                 int finalI = i;
                 Optional<BoardPosition> pickOne = getViewLivingRoom().getBoard().keySet().stream().filter(aBoolean -> aBoolean.equals(new BoardPosition(Integer.parseInt(args[finalI * 2 -1]), Integer.parseInt(args[finalI * 2])))).findFirst();
                 pickOne.ifPresent(possiblePick::add);
                 //IF A CARD IS OUT OF BOUND IS AUTOMATICALLY NOT SELECTED
             }
             catch (IndexOutOfBoundsException e){
-                updateCLI();
-                System.out.println("To many cards");
+                updateCLI("To many Tiles in your pick - the maximum is 3 tiles");
             }
         }
 
@@ -306,6 +330,9 @@ public class CLI extends IUI {
         else if(command.equals("u")){
             getVirtualViewClient().getActiveLivingRooms(10, section);
         }
+        else{
+            livingRoomsList(s, section);
+        }
     }
 
 
@@ -314,20 +341,49 @@ public class CLI extends IUI {
      */
     @Override
     public void gameStarted() {
+        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
         startParsingCommands();
-        //TODO RESOLVE PULLING OUT OF A GAME STOP THREAD AND FIRST ENTER = TRUE
     }
 
     /**
      *
      */
     @Override
-    public void gameEnded() {
-        printEndGameScreen();
+    public void gameEnded(String message) {
+        printEndGameScreen(message);
     }
 
-    private void printEndGameScreen() {
-        System.out.println("Gioco Finito");
+    private void printEndGameScreen(String status) {
+        switch (status){
+            case "winner" -> {
+                System.out.println("You win");
+                stopParsingCommands();
+            }
+            case "onlyPlayer" -> {
+                System.out.println("You are the last in your game - disconnecting");
+                stopParsingCommands();
+                createOrJoinGameChoice();
+            }
+            default -> {
+                System.out.println("Defeat");
+                stopParsingCommands();
+            }
+        }
+    }
+
+    private void stopParsingCommands() {
+        String endingMessage = "exit" + (char)13;
+        InputStream systemIn = System.in;
+        try {
+            InputStream inputStream = new ByteArrayInputStream(endingMessage.getBytes("UTF-8"));
+            System.setIn(inputStream);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            System.setIn(systemIn);
+        }
+
     }
 
     /**
@@ -338,10 +394,9 @@ public class CLI extends IUI {
         //Some changes then update
         try {
             moveFromBoardToShelf(pick);
-            updateCLI();
+            updateCLI("");
         } catch (ToManyCardsException e) {
-            updateCLI();
-            System.out.println("There where to many cards");
+            updateCLI("There where to many Tiles in you pick - the maximum is 3 tiles");
         }
     }
 
@@ -355,14 +410,169 @@ public class CLI extends IUI {
         }
         else{
             updateLivingRoom(livingRoomFromJsonString);
-            updateCLI();
+            updateOldValues(livingRoomFromJsonString);
+            updateCLI("");
         }
     }
 
-    private void updateCLI() {
+    private void updateOldValues(LivingRoom livingRoomFromJsonString) {
+        int myNewTurn = livingRoomFromJsonString.getPlayers().indexOf(getMySelf());
+        setMyTurn(myNewTurn);
+        setMySelf(livingRoomFromJsonString.getPlayers().get(myNewTurn));
+    }
+
+    private void updateCLI(String message) {
         printBoard();
-        getVirtualViewClient().isGamesStarted(getViewLivingRoom());
+        printInfo();
+        printPickIfPresent();
+        printShelves();
+        if(!message.equals("")){
+            System.out.println(message);
+        }
+        System.out.print("Command: ");
         //TODO ADD THE GAME SCREEN PRINTING
+    }
+
+    private void printPickIfPresent() {
+        printNLines(3);
+        int pickSize = getPick().size();
+            printNSpaces(getMyTurn() * 39);
+            printNSpaces(12 - pickSize*2);
+            for(BoardPosition tile : getPick()){
+                switch (tile.getCard().getColor()){
+                    case 'P' -> System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m ");
+                    case 'W' -> System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m ");
+                    case 'B' -> System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m ");
+                    case 'Y' -> System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m ");
+                    case 'G' -> System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m ");
+                    case 'C' -> System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m ");
+                }
+            }
+            printNLines(1);
+            printNSpaces(getMyTurn() * 39);
+            printNSpaces(12 - pickSize*2);
+            if(pickSize != 0){
+                System.out.print(" 1  ");
+            }
+            for (int i = 2; i <= getPick().size(); i++) {
+                System.out.print(" " + i + "  ");
+            }
+            System.out.println("");
+
+    }
+
+    private void printInfo() {
+        printNLines(3);
+        if(getViewLivingRoom().getTurn() == getMyTurn()){
+            System.out.println("It's My Turn");
+        }
+        else System.out.println("It's " + getViewLivingRoom().getPlayers().get(getViewLivingRoom().getTurn()) + " turn.");
+
+    }
+
+    private void printShelves() {
+        for(Player player : getViewLivingRoom().getPlayers()){
+            String name = player.getName();
+            System.out.print(name);
+            printNSpaces(21 - name.length() - String.valueOf(player.getScore()).length());
+            System.out.print(player.getScore());
+            printNSpaces(18);
+        }
+        printNLines(1);
+
+
+
+        for(int p = 0; p<getViewLivingRoom().getPlayers().size(); p++){
+            for(int c = 0; c < getViewLivingRoom().getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
+                System.out.print((char)27 + Printer.shelfBase.escape() + (char)27 + "[0m"); //brownOfLib
+            }
+            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+            printNSpaces(18);
+        }
+        printNLines(1);
+
+
+        int height = getViewLivingRoom().getPlayers().get(0).getMyShelf().getShelf().length;
+
+            for (int r = 0; r < height; r++){
+                for(Player player: getViewLivingRoom().getPlayers()){
+                    Optional<ItemCard>[][] playerShelf = player.getMyShelf().getShelf();
+                for (int c = 0; c < playerShelf[0].length; c++){
+                    if(playerShelf[r][c].isPresent()){
+                        if(playerShelf[r][c].get().getColor() == 'P'){
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m");
+                        }else if (playerShelf[r][c].get().getColor() == 'W') {
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m");
+                        }else if (playerShelf[r][c].get().getColor() == 'C') {
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m");
+                        }else if (playerShelf[r][c].get().getColor() == 'B') {
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m");
+                        }else if (playerShelf[r][c].get().getColor() == 'G') {
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m");
+                        }else if (playerShelf[r][c].get().getColor() == 'Y') {
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m");
+                        }
+                    }
+                    else {
+                        if(player.equals(getMySelf())){
+                            List<Integer> position = new ArrayList<>();
+                            position.add(0, r);
+                            position.add(1, c);
+                            if(player.getPersonalGoal().getSubGoals().containsKey(position)){
+                                char color = player.getPersonalGoal().getSubGoals().get(position);
+                                if(color == 'P'){
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.purpleCardDark.escape() + (char)27 + "[0m");
+                                }else if (color == 'W') {
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.whiteCardDark.escape() + (char)27 + "[0m");
+                                }else if (color == 'C') {
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.cyanCardDark.escape() + (char)27 + "[0m");
+                                }else if (color == 'B') {
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.blueCardDark.escape() + (char)27 + "[0m");
+                                }else if (color == 'G') {
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.greenCardDark.escape() + (char)27 + "[0m");
+                                }else if (color == 'Y') {
+                                    System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                    System.out.print((char)27 + Printer.yellowCardDark.escape() + (char)27 + "[0m");
+                                }
+                            }
+                            else{
+                                System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                                System.out.print((char)27 + Printer.shelfBackGorund.escape() + (char)27 + "[0m"); //shelfBackground
+                            }
+                        }
+                        else{
+                            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+                            System.out.print((char)27 + Printer.shelfBackGorund.escape() + (char)27 + "[0m"); //shelfBackground
+                        }
+                    }
+                }
+                System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m");
+                printNSpaces(18);
+            }
+            printNLines(1);
+        }
+
+        for(int p = 0; p<getViewLivingRoom().getPlayers().size(); p++){
+            for(int c = 0; c < getViewLivingRoom().getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
+                System.out.print((char)27 + Printer.shelfBase.escape() + (char)27 + "[0m"); //brownOfLib
+            }
+            System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
+            printNSpaces(18);
+        }
+        printNLines(1);
+
+
     }
 
     private void printExpectedPrompt(int playersNum) {
@@ -376,9 +586,20 @@ public class CLI extends IUI {
      * @param playerFromJson
      */
     @Override
-    public void joinedGame(Player playerFromJson, String livingRoomId) {
-        getVirtualViewClient().retrieveOldGameEvent(livingRoomId);
+    public void joinedGame(Player playerFromJson, LivingRoom livingRoom) {
+        //getVirtualViewClient().retrieveOldGameEvent(livingRoomId);
+        updateLivingRoom(livingRoom);
         setMySelf(playerFromJson);
+        System.out.println("Player Found");
+    }
+
+    /**
+     * @param arg
+     */
+    @Override
+    public void gameNotJoined(String arg) {
+        System.out.println(arg);
+        getVirtualViewClient().getActiveLivingRooms(10, 1);
     }
 
     public void loginTry(boolean retry){

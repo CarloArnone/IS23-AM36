@@ -35,7 +35,7 @@ public class VirtualViewClientSocket implements ICommunication {
 
     public void sendMessage(String msg){
         out.println(msg);
-        System.out.println(msg);
+        //System.out.println(msg);
     }
 
     public IUI getUI(){
@@ -52,11 +52,12 @@ public class VirtualViewClientSocket implements ICommunication {
     }
 
     private void handleError(List<String> args,  String description) {
-        System.out.println("Failure : " + args);
+        //System.out.println("Failure : " + args);
 
         switch (args.get(0)){
             case "NotEnoughSpacesInCol" -> UI.retryPlacement();
             case "LoginUnsuccessful" -> UI.retryLogin();
+            case "NotJoinedGame" -> UI.gameNotJoined(args.get(1));
             case "LivingRoomNotFound" -> UI.livingRoomNotFound(args.get(1));
             case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame(args.get(1), args.get(2));
             case "NotDisconnectedPlayer" -> UI.notDisconnected();
@@ -69,19 +70,18 @@ public class VirtualViewClientSocket implements ICommunication {
     }
 
     private void handleSuccess(List<String> args,  String description) {
-        System.out.println("Success : " + args);
+        //System.out.println("Success : " + args);
 
         switch (args.get(0)){
             case "TurnEndedSuccessfully" -> UI.turnPassed();
             case "LoginDoneSuccessfully" -> UI.loginSuccessful();
             case "GameCreated", "LivingRoomFound" -> UI.livingRoomFound(JSONInterface.getLivingRoomFromJsonString(args.get(1)), args.get(2));
-            case "JoinedGame" -> UI.joinedGame(JSONInterface.getPlayerFromJson(args.get(1)), args.get(2));
+            case "JoinedGame" -> UI.joinedGame(JSONInterface.getPlayerFromJson(args.get(1)), JSONInterface.getLivingRoomFromJsonString(args.get(2)));
             case "DisconnectedPlayer" -> UI.disconnected();
             case "LivingRoomsList" ->  UI.livingRoomsList(args.get(1), Integer.parseInt(args.get(2)));
             case "GameStarted" -> UI.gameStarted();
-            case "GameEnded" -> UI.gameEnded();
             case "PossiblePick" -> UI.possiblePick(JSONInterface.recreatePick(args.get(1)));
-            case "NotifyListener" -> notifyListener();
+            case "NotifyListener" -> notifyListener(args.get(1));
         }
 
     }
@@ -90,8 +90,8 @@ public class VirtualViewClientSocket implements ICommunication {
      *
      */
     @Override
-    public void notifyListener() {
-        UI.notifyListener();
+    public void notifyListener(String message) {
+        UI.notifyListener(message);
     }
 
     /**
@@ -165,7 +165,7 @@ public class VirtualViewClientSocket implements ICommunication {
         List<String> args = new ArrayList<>();
         args.add(0, livingRoomID);
         args.add(1, name);
-        sendMessage(JSONInterface.generateCommand("retrieveGame", args, ""));
+        sendMessage(JSONInterface.generateCommand("joinGame", args, ""));
     }
 
     /**

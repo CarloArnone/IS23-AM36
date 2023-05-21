@@ -53,6 +53,7 @@ public class LivingRoom {
         this.players = new ArrayList<>();
         board = new HashMap<>();
         this.viewList = new ArrayList<>();
+        this.commonGoalSet = new ArrayList<>();
     }
 
     /** Allows the player to pick a set of Item Cards. */
@@ -193,9 +194,18 @@ public class LivingRoom {
         this.viewList.add(s);
     }
 
-    public void notifyAllListeners() {
+    public List<Listener> getViewList(){
+        return viewList;
+    }
+
+    public void notifyAllListeners(String message) {
         for (Listener s : viewList){
-            s.notifyListener();
+            s.notifyListener(message);
         }
+    }
+
+    public Player getWinner() {
+        return getPlayers().stream().reduce((p1, p2) -> {return (p1.getScore() - p2.getScore() >= 0) ? p1 : p2;}).get();
+
     }
 }

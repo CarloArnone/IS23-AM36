@@ -209,6 +209,48 @@ public class JSONInterface {
         saveIntoFile(livingRoomJObj, filePath, "livingRooms");
         return converter.toJson(livingRoomJObj);
     }
+
+    public static String writeNotSaveLivingRoomToJson(LivingRoom livingRoom, String filePath) {
+        JsonObject livingRoomJObj = new JsonObject();
+        livingRoomJObj.addProperty("livingRoomID", livingRoom.getLivingRoomId());
+
+        JsonArray players = new JsonArray();
+        for (Player p : livingRoom.getPlayers()) {
+            JsonElement pJel = converter.fromJson(writePlayerToJson(p), JsonObject.class);
+            players.add(pJel);
+        }
+        JsonElement playersEl = players.getAsJsonArray();
+
+        livingRoomJObj.add("players", playersEl);
+
+        livingRoomJObj.addProperty("turn", livingRoom.getTurn());
+
+
+        JsonElement board = converter.fromJson(writeBoardToJson(livingRoom.getBoard(), "" + livingRoom.getLivingRoomId() + "_board"), JsonArray.class);
+        livingRoomJObj.add("board", board);
+
+
+        JsonArray commonGoalSet = new JsonArray();
+        for (CommonGoalCard cg : livingRoom.getCommonGoalSet()) {
+            JsonArray points = new JsonArray();
+            for (Integer point : cg.getPointsList()) { //TODO CHECK IF THE LIST IS EMPTY
+                points.add(point);
+            }
+
+            JsonObject commonGoal = new JsonObject();
+            JsonElement pointsEl = points.getAsJsonArray();
+
+            commonGoal.addProperty("goalName", cg.getName());
+            commonGoal.add("pointsLeft", pointsEl);
+
+            JsonElement commonGoalEl = commonGoal.getAsJsonObject();
+            commonGoalSet.add(commonGoalEl);
+        }
+        JsonElement commonGoalSetEl = commonGoalSet.getAsJsonArray();
+        livingRoomJObj.add("commonGoals", commonGoalSetEl);
+        //deleteLivingRoomIfExists(converter.toJson(livingRoomJObj, JsonObject.class));
+        return converter.toJson(livingRoomJObj);
+    }
     public static LivingRoom getRandomLivingForTest() {
         JsonArray livingRooms = converter.fromJson(getJsonStringFrom("src/main/resources/JSONForTesting/LivingRoomsTEST.json"), JsonObject.class).getAsJsonArray("livingRooms");
         Random r = new Random();
@@ -634,6 +676,16 @@ public class JSONInterface {
         }
     }
 
+    public static void removeLivingRoom(LivingRoom livingRoom){
+        JsonObject object = converter.fromJson(getJsonStringFrom(getLivingRoomsPath()), JsonObject.class);
+        JsonArray livingRoomsList = object.getAsJsonArray("livingRooms");
+        JsonElement toRemove = converter.fromJson(writeNotSaveLivingRoomToJson(livingRoom, ""), JsonObject.class);
+        livingRoomsList.remove(toRemove);
+        saveIntoFile("livingRooms", livingRoomsList, getLivingRoomsPath());
+    }
+
+
+
     public static String getShelvesPath() {
         return findCorrectPathFromResources(shelvesPath);
     }
@@ -675,12 +727,24 @@ public class JSONInterface {
 
     public static String findCorrectPathFromResources(String pathFromRes){
         URL location = JSONInterface.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
-            return path;
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        if(location.getPath().endsWith(".jar")){
+            try {
+                String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
+                return path;
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
+        else{
+            String path = null;
+            try {
+                path = String.valueOf(Paths.get(location.toURI()).resolve("../../src/main/resources" + pathFromRes).normalize());
+                return path;
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     public static String generatePick(List<BoardPosition> pick){

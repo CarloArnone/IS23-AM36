@@ -1,10 +1,17 @@
 package it.polimi.ingsw.Server.Controller;
 
+import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewServerSocket;
 import it.polimi.ingsw.Server.Model.LivingRoom;
+import it.polimi.ingsw.Server.Model.Player;
+
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class LobbyLivingRoom {
     LivingRoom liv;
     int necessaryPLayers;
+
+    Controller controller = Controller.INSTANCE;
 
     public LobbyLivingRoom(LivingRoom liv, int necessaryPLayers) {
         this.liv = liv;
@@ -17,17 +24,35 @@ public class LobbyLivingRoom {
     }
 
     public boolean isGameStarted(){
-        return liv.getPlayers().size() == necessaryPLayers;
+        List<WaitingPlayer> players = liv.getPlayers().stream().map(x -> controller.getWaitingPlayerByName(x.getName())).filter(WaitingPlayer::isOnline).toList();
+        return players.size() == necessaryPLayers;
     }
 
     public boolean isGameEnded(){
-        if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull())){
+        if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull()) && liv.getTurn() == liv.getPlayers().size()-1){
             return getLivingRoom().getTurn() == 0;
+        }
+        if(isLonelyPlayer(getLivingRoom())){
+            return true;
         }
         return false;
     }
 
+    private boolean isLonelyPlayer(LivingRoom livingRoom) {
+        return livingRoom.getPlayers().stream().filter(player -> controller.getWaitingPlayerByName(player.getName()).isOnline()).toList().size() == 1;
+    }
+
+
+
     public LivingRoom getLivingRoom() {
         return liv;
+    }
+
+    public boolean isPossibleJoin() {
+        return liv.getPlayers().size() < necessaryPLayers;
+    }
+
+    public Player getWinner(){
+        return liv.getWinner();
     }
 }
