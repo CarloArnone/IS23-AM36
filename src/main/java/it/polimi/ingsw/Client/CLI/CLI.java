@@ -5,7 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.polimi.ingsw.Common.Utils.BlackBoard;
-import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.Printer;

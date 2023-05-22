@@ -17,6 +17,7 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     Controller controller = Controller.getInstance();
 
 
+
     @Override
     public void confirmEndTurn(Command args) throws RemoteException {
 
@@ -26,6 +27,15 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         int col = Integer.parseInt(args.getArgs().get(3));
 
         confirmEndTurn(livingRoom, player, pick, col);
+    }
+
+    @Override
+    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
+        try {
+            controller.confirmEndTurn(livingRoom, p, pick, col);
+        } catch (NotEnoughSpacesInCol e) {
+            //controller.getWaitingForChoice().stream().filter(p1 -> p1.getPlayer().getName().equals(p.getName())).findFirst().get().getView().;
+        }
     }
 
     @Override
@@ -119,15 +129,6 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     @Override
     public String upper(String upperString) {
         return upperString.toUpperCase();
-    }
-
-    @Override
-    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
-        try {
-            controller.confirmEndTurn(livingRoom, p, pick, col);
-        } catch (NotEnoughSpacesInCol e) {
-            //TODO: CALL CLIENT METHOD
-        }
     }
 
     @Override

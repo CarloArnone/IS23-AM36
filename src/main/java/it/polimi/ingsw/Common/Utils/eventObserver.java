@@ -5,7 +5,6 @@ import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
-import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;

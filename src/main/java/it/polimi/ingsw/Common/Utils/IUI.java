@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Common.Utils;
 
-import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;

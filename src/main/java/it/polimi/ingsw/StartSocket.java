@@ -4,8 +4,6 @@ import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Common.Utils.BlackBoard;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.ServerSocketHousing;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewClientSocket;
-import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewServerSocket;
-import it.polimi.ingsw.Server.Model.Player;
 
 import java.io.IOException;
 

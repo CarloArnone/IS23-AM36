@@ -7,8 +7,10 @@ import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.eventObserver;
-import it.polimi.ingsw.Server.Model.*;
-import com.google.gson.Gson.*;
+import it.polimi.ingsw.Server.Model.BoardPosition;
+import it.polimi.ingsw.Server.Model.ItemCard;
+import it.polimi.ingsw.Server.Model.LivingRoom;
+import it.polimi.ingsw.Server.Model.Player;
 
 import java.util.*;
 
