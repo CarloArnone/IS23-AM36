@@ -14,7 +14,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunication {
+public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     private IUI ui;
     private int port;
@@ -32,107 +32,6 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
         reg = LocateRegistry.getRegistry("127.0.0.1", this.port);
         // Looking up the registry for the remote object
         this.clientStub = (RMI_ServerInterface) reg.lookup("//localhost/mainServer");
-    }
-
-
-    @Override
-    public void NotEnoughSpacesInCol(Command args) {
-
-    }
-
-    @Override
-    public void LoginUnsuccessful(Command args) {
-
-    }
-
-    @Override
-    public void LivingRoomNotFound(Command args) {
-
-    }
-
-    @Override
-    public void CreateGameNotSuccessful(Command args) {
-
-    }
-
-    @Override
-    public void NotDisconnectedPlayer(Command args) {
-
-    }
-
-    @Override
-    public void GameNotStarted(Command args) {
-
-    }
-
-    @Override
-    public void GameNotEnded(Command args) {
-
-    }
-
-    @Override
-    public void NotPossiblePick(Command args) {
-
-    }
-
-    @Override
-    public void TurnEndedSuccessfully(Command args) {
-
-    }
-
-    @Override
-    public void LoginDoneSuccessfully(Command args) {
-
-    }
-
-    @Override
-    public void LivingRoomFound(Command args) {
-
-    }
-
-    @Override
-    public void JoinedGame(Command args) {
-
-    }
-
-    @Override
-    public void DisconnectedPlayer(Command args) {
-
-    }
-
-    @Override
-    public void LivingRoomsList(Command args) {
-
-    }
-
-    @Override
-    public void GameStarted(Command args) {
-
-    }
-
-    @Override
-    public void GameEnded(Command args) {
-
-    }
-
-    @Override
-    public void PossiblePick(Command args) {
-
-    }
-
-    @Override
-    public void NotifyListener(Command args) {
-
-    }
-
-    @Override
-    public String echo(String echoString) throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public String upper(String upperString) throws RemoteException {
-        return null;
     }
 
     @Override
@@ -156,8 +55,11 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
     @Override
     public void logInTryEvent(String name, ICommunication virtualView) {
 
-        List<String> args = new ArrayList<>();
-        args.add(0, name);
+        try{
+            clientStub.logInTryEvent(name, this);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -216,7 +118,111 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface, ICommunicatio
     }
 
     @Override
+    public void NotifyListener(Command args) {
+
+    }
+
+    @Override
     public void notifyListener() {
 
+    }
+
+    //ERRORS
+
+    @Override
+    public void NotEnoughSpacesInCol(Command args) {
+
+    }
+
+    @Override
+    public void LoginUnsuccessful(Command args) {
+
+    }
+
+    @Override
+    public void LivingRoomNotFound(Command args) {
+
+    }
+
+    @Override
+    public void CreateGameNotSuccessful(Command args) {
+
+    }
+
+    @Override
+    public void NotDisconnectedPlayer(Command args) {
+
+    }
+
+    @Override
+    public void GameNotStarted(Command args) {
+
+    }
+
+    @Override
+    public void GameNotEnded(Command args) {
+
+    }
+
+    @Override
+    public void NotPossiblePick(Command args) {
+
+    }
+
+    //SUCCESSES
+    @Override
+    public void TurnEndedSuccessfully(Command args) {
+
+    }
+
+    @Override
+    public void LoginDoneSuccessfully(Command args) {
+
+    }
+
+    @Override
+    public void LivingRoomFound(Command args) {
+
+    }
+
+    @Override
+    public void JoinedGame(Command args) {
+
+    }
+
+    @Override
+    public void DisconnectedPlayer(Command args) {
+
+    }
+
+    @Override
+    public void LivingRoomsList(Command args) {
+
+    }
+
+    @Override
+    public void GameStarted(Command args) {
+
+    }
+
+    @Override
+    public void GameEnded(Command args) {
+
+    }
+
+    @Override
+    public void PossiblePick(Command args) {
+
+    }
+
+    //TESTING
+    @Override
+    public String echo(String echoString) throws RemoteException {
+        return echoString;
+    }
+
+    @Override
+    public String upper(String upperString) throws RemoteException {
+        return upperString.toUpperCase();
     }
 }

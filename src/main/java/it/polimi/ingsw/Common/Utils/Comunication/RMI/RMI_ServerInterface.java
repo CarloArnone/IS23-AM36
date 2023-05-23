@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Common.Utils.Comunication.RMI;
 
 import it.polimi.ingsw.Common.Utils.Command;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -9,7 +10,7 @@ public interface RMI_ServerInterface extends Remote {
 
     void confirmEndTurn(Command args) throws RemoteException;
 
-    void logInTryEvent(Command args) throws RemoteException;
+    void logInTryEvent(String name, ICommunication clientVirtualView) throws RemoteException;
 
     void previousGamesRequestEvent(Command args) throws RemoteException;
 

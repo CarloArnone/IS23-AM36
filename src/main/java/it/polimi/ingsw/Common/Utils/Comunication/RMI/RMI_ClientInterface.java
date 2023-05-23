@@ -1,11 +1,12 @@
 package it.polimi.ingsw.Common.Utils.Comunication.RMI;
 
 import it.polimi.ingsw.Common.Utils.Command;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface RMI_ClientInterface extends Remote {
+public interface RMI_ClientInterface extends Remote, ICommunication {
 
     //ERRORS
     void NotEnoughSpacesInCol(Command args);
