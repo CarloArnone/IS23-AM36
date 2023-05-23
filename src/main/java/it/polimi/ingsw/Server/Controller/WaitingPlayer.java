@@ -21,6 +21,11 @@ public class WaitingPlayer {
         online = true;
     }
 
+    public WaitingPlayer(Player player, boolean state) {
+        this.player = player;
+        online = state;
+    }
+
     public Player getPlayer() {
         return player;
     }

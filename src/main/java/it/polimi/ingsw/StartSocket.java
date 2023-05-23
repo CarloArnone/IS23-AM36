@@ -1,7 +1,6 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.Client.CLI.CLI;
-import it.polimi.ingsw.Common.Utils.BlackBoard;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.ServerSocketHousing;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewClientSocket;
 
@@ -19,17 +18,24 @@ public class StartSocket {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            //Create RMI server
         }
         else{
-            try {
-                BlackBoard blackBoard = BlackBoard.getInstance();
-                VirtualViewClientSocket client = new VirtualViewClientSocket("localhost", Integer.parseInt(args[0]), new CLI());
-                client.getUI().initalizeVirtualView(client);
-                client.getUI().launch();
+            if(args[0].equals("socket")){
+                try {
+                    VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]), new CLI());
+                    client.getUI().initalizeVirtualView(client);
+                    client.getUI().launch();
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            else{
+                System.out.println("RMI Client Started");
+            }
+
         }
 
 

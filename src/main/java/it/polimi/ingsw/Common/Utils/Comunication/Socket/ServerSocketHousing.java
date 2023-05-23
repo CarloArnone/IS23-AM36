@@ -4,7 +4,6 @@ import it.polimi.ingsw.Server.Controller.Controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-
 public class ServerSocketHousing {
 
     private ServerSocket serverSocket;
@@ -15,6 +14,7 @@ public class ServerSocketHousing {
         System.out.println("Server started");
         parseCommands();
     }
+
 
     public void stop() throws IOException {
         serverSocket.close();
@@ -42,3 +42,5 @@ public class ServerSocketHousing {
     }
 
 }
+
+
