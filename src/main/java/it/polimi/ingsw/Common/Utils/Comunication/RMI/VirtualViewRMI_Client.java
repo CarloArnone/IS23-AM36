@@ -55,163 +55,238 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     @Override
     public void logInTryEvent(String name, ICommunication virtualView) {
 
-        try{
-            clientStub.logInTryEvent(name, this);
+        clientStub.logInTryEvent(name, this);
+    }
+
+    @Override
+    public void previousGamesRequestEvent(String name) {
+        List<String> args = new ArrayList<>();
+        args.add(name);
+        try {
+            clientStub.previousGamesRequestEvent(new Command("PreviousGameRequest", args, ""));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void previousGamesRequestEvent(String name) {
-
-    }
-
-    @Override
     public void createGameEvent(String livingRoomID, Player p, int PlayersNum) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoomID);
+        args.add(p.getName());
+        args.add(Integer.toString(PlayersNum));
 
+        try {
+            clientStub.createGameEvent(new Command("createGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void retrieveOldGameEvent(String livingRoomID) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoomID);
 
+        try {
+            clientStub.retrieveOldGameEvent(new Command("retrieveOldGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void joinGameEvent(String livingRoomID, String name) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoomID);
+        args.add(name);
 
+        try {
+            clientStub.joinGameEvent(new Command("joinGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoom.getLivingRoomId());
 
+        clientStub.disconnectedPlayer(new Command("retrieveOldGameEvent", args, ""));
     }
 
     @Override
     public void getActiveLivingRooms(int listLength, int occurrence) {
+        List<String> args = new ArrayList<>();
+        args.add(Integer.toString(listLength));
+        args.add(Integer.toString(occurrence));
 
+        try {
+            clientStub.getActiveLivingRooms(new Command("getActiveLivingRooms", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void isGamesStarted(LivingRoom livingRoom) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoom.getLivingRoomId());
 
+        try {
+            clientStub.isGamesStarted(new Command("isGameStarted", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView) {
+        List<String> args = new ArrayList<>();
+        args.add(name);
+        args.add(activeLivingRoom.getLivingRoomId());
 
+        try {
+            clientStub.leaveGameEvent(new Command("leaveGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void isGameEnded(LivingRoom livingRoom) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoom.getLivingRoomId());
 
+        try {
+            clientStub.isGameEnded(new Command("isGameEnded", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void endGame(LivingRoom livingRoom) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoom.getLivingRoomId());
 
+        try {
+            clientStub.endGame(new Command("endGame", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick) {
+        List<String> args = new ArrayList<>();
+        args.add(player.getName());
+        args.add(livingRoomId);
+        args.add(JSONInterface.generatePick(pick));
 
+        try {
+            clientStub.isPossiblePick(new Command("isPossiblePick", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void NotifyListener(Command args) {
-
-    }
-
-    @Override
-    public void notifyListener() {
-
+    public void notifyListener(Command command) {
+        
     }
 
     //ERRORS
 
     @Override
-    public void NotEnoughSpacesInCol(Command args) {
+    public void notEnoughSpacesInCol(Command command) {
 
     }
 
     @Override
-    public void LoginUnsuccessful(Command args) {
+    public void loginUnsuccessful(Command command) {
 
     }
 
     @Override
-    public void LivingRoomNotFound(Command args) {
+    public void livingRoomNotFound(Command command) {
 
     }
 
     @Override
-    public void CreateGameNotSuccessful(Command args) {
+    public void createGameNotSuccessful(Command command) {
 
     }
 
     @Override
-    public void NotDisconnectedPlayer(Command args) {
+    public void notDisconnectedPlayer(Command command) {
 
     }
 
     @Override
-    public void GameNotStarted(Command args) {
+    public void gameNotStarted(Command command) {
 
     }
 
     @Override
-    public void GameNotEnded(Command args) {
+    public void gameNotEnded(Command command) {
 
     }
 
     @Override
-    public void NotPossiblePick(Command args) {
+    public void notPossiblePick(Command command) {
 
     }
 
     //SUCCESSES
     @Override
-    public void TurnEndedSuccessfully(Command args) {
+    public void turnEndedSuccessfully(Command command) {
 
     }
 
     @Override
-    public void LoginDoneSuccessfully(Command args) {
+    public void loginDoneSuccessfully(Command command) {
 
     }
 
     @Override
-    public void LivingRoomFound(Command args) {
+    public void livingRoomFound(Command command) {
 
     }
 
     @Override
-    public void JoinedGame(Command args) {
+    public void joinedGame(Command command) {
 
     }
 
     @Override
-    public void DisconnectedPlayer(Command args) {
+    public void disconnectedPlayer(Command command) {
 
     }
 
     @Override
-    public void LivingRoomsList(Command args) {
+    public void livingRoomsList(Command command) {
 
     }
 
     @Override
-    public void GameStarted(Command args) {
+    public void gameStarted(Command command) {
 
     }
 
     @Override
-    public void GameEnded(Command args) {
+    public void gameEnded(Command command) {
 
     }
 
     @Override
-    public void PossiblePick(Command args) {
+    public void possiblePick(Command command) {
+
+    }
+
+    @Override
+    public void notifyListener(String message) {
 
     }
 

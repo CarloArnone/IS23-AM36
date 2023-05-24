@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Common.Utils.Comunication;
 
+import it.polimi.ingsw.Common.Utils.Command;
 import it.polimi.ingsw.Common.Utils.Listener;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.LivingRoom;
@@ -22,5 +23,28 @@ public interface ICommunication extends Listener {
     void isGameEnded(LivingRoom livingRoom);
     void endGame(LivingRoom livingRoom);
     void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick);
+
+    //ERRORS
+    void notEnoughSpacesInCol(Command command);
+    void loginUnsuccessful(Command command);
+    void livingRoomNotFound(Command command);
+    void createGameNotSuccessful(Command command);
+    void notDisconnectedPlayer(Command command);
+    void gameNotStarted(Command command);
+    void gameNotEnded(Command command);
+    void notPossiblePick(Command command);
+
+
+    //SUCCESSES
+    void turnEndedSuccessfully(Command command);
+    void loginDoneSuccessfully(Command command);
+    void livingRoomFound(Command command);
+    void joinedGame(Command command);
+    void disconnectedPlayer(Command command);
+    void livingRoomsList(Command command);
+    void gameStarted(Command command);
+    void gameEnded(Command command);
+    void possiblePick(Command command);
+    void notifyListener(Command command);
 
 }

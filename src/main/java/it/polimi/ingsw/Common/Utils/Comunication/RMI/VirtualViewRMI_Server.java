@@ -32,21 +32,21 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.logInTryEvent(name, virtualView)) {
             command.setCommand("LoginDoneSuccessfully");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LoginDoneSuccessfully(command);
+            tempView.loginDoneSuccessfully(command);
         } else {
             command.setCommand("LoginUnsuccessful");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LoginUnsuccessful(command);
+            tempView.loginUnsuccessful(command);
         }
     }
 
     @Override
-    public void confirmEndTurn(Command args) throws RemoteException {
+    public void confirmEndTurn(Command command) throws RemoteException {
 
-        LivingRoom livingRoom = controller.getLivingRoomById(args.getArgs().get(0));
-        Player player = controller.getPlayerByName(args.getArgs().get(1));
-        List<BoardPosition> pick = JSONInterface.recreatePick(args.getArgs().get(2));
-        int col = Integer.parseInt(args.getArgs().get(3));
+        LivingRoom livingRoom = controller.getLivingRoomById(command.getArgs().get(0));
+        Player player = controller.getPlayerByName(command.getArgs().get(1));
+        List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(2));
+        int col = Integer.parseInt(command.getArgs().get(3));
 
         confirmEndTurn(livingRoom, player, pick, col);
     }
@@ -61,7 +61,7 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
             if(controller.confirmEndTurn(livingRoom, p, pick, col)){
                 command.setCommand("TurnEndedSuccessfully");
                 command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-                tempView.TurnEndedSuccessfully(command);
+                tempView.turnEndedSuccessfully(command);
             } else {
                 command.setCommand("");
                 command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
@@ -70,13 +70,13 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         } catch (NotEnoughSpacesInCol e) {
             command.setCommand("NotEnoughSpacesInCol");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.NotEnoughSpacesInCol(command);
+            tempView.notEnoughSpacesInCol(command);
         }
     }
 
     @Override
-    public void previousGamesRequestEvent(Command args) throws RemoteException {
-        previousGamesRequestEvent(args.getArgs().get(0));
+    public void previousGamesRequestEvent(Command command) throws RemoteException {
+        previousGamesRequestEvent(command.getArgs().get(0));
     }
 
     //TODO: DIFFERENCE WITH -- retrieveOldGameEvent -- ?
@@ -89,20 +89,20 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.previousGamesRequestEvent(name) != null){
             command.setCommand("LivingRoomFound");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LivingRoomFound(command);
+            tempView.livingRoomFound(command);
         } else {
             command.setCommand("LivingRoomNotFound");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LivingRoomFound(command);
+            tempView.livingRoomFound(command);
         }
     }
 
     @Override
-    public void createGameEvent(Command args) throws RemoteException {
+    public void createGameEvent(Command command) throws RemoteException {
 
-        String livingRoomID = args.getArgs().get(0);
-        Player player = controller.getPlayerByName(args.getArgs().get(1));
-        int playersNum = Integer.parseInt(args.getArgs().get(2));
+        String livingRoomID = command.getArgs().get(0);
+        Player player = controller.getPlayerByName(command.getArgs().get(1));
+        int playersNum = Integer.parseInt(command.getArgs().get(2));
 
         createGameEvent(livingRoomID, player, playersNum);
     }
@@ -122,15 +122,14 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         } catch (InvalidGameIDException | PlayersOutOfBoundException e) {
             command.setCommand("LivingRoomNotFound");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.CreateGameNotSuccessful(command);
+            tempView.createGameNotSuccessful(command);
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
-    public void retrieveOldGameEvent(Command args) throws RemoteException {
-        retrieveOldGameEvent(args.getArgs().get(0));
+    public void retrieveOldGameEvent(Command command) throws RemoteException {
+        retrieveOldGameEvent(command.getArgs().get(0));
     }
 
     //TODO: DIFFERENCE WITH -- previousGamesRequestEvent -- ?
@@ -144,17 +143,17 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
             LivingRoom tempLivingRoom = controller.retrieveOldGameEvent(livingRoomID);
             command.setCommand("LivingRoomFound");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LivingRoomFound(command);
+            tempView.livingRoomFound(command);
         } catch (NoMatchingIDException e) {
             command.setCommand("LivingRoomNotFound");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.LivingRoomNotFound(command);
+            tempView.livingRoomNotFound(command);
         }
     }
 
     @Override
-    public void joinGameEvent(Command args) throws RemoteException {
-        joinGameEvent(args.getArgs().get(0), args.getArgs().get(1));
+    public void joinGameEvent(Command command) throws RemoteException {
+        joinGameEvent(command.getArgs().get(0), command.getArgs().get(1));
     }
 
     @Override
@@ -168,7 +167,7 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.getLivingRoomById(livingRoomID).getPlayers().stream().anyMatch(p1 -> p1.getName().equals(name))){
             command.setCommand("JoinedGame");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.JoinedGame(command);
+            tempView.joinedGame(command);
         } else {
             //TODO:DO WE HAVE TO CONSIDER THIS CASE?
         }
@@ -176,13 +175,38 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void disconnectedPlayer(Command args) throws RemoteException {
+    public void disconnectedPlayer(Command command) {
 
-        LivingRoom livingRoom = controller.getLivingRoomById(args.getArgs().get(0));
-        String name = args.getArgs().get(1);
-        boolean voluntaryLeft = Boolean.parseBoolean(args.getArgs().get(2));
+        LivingRoom livingRoom = controller.getLivingRoomById(command.getArgs().get(0));
+        String name = command.getArgs().get(1);
+        boolean voluntaryLeft = Boolean.parseBoolean(command.getArgs().get(2));
 
         disconnectedPlayer(livingRoom, name, voluntaryLeft, null);
+    }
+
+    @Override
+    public void livingRoomsList(Command command) {
+
+    }
+
+    @Override
+    public void gameStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameEnded(Command command) {
+
+    }
+
+    @Override
+    public void possiblePick(Command command) {
+
+    }
+
+    @Override
+    public void notifyListener(Command command) {
+
     }
 
     @Override
@@ -196,19 +220,19 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.disconnectedPlayer(livingRoom, name, voluntaryLeft, tempView)) {
             command.setCommand("DisconnectedPlayer");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.DisconnectedPlayer(command);
+            tempView.disconnectedPlayer(command);
         } else {
             command.setCommand("NotDisconnectedPlayer");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.NotDisconnectedPlayer(command);
+            tempView.notDisconnectedPlayer(command);
         }
     }
 
     @Override
-    public void getActiveLivingRooms(Command args) throws RemoteException {
+    public void getActiveLivingRooms(Command command) throws RemoteException {
 
-        int listLength = Integer.parseInt(args.getArgs().get(0));
-        int occurrence = Integer.parseInt(args.getArgs().get(1));
+        int listLength = Integer.parseInt(command.getArgs().get(0));
+        int occurrence = Integer.parseInt(command.getArgs().get(1));
 
         getActiveLivingRooms(listLength, occurrence);
     }
@@ -223,12 +247,12 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
             command.addArg(s); //TODO: CHECK IF THIS CORRECT
         }
         command.setCommand("LivingRoomsList");
-        tempView.LivingRoomsList(command);
+        tempView.livingRoomsList(command);
     }
 
     @Override
-    public void isGamesStarted(Command args) throws RemoteException {
-        isGamesStarted(controller.getLivingRoomById(args.getArgs().get(0)));
+    public void isGamesStarted(Command command) throws RemoteException {
+        isGamesStarted(controller.getLivingRoomById(command.getArgs().get(0)));
     }
 
     @Override
@@ -240,17 +264,17 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.isGamesStarted(livingRoom)) {
             command.setCommand("GameStarted");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.GameStarted(command);
+            tempView.gameStarted(command);
         } else {
             command.setCommand("GameNotStarted");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.GameNotStarted(command);
+            tempView.gameNotStarted(command);
         }
     }
 
     @Override
-    public void isGameEnded(Command args) throws RemoteException {
-        isGameEnded(controller.getLivingRoomById(args.getArgs().get(0)));
+    public void isGameEnded(Command command) throws RemoteException {
+        isGameEnded(controller.getLivingRoomById(command.getArgs().get(0)));
     }
 
     @Override
@@ -262,17 +286,17 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.isGamesStarted(livingRoom)) {
             command.setCommand("GameEnded");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.GameEnded(command);
+            tempView.gameEnded(command);
         } else {
             command.setCommand("GameNotEnded");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.GameNotEnded(command);
+            tempView.gameNotEnded(command);
         }
     }
 
     @Override
-    public void endGame(Command args) throws RemoteException {
-        endGame(controller.getLivingRoomById(args.getArgs().get(0)));
+    public void endGame(Command command) throws RemoteException {
+        endGame(controller.getLivingRoomById(command.getArgs().get(0)));
     }
 
     //TODO: BROADCAST?
@@ -294,10 +318,10 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void leaveGameEvent(Command args) throws RemoteException {
+    public void leaveGameEvent(Command command) throws RemoteException {
 
-        String name = args.getArgs().get(0);
-        LivingRoom activeLivingRoom = controller.getLivingRoomById(args.getArgs().get(1));
+        String name = command.getArgs().get(0);
+        LivingRoom activeLivingRoom = controller.getLivingRoomById(command.getArgs().get(1));
 
         leaveGameEvent(name, activeLivingRoom, null);
     }
@@ -315,10 +339,10 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void isPossiblePick(Command args) throws RemoteException {
-        Player player = controller.getPlayerByName(args.getArgs().get(0));
-        String livingRoomId = args.getArgs().get(1);
-        List<BoardPosition> pick = JSONInterface.recreatePick(args.getArgs().get(2));
+    public void isPossiblePick(Command command) throws RemoteException {
+        Player player = controller.getPlayerByName(command.getArgs().get(0));
+        String livingRoomId = command.getArgs().get(1);
+        List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(2));
     }
 
     @Override
@@ -330,16 +354,80 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         if(controller.isPossiblePick(player, livingRoomId, pick)) {
             command.setCommand("PossiblePick");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.PossiblePick(command);
+            tempView.possiblePick(command);
         } else {
             command.setCommand("NotPossiblePick");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.NotPossiblePick(command);
+            tempView.notPossiblePick(command);
         }
     }
 
+    //ERRORS
+
     @Override
-    public void notifyListener() {
+    public void notEnoughSpacesInCol(Command command) {
+
+    }
+
+    @Override
+    public void loginUnsuccessful(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomNotFound(Command command) {
+
+    }
+
+    @Override
+    public void createGameNotSuccessful(Command command) {
+        
+    }
+
+    @Override
+    public void notDisconnectedPlayer(Command command) {
+        
+    }
+
+    @Override
+    public void gameNotStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameNotEnded(Command command) {
+
+    }
+
+    @Override
+    public void notPossiblePick(Command command) {
+
+    }
+
+    //SUCCESSES
+
+    @Override
+    public void turnEndedSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void loginDoneSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomFound(Command command) {
+
+    }
+
+    @Override
+    public void joinedGame(Command command) {
+
+    }
+
+    @Override
+    public void notifyListener(String message) {
 
     }
 

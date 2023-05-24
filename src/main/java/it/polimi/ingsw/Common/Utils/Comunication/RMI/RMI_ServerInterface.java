@@ -6,33 +6,34 @@ import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface RMI_ServerInterface extends Remote {
+public interface RMI_ServerInterface extends Remote, ICommunication {
 
-    void confirmEndTurn(Command args) throws RemoteException;
+    void confirmEndTurn(Command command) throws RemoteException;
 
-    void logInTryEvent(String name, ICommunication clientVirtualView) throws RemoteException;
+    void previousGamesRequestEvent(Command command) throws RemoteException;
 
-    void previousGamesRequestEvent(Command args) throws RemoteException;
+    void createGameEvent(Command command) throws RemoteException;
 
-    void createGameEvent(Command args) throws RemoteException;
+    void retrieveOldGameEvent(Command command) throws RemoteException;
 
-    void retrieveOldGameEvent(Command args) throws RemoteException;
+    void joinGameEvent(Command command) throws RemoteException;
 
-    void joinGameEvent(Command args) throws RemoteException;
+    void disconnectedPlayer(Command command);
 
-    void disconnectedPlayer(Command args) throws RemoteException;
+    void getActiveLivingRooms(Command command) throws RemoteException;
 
-    void getActiveLivingRooms(Command args) throws RemoteException;
+    void isGamesStarted(Command command) throws RemoteException;
 
-    void isGamesStarted(Command args) throws RemoteException;
+    void leaveGameEvent(Command command) throws RemoteException;
 
-    void leaveGameEvent(Command args) throws RemoteException;
+    void isGameEnded(Command command) throws RemoteException;
 
-    void isGameEnded(Command args) throws RemoteException;
+    void endGame(Command command) throws RemoteException;
 
-    void endGame(Command args) throws RemoteException;
+    void isPossiblePick(Command command) throws RemoteException;
 
-    void isPossiblePick(Command args) throws RemoteException;
+    @Override
+    void createGameNotSuccessful(Command command);
 
     public String echo(String echoString) throws RemoteException;
 
