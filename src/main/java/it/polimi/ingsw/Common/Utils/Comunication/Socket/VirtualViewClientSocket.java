@@ -32,6 +32,20 @@ public class VirtualViewClientSocket implements ICommunication {
                             }).start();
     }
 
+    public VirtualViewClientSocket(String ip, int port) throws IOException {
+        comunicator = new Socket(ip, port);
+        this.UI = UI;
+        out = new PrintWriter(comunicator.getOutputStream(), true);
+        in = new Scanner(comunicator.getInputStream());
+
+        new Thread(() ->{
+            while(true){
+                handleReturn();
+            }
+        }).start();
+    }
+
+
 
     public void sendMessage(String msg){
         out.println(msg);
@@ -253,6 +267,10 @@ public class VirtualViewClientSocket implements ICommunication {
         args.add(1, livingRoomId);
         args.add(2, JSONInterface.generatePick(pick));
         sendMessage(JSONInterface.generateCommand("isPossiblePick", args, ""));
+    }
+
+    public void setUI(IUI Ui) {
+        this.UI = Ui;
     }
 }
 

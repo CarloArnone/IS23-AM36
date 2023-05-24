@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.MyShelfieLoggedInController">
+   <children>
+      <Label layoutX="322.0" layoutY="365.0" prefHeight="18.0" prefWidth="138.0" text="Available Games" textFill="YELLOW" />
+      <ChoiceBox fx:id="availableGames" layoutX="462.0" layoutY="362.0" prefWidth="150.0" />
+      <Button fx:id="createGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="275.0" mnemonicParsing="false" onAction="#switchToGameScene" text="Create a Game" textAlignment="CENTER" textFill="#41ff00" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Comic Sans MS" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="joinGameButton" alignment="CENTER" contentDisplay="CENTER" layoutX="322.0" layoutY="275.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="293.0" text="Join a Game" textAlignment="CENTER" textFill="#41ff00" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Comic Sans MS" size="36.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

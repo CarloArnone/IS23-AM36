@@ -4,6 +4,7 @@ import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Client.GUI.GUI;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.ServerSocketHousing;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewClientSocket;
+import it.polimi.ingsw.Common.Utils.IUI;
 
 import java.io.IOException;
 
@@ -35,8 +36,8 @@ public class StartSocket {
                     }
                 }   else{
                     try {
-                        VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]), new GUI());
-                        client.getUI().initalizeVirtualView(client);
+                        VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]));
+                        client.setUI(GUI.getInstance(client));
                         client.getUI().startIUI();
 
                     } catch (IOException e) {

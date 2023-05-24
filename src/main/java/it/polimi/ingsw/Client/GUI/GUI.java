@@ -1,13 +1,18 @@
 package it.polimi.ingsw.Client.GUI;
 
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
+import it.polimi.ingsw.Server.Controller.Controller;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,16 +22,16 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.net.URL;
+import java.security.spec.ECField;
+import java.util.*;
 
 import static java.lang.Integer.parseInt;
 import static javafx.application.Application.launch;
 
 public class GUI extends IUI {
     Stage window;
-
+    static GUI Gui;
     int playersNumber;
     static final int shelfWidth = 5;
     static final int shelfHeight = 6;
@@ -43,21 +48,48 @@ public class GUI extends IUI {
     static final double inputSceneSize = 100;
     static final int pointsImageSize = 90;
     LivingRoom livingRoom;
-
+    Scene scene;
     GridPane livingRoomBoard;
+    Controller controller;
 
     public void start(Stage stage) throws IOException {
-        window = stage;
-        windowSettingsMainScene(window);
-
-        //Default window
-        Scene firstScene = generateFirstScene();
-        Scene mainScene = generateGameBoardScene();
-        window.setScene(mainScene);
-        window.show();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/FXML/MyShelfie-Intro-Scene.fxml"));
+            //Parent root1 = FXMLLoader.load;
+            scene = new Scene(root);
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.show();
+            window = stage;
+            //windowSettingsMainScene(window);
+            //Default window
+            Scene firstScene = generateFirstScene();
+            Scene mainScene = generateGameBoardScene();
+            window.show();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
+    public static GUI getInstance(){
+        if(Gui == null) return new GUI();
+        else return Gui;
+    }
 
+    public static GUI getInstance(ICommunication virtualView){
+        if(Gui == null)
+            Gui = new GUI(virtualView);
+
+        return Gui;
+    }
+
+    public GUI(){
+
+    }
+
+    public GUI(ICommunication virtualView){
+        addVirtualViewClient(virtualView);
+    }
     private Scene generateGameBoardScene(){
         ArrayList<Tile> tiles = new ArrayList<>();
         StackPane general = new StackPane();
@@ -231,9 +263,13 @@ public class GUI extends IUI {
                         clearGameBoard(livingroomBoard);
                         //drawGameboard(livingroomBoard);
                     }else if(returnValue == 1){
-                        getVirtualViewClient().createGameEvent("Pero",new Player("Davide"),3);
+                        clickPlay();
                     }
                 });
+    }
+
+    private void clickPlay(){
+        getVirtualViewClient().createGameEvent("Pero",new Player("Davide"),3);
     }
 
     private void setExitButtonAction(Button exitButton) {
@@ -648,7 +684,17 @@ public class GUI extends IUI {
 
     @Override
     public void loginSuccessful() {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/FXML/MyShelfie-Logged-In.fxml"));
+            scene = new Scene(root);
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        window.close();
+        Stage window = new Stage();
+        window.setScene(scene);
+        window.show();
     }
 
     @Override

@@ -675,12 +675,24 @@ public class JSONInterface {
 
     public static String findCorrectPathFromResources(String pathFromRes){
         URL location = JSONInterface.class.getProtectionDomain().getCodeSource().getLocation();
-        try {
-            String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
-            return path;
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+        if(location.getPath().endsWith(".jar")){
+            try {
+                String path = String.valueOf(Paths.get(location.toURI()).resolve("../src/main/resources" + pathFromRes).normalize());
+                return path;
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
+        else{
+            String path = null;
+            try {
+                path = String.valueOf(Paths.get(location.toURI()).resolve("../../src/main/resources" + pathFromRes).normalize());
+                return path;
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 
     public static String generatePick(List<BoardPosition> pick){
