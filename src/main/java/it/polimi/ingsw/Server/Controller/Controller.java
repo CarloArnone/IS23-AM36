@@ -56,7 +56,7 @@ public enum Controller implements eventObserver {
                         } catch (NotEnoughSpacesInCol e) {
                             throw new NotEnoughSpacesInCol();
                         }
-                        liv.getLivingRoom().updateGoals(player); //TODO TESTING
+                        liv.getLivingRoom().updateGoals(player);
                         player.updateScore();
                         liv.getLivingRoom().undoDraft(player);
                         break;
@@ -73,6 +73,9 @@ public enum Controller implements eventObserver {
     }
 
     private void passTurn(LivingRoom livingRoom) {
+        if(livingRoom.getPlayers().size() == 0){
+            return;
+        }
         livingRoom.nextTurn();
         while(!getWaitingPlayerByName(livingRoom.getPlayers().get(livingRoom.getTurn()).getName()).isOnline()){
             livingRoom.nextTurn();
@@ -170,13 +173,17 @@ public enum Controller implements eventObserver {
                 for(Player p : liv.getLivingRoom().getPlayers()){
                     if(p.getName().equals(name)){
                         if(voluntaryLeft){
+                            if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
+                                passTurn(liv.getLivingRoom());
+                            }
                             liv.getLivingRoom().removePlayer(p);
-                            passTurn(liv.getLivingRoom());
                             liv.getLivingRoom().notifyAllListeners("LeftGame " + p.getName());
                         }
                         else {
                             waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
-                            passTurn(liv.getLivingRoom());
+                            if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
+                                passTurn(liv.getLivingRoom());
+                            }
                             liv.getLivingRoom().notifyAllListeners("LeftGameCrush " + p.getName());
                         }
 

@@ -208,7 +208,7 @@ public class CLI extends IUI {
     }
 
     private void createOrJoinGameChoice() {
-        sc = new Scanner(System.in);
+        //sc = new Scanner(System.in);
         System.out.flush();
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("                                            Choose:\n");
@@ -239,6 +239,10 @@ public class CLI extends IUI {
     public boolean parseCommand(String command) {
         if (command.equals("exit") || command.equals("q")) {
             getVirtualViewClient().disconnectedPlayer(getViewLivingRoom(), getName(), true, getVirtualViewClient());
+            return true;
+        }
+
+        if(getViewLivingRoom() == null){
             return true;
         }
 
@@ -374,19 +378,7 @@ public class CLI extends IUI {
     }
 
     private void stopParsingCommands() {
-        String endingMessage = "exit" + (char)13;
-        InputStream systemIn = System.in;
-        try {
-            InputStream inputStream = new ByteArrayInputStream(endingMessage.getBytes("UTF-8"));
-            System.setIn(inputStream);
-            System.out.println("No more commands");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-        finally {
-            System.setIn(systemIn);
-        }
-
+        setViewLivingRoom(null);
     }
 
     /**
