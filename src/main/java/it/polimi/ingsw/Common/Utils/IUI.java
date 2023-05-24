@@ -21,16 +21,7 @@ public abstract class IUI implements Listener {
     private Player mySelf;
     private String name;
 
-    private boolean firstEnter;
     private ICommunication virtualViewClient;
-
-    public boolean isFirstEnter() {
-        return firstEnter;
-    }
-
-    public void setFirstEnter(boolean firstEnter) {
-        this.firstEnter = firstEnter;
-    }
 
     public LivingRoom getViewLivingRoom() {
         return viewLivingRoom;
