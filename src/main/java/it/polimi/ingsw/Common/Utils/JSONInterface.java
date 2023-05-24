@@ -73,7 +73,7 @@ public class JSONInterface {
             }
         }
 
-        saveIntoFile(Shelf_ID, jsonArray, getShelvesPath());
+        //saveIntoFile(Shelf_ID, jsonArray, getShelvesPath());
         return converter.toJson(jsonArray);
     }
 
@@ -91,7 +91,7 @@ public class JSONInterface {
             jsonArray.add(jsonObject);
         }
 
-        saveIntoFile(Board_ID, jsonArray, getBoardsPath());
+        //saveIntoFile(Board_ID, jsonArray, getBoardsPath());
 
         return converter.toJson(jsonArray);
 
@@ -119,7 +119,7 @@ public class JSONInterface {
         JsonElement shelf = converter.fromJson(writeShelfToJson(player.getMyShelf(), "" + player.getName() + "_shelf"), JsonArray.class).getAsJsonArray();
         jsonObject.add("shelf", shelf);
 
-        saveIntoFile(player.getName(), jsonObject, getPlayersPath());
+        //saveIntoFile(player.getName(), jsonObject, getPlayersPath());
 
         return converter.toJson(jsonObject);
     }

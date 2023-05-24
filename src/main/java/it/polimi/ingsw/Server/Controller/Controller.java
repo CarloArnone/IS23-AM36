@@ -171,10 +171,12 @@ public enum Controller implements eventObserver {
                     if(p.getName().equals(name)){
                         if(voluntaryLeft){
                             liv.getLivingRoom().removePlayer(p);
+                            passTurn(liv.getLivingRoom());
                             liv.getLivingRoom().notifyAllListeners("LeftGame " + p.getName());
                         }
                         else {
                             waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
+                            passTurn(liv.getLivingRoom());
                             liv.getLivingRoom().notifyAllListeners("LeftGameCrush " + p.getName());
                         }
 
@@ -238,7 +240,8 @@ public enum Controller implements eventObserver {
         return  playerIsValid(livingRoom, player) &&
                 !hasAlreadySomeCards(livingRoom, player) &&
                 checkPickCardsVeridicity(livingRoom, pick) &&
-                areCorrectPositions(pick);
+                areCorrectPositions(pick) &&
+                pick.size() >= 1;
     }
     private boolean checkPickCardsVeridicity(LivingRoom liv,  List<BoardPosition> pick) {
         Map<Character, Integer> colorCount = new HashMap<>();
@@ -291,6 +294,9 @@ public enum Controller implements eventObserver {
         return true;
     }
     private boolean areCorrectPositions(List<BoardPosition> pick){
+        if(pick.size() == 1){
+            return true;
+        }
         if(pick.stream().allMatch(pos -> pos.getPosX() == pick.get(0).getPosX() || pos.getPosY() == pick.get(0).getPosY())){
             return pick.stream().allMatch(pos -> hasNearPosition(pick, pos));
         }

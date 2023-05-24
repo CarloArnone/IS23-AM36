@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewServerSocket;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.Printer;
@@ -158,7 +159,7 @@ public class CLI extends IUI {
      */
     @Override
     public void retryPick() {
-        System.out.println("not Possible Pick");
+        updateCLI("Not possible Pick");
     }
 
     /**
@@ -167,7 +168,8 @@ public class CLI extends IUI {
     @Override
     public void turnPassed() {
         setPick(new ArrayList<>());
-        System.out.println("TurnCompleted");
+        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+        updateCLI("Turn Completed");
     }
 
     /**
@@ -206,7 +208,7 @@ public class CLI extends IUI {
     }
 
     private void createOrJoinGameChoice() {
-
+        sc = new Scanner(System.in);
         System.out.flush();
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("                                            Choose:\n");
@@ -359,7 +361,7 @@ public class CLI extends IUI {
                 System.out.println("You win");
                 stopParsingCommands();
             }
-            case "onlyPlayer" -> {
+            case "lonelyPlayer" -> {
                 System.out.println("You are the last in your game - disconnecting");
                 stopParsingCommands();
                 createOrJoinGameChoice();
@@ -377,6 +379,7 @@ public class CLI extends IUI {
         try {
             InputStream inputStream = new ByteArrayInputStream(endingMessage.getBytes("UTF-8"));
             System.setIn(inputStream);
+            System.out.println("No more commands");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
@@ -466,7 +469,7 @@ public class CLI extends IUI {
         if(getViewLivingRoom().getTurn() == getMyTurn()){
             System.out.println("It's My Turn");
         }
-        else System.out.println("It's " + getViewLivingRoom().getPlayers().get(getViewLivingRoom().getTurn()) + " turn.");
+        else System.out.println("It's " + getViewLivingRoom().getPlayers().get(getViewLivingRoom().getTurn()).getName() + " turn.");
 
     }
 
@@ -694,9 +697,9 @@ public class CLI extends IUI {
     }
 
     public void printBoard(){
-
         Pair<Character, Boolean>[][] printableBoard = getPrintableBoard(getViewLivingRoom().getBoard());
 
+        printNLines(1);
         for(int r = 0; r < 9; r++){
             for(int complete = 0; complete < 3; complete++){
                 if(complete == 1){

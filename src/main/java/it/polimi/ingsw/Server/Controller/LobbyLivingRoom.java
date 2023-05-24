@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Server.Controller;
 
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewServerSocket;
+import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
 
@@ -30,9 +31,15 @@ public class LobbyLivingRoom {
 
     public boolean isGameEnded(){
         if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull()) && liv.getTurn() == liv.getPlayers().size()-1){
-            return getLivingRoom().getTurn() == 0;
+            if(getLivingRoom().getTurn() == 0){
+                JSONInterface.removeLivingRoom(getLivingRoom());
+                return true;
+            }
+            return false;
+
         }
         if(isLonelyPlayer(getLivingRoom())){
+            JSONInterface.removeLivingRoom(getLivingRoom());
             return true;
         }
         return false;
@@ -41,6 +48,8 @@ public class LobbyLivingRoom {
     private boolean isLonelyPlayer(LivingRoom livingRoom) {
         return livingRoom.getPlayers().stream().filter(player -> controller.getWaitingPlayerByName(player.getName()).isOnline()).toList().size() == 1;
     }
+
+
 
 
 

@@ -69,6 +69,10 @@ public class VirtualViewClientSocket implements ICommunication {
 
     }
 
+    private void NotEnoughSpacesInCol() {
+        UI.retryPlacement();
+    }
+
     private void handleSuccess(List<String> args,  String description) {
         //System.out.println("Success : " + args);
 
@@ -254,6 +258,7 @@ public class VirtualViewClientSocket implements ICommunication {
         args.add(2, JSONInterface.generatePick(pick));
         sendMessage(JSONInterface.generateCommand("isPossiblePick", args, ""));
     }
+
 }
 
 

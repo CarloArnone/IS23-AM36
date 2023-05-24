@@ -61,7 +61,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                     LivingRoom livingRoom = controller.findLivingRoomWithVirtualView(this);
                     Player player = controller.getPlayerByVirtualView(this);
                     if(livingRoom != null){
-                        controller.disconnectedPlayer(livingRoom, player.getName(), false, this);
+                        disconnectedPlayer(livingRoom, player.getName(), false, this);
                         System.out.println("Player " + player.getName() + " left the Game ( " + livingRoom.getLivingRoomId() + " ).");
                     }
                     break;
@@ -130,6 +130,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             String command = JSONInterface.generateCommand("Success", args, "");
             out.println(command);
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;156;196;178m " + command + (char)27 + "[0m");
+            livingRoom.notifyAllListeners("Update");
         } catch (NotEnoughSpacesInCol e) {
             List<String> args = new ArrayList<>();
             args.add("NotEnoughSpacesInCol");
@@ -370,17 +371,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
     @Override
     public void isGameEnded(LivingRoom livingRoom) {
         if(controller.isGameEnded(livingRoom)){
-            String message = "GameEnded";
-            if(isThisPlayerTheWinner(this)){
-                message += " winner";
-            } else if (isLonelyPlayer(this)) {
-                message += " onlyPlayer";
-            }
-            else {
-                message += " loser";
-            }
-
-            livingRoom.notifyAllListeners(message);
+            gameEndedMessageBuilder(livingRoom);
         }
         else{
             List<String> args = new ArrayList<>();
@@ -390,6 +381,39 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
         }
     }
+
+
+    /**
+     * @param livingRoom
+     */
+    @Override
+    public void endGame(LivingRoom livingRoom) {
+        if(controller.endGame(livingRoom)){
+            gameEndedMessageBuilder(livingRoom);
+        }
+        else{
+            List<String> args = new ArrayList<>();
+            args.add(0, "GameNotEnded");
+            String command = JSONInterface.generateCommand("Error", args, "");
+            out.println(command);
+            System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
+        }
+    }
+
+    private void gameEndedMessageBuilder(LivingRoom livingRoom) {
+        String message = "GameEnded";
+        if(isThisPlayerTheWinner(this)){
+            message += " winner";
+        } else if (isLonelyPlayer(this)) {
+            message += " lonelyPlayer";
+        }
+        else {
+            message += " loser";
+        }
+
+        livingRoom.notifyAllListeners(message);
+    }
+
 
     private boolean isLonelyPlayer(VirtualViewServerSocket virtualViewServerSocket) {
         LivingRoom livingRoom = controller.findLivingRoomWithVirtualView(virtualViewServerSocket);
@@ -403,32 +427,6 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         return player.equals(winner);
     }
 
-    /**
-     * @param livingRoom
-     */
-    @Override
-    public void endGame(LivingRoom livingRoom) {
-        if(controller.endGame(livingRoom)){
-            String message = "GameEnded";
-            if(isThisPlayerTheWinner(this)){
-                message += " winner";
-            } else if (isLonelyPlayer(this)) {
-                message += " onlyPlayer";
-            }
-            else {
-                message += " loser";
-            }
-
-            livingRoom.notifyAllListeners(message);
-        }
-        else{
-            List<String> args = new ArrayList<>();
-            args.add(0, "GameNotEnded");
-            String command = JSONInterface.generateCommand("Error", args, "");
-            out.println(command);
-            System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
-        }
-    }
 
     /**
      * @param player

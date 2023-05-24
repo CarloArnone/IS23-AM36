@@ -24,4 +24,30 @@ public interface ICommunication extends Listener {
     void endGame(LivingRoom livingRoom);
     void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick);
 
+ /*   //Errors
+    void notEnoughtSpacesInCol();
+    void loginUnsuccessful();
+
+    void notJoinedGame(String arg1);
+    void livingRoomNotFound(String arg1);
+    void createGameNotSuccessful();
+    void notDisconnectedPlayer();
+    void gameNotstarted();
+    void gameNotEnded();
+    void notPossiblePick();
+
+    //Success
+
+    void turnEndedSuccessfully();
+    void loginDoneSuccessfully();
+    void livingRoomFound();
+    void joinedGame();
+    void disconnectedPlayer();
+    void livingRoomsList();
+    void gameStarted();
+    void gameEnded();
+    void possiblePick();
+*/
+
+
 }
