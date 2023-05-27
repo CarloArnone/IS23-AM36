@@ -208,4 +208,9 @@ public class LivingRoom {
         return getPlayers().stream().reduce((p1, p2) -> {return (p1.getScore() - p2.getScore() >= 0) ? p1 : p2;}).get();
 
     }
+
+    public void adjustTurnAfterPlayerExit() {
+        //NEEDED WHEN REMOVE A PLAYER FROM THE PLAYER LIST TO MAINTAIN THE CONSISTENCY OF THE TURN
+        this.turn -= 1;
+    }
 }

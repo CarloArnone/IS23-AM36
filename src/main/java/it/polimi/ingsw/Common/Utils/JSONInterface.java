@@ -393,18 +393,13 @@ public class JSONInterface {
     }
 
     public static Player getPlayerFromJson(String jsonString, String Player_ID) {
-        JsonObject playerObj = converter.fromJson(getJsonStringFrom(getPlayersPath()), JsonObject.class).getAsJsonObject(Player_ID);
-        List<Goal> achievedGoals = new ArrayList<>();
-
-        for (JsonElement el : playerObj.getAsJsonArray("achievedGoals")) {
-            achievedGoals.add(new CommonGoalCard(el.getAsJsonObject().get("name").getAsString(), el.getAsJsonObject().get("points").getAsInt()));
+        JsonArray playersArray = converter.fromJson(jsonString, JsonObject.class).getAsJsonArray("players");
+        for(JsonElement player : playersArray){
+            if(player.getAsJsonObject().get("name").equals(Player_ID)){
+                return getPlayerFromJson(converter.toJson(player));
+            }
         }
-
-        return new Player(playerObj.get("name").getAsString(),
-                playerObj.get("score").getAsInt(),
-                achievedGoals,
-                getShelfFromJson(converter.toJson(playerObj.getAsJsonArray("shelf")), 5, 6),
-                getPersonalGoalsFromJson(getJsonStringFrom(getPersonalGoalsPath()), playerObj.get("personalGoalName").getAsString()));
+        return null;
     }
 
     public static Player getPlayerFromJson(String jsonString) {
@@ -601,13 +596,25 @@ public class JSONInterface {
 
     public static List<String> getLivingRoomsList() {
         JsonArray livingRoomsArray = converter.fromJson(getJsonStringFrom(getLivingRoomsPath()), JsonObject.class).getAsJsonArray("livingRooms");
+        JsonArray copy = converter.fromJson(getJsonStringFrom(getLivingRoomsPath()), JsonObject.class).getAsJsonArray("livingRooms");
         List<String> toReturn = new ArrayList<>();
 
+
         for (JsonElement livingRoom : livingRoomsArray) {
+            if(isValidLivingRoom(livingRoom)){
+                copy.remove(livingRoom);
+            }
+        }
+
+        for (JsonElement livingRoom : copy) {
             toReturn.add(livingRoom.getAsJsonObject().get("livingRoomID").getAsString());
         }
 
         return toReturn;
+    }
+
+    private static boolean isValidLivingRoom(JsonElement livingRoom) {
+        return livingRoom.getAsJsonObject().getAsJsonArray("players").size() == 1;
     }
 
     private static void saveIntoFile(String ID, JsonObject jsonObject, String filePath) {

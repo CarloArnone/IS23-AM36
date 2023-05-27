@@ -24,6 +24,8 @@ public interface ICommunication extends Listener {
     void endGame(LivingRoom livingRoom);
     void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick);
 
+    void ping();
+
  /*   //Errors
     void notEnoughtSpacesInCol();
     void loginUnsuccessful();

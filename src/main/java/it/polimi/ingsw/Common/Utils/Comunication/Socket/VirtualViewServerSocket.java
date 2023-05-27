@@ -14,6 +14,7 @@ import javafx.css.converter.LadderConverter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.*;
 
@@ -22,13 +23,16 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
     private Controller controller;
     private PrintWriter out;
     private Scanner in;
-
     private String name;
+
+    private InetAddress clientAddress;
+
 
     public VirtualViewServerSocket(Socket socket, Controller controller) {
         this.clientSocket = socket;
         this.controller = controller;
         name = this.toString();
+        clientAddress = socket.getInetAddress();
     }
 
     public void sendMessage(String msg) {
@@ -49,6 +53,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
         String inputLine = "";
         Map<String, Object> command;
+        ping();
+
+
             while (true) {
 
                 try {
@@ -64,6 +71,13 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                         disconnectedPlayer(livingRoom, player.getName(), false, this);
                         System.out.println("Player " + player.getName() + " left the Game ( " + livingRoom.getLivingRoomId() + " ).");
                     }
+                    else if(player != null){
+                        controller.removePlayerFromServer(player);
+                    }
+                    break;
+                }
+
+                if(controller == null){
                     break;
                 }
 
@@ -113,6 +127,24 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
     }
 
 
+    public void ping(){
+        new Thread(() -> {
+            while(true){
+                try {
+                    if (!clientAddress.isReachable(5000)) pingFailed();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+
+    }
+
+
+    private void pingFailed() {
+        disconnectedPlayer(controller.findLivingRoomWithVirtualView(this), controller.getPlayerByVirtualView(this).getName(), false, this);
+        controller = null;
+    }
 
 
     /**
@@ -206,12 +238,14 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         } catch (InvalidGameIDException e) {
             List<String> args = new ArrayList<>();
             args.add("InvalidGameID");
+            args.add(1, livingRoomID);
             String command = JSONInterface.generateCommand("Error", args, "");
             out.println(command);
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
         } catch (PlayersOutOfBoundException e) {
             List<String> args = new ArrayList<>();
             args.add("PlayerOutOfBound");
+            args.add(1, String.valueOf(PlayersNum));
             String command = JSONInterface.generateCommand("Error", args, "");
             out.println(command);
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");

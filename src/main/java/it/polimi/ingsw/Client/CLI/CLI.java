@@ -93,7 +93,7 @@ public class CLI extends IUI {
 
     private void printCreateGameScreen(boolean retry, String error, String livId) {
         if(retry){
-            if(error.equals("invalidId")) {
+            if(error.equals("InvalidGameID")) {
 
                 Random random = new Random();
                 System.out.println("\n\n\n\n\n\n\n\n");
@@ -169,7 +169,6 @@ public class CLI extends IUI {
     public void turnPassed() {
         setPick(new ArrayList<>());
         getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
-        updateCLI("Turn Completed");
     }
 
     /**
@@ -248,10 +247,10 @@ public class CLI extends IUI {
 
         String commandPrefix = command.split(" ")[0];
         switch (commandPrefix) {
-            case "select" -> selectTilesFromBoard(command);
+            case "select" -> selectTiles(command);
             case "col" -> checkColAndPlaceTiles(Integer.parseInt(command.split(" ")[1]));
             case "order" -> {
-                orderPickInsert(command);
+                orderPick(command);
                 updateCLI("");
             }
             case "quit" -> quitAGame();
@@ -267,7 +266,7 @@ public class CLI extends IUI {
         return false;
     }
 
-    private void orderPickInsert(String command) {
+    private void orderPick(String command) {
         String[] args = command.split(" ");
         List<ItemCard> pickCopy = new ArrayList<>();
         List<Pair<Integer, ItemCard>> order = new ArrayList<>();
@@ -287,7 +286,7 @@ public class CLI extends IUI {
     }
 
 
-    private void selectTilesFromBoard(String command) {
+    private void selectTiles(String command) {
 
         if(getMyTurn() != getViewLivingRoom().getTurn()){
             updateCLI("This is not your turn please wait");
@@ -327,7 +326,7 @@ public class CLI extends IUI {
             System.out.println("                                                    " + activeLivingRooms.get(i));
         }
 
-        System.out.println("\n\n                                               -- To Update: u , To Choose Digit a Name --");
+        System.out.println("\n\n                                               -- To Update: u , To go Back b, To Choose Digit a Name --");
 
         String command = sc.nextLine().split(" ")[0];
         if(activeLivingRooms.contains(command)){
@@ -335,6 +334,9 @@ public class CLI extends IUI {
         }
         else if(command.equals("u")){
             getVirtualViewClient().getActiveLivingRooms(10, section);
+        }
+        else if(command.equals("b")){
+            createOrJoinGameChoice();
         }
         else{
             livingRoomsList(s, section);
@@ -380,6 +382,7 @@ public class CLI extends IUI {
     private void stopParsingCommands() {
         setViewLivingRoom(null);
     }
+
 
     /**
      *
@@ -478,7 +481,7 @@ public class CLI extends IUI {
 
 
         for(int p = 0; p<getViewLivingRoom().getPlayers().size(); p++){
-            for(int c = 0; c < getViewLivingRoom().getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
+            for(int c = 0; c < getViewLivingRoom().getPlayers().get(p).getMyShelf().getShelf()[0].length; c++){
                 System.out.print((char)27 + Printer.shelfBase.escape() + (char)27 + "[0m"); //brownOfLib
             }
             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
@@ -496,22 +499,22 @@ public class CLI extends IUI {
                     if(playerShelf[r][c].isPresent()){
                         if(playerShelf[r][c].get().getColor() == 'P'){
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.purpleCardShelf.escape() + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'W') {
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.whiteCardShelf.escape() + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'C') {
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.cyanCardShelf.escape() + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'B') {
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.blueCardShelf.escape() + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'G') {
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.greenCardShelf.escape() + (char)27 + "[0m");
                         }else if (playerShelf[r][c].get().getColor() == 'Y') {
                             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
-                            System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m");
+                            System.out.print((char)27 + Printer.yellowCardShelf.escape() + (char)27 + "[0m");
                         }
                     }
                     else {
@@ -559,7 +562,7 @@ public class CLI extends IUI {
         }
 
         for(int p = 0; p<getViewLivingRoom().getPlayers().size(); p++){
-            for(int c = 0; c < getViewLivingRoom().getPlayers().get(0).getMyShelf().getShelf()[0].length; c++){
+            for(int c = 0; c < getViewLivingRoom().getPlayers().get(p).getMyShelf().getShelf()[0].length; c++){
                 System.out.print((char)27 + Printer.shelfBase.escape() + (char)27 + "[0m"); //brownOfLib
             }
             System.out.print((char)27 + Printer.shelfSeparator.escape() + (char)27 + "[0m"); //brownOfLib
@@ -595,6 +598,15 @@ public class CLI extends IUI {
     public void gameNotJoined(String arg) {
         System.out.println(arg);
         getVirtualViewClient().getActiveLivingRooms(10, 1);
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void serverDiconnected() {
+        System.out.println("Server disconnected, 2 seconds and the game will crush");
+        System.exit(0);
     }
 
     public void loginTry(boolean retry){
@@ -699,7 +711,7 @@ public class CLI extends IUI {
                         if(printableBoard[r][c] == null){
                             printTileBoard('F', false);
                         }
-                        else printTile(printableBoard[r][c].getKey(), printableBoard[r][c].getValue());
+                        else printTile(printableBoard[r][c].getKey(), printableBoard[r][c].getValue(), r, c);
                     }
                 }
                 else {
@@ -751,32 +763,32 @@ public class CLI extends IUI {
                 }
     }
 
-    private void printTile(Character key, Boolean value) {
+    private void printTile(Character key, Boolean value, int r, int c) {
             if(value){
                 if(key == 'P'){
-                    System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.purpleCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.purpleCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.purpleCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }else if (key == 'W') {
-                    System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.whiteCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.whiteCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.whiteCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }else if (key == 'C') {
-                    System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.cyanCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.cyanCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.cyanCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }else if (key == 'B') {
-                    System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.blueCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.blueCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.blueCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }else if (key == 'G') {
-                    System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.greenCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.greenCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.greenCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }else if (key == 'Y') {
-                    System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m");
-                    System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.yellowCard.escape().replace("   ", "  (") + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.yellowCard.escape().replace("   ", r + "," + c) + (char)27 + "[0m");
+                    System.out.print((char)27 + Printer.yellowCard.escape().replace("   ", ")  ") + (char)27 + "[0m");
                 }
                 else if (key == 'F'){
                     System.out.print((char)27 + Printer.shelfBackGorund.escape() + (char)27 + "[0m");

@@ -192,4 +192,7 @@ public abstract class IUI implements Listener {
     public abstract void joinedGame(Player playerFromJson, LivingRoom livingRoom);
 
     public abstract void gameNotJoined(String arg);
+
+    public abstract void serverDiconnected();
+
 }

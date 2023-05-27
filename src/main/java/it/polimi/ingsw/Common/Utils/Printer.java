@@ -1,20 +1,20 @@
 package it.polimi.ingsw.Common.Utils;
 
 public enum Printer {
-     blueCard("[48;2;0;119;182m   "),
-     purpleCard("[48;2;255;0;110m   "),
-     whiteCard("[48;2;255;236;209m   "),
-     greenCard("[48;2;106;153;69m   "),
-     cyanCard("[48;2;0;180;216m   "),
-     yellowCard("[48;2;232;170;20m   "),
+     blueCard("[38;2;13;50;77;48;2;0;119;182m   "),
+     purpleCard("[38;2;100;50;77;48;2;255;0;110m   "),
+     whiteCard("[38;2;186;182;189;48;2;255;236;209m   "),
+     greenCard("[38;2;122;199;79;48;2;106;153;69m   "),
+     cyanCard("[38;2;162;210;255;48;2;0;180;216m   "),
+     yellowCard("[38;2;247;206;91;48;2;232;170;20m   "),
 
 
-     blueCardShelf("[48;2;0;119;182m B "),
-     purpleCardShelf("[48;2;255;0;110m P "),
-     whiteCardShelf("[48;2;255;236;209m W "),
-     greenCardShelf("[48;2;106;153;69m G "),
-     cyanCardShelf("[48;2;0;180;216m C "),
-     yellowCardShelf("[48;2;232;170;20m Y "),
+     blueCardShelf("[38;2;13;50;77;48;2;0;119;182m B "),
+     purpleCardShelf("[38;2;100;50;77;48;2;255;0;110m P "),
+     whiteCardShelf("[38;2;186;182;189;48;2;255;236;209m W "),
+     greenCardShelf("[38;2;122;199;79;48;2;106;153;69m G "),
+     cyanCardShelf("[38;2;162;210;255;48;2;0;180;216m C "),
+     yellowCardShelf("[38;2;247;206;91;48;2;232;170;20m Y "),
 
 
      blueCardNot("[38;2;0;0;0;48;2;0;119;182m X "),

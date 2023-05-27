@@ -43,16 +43,13 @@ public enum Controller implements eventObserver {
             if(liv.getLivingRoom().equals(livingRoom)){
                 List<ItemCard> pickItemCards = new ArrayList<>();
 
-                int i = 0;
                 for(BoardPosition bps : pick){
-                    pickItemCards.add(i, bps.getCard());
                     liv.getLivingRoom().removeCard(bps);
-                    i++;
                 }
                 for(Player player : liv.getLivingRoom().getPlayers()){
                     if (player.equals(p)){
                         try {
-                            p.getMyShelf().onClickCol(pickItemCards, col);
+                            player.getMyShelf().onClickCol(p.getDrawnCards(), col);
                         } catch (NotEnoughSpacesInCol e) {
                             throw new NotEnoughSpacesInCol();
                         }
@@ -114,7 +111,7 @@ public enum Controller implements eventObserver {
     @Override
     public synchronized LivingRoom createGameEvent(String livingRoomID, Player p, int PlayersNum) throws InvalidGameIDException, PlayersOutOfBoundException {
 
-        if(livingRooms.contains(new LivingRoom(livingRoomID))){
+        if(livingRooms.contains(new LobbyLivingRoom(new LivingRoom(livingRoomID)))){
             throw new InvalidGameIDException();
         }
         if(PlayersNum != 2 && PlayersNum != 3  && PlayersNum != 4){
@@ -147,7 +144,7 @@ public enum Controller implements eventObserver {
         for (LobbyLivingRoom liv : livingRooms) {
             if (liv.getLivingRoom().getLivingRoomId().equals(livingRoomID)) {
                 if(liv.getLivingRoom().getPlayers().contains(p)){
-                    p = JSONInterface.getPlayerFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getPlayersPath()), name);
+                    p = JSONInterface.getPlayerFromJson(JSONInterface.writeNotSaveLivingRoomToJson(liv.getLivingRoom(), ""), name);
                     liv.getLivingRoom().addSupplier(getPlayerView(p));
                     saveGame(liv.getLivingRoom());
                     break;
@@ -172,22 +169,21 @@ public enum Controller implements eventObserver {
             if(liv.getLivingRoom().equals(livingRoom)){
                 for(Player p : liv.getLivingRoom().getPlayers()){
                     if(p.getName().equals(name)){
+
+                        waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
+                        if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
+                            passTurn(liv.getLivingRoom());
+                        }
+
                         if(voluntaryLeft){
-                            if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
-                                passTurn(liv.getLivingRoom());
-                            }
                             liv.getLivingRoom().removePlayer(p);
+                            liv.getLivingRoom().adjustTurnAfterPlayerExit();
                             liv.getLivingRoom().notifyAllListeners("LeftGame " + p.getName());
                         }
                         else {
-                            waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
-                            if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
-                                passTurn(liv.getLivingRoom());
-                            }
                             liv.getLivingRoom().notifyAllListeners("LeftGameCrush " + p.getName());
                         }
 
-                        //waitingForChoice.remove(new WaitingPlayer(new Player(name), virtualView)); //TODO MODIFY SET PLAYER OFFLINE
                         saveGame(liv.getLivingRoom());
                         return true;
                     }
@@ -244,12 +240,26 @@ public enum Controller implements eventObserver {
             return false;
         }
 
-        return  playerIsValid(livingRoom, player) &&
+        if(     playerIsValid(livingRoom, player) &&
                 !hasAlreadySomeCards(livingRoom, player) &&
                 checkPickCardsVeridicity(livingRoom, pick) &&
                 areCorrectPositions(pick) &&
-                pick.size() >= 1;
+                pick.size() >= 1){
+
+                player.setDrawnCards(getDrawnCardsFromPick(pick));
+                return true;
+        }
+        return false;
     }
+
+    private List<ItemCard> getDrawnCardsFromPick(List<BoardPosition> pick) {
+        List<ItemCard> drawnCards = new ArrayList<>();
+        for(int i = 0; i < pick.size(); i ++){
+            drawnCards.add(i, pick.get(i).getCard());
+        }
+        return drawnCards;
+    }
+
     private boolean checkPickCardsVeridicity(LivingRoom liv,  List<BoardPosition> pick) {
         Map<Character, Integer> colorCount = new HashMap<>();
 
@@ -342,5 +352,9 @@ public enum Controller implements eventObserver {
         }
 
         return null;
+    }
+
+    public void removePlayerFromServer(Player player) {
+        getWaitingPlayerByName(player.getName()).setOnline(false);
     }
 }

@@ -9,6 +9,7 @@ import it.polimi.ingsw.Server.Model.Player;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.*;
 
@@ -18,6 +19,7 @@ public class VirtualViewClientSocket implements ICommunication {
     private IUI UI;
     private PrintWriter out;
     private Scanner in;
+    InetAddress serverAddress ;
 
     public VirtualViewClientSocket(String ip, int port, IUI UI) throws IOException {
         comunicator = new Socket(ip, port);
@@ -30,6 +32,8 @@ public class VirtualViewClientSocket implements ICommunication {
                                 handleReturn();
                                 }
                             }).start();
+        serverAddress = comunicator.getInetAddress();
+        ping();
     }
 
 
@@ -59,7 +63,7 @@ public class VirtualViewClientSocket implements ICommunication {
             case "LoginUnsuccessful" -> UI.retryLogin();
             case "NotJoinedGame" -> UI.gameNotJoined(args.get(1));
             case "LivingRoomNotFound" -> UI.livingRoomNotFound(args.get(1));
-            case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame(args.get(1), args.get(2));
+            case "InvalidGameID", "PlayerOutOfBound" -> UI.retryCreateGame(args.get(0), args.get(1));
             case "NotDisconnectedPlayer" -> UI.notDisconnected();
             case "GameNotStarted" -> UI.gameNotStarted();
             case "GameNotEnded" ->  UI.gameNotEnded();
@@ -69,9 +73,6 @@ public class VirtualViewClientSocket implements ICommunication {
 
     }
 
-    private void NotEnoughSpacesInCol() {
-        UI.retryPlacement();
-    }
 
     private void handleSuccess(List<String> args,  String description) {
         //System.out.println("Success : " + args);
@@ -97,6 +98,25 @@ public class VirtualViewClientSocket implements ICommunication {
     public void notifyListener(String message) {
         UI.notifyListener(message);
     }
+    //TODO SEE BETTER UNDERSTANDING
+    public void ping(){
+        new Thread(() -> {
+            while(true){
+                try {
+                    if (!serverAddress.isReachable(5000)) {
+                        pingFailed();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }).start();
+    }
+
+    private void pingFailed() {
+        UI.serverDiconnected();
+    }
+
 
     /**
      * @param livingRoom

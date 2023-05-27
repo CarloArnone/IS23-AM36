@@ -6,6 +6,7 @@ import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LobbyLivingRoom {
@@ -63,5 +64,18 @@ public class LobbyLivingRoom {
 
     public Player getWinner(){
         return liv.getWinner();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LobbyLivingRoom that)) return false;
+
+        return Objects.equals(liv.getLivingRoomId(), that.liv.getLivingRoomId());
+    }
+
+    @Override
+    public int hashCode() {
+        return liv != null ? liv.hashCode() : 0;
     }
 }
