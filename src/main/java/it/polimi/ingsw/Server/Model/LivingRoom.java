@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Server.Model;
 
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.Listener;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 
@@ -9,7 +10,7 @@ import java.util.*;
 public class LivingRoom {
 
     private Map<BoardPosition, Boolean> board;
-    private List<Listener> viewList;
+    private List<ICommunication> viewList;
     private String livingRoomId;
     private List<Player> players;
     private int turn;
@@ -142,8 +143,27 @@ public class LivingRoom {
         }
     }
     /** Removes a player from the game. */
-    public void removePlayer(Player player){
+    public void removePlayer(Player player, Listener playerViewToRemove){
+        int playerTurn = getPlayerTurn(player);
+        if(turn > playerTurn){
+            adjustTurnAfterPlayerExit();
+        }
         players.remove(player);
+        viewList.remove(playerViewToRemove);
+
+    }
+
+    public void clearLivingRoomsPlayers(){
+        players.clear();
+        viewList.clear();
+    }
+    public int getPlayerTurn(Player player){
+        for(int i = 0; i <players.size(); i++){
+            if(players.get(i).equals(player)){
+                return i;
+            }
+        }
+        return -1;
     }
     /** Actually removes a card from a position of the board.*/
     public void removeCard(BoardPosition position){
@@ -190,11 +210,11 @@ public class LivingRoom {
         this.turn = newTurn;
     }
 
-    public void addSupplier(Listener s){
+    public void addSupplier(ICommunication s){
         this.viewList.add(s);
     }
 
-    public List<Listener> getViewList(){
+    public List<ICommunication> getViewList(){
         return viewList;
     }
 
@@ -211,6 +231,15 @@ public class LivingRoom {
 
     public void adjustTurnAfterPlayerExit() {
         //NEEDED WHEN REMOVE A PLAYER FROM THE PLAYER LIST TO MAINTAIN THE CONSISTENCY OF THE TURN
-        this.turn -= 1;
+        this.turn = (this.turn  + players.size() -1) % players.size();
+    }
+
+
+    public void notifyListener(String message, Listener listener) {
+        for(Listener listener1 : viewList){
+            if(listener.equals(listener1)){
+                listener.notifyListener(message);
+            }
+        }
     }
 }

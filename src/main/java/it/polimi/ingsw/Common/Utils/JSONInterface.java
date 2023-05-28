@@ -14,9 +14,6 @@ import java.util.*;
 
 public class JSONInterface {
     static public Gson converter = new Gson();
-    static String shelvesPath = "/JSON/Shelves.json";
-    static String boardsPath = "/JSON/Boards.json";
-    static String playersPath = "/JSON/Players.json";
     static String personalGoalsPath = "/JSON/PersonalGoals.json";
     static String commonGoalsPath = "/JSON/CommonGoals.json";
     static String livingRoomsPath = "/JSON/LivingRooms.json";
@@ -124,7 +121,7 @@ public class JSONInterface {
         return converter.toJson(jsonObject);
     }
 
-    public static String writeLivingRoomToJson(LivingRoom livingRoom) {
+    public static String writeLivingRoomToJson(LivingRoom livingRoom, int necessaryPlayers) {
         JsonObject livingRoomJObj = new JsonObject();
         livingRoomJObj.addProperty("livingRoomID", livingRoom.getLivingRoomId());
 
@@ -162,6 +159,7 @@ public class JSONInterface {
         }
         JsonElement commonGoalSetEl = commonGoalSet.getAsJsonArray();
         livingRoomJObj.add("commonGoals", commonGoalSetEl);
+        livingRoomJObj.addProperty("necessaryPlayers", necessaryPlayers);
         //deleteLivingRoomIfExists(converter.toJson(livingRoomJObj, JsonObject.class));
         saveIntoFile(livingRoomJObj, getLivingRoomsPath(), "livingRooms");
         return converter.toJson(livingRoomJObj);
@@ -314,18 +312,6 @@ public class JSONInterface {
         return new Shelf(opt);
     }
 
-    public static Map<BoardPosition, Boolean> getBoardFromJson(String jsonString, String Board_ID) {
-        JsonArray board = converter.fromJson(getJsonStringFrom(getBoardsPath()), JsonObject.class).getAsJsonArray("" + Board_ID + "_board");
-        Map<BoardPosition, Boolean> toReturn = new HashMap<>();
-        for (JsonElement position : board) {
-            toReturn.put(new BoardPosition(position.getAsJsonObject().getAsJsonArray("position").get(0).getAsInt(),
-                            position.getAsJsonObject().getAsJsonArray("position").get(1).getAsInt(),
-                            new ItemCard(position.getAsJsonObject().get("color").getAsCharacter(), "")),
-                    position.getAsJsonObject().get("isAvailable").getAsBoolean());
-        }
-
-        return toReturn;
-    }
 
     public static Map<BoardPosition, Boolean> getBoardFromJson(String jsonString) {
         JsonArray board = converter.fromJson(jsonString, JsonArray.class);
@@ -395,7 +381,7 @@ public class JSONInterface {
     public static Player getPlayerFromJson(String jsonString, String Player_ID) {
         JsonArray playersArray = converter.fromJson(jsonString, JsonObject.class).getAsJsonArray("players");
         for(JsonElement player : playersArray){
-            if(player.getAsJsonObject().get("name").equals(Player_ID)){
+            if(player.getAsJsonObject().get("name").getAsString().equals(Player_ID)){
                 return getPlayerFromJson(converter.toJson(player));
             }
         }
@@ -555,7 +541,7 @@ public class JSONInterface {
         }
         List<Integer> pointsOfCommonGoal = new ArrayList<>();
         int i = 0;
-        for (JsonElement points : converter.fromJson(getJsonStringFrom("src/main/resources/JSON/GameScratch.json"), JsonObject.class).get("GamesSetup")
+        for (JsonElement points : converter.fromJson(getJsonStringFrom(findCorrectPathFromResources("/JSON/GameScratch.json")), JsonObject.class).get("GamesSetup")
                 .getAsJsonArray().get(playersNum - 2)
                 .getAsJsonObject().get("commonGoalPoints")
                 .getAsJsonArray()) {
@@ -568,7 +554,7 @@ public class JSONInterface {
 
     public static Map<BoardPosition, Boolean> getBoardFromJson(int playersNum) {
         Map<BoardPosition, Boolean> toReturn = new HashMap<>();
-        JsonArray gameSetups = converter.fromJson(getJsonStringFrom("src/main/resources/JSON/GameScratch.json"), JsonObject.class)
+        JsonArray gameSetups = converter.fromJson(getJsonStringFrom(findCorrectPathFromResources("/JSON/GameScratch.json")), JsonObject.class)
                 .getAsJsonObject().get("GamesSetup")
                 .getAsJsonArray();
 
@@ -605,6 +591,8 @@ public class JSONInterface {
                 copy.remove(livingRoom);
             }
         }
+
+        saveIntoFile("livingRooms", copy, getLivingRoomsPath());
 
         for (JsonElement livingRoom : copy) {
             toReturn.add(livingRoom.getAsJsonObject().get("livingRoomID").getAsString());
@@ -653,7 +641,7 @@ public class JSONInterface {
         JsonElement n = jsonObject.getAsJsonObject();
 
         for(JsonElement el : livingRoomsArray){
-            if(el.getAsJsonObject().get("livingRoomID").equals(n.getAsJsonObject().get("livingRoomID"))){
+            if(el.getAsJsonObject().get("livingRoomID").getAsString().equals(n.getAsJsonObject().get("livingRoomID").getAsString())){
                 livingRoomsArray.remove(el);
                 break;
             }
@@ -673,6 +661,7 @@ public class JSONInterface {
         }
     }
 
+
     private static void deleteLivingRoomIfExists(String jsonLivingRoom){
         File livingRoomFile = new File(getLivingRoomsPath());
         try {
@@ -686,24 +675,17 @@ public class JSONInterface {
     public static void removeLivingRoom(LivingRoom livingRoom){
         JsonObject object = converter.fromJson(getJsonStringFrom(getLivingRoomsPath()), JsonObject.class);
         JsonArray livingRoomsList = object.getAsJsonArray("livingRooms");
-        JsonElement toRemove = converter.fromJson(writeNotSaveLivingRoomToJson(livingRoom, ""), JsonObject.class);
+        JsonElement toRemove = null;
+        for(JsonElement livingRoom1 : livingRoomsList){
+            if(livingRoom1.getAsJsonObject().get("livingRoomID").getAsString().equals(livingRoom.getLivingRoomId())){
+                toRemove = livingRoom1;
+            }
+        }
+        //JsonElement toRemove = converter.fromJson(writeNotSaveLivingRoomToJson(livingRoom, ""), JsonObject.class);
         livingRoomsList.remove(toRemove);
         saveIntoFile("livingRooms", livingRoomsList, getLivingRoomsPath());
     }
 
-
-
-    public static String getShelvesPath() {
-        return findCorrectPathFromResources(shelvesPath);
-    }
-
-    public static String getBoardsPath() {
-        return findCorrectPathFromResources(boardsPath);
-    }
-
-    public static String getPlayersPath() {
-        return findCorrectPathFromResources(playersPath);
-    }
 
     public static String getPersonalGoalsPath() {
         return findCorrectPathFromResources(personalGoalsPath);
@@ -762,4 +744,13 @@ public class JSONInterface {
         return converter.fromJson(pickJson, new TypeToken<List<BoardPosition>>(){}.getType());
     }
 
+    public static int getNecessaryPlayersOfLivingRoom(LivingRoom liv) {
+        JsonArray arrayLivingRooms = converter.fromJson(getJsonStringFrom(getLivingRoomsPath()), JsonObject.class).getAsJsonArray("livingRooms");
+        for(JsonElement livingRoom : arrayLivingRooms){
+            if(livingRoom.getAsJsonObject().get("livingRoomID").getAsString().equals(liv.getLivingRoomId())){
+                return livingRoom.getAsJsonObject().get("necessaryPlayers").getAsInt();
+            }
+        }
+        return 0;
+    }
 }

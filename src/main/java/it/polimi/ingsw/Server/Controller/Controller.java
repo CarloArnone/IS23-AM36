@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Server.Controller;
 
+import com.google.gson.JsonElement;
 import it.polimi.ingsw.Common.Exceptions.InvalidGameIDException;
 import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
@@ -34,7 +35,8 @@ public enum Controller implements eventObserver {
         List<String> allLivingRooms = JSONInterface.getLivingRoomsList();
         for(String livingRoomID : allLivingRooms){
             LivingRoom liv = JSONInterface.getLivingRoomFromJson(JSONInterface.getJsonStringFrom(JSONInterface.getLivingRoomsPath()), livingRoomID);
-            livingRooms.add(new LobbyLivingRoom(liv, liv.getPlayers().size()));
+            int necessaryPlayers = JSONInterface.getNecessaryPlayersOfLivingRoom(liv);
+            livingRooms.add(new LobbyLivingRoom(liv, necessaryPlayers));
         }
     }
     @Override
@@ -42,6 +44,10 @@ public enum Controller implements eventObserver {
         for (LobbyLivingRoom liv : livingRooms){
             if(liv.getLivingRoom().equals(livingRoom)){
                 List<ItemCard> pickItemCards = new ArrayList<>();
+
+                if(checkPickCardsVeridicity(livingRoom, pick)){
+                    p.setDrawnCards(getDrawnCardsFromPick(pick));
+                }
 
                 for(BoardPosition bps : pick){
                     liv.getLivingRoom().removeCard(bps);
@@ -62,7 +68,7 @@ public enum Controller implements eventObserver {
                 passTurn(liv.getLivingRoom());
                 liv.getLivingRoom().checkRearrangeDesk();
                 liv.getLivingRoom().notifyAllListeners("TurnEnded");
-                JSONInterface.writeLivingRoomToJson(liv.getLivingRoom());
+                saveGame(liv.getLivingRoom());
                 return true;
             }
         }
@@ -74,9 +80,15 @@ public enum Controller implements eventObserver {
             return;
         }
         livingRoom.nextTurn();
-        while(!getWaitingPlayerByName(livingRoom.getPlayers().get(livingRoom.getTurn()).getName()).isOnline()){
-            livingRoom.nextTurn();
+
+        boolean areAllOffline = livingRoom.getPlayers().stream().noneMatch(player -> getWaitingPlayerByName(player.getName()).isOnline());
+
+        if(! areAllOffline){
+            while(!getWaitingPlayerByName(livingRoom.getPlayers().get(livingRoom.getTurn()).getName()).isOnline()){
+                livingRoom.nextTurn();
+            }
         }
+
     }
 
     public WaitingPlayer getWaitingPlayerByName(String name) {
@@ -91,7 +103,11 @@ public enum Controller implements eventObserver {
                 if(wp.isOnline()){
                     return false;
                 }
-                break;
+                else {
+                    wp.setOnline(true);
+                    return true;
+                }
+
             }
         }
 
@@ -170,21 +186,23 @@ public enum Controller implements eventObserver {
                 for(Player p : liv.getLivingRoom().getPlayers()){
                     if(p.getName().equals(name)){
 
-                        waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get().setOnline(false);
+                        WaitingPlayer waitingPlayer = waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get();
+                        waitingPlayer.setOnline(false);
                         if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
                             passTurn(liv.getLivingRoom());
                         }
 
                         if(voluntaryLeft){
-                            liv.getLivingRoom().removePlayer(p);
-                            liv.getLivingRoom().adjustTurnAfterPlayerExit();
+                            liv.getLivingRoom().removePlayer(p, getPlayerView(p));
+                            liv.removeOneNecessaryPlayer();
                             liv.getLivingRoom().notifyAllListeners("LeftGame " + p.getName());
                         }
                         else {
                             liv.getLivingRoom().notifyAllListeners("LeftGameCrush " + p.getName());
                         }
-
-                        saveGame(liv.getLivingRoom());
+                        if(liv.getLivingRoom().getPlayers().size() != 1){
+                            saveGame(liv.getLivingRoom());
+                        }
                         return true;
                     }
                 }
@@ -222,13 +240,17 @@ public enum Controller implements eventObserver {
 
     @Override
     public synchronized boolean endGame(LivingRoom livingRoom){
-        return false;
+        livingRoom.clearLivingRoomsPlayers();
+        livingRooms.remove(new LobbyLivingRoom(livingRoom));
+        JSONInterface.removeLivingRoom(livingRoom);
+        return true;
     }
     private synchronized ICommunication getPlayerView(Player p){
         return waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().orElse(new WaitingPlayer(new Player("no View"))).getView();
     }
     private boolean saveGame(LivingRoom liv){
-        JSONInterface.writeLivingRoomToJson(liv);
+        int necessaryPlayers = livingRooms.stream().filter(x -> x.getLivingRoom().equals(liv)).findFirst().get().getNecessaryPLayers();
+        JSONInterface.writeLivingRoomToJson(liv, necessaryPlayers);
         return true;
     }
     @Override
@@ -238,6 +260,11 @@ public enum Controller implements eventObserver {
             livingRoom = getLivingRoomFromLobby(livingRoomId);
         } catch (NoMatchingIDException e) {
             return false;
+        }
+
+        if(pick.contains(new BoardPosition(9, 9))){
+            player.withdrawPicks();
+            return true;
         }
 
         if(     playerIsValid(livingRoom, player) &&

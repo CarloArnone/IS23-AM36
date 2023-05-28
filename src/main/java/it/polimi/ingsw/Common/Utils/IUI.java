@@ -8,13 +8,15 @@ import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
+import javafx.application.Application;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
-public abstract class IUI implements Listener {
+public abstract class IUI extends Application implements Listener {
     private LivingRoom viewLivingRoom;
     private List<BoardPosition> pick;
     private int myTurn; // It means MyTURN
@@ -27,13 +29,10 @@ public abstract class IUI implements Listener {
         return viewLivingRoom;
     }
 
+    public abstract void startUI();
 
     public void initalizeVirtualView(ICommunication virtualViewClient){
         this.virtualViewClient = virtualViewClient;
-    }
-
-    public void launch(){
-        this.launch();
     }
 
     public void setViewLivingRoom(LivingRoom viewLivingRoom) {
@@ -126,7 +125,12 @@ public abstract class IUI implements Listener {
     }
 
     public void resetBoard(){
-        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+        List<BoardPosition> fakeToReset = new ArrayList<>();
+        fakeToReset.add(new BoardPosition(9, 9));
+        for(BoardPosition position : getPick()){
+            getViewLivingRoom().getBoard().put(position, true);
+        }
+        virtualViewClient.isPossiblePick(mySelf, getViewLivingRoom().getLivingRoomId(), fakeToReset);
     }
 
     public void updateLivingRoom(LivingRoom livingRoom) {
@@ -150,13 +154,6 @@ public abstract class IUI implements Listener {
     }
 
     public abstract void otherPlayerDisconnected(String s, boolean b);
-
-    public void startGame() {
-        gameStarted();
-        notifyListener("Update");
-    }
-
-
     public abstract void retryPlacement();
 
     public abstract void retryLogin();

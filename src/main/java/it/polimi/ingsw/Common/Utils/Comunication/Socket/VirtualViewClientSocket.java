@@ -36,6 +36,24 @@ public class VirtualViewClientSocket implements ICommunication {
         ping();
     }
 
+    public VirtualViewClientSocket(String ip, int port) throws IOException {
+        comunicator = new Socket(ip, port);
+        out = new PrintWriter(comunicator.getOutputStream(), true);
+        in = new Scanner(comunicator.getInputStream());
+
+        new Thread(() ->{
+            while(true){
+                handleReturn();
+            }
+        }).start();
+        serverAddress = comunicator.getInetAddress();
+        ping();
+    }
+
+
+    public void setUI(IUI UI) {
+        this.UI = UI;
+    }
 
     public void sendMessage(String msg){
         out.println(msg);
@@ -47,12 +65,10 @@ public class VirtualViewClientSocket implements ICommunication {
     }
 
     private void handleReturn() {
-        if(in.hasNextLine()){
             Map<String, Object> response = JSONInterface.recreateCommand(in.nextLine());
             if (response.get("command").equals("Success")) {
                 handleSuccess((List<String>) response.get("args"), (String) response.get("description"));
             } else handleError((List<String>) response.get("args"), (String) response.get("description"));
-        }
     }
 
     private void handleError(List<String> args,  String description) {

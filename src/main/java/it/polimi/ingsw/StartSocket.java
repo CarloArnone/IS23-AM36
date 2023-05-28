@@ -3,6 +3,8 @@ package it.polimi.ingsw;
 import it.polimi.ingsw.Client.CLI.CLI;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.ServerSocketHousing;
 import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewClientSocket;
+import it.polimi.ingsw.StartUp.GUI;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -23,14 +25,27 @@ public class StartSocket {
         }
         else{
             if(args[0].equals("socket")){
-                try {
-                    VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]), new CLI());
-                    client.getUI().initalizeVirtualView(client);
-                    client.getUI().launch();
+                if(args[3].equals("CLI")){
+                    try {
+                        VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]), new CLI());
+                        client.getUI().initalizeVirtualView(client);
+                        client.getUI().startUI();
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+                else{
+                    try {
+                        VirtualViewClientSocket client = new VirtualViewClientSocket(args[1], Integer.parseInt(args[2]));
+                        client.setUI(GUI.getInstance(client));
+                        client.getUI().startUI();
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
             }
             else{
                 System.out.println("RMI Client Started");

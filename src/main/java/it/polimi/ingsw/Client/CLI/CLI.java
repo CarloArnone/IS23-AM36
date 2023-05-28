@@ -5,21 +5,16 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
-import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewServerSocket;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.Printer;
 import it.polimi.ingsw.Server.Model.*;
-import javafx.scene.control.skin.TableHeaderRow;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.*;
 
-import static java.lang.Thread.getAllStackTraces;
 import static java.lang.Thread.sleep;
 
 public class CLI extends IUI {
@@ -32,15 +27,48 @@ public class CLI extends IUI {
         setPick(new ArrayList<>());
     }
 
+    /**
+     * @param stage
+     * @throws Exception
+     */
+    @Override
+    public void start(Stage stage) throws Exception {
+    }
 
-    public void launch(){
+
+
+
+    public void startCLI(){
 
         new Thread(() -> {
-
+            System.out.println((char)27 + "[38;2;255;195;0;48;2;55;6;23m ");
+            System.out.println(
+                    """
+                             .----------------.  .----------------.   .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.\s
+                            | .--------------. || .--------------. | | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. || .--------------. |
+                            | | ____    ____ | || |  ____  ____  | | | |    _______   | || |  ____  ____  | || |  _________   | || |   _____      | || |  _________   | || |     _____    | || |  _________   | |
+                            | ||_   \\  /   _|| || | |_  _||_  _| | | | |   /  ___  |  | || | |_   ||   _| | || | |_   ___  |  | || |  |_   _|     | || | |_   ___  |  | || |    |_   _|   | || | |_   ___  |  | |
+                            | |  |   \\/   |  | || |   \\ \\  / /   | | | |  |  (__ \\_|  | || |   | |__| |   | || |   | |_  \\_|  | || |    | |       | || |   | |_  \\_|  | || |      | |     | || |   | |_  \\_|  | |
+                            | |  | |\\  /| |  | || |    \\ \\/ /    | | | |   '.___`-.   | || |   |  __  |   | || |   |  _|  _   | || |    | |   _   | || |   |  _|      | || |      | |     | || |   |  _|  _   | |
+                            | | _| |_\\/_| |_ | || |    _|  |_    | | | |  |`\\____) |  | || |  _| |  | |_  | || |  _| |___/ |  | || |   _| |__/ |  | || |  _| |_       | || |     _| |_    | || |  _| |___/ |  | |
+                            | ||_____||_____|| || |   |______|   | | | |  |_______.'  | || | |____||____| | || | |_________|  | || |  |________|  | || | |_____|      | || |    |_____|   | || | |_________|  | |
+                            | |              | || |              | | | |              | || |              | || |              | || |              | || |              | || |              | || |              | |
+                            | '--------------' || '--------------' | | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
+                             '----------------'  '----------------'   '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'\s
+                            """);
+            System.out.println((char)27 + "[0m");
             loginTry(false);
 
         }).start();
 
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void startUI() {
+        startCLI();
     }
 
     /**
@@ -49,6 +77,12 @@ public class CLI extends IUI {
      */
     @Override
     public void otherPlayerDisconnected(String s, boolean b) {
+        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if(b){
             updateCLI("Player " + s + " left the game on purpose");
         }
@@ -227,10 +261,8 @@ public class CLI extends IUI {
         new Thread(() ->{
             boolean exitIn = false;
             while(!exitIn){
-                if(sc.hasNextLine()){
-                    String command = sc.nextLine();
-                    exitIn = parseCommand(command);
-                }
+                String command = sc.nextLine();
+                exitIn = parseCommand(command);
             }
         }).start();
     }
@@ -254,10 +286,7 @@ public class CLI extends IUI {
                 updateCLI("");
             }
             case "quit" -> quitAGame();
-            case "reset" -> {
-                resetBoard();
-                updateCLI("");
-            }
+            case "reset" -> resetBoard();
 
             //TODO ADD OTHER COMMANDS
         };
@@ -433,29 +462,32 @@ public class CLI extends IUI {
 
     private void printPickIfPresent() {
         printNLines(3);
-        int pickSize = getPick().size();
-            printNSpaces(getMyTurn() * 39);
-            printNSpaces(12 - pickSize*2);
-            for(BoardPosition tile : getPick()){
-                switch (tile.getCard().getColor()){
-                    case 'P' -> System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m ");
-                    case 'W' -> System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m ");
-                    case 'B' -> System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m ");
-                    case 'Y' -> System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m ");
-                    case 'G' -> System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m ");
-                    case 'C' -> System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m ");
+            if(! getPick().contains(new BoardPosition(9, 9))){
+                int pickSize = getPick().size();
+                printNSpaces(getMyTurn() * 39);
+                printNSpaces(12 - pickSize*2);
+                for(ItemCard tile : getViewLivingRoom().getPlayers().get(getMyTurn()).getDrawnCards()){
+                    switch (tile.getColor()){
+                        case 'P' -> System.out.print((char)27 + Printer.purpleCard.escape() + (char)27 + "[0m ");
+                        case 'W' -> System.out.print((char)27 + Printer.whiteCard.escape() + (char)27 + "[0m ");
+                        case 'B' -> System.out.print((char)27 + Printer.blueCard.escape() + (char)27 + "[0m ");
+                        case 'Y' -> System.out.print((char)27 + Printer.yellowCard.escape() + (char)27 + "[0m ");
+                        case 'G' -> System.out.print((char)27 + Printer.greenCard.escape() + (char)27 + "[0m ");
+                        case 'C' -> System.out.print((char)27 + Printer.cyanCard.escape() + (char)27 + "[0m ");
+                    }
                 }
+                printNLines(1);
+                printNSpaces(getMyTurn() * 39);
+                printNSpaces(12 - pickSize*2);
+                if(pickSize != 0){
+                    System.out.print(" 1  ");
+                }
+                for (int i = 2; i <= getPick().size(); i++) {
+                    System.out.print(" " + i + "  ");
+                }
+                System.out.println("");
             }
-            printNLines(1);
-            printNSpaces(getMyTurn() * 39);
-            printNSpaces(12 - pickSize*2);
-            if(pickSize != 0){
-                System.out.print(" 1  ");
-            }
-            for (int i = 2; i <= getPick().size(); i++) {
-                System.out.print(" " + i + "  ");
-            }
-            System.out.println("");
+
 
     }
 
@@ -588,6 +620,7 @@ public class CLI extends IUI {
         //getVirtualViewClient().retrieveOldGameEvent(livingRoomId);
         updateLivingRoom(livingRoom);
         setMySelf(playerFromJson);
+        getVirtualViewClient().isGamesStarted(getViewLivingRoom());
         System.out.println("Player Found");
     }
 

@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 
 public class LobbyLivingRoom {
     LivingRoom liv;
-    int necessaryPLayers;
+    private int necessaryPLayers;
 
     Controller controller = Controller.INSTANCE;
 
@@ -22,7 +22,7 @@ public class LobbyLivingRoom {
 
     public LobbyLivingRoom(LivingRoom liv) {
         this.liv = liv;
-        necessaryPLayers = liv.getPlayers().size();
+        necessaryPLayers = liv.getPlayers().size(); //TODO THIS SHOULD BE THE PROBLEM
     }
 
     public boolean isGameStarted(){
@@ -33,7 +33,7 @@ public class LobbyLivingRoom {
     public boolean isGameEnded(){
         if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull()) && liv.getTurn() == liv.getPlayers().size()-1){
             if(getLivingRoom().getTurn() == 0){
-                JSONInterface.removeLivingRoom(getLivingRoom());
+                //JSONInterface.removeLivingRoom(getLivingRoom());
                 return true;
             }
             return false;
@@ -77,5 +77,13 @@ public class LobbyLivingRoom {
     @Override
     public int hashCode() {
         return liv != null ? liv.hashCode() : 0;
+    }
+
+    public int getNecessaryPLayers() {
+        return necessaryPLayers;
+    }
+
+    public void removeOneNecessaryPlayer() {
+        necessaryPLayers -= 1;
     }
 }
