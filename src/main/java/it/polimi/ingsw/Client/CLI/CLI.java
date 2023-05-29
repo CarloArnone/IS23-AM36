@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import it.polimi.ingsw.Common.Exceptions.ToManyCardsException;
+import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Common.Utils.Printer;
@@ -67,7 +68,8 @@ public class CLI extends IUI {
      *
      */
     @Override
-    public void startUI() {
+    public void startUI(ICommunication virtualView) {
+        initalizeVirtualView(virtualView);
         startCLI();
     }
 
@@ -620,7 +622,7 @@ public class CLI extends IUI {
         //getVirtualViewClient().retrieveOldGameEvent(livingRoomId);
         updateLivingRoom(livingRoom);
         setMySelf(playerFromJson);
-        getVirtualViewClient().isGamesStarted(getViewLivingRoom());
+        //getVirtualViewClient().isGamesStarted(getViewLivingRoom());
         System.out.println("Player Found");
     }
 

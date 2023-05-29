@@ -211,6 +211,9 @@ public class LivingRoom {
     }
 
     public void addSupplier(ICommunication s){
+        if(viewList.contains(s)){
+            return;
+        }
         this.viewList.add(s);
     }
 

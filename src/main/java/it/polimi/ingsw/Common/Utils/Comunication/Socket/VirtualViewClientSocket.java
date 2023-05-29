@@ -21,20 +21,7 @@ public class VirtualViewClientSocket implements ICommunication {
     private Scanner in;
     InetAddress serverAddress ;
 
-    public VirtualViewClientSocket(String ip, int port, IUI UI) throws IOException {
-        comunicator = new Socket(ip, port);
-        this.UI = UI;
-        out = new PrintWriter(comunicator.getOutputStream(), true);
-        in = new Scanner(comunicator.getInputStream());
-
-        new Thread(() ->{
-                            while(true){
-                                handleReturn();
-                                }
-                            }).start();
-        serverAddress = comunicator.getInetAddress();
-        ping();
-    }
+    static VirtualViewClientSocket INSTANCE;
 
     public VirtualViewClientSocket(String ip, int port) throws IOException {
         comunicator = new Socket(ip, port);
@@ -50,6 +37,21 @@ public class VirtualViewClientSocket implements ICommunication {
         ping();
     }
 
+    public static VirtualViewClientSocket getINSTANCE() {
+        return INSTANCE;
+    }
+
+    public static VirtualViewClientSocket getInstance(String ip, int port){
+        if(INSTANCE == null){
+            try {
+                INSTANCE = new VirtualViewClientSocket(ip, port);
+                return INSTANCE;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else return INSTANCE;
+    }
 
     public void setUI(IUI UI) {
         this.UI = UI;

@@ -85,6 +85,7 @@ public class JSONInterface {
             jsonObject.add("position", coordinates);
             jsonObject.addProperty("isAvailable", entry.getValue());
             jsonObject.addProperty("color", entry.getKey().getCard().getColor());
+            jsonObject.addProperty("image", entry.getKey().getCard().getImage());
             jsonArray.add(jsonObject);
         }
 
@@ -319,7 +320,7 @@ public class JSONInterface {
         for (JsonElement position : board) {
             toReturn.put(new BoardPosition(position.getAsJsonObject().getAsJsonArray("position").get(0).getAsInt(),
                             position.getAsJsonObject().getAsJsonArray("position").get(1).getAsInt(),
-                            new ItemCard(position.getAsJsonObject().get("color").getAsCharacter(), "")),
+                            new ItemCard(position.getAsJsonObject().get("color").getAsCharacter(), position.getAsJsonObject().get("image").getAsString())),
                     position.getAsJsonObject().get("isAvailable").getAsBoolean());
         }
 

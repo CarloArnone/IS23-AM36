@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane styleClass="body" stylesheets="@../CSS/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.LoginController" prefHeight="Infinity" prefWidth="Infinity">
+   <children>
+      <StackPane>
+         <children>
+            <ImageView blendMode="SRC_ATOP" disable="true" fitHeight="600.0" mouseTransparent="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../17_MyShelfie_BGA/Publishermaterial/Display_1.jpg" />
+               </image>
+               <effect>
+                  <BoxBlur />
+               </effect>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="172.0" prefWidth="382.0" stylesheets="@../CSS/login.css">
+                    <VBox alignment="CENTER" prefHeight="324.0" prefWidth="891.0">
+                  <ImageView fitHeight="248.0" fitWidth="658.0">
+                     <image>
+                        <Image url="@../17_MyShelfie_BGA/Publishermaterial/Title2000x618px.png" />
+                     </image>
+                  </ImageView>
+                        <HBox alignment="CENTER" styleClass="usernameBox">
+                     <Label prefHeight="32.0" prefWidth="109.0" text="Username   " textFill="#e8e8e8">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label> <TextField fx:id="username" prefHeight="36.0" prefWidth="185.0" styleClass="usernameBox" />
+                  </HBox>
+                  <Region prefHeight="80.0" prefWidth="900.0" />
+                  <HBox alignment="CENTER">
+                     <children>
+                              <Button onAction="#login" styleClass="loginButton" text="Login!" />
+                     </children>
+                  </HBox>
+                    </VBox>
+                </VBox>
+         </children>
+      </StackPane>
+   </children>
+</Pane>

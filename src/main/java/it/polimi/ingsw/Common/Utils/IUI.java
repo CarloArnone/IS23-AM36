@@ -29,7 +29,7 @@ public abstract class IUI extends Application implements Listener {
         return viewLivingRoom;
     }
 
-    public abstract void startUI();
+    public abstract void startUI(ICommunication virtualView);
 
     public void initalizeVirtualView(ICommunication virtualViewClient){
         this.virtualViewClient = virtualViewClient;

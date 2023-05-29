@@ -300,9 +300,9 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             command = JSONInterface.generateCommand("Success", args, "");
             out.println(command);
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;156;196;178m " + command + (char)27 + "[0m");
-            //if (controller.isGamesStarted(controller.getLivingRoomById(livingRoomID))){
-            //    controller.getLivingRoomById(livingRoomID).notifyAllListeners("GameStarted");
-            //}
+            if (controller.isGamesStarted(controller.getLivingRoomById(livingRoomID))){
+                controller.getLivingRoomById(livingRoomID).notifyAllListeners("GameStarted");
+            }
             //TODO INSERT ELSE WITH GAME NOT STARTED
         }
 
