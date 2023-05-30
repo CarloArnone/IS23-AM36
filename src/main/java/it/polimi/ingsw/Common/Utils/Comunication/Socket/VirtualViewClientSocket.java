@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Common.Utils.Comunication.Socket;
 
+import it.polimi.ingsw.Common.Utils.Command;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.IUI;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
@@ -253,6 +254,96 @@ public class VirtualViewClientSocket implements ICommunication {
         args.add(1, livingRoomId);
         args.add(2, JSONInterface.generatePick(pick));
         sendMessage(JSONInterface.generateCommand("isPossiblePick", args, ""));
+    }
+
+    @Override
+    public void notEnoughSpacesInCol(Command command) {
+
+    }
+
+    @Override
+    public void loginUnsuccessful(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomNotFound(Command command) {
+
+    }
+
+    @Override
+    public void createGameNotSuccessful(Command command) {
+
+    }
+
+    @Override
+    public void notDisconnectedPlayer(Command command) {
+
+    }
+
+    @Override
+    public void gameNotStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameNotEnded(Command command) {
+
+    }
+
+    @Override
+    public void notPossiblePick(Command command) {
+
+    }
+
+    @Override
+    public void turnEndedSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void loginDoneSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomFound(Command command) {
+
+    }
+
+    @Override
+    public void joinedGame(Command command) {
+
+    }
+
+    @Override
+    public void disconnectedPlayerSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomsList(Command command) {
+
+    }
+
+    @Override
+    public void gameStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameEnded(Command command) {
+
+    }
+
+    @Override
+    public void possiblePick(Command command) {
+
+    }
+
+    @Override
+    public void notifyListener(Command command) {
+
     }
 }
 

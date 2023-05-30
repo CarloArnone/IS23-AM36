@@ -4,6 +4,7 @@ import it.polimi.ingsw.Common.Exceptions.InvalidGameIDException;
 import it.polimi.ingsw.Common.Exceptions.NoMatchingIDException;
 import it.polimi.ingsw.Common.Exceptions.NotEnoughSpacesInCol;
 import it.polimi.ingsw.Common.Exceptions.PlayersOutOfBoundException;
+import it.polimi.ingsw.Common.Utils.Command;
 import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Server.Controller.Controller;
@@ -453,6 +454,96 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
             System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
 
         }
+    }
+
+    @Override
+    public void notEnoughSpacesInCol(Command command) {
+
+    }
+
+    @Override
+    public void loginUnsuccessful(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomNotFound(Command command) {
+
+    }
+
+    @Override
+    public void createGameNotSuccessful(Command command) {
+
+    }
+
+    @Override
+    public void notDisconnectedPlayer(Command command) {
+
+    }
+
+    @Override
+    public void gameNotStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameNotEnded(Command command) {
+
+    }
+
+    @Override
+    public void notPossiblePick(Command command) {
+
+    }
+
+    @Override
+    public void turnEndedSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void loginDoneSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomFound(Command command) {
+
+    }
+
+    @Override
+    public void joinedGame(Command command) {
+
+    }
+
+    @Override
+    public void disconnectedPlayerSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomsList(Command command) {
+
+    }
+
+    @Override
+    public void gameStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameEnded(Command command) {
+
+    }
+
+    @Override
+    public void possiblePick(Command command) {
+
+    }
+
+    @Override
+    public void notifyListener(Command command) {
+
     }
 
     /**

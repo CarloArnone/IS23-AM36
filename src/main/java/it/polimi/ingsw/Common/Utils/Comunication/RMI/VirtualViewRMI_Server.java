@@ -27,16 +27,14 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     public void logInTryEvent(String name, ICommunication virtualView) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = (VirtualViewRMI_Client)virtualView;
+        command.addArg(name);
 
         if(controller.logInTryEvent(name, virtualView)) {
             command.setCommand("LoginDoneSuccessfully");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.loginDoneSuccessfully(command);
+            loginDoneSuccessfully(command);
         } else {
             command.setCommand("LoginUnsuccessful");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.loginUnsuccessful(command);
+            loginUnsuccessful(command);
         }
     }
 
@@ -55,17 +53,25 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
 
         VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
         Command command = new Command("", new ArrayList<String>(), "");
+        command.addArg(p.getName()); //ARG -> 0
 
         try {
             LivingRoom tempLivingRoom = controller.createGameEvent(livingRoomID, p, playersNum);
             command.setCommand("LivingRoomNotFound");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            //TODO: -- tempView.GameCreated(command); -- .GameCreated METHOD IS USED FOR SOCKET COMMUNICATION, NOT FOUND HERE
-            //Also, to be noted, there is a .CreateGameNotSuccessful method defined in the RMI_ClientInterface, but I couldn't find a correspondence in the socket code.
-        } catch (InvalidGameIDException | PlayersOutOfBoundException e) {
+            command.addArg(JSONInterface.writeLivingRoomToJson(tempLivingRoom)); //ARG -> 1
+            livingRoomFound(command);
+            //To be noted, there is a .CreateGameNotSuccessful method defined in the RMI_ClientInterface, but I couldn't find a correspondence in the socket code.
+        } catch (InvalidGameIDException e) {
             command.setCommand("LivingRoomNotFound");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.createGameNotSuccessful(command);
+            command.addArg("invalidId");
+            command.addArg(livingRoomID);
+            createGameNotSuccessful(command);
+            throw new RuntimeException(e);
+        } catch (PlayersOutOfBoundException e) {
+            command.setCommand("LivingRoomNotFound");
+            command.addArg("outOfBound");
+            command.addArg(livingRoomID);
+            createGameNotSuccessful(command);
             throw new RuntimeException(e);
         }
     }
@@ -353,12 +359,18 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
 
     @Override
     public void loginUnsuccessful(Command command) {
+        Player p = controller.getPlayerByName(command.getArgs().get(0));
+        VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
+        Command com = new Command("loginUnsuccessful", new ArrayList<String>(), "");
 
+        tempView.loginUnsuccessful(com);
     }
 
     @Override
     public void createGameNotSuccessful(Command command) {
-
+        String name = command.getArgs().get(0);
+        Player p = controller.getPlayerByName(name);
+        extractViewFromPlayer(p).createGameNotSuccessful(command);
     }
 
     @Override
@@ -396,12 +408,18 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
 
     @Override
     public void loginDoneSuccessfully(Command command) {
+        Player p = controller.getPlayerByName(command.getArgs().get(0));
+        VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
+        Command com = new Command("loginDoneSuccessfully", new ArrayList<String>(), "");
 
+        tempView.loginDoneSuccessfully(com);
     }
 
     @Override
     public void livingRoomFound(Command command) {
-
+        String name = command.getArgs().get(0);
+        Player p = controller.getPlayerByName(name);
+        extractViewFromPlayer(p).livingRoomFound(command);
     }
 
     @Override

@@ -205,12 +205,12 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     @Override
     public void loginUnsuccessful(Command command) {
-
+        ui.retryLogin();
     }
 
     @Override
     public void createGameNotSuccessful(Command command) {
-
+        ui.retryCreateGame(command.getArgs().get(1), command.getArgs().get(2));
     }
 
     @Override
@@ -248,12 +248,13 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     @Override
     public void loginDoneSuccessfully(Command command) {
-
+        ui.loginSuccessful();
     }
 
     @Override
     public void livingRoomFound(Command command) {
-
+        LivingRoom tempLiv = JSONInterface.getLivingRoomFromJsonString(command.getArgs().get(2));
+        ui.livingRoomFound(tempLiv, "createGame");
     }
 
     @Override
