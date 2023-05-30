@@ -41,63 +41,6 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void confirmEndTurn(Command command) throws RemoteException {
-
-        LivingRoom livingRoom = controller.getLivingRoomById(command.getArgs().get(0));
-        Player player = controller.getPlayerByName(command.getArgs().get(1));
-        List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(2));
-        int col = Integer.parseInt(command.getArgs().get(3));
-
-        confirmEndTurn(livingRoom, player, pick, col);
-    }
-
-    @Override
-    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
-
-        VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
-        Command command = new Command("", new ArrayList<String>(), "");
-
-        try {
-            if(controller.confirmEndTurn(livingRoom, p, pick, col)){
-                command.setCommand("TurnEndedSuccessfully");
-                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-                tempView.turnEndedSuccessfully(command);
-            } else {
-                command.setCommand("");
-                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-                //TODO: DECIDE HOW TO HANDLE THIS CASE
-            }
-        } catch (NotEnoughSpacesInCol e) {
-            command.setCommand("NotEnoughSpacesInCol");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.notEnoughSpacesInCol(command);
-        }
-    }
-
-    @Override
-    public void previousGamesRequestEvent(Command command) throws RemoteException {
-        previousGamesRequestEvent(command.getArgs().get(0));
-    }
-
-    //TODO: DIFFERENCE WITH -- retrieveOldGameEvent -- ?
-    @Override
-    public void previousGamesRequestEvent(String name) {
-
-        Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
-
-        if(controller.previousGamesRequestEvent(name) != null){
-            command.setCommand("LivingRoomFound");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.livingRoomFound(command);
-        } else {
-            command.setCommand("LivingRoomNotFound");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.livingRoomFound(command);
-        }
-    }
-
-    @Override
     public void createGameEvent(Command command) throws RemoteException {
 
         String livingRoomID = command.getArgs().get(0);
@@ -124,6 +67,29 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
             tempView.createGameNotSuccessful(command);
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void previousGamesRequestEvent(Command command) throws RemoteException {
+        previousGamesRequestEvent(command.getArgs().get(0));
+    }
+
+    //TODO: DIFFERENCE WITH -- retrieveOldGameEvent -- ?
+    @Override
+    public void previousGamesRequestEvent(String name) {
+
+        Command command = new Command("", new ArrayList<String>(), "");
+        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
+
+        if(controller.previousGamesRequestEvent(name) != null){
+            command.setCommand("LivingRoomFound");
+            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+            tempView.livingRoomFound(command);
+        } else {
+            command.setCommand("LivingRoomNotFound");
+            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+            tempView.livingRoomFound(command);
         }
     }
 
@@ -175,79 +141,37 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void disconnectedPlayer(Command command) {
+    public void confirmEndTurn(Command command) throws RemoteException {
 
         LivingRoom livingRoom = controller.getLivingRoomById(command.getArgs().get(0));
-        String name = command.getArgs().get(1);
-        boolean voluntaryLeft = Boolean.parseBoolean(command.getArgs().get(2));
+        Player player = controller.getPlayerByName(command.getArgs().get(1));
+        List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(2));
+        int col = Integer.parseInt(command.getArgs().get(3));
 
-        disconnectedPlayer(livingRoom, name, voluntaryLeft, null);
+        confirmEndTurn(livingRoom, player, pick, col);
     }
 
     @Override
-    public void livingRoomsList(Command command) {
+    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
 
-    }
-
-    @Override
-    public void gameStarted(Command command) {
-
-    }
-
-    @Override
-    public void gameEnded(Command command) {
-
-    }
-
-    @Override
-    public void possiblePick(Command command) {
-
-    }
-
-    @Override
-    public void notifyListener(Command command) {
-
-    }
-
-    @Override
-    public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
-
+        VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null;
-        Player tempPlayer = livingRoom.getPlayers().stream().filter(p1 -> p1.getName().equals(name)).findFirst().orElse(null);
-        if(tempPlayer != null) tempView = extractViewFromPlayer(tempPlayer);
 
-        if(controller.disconnectedPlayer(livingRoom, name, voluntaryLeft, tempView)) {
-            command.setCommand("DisconnectedPlayer");
+        try {
+            if(controller.confirmEndTurn(livingRoom, p, pick, col)){
+                command.setCommand("TurnEndedSuccessfully");
+                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+                tempView.turnEndedSuccessfully(command);
+            } else {
+                command.setCommand("");
+                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+                //TODO: DECIDE HOW TO HANDLE THIS CASE
+            }
+        } catch (NotEnoughSpacesInCol e) {
+            command.setCommand("NotEnoughSpacesInCol");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.disconnectedPlayer(command);
-        } else {
-            command.setCommand("NotDisconnectedPlayer");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.notDisconnectedPlayer(command);
+            tempView.notEnoughSpacesInCol(command);
         }
-    }
-
-    @Override
-    public void getActiveLivingRooms(Command command) throws RemoteException {
-
-        int listLength = Integer.parseInt(command.getArgs().get(0));
-        int occurrence = Integer.parseInt(command.getArgs().get(1));
-
-        getActiveLivingRooms(listLength, occurrence);
-    }
-
-    @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
-
-        Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()--)
-
-        for(String s : controller.getActiveLivingRooms(listLength, occurrence)){
-            command.addArg(s); //TODO: CHECK IF THIS CORRECT
-        }
-        command.setCommand("LivingRoomsList");
-        tempView.livingRoomsList(command);
     }
 
     @Override
@@ -339,6 +263,58 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
+    public void disconnectedPlayer(Command command) {
+
+        LivingRoom livingRoom = controller.getLivingRoomById(command.getArgs().get(0));
+        String name = command.getArgs().get(1);
+        boolean voluntaryLeft = Boolean.parseBoolean(command.getArgs().get(2));
+
+        disconnectedPlayer(livingRoom, name, voluntaryLeft, null);
+    }
+
+    @Override
+    public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
+
+        Command command = new Command("", new ArrayList<String>(), "");
+        VirtualViewRMI_Client tempView = null;
+        Player tempPlayer = livingRoom.getPlayers().stream().filter(p1 -> p1.getName().equals(name)).findFirst().orElse(null);
+        if(tempPlayer != null) tempView = extractViewFromPlayer(tempPlayer);
+
+        if(controller.disconnectedPlayer(livingRoom, name, voluntaryLeft, tempView)) {
+            command.setCommand("DisconnectedPlayer");
+            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+            tempView.disconnectedPlayerSuccessfully(command);
+        } else {
+            command.setCommand("NotDisconnectedPlayer");
+            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+            tempView.notDisconnectedPlayer(command);
+        }
+    }
+
+    @Override
+    public void getActiveLivingRooms(Command command) throws RemoteException {
+
+        int listLength = Integer.parseInt(command.getArgs().get(0));
+        int occurrence = Integer.parseInt(command.getArgs().get(1));
+
+        getActiveLivingRooms(listLength, occurrence);
+    }
+
+    @Override
+    public void getActiveLivingRooms(int listLength, int occurrence) {
+
+        Command command = new Command("", new ArrayList<String>(), "");
+        command.setCommand("LivingRoomsList");
+        String arg1 = "";
+
+        for(String s : controller.getActiveLivingRooms(listLength, occurrence)){
+            arg1 += s + "-";
+        }
+        command.addArg(arg1);
+        livingRoomsList(command);
+    }
+
+    @Override
     public void isPossiblePick(Command command) throws RemoteException {
         Player player = controller.getPlayerByName(command.getArgs().get(0));
         String livingRoomId = command.getArgs().get(1);
@@ -362,12 +338,18 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         }
     }
 
-    //ERRORS
-
     @Override
-    public void notEnoughSpacesInCol(Command command) {
+    public void notifyListener(Command command) {
 
     }
+
+    @Override
+    public void notifyListener(String message) {
+
+    }
+
+
+    //ERRORS
 
     @Override
     public void loginUnsuccessful(Command command) {
@@ -375,18 +357,18 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
+    public void createGameNotSuccessful(Command command) {
+
+    }
+
+    @Override
+    public void notEnoughSpacesInCol(Command command) {
+
+    }
+
+    @Override
     public void livingRoomNotFound(Command command) {
 
-    }
-
-    @Override
-    public void createGameNotSuccessful(Command command) {
-        
-    }
-
-    @Override
-    public void notDisconnectedPlayer(Command command) {
-        
     }
 
     @Override
@@ -400,16 +382,17 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
+    public void notDisconnectedPlayer(Command command) {
+
+    }
+
+    @Override
     public void notPossiblePick(Command command) {
 
     }
 
+
     //SUCCESSES
-
-    @Override
-    public void turnEndedSuccessfully(Command command) {
-
-    }
 
     @Override
     public void loginDoneSuccessfully(Command command) {
@@ -422,18 +405,43 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
+    public void livingRoomsList(Command command) {
+
+    }
+
+    @Override
+    public void gameStarted(Command command) {
+
+    }
+
+    @Override
+    public void gameEnded(Command command) {
+
+    }
+
+    @Override
     public void joinedGame(Command command) {
 
     }
 
     @Override
-    public void notifyListener(String message) {
+    public void turnEndedSuccessfully(Command command) {
+
+    }
+
+    public void disconnectedPlayerSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void possiblePick(Command command) {
 
     }
 
     //PRIVATE UTILITY METHODS
     private VirtualViewRMI_Client extractViewFromPlayer(Player p) {
-        return (VirtualViewRMI_Client)controller.getWaitingForChoice().stream().filter(p1 -> p1.getPlayer().getName().equals(p.getName())).findFirst().get().getView();
+        return (VirtualViewRMI_Client)controller.getWaitingForChoice().stream().filter(p1 ->
+                p1.getPlayer().getName().equals(p.getName())).findFirst().get().getView();
     }
 
 

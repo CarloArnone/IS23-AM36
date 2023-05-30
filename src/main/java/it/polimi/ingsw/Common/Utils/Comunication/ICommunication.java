@@ -16,7 +16,7 @@ public interface ICommunication extends Listener {
     void createGameEvent(String livingRoomID, Player p, int PlayersNum);
     void retrieveOldGameEvent(String livingRoomID);
     void joinGameEvent(String livingRoomID, String name);
-    void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView);
+    void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView); //TODO: CHANGE THIS NAME, SAME AS A SUCCESS CASE
     void getActiveLivingRooms(int listLength, int occurrence);
     void isGamesStarted(LivingRoom livingRoom);
     void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView);
@@ -40,7 +40,7 @@ public interface ICommunication extends Listener {
     void loginDoneSuccessfully(Command command);
     void livingRoomFound(Command command);
     void joinedGame(Command command);
-    void disconnectedPlayer(Command command);
+    void disconnectedPlayerSuccessfully(Command command);
     void livingRoomsList(Command command);
     void gameStarted(Command command);
     void gameEnded(Command command);

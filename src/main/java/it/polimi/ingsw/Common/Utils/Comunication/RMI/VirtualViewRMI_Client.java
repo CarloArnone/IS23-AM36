@@ -35,38 +35,8 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
-
-        List<String> args = new ArrayList<>();
-        args.add(0, livingRoom.getLivingRoomId());
-        args.add(1, p.getName());
-        args.add(2, JSONInterface.generatePick(pick));
-        args.add(3, String.valueOf(col));
-
-        Command command = new Command("confirmEndTurn", args, "1)Livingroom 2)Player 3)PickList 4)Columns");
-
-        try {
-            clientStub.confirmEndTurn(command);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public void logInTryEvent(String name, ICommunication virtualView) {
-
         clientStub.logInTryEvent(name, this);
-    }
-
-    @Override
-    public void previousGamesRequestEvent(String name) {
-        List<String> args = new ArrayList<>();
-        args.add(name);
-        try {
-            clientStub.previousGamesRequestEvent(new Command("PreviousGameRequest", args, ""));
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
@@ -78,6 +48,17 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
         try {
             clientStub.createGameEvent(new Command("createGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void previousGamesRequestEvent(String name) {
+        List<String> args = new ArrayList<>();
+        args.add(name);
+        try {
+            clientStub.previousGamesRequestEvent(new Command("PreviousGameRequest", args, ""));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -109,21 +90,18 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
-        List<String> args = new ArrayList<>();
-        args.add(livingRoom.getLivingRoomId());
+    public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
 
-        clientStub.disconnectedPlayer(new Command("retrieveOldGameEvent", args, ""));
-    }
-
-    @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
         List<String> args = new ArrayList<>();
-        args.add(Integer.toString(listLength));
-        args.add(Integer.toString(occurrence));
+        args.add(0, livingRoom.getLivingRoomId());
+        args.add(1, p.getName());
+        args.add(2, JSONInterface.generatePick(pick));
+        args.add(3, String.valueOf(col));
+
+        Command command = new Command("confirmEndTurn", args, "1)Livingroom 2)Player 3)PickList 4)Columns");
 
         try {
-            clientStub.getActiveLivingRooms(new Command("getActiveLivingRooms", args, ""));
+            clientStub.confirmEndTurn(command);
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -136,19 +114,6 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
         try {
             clientStub.isGamesStarted(new Command("isGameStarted", args, ""));
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView) {
-        List<String> args = new ArrayList<>();
-        args.add(name);
-        args.add(activeLivingRoom.getLivingRoomId());
-
-        try {
-            clientStub.leaveGameEvent(new Command("leaveGameEvent", args, ""));
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -179,6 +144,40 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
+    public void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView) {
+        List<String> args = new ArrayList<>();
+        args.add(name);
+        args.add(activeLivingRoom.getLivingRoomId());
+
+        try {
+            clientStub.leaveGameEvent(new Command("leaveGameEvent", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
+        List<String> args = new ArrayList<>();
+        args.add(livingRoom.getLivingRoomId());
+
+        clientStub.disconnectedPlayer(new Command("retrieveOldGameEvent", args, ""));
+    }
+
+    @Override
+    public void getActiveLivingRooms(int listLength, int occurrence) {
+        List<String> args = new ArrayList<>();
+        args.add(Integer.toString(listLength));
+        args.add(Integer.toString(occurrence));
+
+        try {
+            clientStub.getActiveLivingRooms(new Command("getActiveLivingRooms", args, ""));
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick) {
         List<String> args = new ArrayList<>();
         args.add(player.getName());
@@ -197,20 +196,15 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
         
     }
 
+    @Override
+    public void notifyListener(String message) {
+
+    }
+
     //ERRORS
 
     @Override
-    public void notEnoughSpacesInCol(Command command) {
-
-    }
-
-    @Override
     public void loginUnsuccessful(Command command) {
-
-    }
-
-    @Override
-    public void livingRoomNotFound(Command command) {
 
     }
 
@@ -220,7 +214,12 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void notDisconnectedPlayer(Command command) {
+    public void notEnoughSpacesInCol(Command command) {
+
+    }
+
+    @Override
+    public void livingRoomNotFound(Command command) {
 
     }
 
@@ -235,15 +234,17 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
+    public void notDisconnectedPlayer(Command command) {
+
+    }
+
+    @Override
     public void notPossiblePick(Command command) {
 
     }
 
-    //SUCCESSES
-    @Override
-    public void turnEndedSuccessfully(Command command) {
 
-    }
+    //SUCCESSES
 
     @Override
     public void loginDoneSuccessfully(Command command) {
@@ -252,16 +253,6 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     @Override
     public void livingRoomFound(Command command) {
-
-    }
-
-    @Override
-    public void joinedGame(Command command) {
-
-    }
-
-    @Override
-    public void disconnectedPlayer(Command command) {
 
     }
 
@@ -281,12 +272,22 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void possiblePick(Command command) {
+    public void joinedGame(Command command) {
 
     }
 
     @Override
-    public void notifyListener(String message) {
+    public void turnEndedSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void disconnectedPlayerSuccessfully(Command command) {
+
+    }
+
+    @Override
+    public void possiblePick(Command command) {
 
     }
 
