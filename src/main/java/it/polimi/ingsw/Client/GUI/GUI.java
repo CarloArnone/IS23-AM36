@@ -8,6 +8,8 @@ package it.polimi.ingsw.Client.GUI;
         import it.polimi.ingsw.Server.Model.LivingRoom;
         import it.polimi.ingsw.Server.Model.Player;
         import javafx.application.Platform;
+        import javafx.beans.Observable;
+        import javafx.beans.property.SimpleObjectProperty;
         import javafx.fxml.FXMLLoader;
         import javafx.scene.Scene;
         import javafx.stage.Stage;
@@ -28,6 +30,7 @@ public class GUI extends IUI {
     private List<String> livingRoomsList;
 
     private GameController controller;
+
 
 
     @Override 
@@ -220,6 +223,9 @@ public class GUI extends IUI {
     @Override 
     public void possiblePick(List<BoardPosition> pick) {
         setPick(pick);
+        for(BoardPosition boardPosition : pick){
+            getViewLivingRoom().getBoard().remove(boardPosition);
+        }
         controller.pickIsPossible();
     }
 
@@ -277,5 +283,7 @@ public class GUI extends IUI {
     public void setController(GameController controller){
         this.controller = controller;
     }
+
 }
+
 

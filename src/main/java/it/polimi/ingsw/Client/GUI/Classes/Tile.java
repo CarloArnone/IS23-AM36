@@ -3,6 +3,7 @@ package it.polimi.ingsw.Client.GUI.Classes;
 import it.polimi.ingsw.Common.Utils.JSONInterface;
 import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.ItemCard;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,6 +16,7 @@ public class Tile extends ItemCard {
     private boolean selected;
     private boolean available;
     ImageView imageView;
+    private String typeFile;
 
     public Tile(BoardPosition position, boolean available){
         this.available = available;
@@ -35,6 +37,7 @@ public class Tile extends ItemCard {
         }
 
         type += card.getImage() + ".png";
+        this.typeFile = type;
         File fim = new File(JSONInterface.findCorrectPathFromResources(type));
         Image imageI = new Image(fim.toURI().toString());
         this.imageView = new ImageView(imageI);
@@ -61,6 +64,8 @@ public class Tile extends ItemCard {
         }
 
         type += card.getImage() + ".png";
+        this.typeFile = type;
+
         File fim = new File(JSONInterface.findCorrectPathFromResources(type));
         Image imageI = new Image(fim.toURI().toString());
         this.imageView = new ImageView(imageI);
@@ -87,6 +92,8 @@ public class Tile extends ItemCard {
         }
 
         type += card.getImage() + ".png";
+        this.typeFile = type;
+
         File fim = new File(JSONInterface.findCorrectPathFromResources(type));
         Image imageI = new Image(fim.toURI().toString());
         this.imageView = new ImageView(imageI);
@@ -137,5 +144,16 @@ public class Tile extends ItemCard {
 
     public void trigger(){
         selected = ! selected;
+    }
+
+    public ImageView getImageViewCopy() {
+        return new ImageView(typeFile);
+    }
+
+    public ImageView getImageViewCopy(int h, int w) {
+        ImageView im = new ImageView(typeFile);
+        im.setFitHeight(h);
+        im.setFitWidth(w);
+        return im;
     }
 }
