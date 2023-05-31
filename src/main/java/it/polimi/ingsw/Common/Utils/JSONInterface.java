@@ -65,6 +65,7 @@ public class JSONInterface {
                     coordinates.add(c);
                     jsonObject.add("position", coordinates);
                     jsonObject.addProperty("color", shelf.getShelf()[r][c].get().getColor());
+                    jsonObject.addProperty("image", shelf.getShelf()[r][c].get().getImage());
                     jsonArray.add(jsonObject);
                 }
             }

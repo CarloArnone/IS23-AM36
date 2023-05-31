@@ -149,7 +149,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void turnPassed() {
-
+        controller.clearPick();
     }
 
     /**
@@ -169,6 +169,7 @@ public class GUI extends IUI {
             try {
                 fxmlLoader = new FXMLLoader(fxmlFile.toURL());
                 Scene scene = new Scene(fxmlLoader.load());
+                //scene.getStylesheets().add(getClass().getResource("/src/main/resources/CSS/Game.css").toExternalForm());
                 stage.setTitle(title);
                 stage.setScene(scene);
                 stage.show();
@@ -236,6 +237,9 @@ public class GUI extends IUI {
     @Override 
     public void livingRoomFound(LivingRoom livingRoomFromJsonString, String command) {
         setViewLivingRoom(livingRoomFromJsonString);
+        if(controller != null){
+            controller.updateLivingRoomView();
+        }
     }
 
     /**

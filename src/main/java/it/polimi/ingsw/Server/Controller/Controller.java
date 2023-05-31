@@ -327,7 +327,7 @@ public enum Controller implements eventObserver {
         throw new NoMatchingIDException();
     }
     private boolean playerIsValid(LivingRoom livingRoom, Player player){
-        return livingRoom.getPlayers().contains(player);
+        return livingRoom.getPlayers().contains(player) && livingRoom.getPlayerTurn(player) == livingRoom.getTurn();
     }
     private boolean hasAlreadySomeCards(LivingRoom livingRoom, Player player){
         for(Player p : livingRoom.getPlayers()){

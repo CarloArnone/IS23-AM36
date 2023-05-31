@@ -1,0 +1,4 @@
+.column:hover{
+    -fx-background-color: #90BE6D;
+    -fx-opacity: 50%;
+}

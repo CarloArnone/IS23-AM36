@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane styleClass="body" stylesheets="@../CSS/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.LoginController" prefHeight="Infinity" prefWidth="Infinity">
+<StackPane styleClass="body" stylesheets="@../CSS/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.LoginController" prefHeight="800" prefWidth="1500">
    <children>
       <StackPane>
          <children>
@@ -51,4 +51,4 @@
          </children>
       </StackPane>
    </children>
-</Pane>
+</StackPane>

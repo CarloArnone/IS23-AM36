@@ -73,7 +73,6 @@ public class GameController implements Initializable {
         });
         guiRef.setController(this);
         updateLivingRoomView();
-        col.setVisible(false);
 
         pickTiles.addListener((ListChangeListener<Tile>) change -> {
             while(change.next()){
@@ -84,21 +83,24 @@ public class GameController implements Initializable {
             }
         } );
 
-
+        selectableCols.setDisable(true);
 
     }
 
-    private void updateLivingRoomView() {
-        updateBoard();
-        updateMyShelf();
-        drawLittleShelves();
-        updateTurn();
-        updateCommonGoals();
+    public void updateLivingRoomView() {
+        Platform.runLater(() -> {
+            updateBoard();
+            updateMyShelf();
+            drawLittleShelves();
+            //updateTurn();
+            updateCommonGoals();
+        });
+
     }
 
     private void updateCommonGoals() {
         commonGoalsView.getChildren().clear();
-        for(CommonGoalCard commonGoalCard : livingRoomRep.get().getCommonGoalSet()){
+        for(CommonGoalCard commonGoalCard : guiRef.getViewLivingRoom().getCommonGoalSet()){
             StackPane commonGoalX = new StackPane();
             String commonGoalNameForPath = "/17_MyShelfie_BGA/commongoalcards/" + commonGoalCard.getName() + ".jpg";
             ImageView commonGoalImage = new ImageView(JSONInterface.findCorrectPathFromResources(commonGoalNameForPath));
@@ -107,16 +109,16 @@ public class GameController implements Initializable {
             commonGoalX.getChildren().add(commonGoalImage);
             HBox toPlaceTokens = new HBox();
             toPlaceTokens.setAlignment(Pos.CENTER_RIGHT);
-            toPlaceTokens.setPadding(new Insets(0, 50, 0, 0));
+            toPlaceTokens.setPadding(new Insets(0, 120, 0, 0));
             List<Integer> pointsAvailable = commonGoalCard.getPointsList();
+            pointsAvailable.sort((i1, i2) -> i1 - i2 >= 0 ? i1 : i2);
             StackPane placement = new StackPane();
-            for(Integer point : pointsAvailable){
-                String path = "/17_MyShelfie_BGA/scoringtokens/scoring_" + point + ".jpg";
-                ImageView pointToken = new ImageView(path);
-                pointToken.setPreserveRatio(true);
-                pointToken.setFitHeight(100);
-                placement.getChildren().add(pointToken);
-            }
+            String path = "/17_MyShelfie_BGA/scoringtokens/scoring_" + pointsAvailable.get(0) + ".jpg";
+            ImageView pointToken = new ImageView(path);
+            pointToken.setPreserveRatio(true);
+            pointToken.setFitHeight(100);
+            placement.getChildren().add(pointToken);
+
             toPlaceTokens.getChildren().add(placement);
             commonGoalX.getChildren().add(toPlaceTokens);
             commonGoalsView.getChildren().add(commonGoalX);
@@ -133,7 +135,7 @@ public class GameController implements Initializable {
 
     private void drawLittleShelves() {
         littleShelvesPlace.getChildren().clear();
-        List<Player> playerNotMe = livingRoomRep.get().getPlayers().stream().filter(x -> x.equals(guiRef.getMySelf())).toList();
+        List<Player> playerNotMe = guiRef.getViewLivingRoom().getPlayers().stream().filter(x -> x.equals(guiRef.getMySelf())).toList();
         for(Player player : playerNotMe){
             drawShelf(player, 200);
         }
@@ -164,7 +166,7 @@ public class GameController implements Initializable {
 
 
         for(Tile tile : shelfTiles){
-            shelfGrid.add(tile.getImageViewCopy(), tile.getPosX(), tile.getPosY());
+            shelfGrid.add(tile.getImageView(), tile.getPosX(), tile.getPosY());
         }
 
         shelfStackPane.getChildren().addAll(shelfGrid, shelfImage);
@@ -190,8 +192,8 @@ public class GameController implements Initializable {
 
     private List<Tile> getBoardTiles() {
         List<Tile> tiles = new ArrayList<>();
-        //guiRef.getViewLivingRoom().getBoard().entrySet().forEach(pos -> tiles.add(new Tile(pos.getKey(), pos.getValue())));
-        livingRoomRep.get().getBoard().entrySet().forEach(pos -> tiles.add(new Tile(pos.getKey(), pos.getValue())));
+        guiRef.getViewLivingRoom().getBoard().entrySet().forEach(pos -> tiles.add(new Tile(pos.getKey(), pos.getValue())));
+        //livingRoomRep.get().getBoard().entrySet().forEach(pos -> tiles.add(new Tile(pos.getKey(), pos.getValue())));
         return tiles;
     }
 
@@ -247,7 +249,6 @@ public class GameController implements Initializable {
 
     public void pickIsPossible(){
         Platform.runLater(() -> {
-            col.setVisible(true);
             updateBoard();
             showPossibleCols();
         });
@@ -256,31 +257,16 @@ public class GameController implements Initializable {
 
     private void showPossibleCols() {
         Platform.runLater(() -> {
-
+            selectableCols.setDisable(false);
             Player me = guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
             List<Boolean> possibleCols = me.getMyShelf().getSelectableCols(pickTiles.size());
-
+            ObservableList<Node> possibleColsRegions = selectableCols.getChildren();
             for(int i = 0; i< possibleCols.size(); i++){
-
-                RadioButton butt = new RadioButton(String.valueOf(i));
-                butt.setVisible(possibleCols.get(i));
-                selectableCols.getChildren().add(butt);
+                possibleColsRegions.get(i).setDisable(! possibleCols.get(i));
             }
         });
     }
 
-
-    @FXML
-    public void confirmPlacement(){
-
-        LivingRoom livingRoom = guiRef.getViewLivingRoom();
-        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
-
-        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 1);
-
-
-    }
 
     public List<BoardPosition> pickFromItemCards(List<Tile> itemCards) {
         List<BoardPosition> Truepick = new ArrayList<>();
@@ -292,4 +278,54 @@ public class GameController implements Initializable {
     }
 
 
+    public void clearPick() {
+        Platform.runLater(() -> {
+            this.pickTiles.clear();
+        });
+
+    }
+    @FXML
+    public void placeInOne(){
+        LivingRoom livingRoom = guiRef.getViewLivingRoom();
+        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
+        selectableCols.getChildren().clear();
+
+        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 0);
+    }
+
+    @FXML
+    public void placeInTwo(){
+        LivingRoom livingRoom = guiRef.getViewLivingRoom();
+        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
+        selectableCols.getChildren().clear();
+
+        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 1);
+    }
+
+    @FXML
+    public void placeInThree(){
+        LivingRoom livingRoom = guiRef.getViewLivingRoom();
+        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
+        selectableCols.getChildren().clear();
+
+        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 2);
+    }
+
+    @FXML
+    public void placeInFour(){
+        LivingRoom livingRoom = guiRef.getViewLivingRoom();
+        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
+        selectableCols.getChildren().clear();
+
+        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 3);
+    }
+
+    @FXML
+    public void placeInFive(){
+        LivingRoom livingRoom = guiRef.getViewLivingRoom();
+        Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
+        selectableCols.getChildren().clear();
+
+        guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 4);
+    }
 }
