@@ -166,8 +166,9 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
+    public void getActiveLivingRooms(String playerName, int listLength, int occurrence) {
         List<String> args = new ArrayList<>();
+        args.add(playerName);
         args.add(Integer.toString(listLength));
         args.add(Integer.toString(occurrence));
 
@@ -212,6 +213,10 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     @Override
     public void createGameNotSuccessful(Command command) {
         ui.retryCreateGame(command.getArgs().get(1), command.getArgs().get(2));
+    }
+
+    public void notJoinedGame(Command command) {
+        ui.gameNotJoined(command.getArgs().get(1));
     }
 
     @Override

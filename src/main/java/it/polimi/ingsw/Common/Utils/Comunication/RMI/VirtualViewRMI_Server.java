@@ -117,7 +117,7 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
             livingRoomFound(command);
         } catch (NoMatchingIDException e) {
             command.setCommand("LivingRoomNotFound");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
+            command.addArg("fetchOldGame"); //ARG -> 1
             livingRoomNotFound(command);
         }
     }
@@ -128,19 +128,25 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void joinGameEvent(String livingRoomID, String name) {
+    public void joinGameEvent(String livingRoomID, String playerName) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
 
-        Player tempPlayer = controller.joinGameEvent(livingRoomID, name);
+        Player tempPlayer = controller.joinGameEvent(livingRoomID, playerName);
+        command.addArg(tempPlayer != null ? tempPlayer.getName() : null); //ARG -> 0
 
-        if(controller.getLivingRoomById(livingRoomID).getPlayers().stream().anyMatch(p1 -> p1.getName().equals(name))){
+        LivingRoom tempLiv = controller.getLivingRoomById(livingRoomID);
+
+        if(tempLiv.getPlayers().stream().anyMatch(p1 -> p1.getName().equals(playerName))){
             command.setCommand("JoinedGame");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.joinedGame(command);
+            command.addArg(JSONInterface.writePlayerToJson(tempPlayer)); //ARG -> 1
+            command.addArg(JSONInterface.writeLivingRoomToJson(tempLiv)); //ARG -> 2
+            command.addArg(tempLiv.getLivingRoomId()); //ARG -> 3
+            joinedGame(command);
         } else {
-            //TODO:DO WE HAVE TO CONSIDER THIS CASE?
+            command.setCommand("JoinedGame");
+            command.addArg("GameFull"); //ARG -> 1
+            notJoinedGame(command);
         }
 
     }
@@ -159,23 +165,17 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     @Override
     public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col) {
 
-        VirtualViewRMI_Client tempView = extractViewFromPlayer(p);
         Command command = new Command("", new ArrayList<String>(), "");
+        command.addArg(p.getName()); //ARG -> 0
 
         try {
-            if(controller.confirmEndTurn(livingRoom, p, pick, col)){
+            if(controller.confirmEndTurn(livingRoom, p, pick, col)) {
                 command.setCommand("TurnEndedSuccessfully");
-                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-                tempView.turnEndedSuccessfully(command);
-            } else {
-                command.setCommand("");
-                command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-                //TODO: DECIDE HOW TO HANDLE THIS CASE
+                turnEndedSuccessfully(command);
             }
         } catch (NotEnoughSpacesInCol e) {
             command.setCommand("NotEnoughSpacesInCol");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.notEnoughSpacesInCol(command);
+            notEnoughSpacesInCol(command);
         }
     }
 
@@ -188,16 +188,19 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     public void isGamesStarted(LivingRoom livingRoom) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
 
         if(controller.isGamesStarted(livingRoom)) {
             command.setCommand("GameStarted");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.gameStarted(command);
+            for(Player p : livingRoom.getPlayers()) {
+                command.removeArg(0);
+                command.addArg(p.getName()); //ARG -> 0
+                gameStarted(command);
+            }
         } else {
             command.setCommand("GameNotStarted");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.gameNotStarted(command);
+            //gameNotStarted in CLI does nothing for now
+            gameNotStarted(command);
         }
     }
 
@@ -210,16 +213,23 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     public void isGameEnded(LivingRoom livingRoom) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
 
-        if(controller.isGamesStarted(livingRoom)) {
+        if(controller.isGameEnded(livingRoom)) {
             command.setCommand("GameEnded");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.gameEnded(command);
+            //TODO: GIVE AN ACTUAL COMMAND
+            command.addArg("Ciao chicchi è stato un piacere"); //ARG -> 1
+            for(Player p : livingRoom.getPlayers()){
+                command.getArgs().add(0, p.getName()); //ARG -> 0
+                gameEnded(command);
+                command.getArgs().remove(0);
+            }
         } else {
             command.setCommand("GameNotEnded");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.gameNotEnded(command);
+            for(Player p : livingRoom.getPlayers()){
+                command.addArg(p.getName());
+                gameNotEnded(command);
+                command.removeArg(0);
+            }
         }
     }
 
@@ -228,17 +238,15 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         endGame(controller.getLivingRoomById(command.getArgs().get(0)));
     }
 
-    //TODO: BROADCAST?
     @Override
     public void endGame(LivingRoom livingRoom) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null; //TODO:WHERE TO GET REFERENCE TO VIRTUAL VIEW OF CALLER? (COULD TRY TO LOOK INTO --RemoteServer.getClientHost()-- )
 
+        //TODO: endGame RETURN ALWAYS FALSE FOR NOW
         if(controller.endGame(livingRoom)) {
             command.setCommand("GameEnded");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            //TODO: BROADCAST?
         } else {
             command.setCommand("GameEnded");
             command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
@@ -256,15 +264,19 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     }
 
     @Override
-    public void leaveGameEvent(String name, LivingRoom activeLivingRoom, ICommunication virtualView) {
+    public void leaveGameEvent(String playerName, LivingRoom activeLivingRoom, ICommunication virtualView) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null;
+        ICommunication tempView = extractViewFromName(playerName);
+        command.addArg(playerName); //ARG -> 0
 
-        Player tempPlayer = activeLivingRoom.getPlayers().stream().filter(p1 -> p1.getName().equals(name)).findFirst().orElse(null);
-        if(tempPlayer != null) tempView = extractViewFromPlayer(tempPlayer);
-
-        tempView.leaveGameEvent(name, activeLivingRoom, tempView);
+        if(controller.disconnectedPlayer(activeLivingRoom, playerName, true, tempView)){
+            command.setCommand("DisconnectedPlayerSuccessfully");
+            disconnectedPlayerSuccessfully(command);
+        } else {
+            command.setCommand("NotDisconnectedPlayer");
+            notDisconnectedPlayer(command);
+        }
     }
 
     @Override
@@ -281,41 +293,45 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     public void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = null;
+        ICommunication tempView = null;
         Player tempPlayer = livingRoom.getPlayers().stream().filter(p1 -> p1.getName().equals(name)).findFirst().orElse(null);
         if(tempPlayer != null) tempView = extractViewFromPlayer(tempPlayer);
+        command.addArg(name);
+
 
         if(controller.disconnectedPlayer(livingRoom, name, voluntaryLeft, tempView)) {
-            command.setCommand("DisconnectedPlayer");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.disconnectedPlayerSuccessfully(command);
+            command.setCommand("DisconnectedPlayerSuccessfully");
+            disconnectedPlayerSuccessfully(command);
+            isGameEnded(livingRoom);
         } else {
             command.setCommand("NotDisconnectedPlayer");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.notDisconnectedPlayer(command);
+            notDisconnectedPlayer(command);
         }
     }
 
     @Override
     public void getActiveLivingRooms(Command command) throws RemoteException {
 
+        String playerName = command.getArgs().get(0);
         int listLength = Integer.parseInt(command.getArgs().get(0));
         int occurrence = Integer.parseInt(command.getArgs().get(1));
 
-        getActiveLivingRooms(listLength, occurrence);
+        getActiveLivingRooms(playerName, listLength, occurrence);
     }
 
     @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
+    public void getActiveLivingRooms(String playerName, int listLength, int occurrence) {
 
         Command command = new Command("", new ArrayList<String>(), "");
+        command.addArg(playerName); //ARG -> 0
         command.setCommand("LivingRoomsList");
         String arg1 = "";
 
         for(String s : controller.getActiveLivingRooms(listLength, occurrence)){
             arg1 += s + "-";
         }
-        command.addArg(arg1);
+        command.addArg(arg1); //ARG -> 1
+        command.addArg(Integer.toString(occurrence)); //ARG -> 1
         livingRoomsList(command);
     }
 
@@ -324,22 +340,23 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
         Player player = controller.getPlayerByName(command.getArgs().get(0));
         String livingRoomId = command.getArgs().get(1);
         List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(2));
+
+        isPossiblePick(player, livingRoomId, pick);
     }
 
     @Override
     public void isPossiblePick(Player player, String livingRoomId, List<BoardPosition> pick) {
 
         Command command = new Command("", new ArrayList<String>(), "");
-        VirtualViewRMI_Client tempView = extractViewFromPlayer(player);
+        command.addArg(player.getName()); //ARG -> 0
 
         if(controller.isPossiblePick(player, livingRoomId, pick)) {
             command.setCommand("PossiblePick");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.possiblePick(command);
+            command.addArg(JSONInterface.generatePick(pick)); //ARG -> 1
+            possiblePick(command);
         } else {
             command.setCommand("NotPossiblePick");
-            command.addArg(""); //TODO: GIVE AN ACTUAL COMMAND
-            tempView.notPossiblePick(command);
+            notPossiblePick(command);
         }
     }
 
@@ -364,6 +381,11 @@ public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterfac
     @Override
     public void createGameNotSuccessful(Command command) {
         extractViewFromName(command.getArgs().get(0)).createGameNotSuccessful(command);
+    }
+
+    @Override
+    public void notJoinedGame(Command command) {
+        extractViewFromName(command.getArgs().get(0)).notJoinedGame(command);
     }
 
     @Override

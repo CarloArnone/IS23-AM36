@@ -1,7 +1,0 @@
-RMI_Interface e IComunication, how do we handle this? Exceptions problem.
-
-How do we structure the Servers for multiple game instances?
-Example: we have one "welcome" server that takes in new players and then hands them out to a dedicated server for their game or do we run everything on the same server?
-
-
-

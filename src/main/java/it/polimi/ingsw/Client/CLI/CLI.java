@@ -218,7 +218,7 @@ public class CLI extends IUI {
             printCreateGameScreen(false, "", "");
         } else if (commandCreateOrJoin.equals("j")) {
             int groupID = 1;
-            getVirtualViewClient().getActiveLivingRooms(10, groupID);
+            getVirtualViewClient().getActiveLivingRooms(getMySelf().getName(), 10, groupID);
         }
     }
 
@@ -328,7 +328,7 @@ public class CLI extends IUI {
             getVirtualViewClient().joinGameEvent(command, getName());
         }
         else if(command.equals("u")){
-            getVirtualViewClient().getActiveLivingRooms(10, section);
+            getVirtualViewClient().getActiveLivingRooms(getMySelf().getName(), 10, section);
         }
         else{
             livingRoomsList(s, section);
@@ -599,7 +599,7 @@ public class CLI extends IUI {
     @Override
     public void gameNotJoined(String arg) {
         System.out.println(arg);
-        getVirtualViewClient().getActiveLivingRooms(10, 1);
+        getVirtualViewClient().getActiveLivingRooms(getMySelf().getName(), 10, 1);
     }
 
     public void loginTry(boolean retry){

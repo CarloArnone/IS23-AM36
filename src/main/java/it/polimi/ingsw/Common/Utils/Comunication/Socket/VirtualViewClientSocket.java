@@ -149,11 +149,13 @@ public class VirtualViewClientSocket implements ICommunication {
 
     /**
      * @param livingRoomID
+     * @param playerName
      */
     @Override
-    public void retrieveOldGameEvent(String livingRoomID) {
+    public void retrieveOldGameEvent(String livingRoomID, String playerName) {
         List<String> args = new ArrayList<>();
         args.add(0, livingRoomID);
+        args.add(1, playerName);
         sendMessage(JSONInterface.generateCommand("retrieveGame", args, ""));
     }
 
@@ -189,7 +191,7 @@ public class VirtualViewClientSocket implements ICommunication {
      * @param occurrence
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int occurrence) {
+    public void getActiveLivingRooms(String playerName, int listLength, int occurrence) {
         List<String> args = new ArrayList<>();
         args.add(0, String.valueOf(listLength));
         args.add(1, String.valueOf(occurrence));
@@ -273,6 +275,11 @@ public class VirtualViewClientSocket implements ICommunication {
 
     @Override
     public void createGameNotSuccessful(Command command) {
+
+    }
+
+    @Override
+    public void notJoinedGame(Command command) {
 
     }
 

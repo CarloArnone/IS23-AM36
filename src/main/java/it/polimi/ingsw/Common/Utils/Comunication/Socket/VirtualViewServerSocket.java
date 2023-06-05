@@ -58,7 +58,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                     }
                 }
                 catch(java.util.NoSuchElementException nee){
-                    //This is needed in the case the client crushes to handle it
+                    //This is needed in the case the client crashes trying to handle it
                     LivingRoom livingRoom = controller.findLivingRoomWithVirtualView(this);
                     Player player = controller.getPlayerByVirtualView(this);
                     if(livingRoom != null){
@@ -88,7 +88,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                     case "retrieveGame" -> retrieveOldGameEvent(args.get(0), args.get(1));
                     case "joinGame" -> joinGameEvent(args.get(0), args.get(1));
                     case "disconnectPlayer" -> disconnectedPlayer(controller.getLivingRoomById(args.get(0)), args.get(1), Boolean.parseBoolean(args.get(2)), this);
-                    case "getLivingRoomsList" -> getActiveLivingRooms(Integer.parseInt(args.get(0)), Integer.parseInt(args.get(1)));
+                    case "getLivingRoomsList" -> getActiveLivingRooms(name, Integer.parseInt(args.get(0)), Integer.parseInt(args.get(1)));
                     case "isGameStarted" -> isGamesStarted(controller.getLivingRoomById(args.get(0)));
                     case "isGameEnded" -> isGameEnded(controller.getLivingRoomById(args.get(0)));
                     case "leaveGame" -> leaveGameEvent(args.get(1), controller.getLivingRoomById(args.get(0)), this);
@@ -305,7 +305,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
      * @param section
      */
     @Override
-    public void getActiveLivingRooms(int listLength, int section) {
+    public void getActiveLivingRooms(String playerName, int listLength, int section) {
         List<String> args = new ArrayList<>();
         args.add(0, "LivingRoomsList");
         List<String> actimel = controller.getActiveLivingRooms(listLength, section);
@@ -473,6 +473,11 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
     @Override
     public void createGameNotSuccessful(Command command) {
+
+    }
+
+    @Override
+    public void notJoinedGame(Command command) {
 
     }
 
