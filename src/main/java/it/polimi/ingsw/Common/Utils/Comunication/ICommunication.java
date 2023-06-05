@@ -12,9 +12,9 @@ public interface ICommunication extends Listener {
 
     void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col);
     void logInTryEvent(String name, ICommunication virtualView);
-    void previousGamesRequestEvent(String name);
+    void previousGamesRequestEvent(String playerName);
     void createGameEvent(String livingRoomID, Player p, int PlayersNum);
-    void retrieveOldGameEvent(String livingRoomID);
+    void retrieveOldGameEvent(String livingRoomID, String playerName);
     void joinGameEvent(String livingRoomID, String name);
     void disconnectedPlayer(LivingRoom livingRoom, String name, boolean voluntaryLeft, ICommunication virtualView); //TODO: CHANGE THIS NAME, SAME AS A SUCCESS CASE
     void getActiveLivingRooms(int listLength, int occurrence);

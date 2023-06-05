@@ -54,9 +54,9 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void previousGamesRequestEvent(String name) {
+    public void previousGamesRequestEvent(String playerName) {
         List<String> args = new ArrayList<>();
-        args.add(name);
+        args.add(playerName);
         try {
             clientStub.previousGamesRequestEvent(new Command("PreviousGameRequest", args, ""));
         } catch (RemoteException e) {
@@ -65,9 +65,10 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
     }
 
     @Override
-    public void retrieveOldGameEvent(String livingRoomID) {
+    public void retrieveOldGameEvent(String livingRoomID, String playerName) {
         List<String> args = new ArrayList<>();
         args.add(livingRoomID);
+        args.add(this.clientName);
 
         try {
             clientStub.retrieveOldGameEvent(new Command("retrieveOldGameEvent", args, ""));
@@ -215,32 +216,32 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     @Override
     public void notEnoughSpacesInCol(Command command) {
-
+        ui.retryPlacement();
     }
 
     @Override
     public void livingRoomNotFound(Command command) {
-
+        ui.livingRoomNotFound(command.getArgs().get(1));
     }
 
     @Override
     public void gameNotStarted(Command command) {
-
+        ui.gameNotStarted();
     }
 
     @Override
     public void gameNotEnded(Command command) {
-
+        ui.gameNotEnded();
     }
 
     @Override
     public void notDisconnectedPlayer(Command command) {
-
+        ui.notDisconnected();
     }
 
     @Override
     public void notPossiblePick(Command command) {
-
+        ui.retryPick();
     }
 
 
@@ -253,43 +254,46 @@ public class VirtualViewRMI_Client implements RMI_ClientInterface{
 
     @Override
     public void livingRoomFound(Command command) {
-        LivingRoom tempLiv = JSONInterface.getLivingRoomFromJsonString(command.getArgs().get(2));
-        ui.livingRoomFound(tempLiv, "createGame");
+        LivingRoom tempLiv = JSONInterface.getLivingRoomFromJsonString(command.getArgs().get(1));
+        ui.livingRoomFound(tempLiv, command.getArgs().get(2));
     }
 
     @Override
     public void livingRoomsList(Command command) {
-
+        ui.livingRoomsList(command.getArgs().get(1), Integer.parseInt(command.getArgs().get(2)));
     }
 
     @Override
     public void gameStarted(Command command) {
-
+        ui.gameStarted();
     }
 
     @Override
     public void gameEnded(Command command) {
-
+        ui.gameEnded(command.getArgs().get(1));
     }
 
     @Override
     public void joinedGame(Command command) {
-
+        Player p = JSONInterface.getPlayerFromJson(command.getArgs().get(1));
+        LivingRoom liv = JSONInterface.getLivingRoomFromJson(command.getArgs().get(2), command.getArgs().get(3));
+        ui.joinedGame(p, liv);
     }
 
     @Override
     public void turnEndedSuccessfully(Command command) {
-
+        ui.turnPassed();
     }
 
     @Override
     public void disconnectedPlayerSuccessfully(Command command) {
-
+        ui.disconnected();
     }
 
     @Override
     public void possiblePick(Command command) {
-
+        List<BoardPosition> pick = JSONInterface.recreatePick(command.getArgs().get(1));
+        ui.possiblePick(pick);
     }
 
     //TESTING

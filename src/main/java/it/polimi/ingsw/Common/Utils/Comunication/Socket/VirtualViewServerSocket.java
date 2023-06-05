@@ -85,7 +85,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                     case "login" -> logInTryEvent(args.get(0), this);
                     case "previousGame" -> previousGamesRequestEvent(args.get(0));
                     case "createGame" -> createGameEvent(args.get(0), controller.getPlayerByName(args.get(1)), Integer.parseInt(args.get(2)));
-                    case "retrieveGame" -> retrieveOldGameEvent(args.get(0));
+                    case "retrieveGame" -> retrieveOldGameEvent(args.get(0), args.get(1));
                     case "joinGame" -> joinGameEvent(args.get(0), args.get(1));
                     case "disconnectPlayer" -> disconnectedPlayer(controller.getLivingRoomById(args.get(0)), args.get(1), Boolean.parseBoolean(args.get(2)), this);
                     case "getLivingRoomsList" -> getActiveLivingRooms(Integer.parseInt(args.get(0)), Integer.parseInt(args.get(1)));
@@ -222,7 +222,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
      * @param livingRoomID
      */
     @Override
-    public void retrieveOldGameEvent(String livingRoomID) {
+    public void retrieveOldGameEvent(String livingRoomID, String playerName) {
         try {
             String livingRoomJson = JSONInterface.writeLivingRoomToJson(controller.retrieveOldGameEvent(livingRoomID));
             List<String> args = new ArrayList<>();

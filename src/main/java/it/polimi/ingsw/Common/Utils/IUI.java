@@ -134,7 +134,7 @@ public abstract class IUI implements Listener {
     }
 
     public void resetBoard(){
-        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId());
+        virtualViewClient.retrieveOldGameEvent(viewLivingRoom.getLivingRoomId(), mySelf.getName());
     }
 
     public void updateLivingRoom(LivingRoom livingRoom) {
@@ -149,7 +149,7 @@ public abstract class IUI implements Listener {
         String[] messageToControl = message.split(" ");
         switch (messageToControl[0]){
             case "GameStarted" -> gameStarted();
-            case "Update" -> getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+            case "Update" -> getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId(), mySelf.getName());
             case "LeftGame" -> otherPlayerDisconnected(messageToControl[1], true);
             case "LeftGameCrush" -> otherPlayerDisconnected(messageToControl[1], false);
             case "GameEnded" -> gameEnded( messageToControl[1]);

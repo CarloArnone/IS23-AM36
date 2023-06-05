@@ -332,4 +332,8 @@ public enum Controller implements eventObserver {
 
         return null;
     }
+
+    public int getLivingRoomsSize() {
+        return livingRooms.size();
+    }
 }

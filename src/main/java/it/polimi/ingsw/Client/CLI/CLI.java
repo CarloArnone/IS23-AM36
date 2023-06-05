@@ -341,7 +341,7 @@ public class CLI extends IUI {
      */
     @Override
     public void gameStarted() {
-        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId(), getMySelf().getName());
         startParsingCommands();
     }
 
