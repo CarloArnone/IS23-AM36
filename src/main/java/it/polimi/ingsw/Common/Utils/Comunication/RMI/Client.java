@@ -8,6 +8,11 @@ public class Client {
     private int port;
     public RMI_ServerInterface stub;
     private Registry reg;
+
+    public static void main(String[] args) {
+
+    }
+
     public Client(int port){
 
         this.port = port;

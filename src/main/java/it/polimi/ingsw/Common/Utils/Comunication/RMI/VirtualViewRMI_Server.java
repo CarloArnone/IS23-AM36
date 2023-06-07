@@ -12,13 +12,31 @@ import it.polimi.ingsw.Server.Model.BoardPosition;
 import it.polimi.ingsw.Server.Model.LivingRoom;
 import it.polimi.ingsw.Server.Model.Player;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VirtualViewRMI_Server implements ICommunication, RMI_ServerInterface {
 
-    Controller controller = Controller.getInstance();
+    Controller controller;
+    private int port;
+    private RMI_ServerInterface stub;
+    private Registry reg;
+
+    public VirtualViewRMI_Server(int port) throws RemoteException, AlreadyBoundException {
+        this.port = port;
+
+        this.stub = (RMI_ServerInterface) UnicastRemoteObject.exportObject(this, this.port);
+        this.reg = LocateRegistry.createRegistry(this.port);
+        reg.bind("//localhost/mainServer", this.stub);
+
+        controller = Controller.getInstance();
+        System.out.println("Hello from Server on port" + this.port);
+    }
 
     //TODO: CHECK THE METHODS CASTINGS HERE
     //If I try to change the method argument type into VirtualViewRMI_Client in the RMI_Server interface, it seems to give errors.
