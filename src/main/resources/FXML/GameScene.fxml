@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController">
+<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController">
    <content>
       <StackPane prefHeight="1080.0" prefWidth="1917.0">
          <children>
@@ -26,15 +26,6 @@
             </ImageView>
             <VBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1920.0">
-                     <children>
-                        <ImageView fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
-                           <image>
-                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="913.0" prefWidth="2795.0">
                      <children>
                         <VBox alignment="CENTER">
@@ -46,7 +37,7 @@
                                  <children>
                                     <ImageView fitHeight="854.0" fitWidth="1216.0" focusTraversable="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../17_MyShelfie_BGA/misc/sfondo%20parquet.jpg" />
+                                          <Image url="@../17_MyShelfie_BGA/misc/sfondo parquet.jpg" />
                                        </image>
                                        <effect>
                                           <BoxBlur height="248.0" iterations="3" width="209.0" />
@@ -205,6 +196,15 @@
                      <opaqueInsets>
                         <Insets left="100.0" />
                      </opaqueInsets>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1920.0">
+                     <children>
+                        <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
+                           <image>
+                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                   </HBox>
                </children>
             </VBox>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.EndGameController">
+   <children>
+      <ImageView fitHeight="625.0" fitWidth="895.0">
+         <image>
+            <Image url="@../17_MyShelfie_BGA/misc/base_pagina2.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="398.0" fitWidth="429.0" layoutX="224.0" layoutY="227.0">
+         <image>
+            <Image url="@../17_MyShelfie_BGA/misc/Podium.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="174.0" fitWidth="200.0" layoutY="-46.0">
+         <image>
+            <Image url="@../17_MyShelfie_BGA/Publishermaterial/Title2000x2000px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winnerLabel" alignment="CENTER" layoutY="346.0" prefHeight="80.0" prefWidth="895.0" textFill="#f7f0a7">
+         <font>
+            <Font name="System Bold Italic" size="54.0" />
+         </font>
+      </Label>
+      <Label fx:id="topLabel" alignment="CENTER" layoutY="14.0" prefHeight="80.0" prefWidth="895.0" textFill="#f7f0a7">
+         <font>
+            <Font name="System Bold Italic" size="54.0" />
+         </font>
+      </Label>
+      <Label fx:id="bottomLabel" layoutX="14.0" layoutY="532.0" prefHeight="80.0" prefWidth="881.0" textFill="#f7f0a7">
+         <font>
+            <Font name="System Bold Italic" size="54.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="trophy" fitHeight="200.0" fitWidth="154.0" layoutX="371.0" layoutY="146.0">
+         <image>
+            <Image url="@../17_MyShelfie_BGA/misc/trophy.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
