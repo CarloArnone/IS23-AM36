@@ -2,3 +2,20 @@
     -fx-background-color: #90BE6D;
     -fx-opacity: 50%;
 }
+
+.usernameBox{
+    -fx-background-color: #AE8775;
+    -fx-border-radius: 20px;
+}
+
+.personalGoal{
+    -fx-border-radius: 40px;
+}
+
+.selectedCard{
+    -fx-border-color: gold;
+    -fx-border-style: dashed;
+}
+.messageBox{
+    -fx-text-fill: #e8e8e8;
+}

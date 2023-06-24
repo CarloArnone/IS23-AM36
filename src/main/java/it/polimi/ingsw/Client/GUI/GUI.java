@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Client.GUI;
 
+        import it.polimi.ingsw.Client.GUI.Classes.Tile;
         import it.polimi.ingsw.Common.Utils.Comunication.ICommunication;
         import it.polimi.ingsw.Common.Utils.Comunication.Socket.VirtualViewClientSocket;
         import it.polimi.ingsw.Common.Utils.IUI;
@@ -12,6 +13,7 @@ package it.polimi.ingsw.Client.GUI;
         import javafx.beans.property.SimpleObjectProperty;
         import javafx.fxml.FXMLLoader;
         import javafx.scene.Scene;
+        import javafx.scene.effect.BlendMode;
         import javafx.stage.Stage;
 
         import java.io.File;
@@ -19,6 +21,8 @@ package it.polimi.ingsw.Client.GUI;
         import java.util.ArrayList;
         import java.util.Arrays;
         import java.util.List;
+
+        import static java.lang.Thread.sleep;
 
 
 public class GUI extends IUI {
@@ -76,7 +80,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void otherPlayerDisconnected(String s, boolean b) {
-
+        controller.showMessage("Player " + s + "left the game" + (b ? "on purpose" : "due to some crushes"));
     }
 
     /**
@@ -84,7 +88,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void retryPlacement() {
-
+        controller.showMessage("The column you've just selected is not possible.");
     }
 
     /**
@@ -92,7 +96,8 @@ public class GUI extends IUI {
      */
     @Override 
     public void retryLogin() {
-
+        //POP UP NOT SUCCESSFULL
+        AlertHelper.showAlert("Username Already in use, please choose another", this.stage, "Login Not Successful");
     }
 
     /**
@@ -109,7 +114,8 @@ public class GUI extends IUI {
      */
     @Override 
     public void retryCreateGame(String error, String livId) {
-
+        //PoP UP NOT CREATED GAME
+        AlertHelper.showAlert(error, this.stage, "Game Not Created");
     }
 
     /**
@@ -125,7 +131,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void gameNotStarted() {
-
+        loadScene("/FXML/WaitingForPlayers", "WaitingRoom");
     }
 
     /**
@@ -141,7 +147,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void retryPick() {
-
+        controller.showMessage("Pick Not Possible Please Retry");
     }
 
     /**
@@ -169,7 +175,8 @@ public class GUI extends IUI {
             try {
                 fxmlLoader = new FXMLLoader(fxmlFile.toURL());
                 Scene scene = new Scene(fxmlLoader.load());
-                //scene.getStylesheets().add(getClass().getResource("/src/main/resources/CSS/Game.css").toExternalForm());
+                File css = new File(JSONInterface.findCorrectPathFromResources("/CSS/Game.css"));
+                scene.getStylesheets().add(css.toURL().toString());
                 stage.setTitle(title);
                 stage.setScene(scene);
                 stage.show();
@@ -184,7 +191,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void disconnected() {
-
+        loadScene("/FXML/createOrJoinGame.fxml", "Game Choice");
     }
 
     /**
@@ -215,6 +222,13 @@ public class GUI extends IUI {
      */
     @Override 
     public void gameEnded(String message) {
+        Platform.runLater(() -> {
+            getViewLivingRoom().getPlayers().forEach(player -> {
+                player.getPersonalGoal().checkGoal(player);
+                player.updateScore();
+            });
+            loadScene("/FXML/endGameScene.fxml", "End Game");
+        });
 
     }
 
@@ -237,9 +251,13 @@ public class GUI extends IUI {
     @Override 
     public void livingRoomFound(LivingRoom livingRoomFromJsonString, String command) {
         setViewLivingRoom(livingRoomFromJsonString);
-        if(controller != null){
+        if (controller != null) {
             controller.updateLivingRoomView();
         }
+        //if(command.equals("fetchOldGame")){
+        //    //POP UP OLD GAME CHOICE
+        //    AlertHelper.showChoice("You where playing in " + livingRoomFromJsonString.getLivingRoomId() + " before - Do you wish to continue it", this.stage, "Old Game Found", () -> getVirtualViewClient().joinGameEvent(livingRoomFromJsonString.getLivingRoomId(), getMySelf().getName()), () -> {});
+        //}
     }
 
     /**
@@ -263,7 +281,7 @@ public class GUI extends IUI {
      */
     @Override 
     public void gameNotJoined(String arg) {
-
+        //DISPLAY ALERT THAT PLAYER DID NOT JOIN
     }
 
     /**
@@ -271,7 +289,14 @@ public class GUI extends IUI {
      */
     @Override 
     public void serverDiconnected() {
-
+        //POPUP SERVER DISCONNECTED
+        AlertHelper.showAlert("Server is Down at the moment closing the application", this.stage, "Disconnection");
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            System.exit(0);
+        }
+        System.exit(0);
     }
 
 

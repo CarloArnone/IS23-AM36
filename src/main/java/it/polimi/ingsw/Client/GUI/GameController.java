@@ -12,8 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -50,9 +52,14 @@ public class GameController implements Initializable {
     @FXML
     private GridPane infoGame;
 
+    @FXML
+    private HBox messageBox;
 
     @FXML
     private VBox commonGoalsView;
+
+    @FXML
+            private ImageView personalGoal;
 
 
     ObservableWrapper<LivingRoom> livingRoomRep;
@@ -84,6 +91,15 @@ public class GameController implements Initializable {
         } );
 
         selectableCols.setDisable(true);
+        showPersonalGoal();
+
+    }
+
+    public void showMessage(String message){
+        Platform.runLater(() -> {
+            messageBox.getChildren().clear();
+            messageBox.getChildren().add(new Text(message));
+        });
 
     }
 
@@ -92,10 +108,16 @@ public class GameController implements Initializable {
             updateBoard();
             updateMyShelf();
             drawLittleShelves();
-            //updateTurn();
+            updateTurn();
             updateCommonGoals();
         });
 
+    }
+    @FXML
+    public void quitGame(){
+        Platform.runLater(() -> {
+            guiRef.quitAGame();
+        });
     }
 
     private void updateCommonGoals() {
@@ -127,34 +149,48 @@ public class GameController implements Initializable {
     }
 
     private void updateTurn() {
-        infoGame.getChildren().clear();
-        String turnOfPlayer = "It's " +livingRoomRep.get().getPlayers().get(livingRoomRep.get().getTurn()).getName() + " turn.";
-        Text turnInfo = new Text(turnOfPlayer);
-        infoGame.add(turnInfo, 3, 0);
+        String turnOfPlayer = "";
+        if(guiRef.getViewLivingRoom().getTurn() == guiRef.getViewLivingRoom().getPlayerTurn(guiRef.getMySelf())){
+            turnOfPlayer = "It's my turn";
+        }
+        else turnOfPlayer = "It's " +livingRoomRep.get().getPlayers().get(livingRoomRep.get().getTurn()).getName() + " turn.";
+        showMessage(turnOfPlayer);
     }
 
     private void drawLittleShelves() {
         littleShelvesPlace.getChildren().clear();
-        List<Player> playerNotMe = guiRef.getViewLivingRoom().getPlayers().stream().filter(x -> x.equals(guiRef.getMySelf())).toList();
+        List<Player> playerNotMe = guiRef.getViewLivingRoom().getPlayers().stream().filter(x -> ! x.equals(guiRef.getMySelf())).toList();
         for(Player player : playerNotMe){
             drawShelf(player, 200);
         }
     }
 
     private void drawShelf(Player player, int height) {
-        List<Tile> shelfTiles = getShelfTiles(player.getMyShelf().getShelf(), height/6, height/6);
+        int tileHeight = (int) (height/9.85);
+        int rowSpace = height/45;
+        int colSpace = rowSpace/3;
+        double pTop = height/9.09;
+        double pRight = height/9.85;
+        double pBottom = height/11.82;
+        double pLeft = height/10.85;
+        VBox toCenter = new VBox();
+        toCenter.setAlignment(Pos.CENTER);
+        List<Tile> shelfTiles = getShelfTiles(player.getMyShelf().getShelf(), tileHeight, tileHeight);
         StackPane shelfStackPane = new StackPane();
+        shelfStackPane.setPadding(new Insets(pTop, pRight, pBottom, pLeft));
         GridPane shelfGrid = new GridPane();
-        shelfGrid.setHgap(15);
-        shelfGrid.setVgap(3);
+        shelfGrid.setHgap(rowSpace);
+        shelfGrid.setVgap(colSpace);
         for(int r = 0; r < 6; r ++){
             RowConstraints row = new RowConstraints();
-            row.setPercentHeight(100/6);
+            row.setPercentHeight((double) 100 /6);
+            row.setValignment(VPos.CENTER);
             shelfGrid.getRowConstraints().add(row);
         }
         for(int r = 0; r < 5; r ++){
             ColumnConstraints row = new ColumnConstraints();
-            row.setPercentWidth(100/5);
+            row.setPercentWidth((double) 100 /5);
+            row.setHalignment(HPos.CENTER);
             shelfGrid.getColumnConstraints().add(row);
         }
 
@@ -166,12 +202,12 @@ public class GameController implements Initializable {
 
 
         for(Tile tile : shelfTiles){
-            shelfGrid.add(tile.getImageView(), tile.getPosX(), tile.getPosY());
+            shelfGrid.add(tile.getImageView(), tile.getPosY(), tile.getPosX());
         }
 
         shelfStackPane.getChildren().addAll(shelfGrid, shelfImage);
-
-        littleShelvesPlace.getChildren().add(shelfStackPane);
+        toCenter.getChildren().add(shelfStackPane);
+        littleShelvesPlace.getChildren().add(toCenter);
     }
 
     private void updatePickPlace() {
@@ -184,9 +220,9 @@ public class GameController implements Initializable {
     private void updateMyShelf() {
         Player updateMe = guiRef.getViewLivingRoom().getPlayers().stream().filter(x -> x.equals(guiRef.getMySelf())).findFirst().get();
 
-        List<Tile> MyShelfTiles = getShelfTiles(updateMe.getMyShelf().getShelf(), 30, 30);
+        List<Tile> MyShelfTiles = getShelfTiles(updateMe.getMyShelf().getShelf(), 60, 60);
         for (Tile tile : MyShelfTiles) {
-            MyShelf.add(tile.getImageView(), tile.getPosX(), tile.getPosY());
+            MyShelf.add(tile.getImageView(), tile.getPosY(), tile.getPosX());
         }
     }
 
@@ -218,7 +254,7 @@ public class GameController implements Initializable {
             boardPositions.add(new BoardPosition(tile.getPosX(), tile.getPosY(), new ItemCard(tile.getColor(), tile.getImage())));
         }
 
-        guiRef.getVirtualViewClient().isPossiblePick(guiRef.getMySelf(), guiRef.getViewLivingRoom().getLivingRoomId(), boardPositions);
+        guiRef.selectTilesFromBoard(boardPositions);
     }
 
     public void updateBoard(){
@@ -230,13 +266,12 @@ public class GameController implements Initializable {
                     public void handle(MouseEvent mouseEvent) {
                         boardTile.trigger();
                         if(boardTile.isSelected()){
-                            boardTile.getImageView().setFitWidth(70);
-                            boardTile.getImageView().setFitHeight(70);
+                            boardTile.getImageView().getStyleClass().clear();
+                            boardTile.getImageView().getStyleClass().add("selectedCard");
                             pickTiles.add(boardTile);
                         }
                         else{
-                            boardTile.getImageView().setFitWidth(77);
-                            boardTile.getImageView().setFitHeight(77);
+                            boardTile.getImageView().getStyleClass().clear();
                             pickTiles.remove(boardTile);
                         }
                     }
@@ -263,6 +298,16 @@ public class GameController implements Initializable {
             ObservableList<Node> possibleColsRegions = selectableCols.getChildren();
             for(int i = 0; i< possibleCols.size(); i++){
                 possibleColsRegions.get(i).setDisable(! possibleCols.get(i));
+            }
+        });
+    }
+
+    private void resetCols(){
+        Platform.runLater(() -> {
+            selectableCols.setDisable(true);
+            ObservableList<Node> possibleColsRegions = selectableCols.getChildren();
+            for(int i = 0; i< possibleColsRegions.size(); i++){
+                possibleColsRegions.get(i).setDisable(false);
             }
         });
     }
@@ -327,5 +372,14 @@ public class GameController implements Initializable {
         selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 4);
+    }
+
+    public void showPersonalGoal(){
+        Platform.runLater(() -> {
+            PersonalGoalCard personalGoalCard = guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn()).getPersonalGoal();
+
+            Image ps = new Image(JSONInterface.findCorrectPathFromResources("/17_MyShelfie_BGA/personalgoalcards/" + personalGoalCard.getName() + ".png"));
+            personalGoal.setImage(ps);
+        });
     }
 }

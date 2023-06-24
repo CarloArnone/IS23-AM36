@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController" stylesheets="../CSS/Game.css">
+<ScrollPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController">
    <content>
       <StackPane prefHeight="1080.0" prefWidth="1917.0">
          <children>
@@ -24,169 +24,190 @@
                   <Image url="@../17_MyShelfie_BGA/misc/base_pagina2.jpg" />
                </image>
             </ImageView>
-            <HBox alignment="CENTER_LEFT" prefHeight="913.0" prefWidth="2795.0">
+            <VBox alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER">
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1920.0">
                      <children>
-                        <StackPane>
+                        <ImageView fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
+                           <image>
+                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="913.0" prefWidth="2795.0">
+                     <children>
+                        <VBox alignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
                            <children>
-                              <ImageView fitHeight="854.0" fitWidth="1216.0" focusTraversable="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../17_MyShelfie_BGA/misc/sfondo%20parquet.jpg" />
-                                 </image>
-                                 <effect>
-                                    <BoxBlur height="248.0" iterations="3" width="209.0" />
-                                 </effect>
-                              </ImageView>
-                              <StackPane prefHeight="850.0" prefWidth="850.0">
+                              <StackPane>
                                  <children>
-                                    <ImageView fitHeight="846.0" fitWidth="839.0" preserveRatio="true">
+                                    <ImageView fitHeight="854.0" fitWidth="1216.0" focusTraversable="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../17_MyShelfie_BGA/boards/livingroom.png" />
+                                          <Image url="@../17_MyShelfie_BGA/misc/sfondo%20parquet.jpg" />
                                        </image>
+                                       <effect>
+                                          <BoxBlur height="248.0" iterations="3" width="209.0" />
+                                       </effect>
                                     </ImageView>
-                                    <GridPane fx:id="board" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="802.0" prefWidth="812.0" vgap="5.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="87.99999542236327" minWidth="87.0" percentWidth="11.5" prefWidth="83.20000762939452" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="122.0" minWidth="10.0" percentWidth="11.5" prefWidth="79.79999237060545" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="83.20001220703125" minWidth="0.0" percentWidth="11.5" prefWidth="79.20001220703125" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="80.0" minWidth="0.0" percentWidth="11.5" prefWidth="80.0" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="96.0" minWidth="6.0" percentWidth="11.5" prefWidth="78.39998779296872" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="95.0" minWidth="10.0" percentWidth="11.5" prefWidth="80.79999999999995" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="95.0" minWidth="10.0" percentWidth="11.5" prefWidth="80.79999999999995" />
-                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="113.0" minWidth="10.0" percentWidth="11.5" prefWidth="79.19998779296873" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="96.00003662109373" minWidth="10.0" percentWidth="11.5" prefWidth="89.60001220703123" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="84.0" minHeight="10.0" percentHeight="11.5" prefHeight="84.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="79.0" minHeight="10.0" percentHeight="11.5" prefHeight="77.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="84.0" minHeight="10.0" percentHeight="11.5" prefHeight="79.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="85.0" minHeight="10.0" percentHeight="11.5" prefHeight="79.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="174.0" minHeight="0.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="212.0" minHeight="0.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
-                                          <RowConstraints maxHeight="310.0" minHeight="10.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
-                                        <RowConstraints maxHeight="331.0" minHeight="1.0" percentHeight="11.5" prefHeight="78.0" valignment="CENTER" vgrow="NEVER" />
-                                        <RowConstraints maxHeight="363.0" minHeight="10.0" percentHeight="11.5" prefHeight="81.0" valignment="CENTER" vgrow="NEVER" />
-                                      </rowConstraints>
-                                       <StackPane.margin>
-                                          <Insets />
-                                       </StackPane.margin>
-                                       <padding>
-                                          <Insets bottom="45.0" left="43.0" right="50.0" top="48.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </GridPane>
+                                    <StackPane prefHeight="850.0" prefWidth="850.0">
+                                       <children>
+                                          <ImageView fitHeight="846.0" fitWidth="839.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../17_MyShelfie_BGA/boards/livingroom.png" />
+                                             </image>
+                                          </ImageView>
+                                          <HBox alignment="BOTTOM_LEFT">
+                                             <children>
+                                                <ImageView fx:id="personalGoal" fitHeight="267.0" fitWidth="180.0" preserveRatio="true" rotate="-10.0" styleClass="personalGoal" translateZ="45.0">
+
+                                    </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <GridPane fx:id="board" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="802.0" prefWidth="812.0" vgap="5.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="87.99999542236327" minWidth="87.0" percentWidth="11.5" prefWidth="83.20000762939452" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="122.0" minWidth="10.0" percentWidth="11.5" prefWidth="79.79999237060545" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="83.20001220703125" minWidth="0.0" percentWidth="11.5" prefWidth="79.20001220703125" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="80.0" minWidth="0.0" percentWidth="11.5" prefWidth="80.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="96.0" minWidth="6.0" percentWidth="11.5" prefWidth="78.39998779296872" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="95.0" minWidth="10.0" percentWidth="11.5" prefWidth="80.79999999999995" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="95.0" minWidth="10.0" percentWidth="11.5" prefWidth="80.79999999999995" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="113.0" minWidth="10.0" percentWidth="11.5" prefWidth="79.19998779296873" />
+                                              <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="96.00003662109373" minWidth="10.0" percentWidth="11.5" prefWidth="89.60001220703123" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints maxHeight="84.0" minHeight="10.0" percentHeight="11.5" prefHeight="84.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="79.0" minHeight="10.0" percentHeight="11.5" prefHeight="77.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="84.0" minHeight="10.0" percentHeight="11.5" prefHeight="79.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="85.0" minHeight="10.0" percentHeight="11.5" prefHeight="79.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="174.0" minHeight="0.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="212.0" minHeight="0.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
+                                                <RowConstraints maxHeight="310.0" minHeight="10.0" percentHeight="11.5" prefHeight="80.0" valignment="CENTER" vgrow="NEVER" />
+                                              <RowConstraints maxHeight="331.0" minHeight="1.0" percentHeight="11.5" prefHeight="78.0" valignment="CENTER" vgrow="NEVER" />
+                                              <RowConstraints maxHeight="363.0" minHeight="10.0" percentHeight="11.5" prefHeight="81.0" valignment="CENTER" vgrow="NEVER" />
+                                            </rowConstraints>
+                                             <StackPane.margin>
+                                                <Insets />
+                                             </StackPane.margin>
+                                             <padding>
+                                                <Insets bottom="45.0" left="43.0" right="50.0" top="45.0" />
+                                             </padding>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </GridPane>
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </StackPane>
                            </children>
-                        </StackPane>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="882.0" prefWidth="514.0">
-                     <children>
-                        <ImageView fitHeight="205.0" fitWidth="516.0" preserveRatio="true">
-                           <image>
-                              <Image url="@../17_MyShelfie_BGA/Publishermaterial/Title2000x618px.png" />
-                           </image>
-                        </ImageView>
-                        <HBox alignment="CENTER" prefHeight="63.0" prefWidth="516.0">
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="882.0" prefWidth="514.0">
                            <children>
-                              <Button fx:id="select" mnemonicParsing="false" onAction="#selectTilesFromBoard" text="Confirm Selection" />
-                           </children>
-                        </HBox>
-                        <HBox fx:id="pickPlace" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="7.0" VBox.vgrow="NEVER" />
-                        <StackPane prefHeight="591.0" prefWidth="514.0">
-                           <VBox.margin>
-                              <Insets bottom="40.0" />
-                           </VBox.margin>
-                           <children>
-                              <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <HBox prefHeight="38.0" prefWidth="516.0" />
-                                 </children>
-                              </VBox>
-                              <GridPane fx:id="MyShelf" hgap="15.0" vgap="5.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="75.00000610351563" minHeight="10.0" percentHeight="15.0" prefHeight="75.00000610351563" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="64.60001220703126" minHeight="10.0" percentHeight="15.0" prefHeight="63.79999389648438" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="NEVER" />
-                                </rowConstraints>
-                                 <padding>
-                                    <Insets bottom="50.0" left="60.0" right="60.0" top="65.0" />
-                                 </padding>
-                              </GridPane>
-                              <ImageView fitHeight="542.0" fitWidth="514.0" preserveRatio="true">
+                              <ImageView fitHeight="159.0" fitWidth="516.0" preserveRatio="true">
                                  <image>
-                                    <Image url="@../17_MyShelfie_BGA/boards/bookshelf_orth.png" />
+                                    <Image url="@../17_MyShelfie_BGA/Publishermaterial/Title2000x618px.png" />
                                  </image>
                               </ImageView>
-                              <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                              <HBox fx:id="messageBox" alignment="CENTER" prefHeight="27.0" prefWidth="516.0" styleClass="messageBox" />
+                              <HBox alignment="CENTER" prefHeight="63.0" prefWidth="516.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="119.0" text="Me" />
-                                       </children>
-                                    </HBox>
+                                    <Button fx:id="select" mnemonicParsing="false" onAction="#selectTilesFromBoard" text="Confirm Selection" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                              </HBox>
+                              <HBox fx:id="pickPlace" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="7.0" VBox.vgrow="NEVER" />
+                              <StackPane prefHeight="591.0" prefWidth="514.0">
+                                 <VBox.margin>
+                                    <Insets bottom="40.0" />
+                                 </VBox.margin>
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="455.0" prefWidth="516.0" spacing="10.0" fx:id="selectableCols">
+                                    <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <Region prefHeight="430.0" prefWidth="70.0" onMouseClicked="#placeInOne" styleClass="column"/>
-                                          <Region layoutX="10.0" layoutY="10.0" prefHeight="430.0" prefWidth="72.0" onMouseClicked="#placeInTwo"/>
-                                          <Region layoutX="74.0" layoutY="10.0" prefHeight="159.0" prefWidth="72.0" onMouseClicked="#placeInThree"/>
-                                          <Region layoutX="138.0" layoutY="10.0" prefHeight="430.0" prefWidth="72.0" onMouseClicked="#placeInFour"/>
-                                          <Region layoutX="202.0" layoutY="10.0" prefHeight="430.0" prefWidth="71.0" onMouseClicked="#placeInFive">
-                                             <opaqueInsets>
-                                                <Insets right="15.0" />
-                                             </opaqueInsets>
-                                          </Region>
+                                          <HBox prefHeight="38.0" prefWidth="516.0" />
                                        </children>
-                                       <opaqueInsets>
-                                          <Insets left="15.0" right="15.0" />
-                                       </opaqueInsets>
+                                    </VBox>
+                                    <GridPane fx:id="MyShelf" hgap="10.0" vgap="5.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="75.00000610351563" minHeight="10.0" percentHeight="15.0" prefHeight="75.00000610351563" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="64.60001220703126" minHeight="10.0" percentHeight="15.0" prefHeight="63.79999389648438" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                                          <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                                          <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                                          <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+                                      </rowConstraints>
                                        <padding>
-                                          <Insets bottom="25.0" />
+                                          <Insets bottom="50.0" left="60.0" right="60.0" top="65.0" />
                                        </padding>
-                                    </HBox>
+                                    </GridPane>
+                                    <ImageView fitHeight="542.0" fitWidth="514.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../17_MyShelfie_BGA/boards/bookshelf_orth.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="119.0" styleClass="usernameBox" text="Me" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <HBox fx:id="selectableCols" alignment="CENTER" prefHeight="455.0" prefWidth="516.0" spacing="10.0">
+                                             <children>
+                                                <Region onMouseClicked="#placeInOne" prefHeight="430.0" prefWidth="70.0" styleClass="column" />
+                                                <Region layoutX="10.0" layoutY="10.0" onMouseClicked="#placeInTwo" prefHeight="430.0" prefWidth="72.0" styleClass="column" />
+                                                <Region layoutX="74.0" layoutY="10.0" onMouseClicked="#placeInThree" prefHeight="159.0" prefWidth="72.0" styleClass="column" />
+                                                <Region layoutX="138.0" layoutY="10.0" onMouseClicked="#placeInFour" prefHeight="430.0" prefWidth="72.0" styleClass="column" />
+                                                <Region layoutX="202.0" layoutY="10.0" onMouseClicked="#placeInFive" prefHeight="430.0" prefWidth="71.0" styleClass="column">
+                                                   <opaqueInsets>
+                                                      <Insets right="15.0" />
+                                                   </opaqueInsets>
+                                                </Region>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets left="15.0" right="15.0" />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets bottom="25.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
                                  </children>
-                              </VBox>
+                              </StackPane>
                            </children>
-                        </StackPane>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="954.0" prefWidth="1198.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="537.0" prefWidth="1198.0">
+                                  <VBox fx:id="commonGoalsView" alignment="CENTER" prefHeight="537.0" prefWidth="613.0" />
+                              </HBox>
+                              <HBox fx:id="littleShelvesPlace" prefHeight="335.0" prefWidth="1198.0" />
+                           </children>
+                        </VBox>
                      </children>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox prefHeight="954.0" prefWidth="1198.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="537.0" prefWidth="1198.0">
-                            <VBox fx:id="commonGoalsView" prefHeight="537.0" prefWidth="613.0" />
-                        </HBox>
-                        <HBox fx:id="littleShelvesPlace" prefHeight="335.0" prefWidth="1198.0" />
-                     </children>
-                  </VBox>
+                     <opaqueInsets>
+                        <Insets left="100.0" />
+                     </opaqueInsets>
+                  </HBox>
                </children>
-               <opaqueInsets>
-                  <Insets left="100.0" />
-               </opaqueInsets>
-            </HBox>
+            </VBox>
          </children>
       </StackPane>
    </content>

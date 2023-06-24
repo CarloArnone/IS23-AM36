@@ -34,14 +34,3 @@ public class LoginController {
 
 }
 
-class AlertHelper {
-
-    public static void showAlert(String message, Window owner, String title) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
-}

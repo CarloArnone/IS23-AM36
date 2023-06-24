@@ -300,7 +300,7 @@ public class JSONInterface {
         Optional<ItemCard>[][] opt = new Optional[6][5];
 
         for (JsonElement el : shelfArray) {
-            opt[el.getAsJsonObject().get("position").getAsJsonArray().get(0).getAsInt()][el.getAsJsonObject().get("position").getAsJsonArray().get(1).getAsInt()] = Optional.of(new ItemCard(el.getAsJsonObject().get("color").getAsCharacter(), ""));
+            opt[el.getAsJsonObject().get("position").getAsJsonArray().get(0).getAsInt()][el.getAsJsonObject().get("position").getAsJsonArray().get(1).getAsInt()] = Optional.of(new ItemCard(el.getAsJsonObject().get("color").getAsCharacter(), el.getAsJsonObject().get("image").getAsString()));
         }
 
         for (int r = 0; r < Shelf_Height; r++) {
