@@ -121,7 +121,7 @@ public class VirtualViewClientSocket implements ICommunication {
         new Thread(() -> {
             while(true){
                 try {
-                    if (!serverAddress.isReachable(5000)) {
+                    if (!serverAddress.isReachable(20000)) {
                         pingFailed();
                     }
                 } catch (IOException e) {
