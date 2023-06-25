@@ -54,9 +54,9 @@ MyShelfie Online Store: https://www.craniocreations.it/prodotto/my-shelfie
 
 
 ### How To Launch
-1- Maven install
-2- cd $(main folder of the project - IS23-AM36)
-3- **Server**: java -jar App.jar server {port}    ------  **Client**: java -jar App.jar {socket / RMI} {ip server} {port server} {GUI / CLI} .
+1- Maven install <br>
+2- cd $(main folder of the project - IS23-AM36)  <br>
+3- **Server**: java -jar App.jar server {port}    ------  **Client**: java -jar App.jar {socket / RMI} {ip server} {port server} {GUI / CLI} .  <br>
 
 
 
