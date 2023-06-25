@@ -30,7 +30,13 @@
                      <children>
                         <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
                            <image>
-                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
+                              <Image url="@../17_MyShelfie_BGA/misc/5844.jpg" />
+                           </image>
+                        </ImageView>
+                        <Region prefHeight="56.0" prefWidth="140.0" />
+                        <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="40.0" layoutX="953.0" layoutY="21.0" onMouseClicked="#closeWindow" preserveRatio="true">
+                           <image>
+                              <Image url="@../17_MyShelfie_BGA/misc/exit_icon_sign_vector_illustration.jpg" />
                            </image>
                         </ImageView>
                      </children>
@@ -119,7 +125,7 @@
                                  </children>
                               </HBox>
                               <HBox fx:id="pickPlace" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="7.0" VBox.vgrow="NEVER" />
-                              <StackPane prefHeight="591.0" prefWidth="514.0" fx:id="BigShelfStackPane">
+                              <StackPane fx:id="BigShelfStackPane" prefHeight="591.0" prefWidth="514.0">
                                  <VBox.margin>
                                     <Insets bottom="40.0" />
                                  </VBox.margin>
@@ -163,7 +169,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" id="cols_Box">
+                                    <VBox id="cols_Box" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
                                           <HBox fx:id="selectableCols" alignment="CENTER" prefHeight="455.0" prefWidth="516.0" spacing="10.0">
                                              <children>

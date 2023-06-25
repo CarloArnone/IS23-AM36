@@ -30,6 +30,7 @@ public class EndGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         trophy.setVisible(false);
+        maxScore = guiRef.getViewLivingRoom().getWinner().getScore();
         for (int i = 0; i < guiRef.getViewLivingRoom().getPlayers().size();i++){
             if(guiRef.getViewLivingRoom().getPlayers().get(i).getScore() >= maxScore){
             }
@@ -43,7 +44,7 @@ public class EndGameController implements Initializable {
 
         winnerLabel.setText(GUI.getInstance().getViewLivingRoom().getWinner().getName());
         topLabel.setText("The winner is...");
-        if(losers != null) {
+        if(losers.isEmpty()) {
             bottomLabel.setText("The losers: " + losers);
         }
         else{

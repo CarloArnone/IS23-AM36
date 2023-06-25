@@ -385,4 +385,9 @@ public class GameController implements Initializable {
             personalGoal.setImage(ps);
         });
     }
+
+    @FXML
+    public void closeWindow(){
+        System.exit(0);
+    }
 }

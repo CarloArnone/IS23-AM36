@@ -21,7 +21,7 @@ import static java.lang.Thread.sleep;
 public class CLI extends IUI {
 
     Scanner sc ;
-
+    private boolean alreadyParsingCommands = false;
 
     public CLI() {
         sc = new Scanner(System.in);
@@ -239,6 +239,7 @@ public class CLI extends IUI {
      */
     @Override
     public void disconnected() {
+        stopParsingCommands();
         createOrJoinGameChoice();
     }
 
@@ -250,6 +251,9 @@ public class CLI extends IUI {
         System.out.println("                                 Create Game      Join Game");
         System.out.println("                                      c        /      j      ");
         System.out.print("                                               > ");
+        while( ! sc.hasNextLine()){
+
+        }
         String commandCreateOrJoin = sc.nextLine().split(" ")[0];
         if (commandCreateOrJoin.equals("c")) {
             printCreateGameScreen(false, "", "");
@@ -257,16 +261,21 @@ public class CLI extends IUI {
             int groupID = 1;
             getVirtualViewClient().getActiveLivingRooms(10, groupID);
         }
+        else createOrJoinGameChoice();
+
     }
 
     private void startParsingCommands() {
-        new Thread(() ->{
-            boolean exitIn = false;
-            while(!exitIn){
-                String command = sc.nextLine();
-                exitIn = parseCommand(command);
-            }
-        }).start();
+        if(! this.alreadyParsingCommands){
+            this.alreadyParsingCommands = true;
+            new Thread(() ->{
+                boolean exitIn = false;
+                while(!exitIn){
+                    String command = sc.nextLine();
+                    exitIn = parseCommand(command);
+                }
+            }).start();
+        }
     }
 
     public boolean parseCommand(String command) {
@@ -393,25 +402,23 @@ public class CLI extends IUI {
     }
 
     private void printEndGameScreen(String status) {
-        switch (status){
-            case "winner" -> {
-                System.out.println("You win");
-                stopParsingCommands();
-            }
-            case "lonelyPlayer" -> {
-                System.out.println("You are the last in your game - disconnecting");
-                stopParsingCommands();
-                createOrJoinGameChoice();
-            }
-            default -> {
-                System.out.println("Defeat");
-                stopParsingCommands();
-            }
+
+        if(status.equals("lonelyPlayer")){
+            System.out.println("You are the last in your game - disconnecting");
+            stopParsingCommands();
+            createOrJoinGameChoice();
+        }
+        else{
+            stopParsingCommands();
+            printNLines(4);
+            System.out.println("GameEnded");
+            printNLines(10);
         }
     }
 
     private void stopParsingCommands() {
         setViewLivingRoom(null);
+        this.alreadyParsingCommands = false;
     }
 
 

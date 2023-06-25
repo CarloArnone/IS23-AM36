@@ -67,16 +67,13 @@ public class VirtualViewClientSocket implements ICommunication {
     }
 
     private void handleReturn() {
-        try{
+        if(in.hasNextLine()){
             Map<String, Object> response = JSONInterface.recreateCommand(in.nextLine());
             if (response.get("command").equals("Success")) {
                 handleSuccess((List<String>) response.get("args"), (String) response.get("description"));
             } else handleError((List<String>) response.get("args"), (String) response.get("description"));
-        }
-        catch (Exception e){
-            UI.serverDiconnected();
-        }
 
+        }
     }
 
     private void handleError(List<String> args,  String description) {
