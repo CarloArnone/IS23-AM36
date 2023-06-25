@@ -30,6 +30,8 @@ import java.util.*;
 
 public class GameController implements Initializable {
 
+    @FXML
+    private StackPane BigShelfStackPane;
     GUI guiRef = GUI.getInstance();
 
     @FXML
@@ -293,6 +295,7 @@ public class GameController implements Initializable {
     private void showPossibleCols() {
         Platform.runLater(() -> {
             selectableCols.setDisable(false);
+            BigShelfStackPane.getChildren().stream().filter(x -> x.getId() != null && x.getId().equals("cols_Box")).findFirst().get().toFront();
             Player me = guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
             List<Boolean> possibleCols = me.getMyShelf().getSelectableCols(pickTiles.size());
             ObservableList<Node> possibleColsRegions = selectableCols.getChildren();

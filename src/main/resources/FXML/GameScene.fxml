@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController">
+<ScrollPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.GameController">
    <content>
       <StackPane prefHeight="1080.0" prefWidth="1917.0">
          <children>
@@ -26,6 +26,15 @@
             </ImageView>
             <VBox alignment="CENTER">
                <children>
+                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1920.0">
+                     <children>
+                        <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
+                           <image>
+                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="913.0" prefWidth="2795.0">
                      <children>
                         <VBox alignment="CENTER">
@@ -110,7 +119,7 @@
                                  </children>
                               </HBox>
                               <HBox fx:id="pickPlace" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="7.0" VBox.vgrow="NEVER" />
-                              <StackPane prefHeight="591.0" prefWidth="514.0">
+                              <StackPane prefHeight="591.0" prefWidth="514.0" fx:id="BigShelfStackPane">
                                  <VBox.margin>
                                     <Insets bottom="40.0" />
                                  </VBox.margin>
@@ -154,7 +163,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" id="cols_Box">
                                        <children>
                                           <HBox fx:id="selectableCols" alignment="CENTER" prefHeight="455.0" prefWidth="516.0" spacing="10.0">
                                              <children>
@@ -196,15 +205,6 @@
                      <opaqueInsets>
                         <Insets left="100.0" />
                      </opaqueInsets>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="1920.0">
-                     <children>
-                        <ImageView accessibleRole="BUTTON" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#quitGame" preserveRatio="true">
-                           <image>
-                              <Image url="@../17_MyShelfie_BGA/quitGame.png" />
-                           </image>
-                        </ImageView>
-                     </children>
                   </HBox>
                </children>
             </VBox>

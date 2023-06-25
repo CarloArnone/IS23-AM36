@@ -105,6 +105,7 @@ public enum Controller implements eventObserver {
                 }
                 else {
                     wp.setOnline(true);
+                    wp.setView(virtualView);
                     return true;
                 }
 
@@ -188,6 +189,8 @@ public enum Controller implements eventObserver {
 
                         WaitingPlayer waitingPlayer = waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get();
                         waitingPlayer.setOnline(false);
+                        liv.getLivingRoom().getViewList().remove(getPlayerView(p));
+
                         if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
                             passTurn(liv.getLivingRoom());
                         }
