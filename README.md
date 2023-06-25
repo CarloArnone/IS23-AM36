@@ -29,16 +29,16 @@ In this repo there is the IngSoft2023 - Polimi Project
 
 | ProjectSubPart   | Assignee          | Completeness                             | Notes                                                                    |
 |------------------|-------------------|------------------------------------------|--------------------------------------------------------------------------|
-| BaseRules        | Vincenzo  Lorenzo | <span style="color:green">100%</span> 🟢 |                                                                          |
-| CompleteRules    | Vincenzo  Lorenzo | <span style="color:green">90%</span> 🟢  | There are some commonGoals left to test properly                         |
-| Controller       | Carlo             | <span style="color:green">80%</span> 🟢  | Needs to be merged with communication to see if we are missing something |
-| CLI              | Carlo             | <span style="color:green">60%</span>  🟡 | Code need to be refactored                                               |
-| GUI              | Davide            | <span style="color:green">70%</span>  🟡 | Needs to be merged with communication                                    |
-| Persistence      | All               | <span style="color:green">95%</span> 🟢  | the 5% remaining is due to a duplicating error while saving              |
-| ClientResilience | All               | <span style="color:green">50%</span>  🟠 | Communication needs to be implemented to complete this topic             |
+| BaseRules        | Vincenzo  Lorenzo | <span style="color:green">100%</span> 🟢 | Done                                                                     |
+| CompleteRules    | Vincenzo  Lorenzo | <span style="color:green">100%</span> 🟢 | Done                                                                     |
+| Controller       | Carlo             | <span style="color:green">100%</span> 🟢 | Done                                                                     |
+| CLI              | Carlo             | <span style="color:green">95%</span>  🟢 | Testing corner case                                                      |
+| GUI              | Davide            | <span style="color:green">95%</span>  🟢 | testing Corner Case                                                      |
+| Persistence      | All               | <span style="color:green">95%</span>  🟢 | fixing last problem                                                      |
+| ClientResilience | All               | <span style="color:green">95%</span>  🟢 | testing corner case                                                      |
 | MultiGameServer  | All               | <span style="color:green">100%</span> 🟢 | Complete                                                                 |
-| RMI              | Vincenzo          | <span style="color:red">0%</span>     🔴 |                                                                          |
-| Socket           | Carlo Lorenzo     | <span style="color:red">30%</span>     🟠| In Progress                                                              |
+| RMI              | Vincenzo          | <span style="color:red">95%</span>    🟢 | Strange inception with socket                                            |
+| Socket           | Carlo Lorenzo     | <span style="color:red">100%</span>   🟢 | Done                                                                     |
 
 
 
@@ -53,6 +53,10 @@ MyShelfie Online Store: https://www.craniocreations.it/prodotto/my-shelfie
 
 
 
+### How To Launch
+1- Maven install
+2- cd $(main folder of the project - IS23-AM36)
+3- **Server**: java -jar App.jar server {port}    ------  **Client**: java -jar App.jar {socket / RMI} {ip server} {port server} {GUI / CLI} .
 
 
 
