@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -19,6 +20,8 @@ public class CreateGameController implements Initializable {
     private ChoiceBox<Integer> playersNum;
     @FXML
     private TextField GameID;
+    @FXML
+    private Button createButton;
 
     @FXML
     public void createGame(){
@@ -26,6 +29,7 @@ public class CreateGameController implements Initializable {
             String gameID = GameID.getText();
             Integer pn = playersNum.getValue();
             guiRef.getVirtualViewClient().createGameEvent(gameID, guiRef.getMySelf(), pn);
+            createButton.setText("Waiting for other players...");
         });
     }
 
