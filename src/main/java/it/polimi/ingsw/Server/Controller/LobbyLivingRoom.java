@@ -31,7 +31,7 @@ public class LobbyLivingRoom {
     }
 
     public boolean isGameEnded(){
-        if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull()) && liv.getTurn() == liv.getPlayers().size()-1){
+        if(getLivingRoom().getPlayers().stream().anyMatch(x -> x.getMyShelf().isFull()) /*&& liv.getTurn() == liv.getPlayers().size()-1*/){
             if(getLivingRoom().getTurn() == 0){
                 //JSONInterface.removeLivingRoom(getLivingRoom());
                 return true;

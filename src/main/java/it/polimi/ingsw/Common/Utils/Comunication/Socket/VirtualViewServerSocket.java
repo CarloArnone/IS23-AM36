@@ -164,12 +164,17 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
     public void confirmEndTurn(LivingRoom livingRoom, Player p, List<BoardPosition> pick, int col){
         try {
             controller.confirmEndTurn(livingRoom, p, pick, col);
-            List<String> args = new ArrayList<>();
-            args.add("TurnEndedSuccessfully");
-            String command = JSONInterface.generateCommand("Success", args, "");
-            out.println(command);
-            System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;156;196;178m " + command + (char)27 + "[0m");
-            livingRoom.notifyAllListeners("Update");
+            if(controller.isGameEnded(livingRoom)){
+                livingRoom.notifyAllListeners("GameEnded ForAll");
+            }
+            else{
+                List<String> args = new ArrayList<>();
+                args.add("TurnEndedSuccessfully");
+                String command = JSONInterface.generateCommand("Success", args, "");
+                out.println(command);
+                System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;156;196;178m " + command + (char)27 + "[0m");
+                livingRoom.notifyAllListeners("Update");
+            }
         } catch (NotEnoughSpacesInCol e) {
             List<String> args = new ArrayList<>();
             args.add("NotEnoughSpacesInCol");

@@ -67,7 +67,7 @@ public enum Controller implements eventObserver {
                 }
                 passTurn(liv.getLivingRoom());
                 liv.getLivingRoom().checkRearrangeDesk();
-                liv.getLivingRoom().notifyAllListeners("TurnEnded");
+
                 saveGame(liv.getLivingRoom());
                 return true;
             }
@@ -233,7 +233,7 @@ public enum Controller implements eventObserver {
     @Override
     public synchronized  boolean isGameEnded(LivingRoom livingRoom){
         for(LobbyLivingRoom liv : livingRooms){
-            if(liv.getLivingRoom().equals(livingRoom)){
+            if(liv.getLivingRoom().getLivingRoomId().equals(livingRoom.getLivingRoomId())){
                 return liv.isGameEnded();
             }
         }

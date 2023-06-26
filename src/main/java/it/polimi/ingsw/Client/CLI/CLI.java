@@ -81,17 +81,19 @@ public class CLI extends IUI {
      */
     @Override
     public void otherPlayerDisconnected(String s, boolean b) {
-        getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        if(b){
-            updateCLI("Player " + s + " left the game on purpose");
-        }
-        else{
-            updateCLI("Player " + s + " is momentainly disconnected due to some crushes");
+        if(getViewLivingRoom().getPlayers().size() > 2){
+            getVirtualViewClient().retrieveOldGameEvent(getViewLivingRoom().getLivingRoomId());
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if(b){
+                updateCLI("Player " + s + " left the game on purpose");
+            }
+            else{
+                updateCLI("Player " + s + " is momentainly disconnected due to some crushes");
+            }
         }
     }
 
@@ -408,9 +410,15 @@ public class CLI extends IUI {
         }
         else{
             stopParsingCommands();
-            printNLines(4);
-            System.out.println("GameEnded");
             printNLines(10);
+            getViewLivingRoom().getPlayers().sort((p1, p2) -> {
+                return p1.getScore() - p2.getScore();
+            });
+            for(Player p : getViewLivingRoom().getPlayers()){
+                centerHorizontaly(p.getName() + ": " + p.getScore());
+            }
+            printNLines(10);
+
         }
     }
 
