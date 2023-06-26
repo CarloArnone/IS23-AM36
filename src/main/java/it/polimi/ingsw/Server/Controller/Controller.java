@@ -197,7 +197,7 @@ public enum Controller implements eventObserver {
                     if(p.getName().equals(name)){
 
                         WaitingPlayer waitingPlayer = waitingForChoice.stream().filter(x -> x.getPlayer().equals(p)).findFirst().get();
-                        waitingPlayer.setOnline(false);
+
                         liv.getLivingRoom().getViewList().remove(getPlayerView(p));
 
                         if(liv.getLivingRoom().getPlayers().get(liv.getLivingRoom().getTurn()).equals(p)){
@@ -211,6 +211,7 @@ public enum Controller implements eventObserver {
                         }
                         else {
                             liv.getLivingRoom().notifyAllListeners("LeftGameCrush " + p.getName());
+                            waitingPlayer.setOnline(false);
                         }
                         if(liv.getLivingRoom().getPlayers().size() != 1){
                             saveGame(liv.getLivingRoom());
