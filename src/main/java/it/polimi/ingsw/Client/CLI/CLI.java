@@ -191,7 +191,7 @@ public class CLI extends IUI {
      */
     @Override
     public void gameNotEnded() {
-        System.out.println("gameNotEnded");
+
     }
 
     /**
@@ -243,8 +243,11 @@ public class CLI extends IUI {
      */
     @Override
     public void disconnected() {
-        stopParsingCommands();
-        System.exit(0);
+        if(alreadyParsingCommands){
+            stopParsingCommands();
+            System.exit(0);
+        }
+        else createOrJoinGameChoice();
     }
 
     private void createOrJoinGameChoice() {
