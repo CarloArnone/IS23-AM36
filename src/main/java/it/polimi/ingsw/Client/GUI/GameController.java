@@ -18,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,6 +30,24 @@ import java.net.URL;
 import java.util.*;
 
 public class GameController implements Initializable {
+    private List<Label> playersLabels = new ArrayList<>();
+    private List<Label> playersPoints = new ArrayList<>();
+    @FXML
+    public Label playerName0;
+    @FXML
+    public Label playerName1;
+    @FXML
+    public Label playerName2;
+    @FXML
+    public Label playerName3;
+    @FXML
+    public Label playerPoints0;
+    @FXML
+    public Label playerPoints1;
+    @FXML
+    public Label playerPoints2;
+    @FXML
+    public Label playerPoints3;
 
     @FXML
     private StackPane BigShelfStackPane;
@@ -49,13 +68,14 @@ public class GameController implements Initializable {
     @FXML
     private Integer column;
 
+
     @FXML
     private HBox littleShelvesPlace;
     @FXML
     private GridPane infoGame;
 
     @FXML
-    private HBox messageBox;
+    private Label messageBox;
 
     @FXML
     private VBox commonGoalsView;
@@ -73,6 +93,7 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         livingRoomRep = new ObservableWrapper<>(guiRef.getViewLivingRoom());
         livingRoomRep.addListener(new ChangeListener<LivingRoom>() {
             @Override
@@ -99,12 +120,37 @@ public class GameController implements Initializable {
 
     public void showMessage(String message){
         Platform.runLater(() -> {
-            messageBox.getChildren().clear();
-            messageBox.getChildren().add(new Text(message));
+            messageBox.setText("");
+            messageBox.setText(message);
         });
-
     }
 
+    public void showPlayersPoints(){
+        Platform.runLater(() -> {
+            playerName0.setText("");
+            playerName1.setText("");
+            playerName2.setText("");
+            playerName3.setText("");
+            playerPoints0.setText("");
+            playerPoints1.setText("");
+            playerPoints2.setText("");
+            playerPoints3.setText("");
+            playersLabels.add(playerName0);
+            playersLabels.add(playerName1);
+            playersLabels.add(playerName2);
+            playersLabels.add(playerName3);
+            playersPoints.add(playerPoints0);
+            playersPoints.add(playerPoints1);
+            playersPoints.add(playerPoints2);
+            playersPoints.add(playerPoints3);
+            for (int i = 0; i < guiRef.getViewLivingRoom().getPlayers().size(); i++){
+                playersLabels.get(i).setText(guiRef.getViewLivingRoom().getPlayers().get(i).getName());
+            }
+            for (int i = 0; i < guiRef.getViewLivingRoom().getPlayers().size(); i++){
+                playersPoints.get(i).setText(String.valueOf(guiRef.getViewLivingRoom().getPlayers().get(i).getScore()));
+            }
+        });
+    }
     public void updateLivingRoomView() {
         Platform.runLater(() -> {
             updateBoard();
@@ -157,6 +203,7 @@ public class GameController implements Initializable {
         }
         else turnOfPlayer = "It's " +livingRoomRep.get().getPlayers().get(livingRoomRep.get().getTurn()).getName() + " turn.";
         showMessage(turnOfPlayer);
+        showPlayersPoints();
     }
 
     private void drawLittleShelves() {
@@ -196,7 +243,7 @@ public class GameController implements Initializable {
             shelfGrid.getColumnConstraints().add(row);
         }
 
-        shelfGrid.setPadding(new Insets(32, 30, 25, 30));
+        shelfGrid.setPadding(new Insets(16, 22, 25, 22));
         String path = "/17_MyShelfie_BGA/boards/bookshelf_orth.png";
         ImageView shelfImage = new ImageView(JSONInterface.findCorrectPathFromResources(path));
         shelfImage.setPreserveRatio(true);
@@ -314,7 +361,6 @@ public class GameController implements Initializable {
             }
         });
     }
-
 
     public List<BoardPosition> pickFromItemCards(List<Tile> itemCards) {
         List<BoardPosition> Truepick = new ArrayList<>();
