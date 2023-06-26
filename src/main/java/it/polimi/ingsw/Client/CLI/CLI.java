@@ -412,16 +412,19 @@ public class CLI extends IUI {
             stopParsingCommands();
             getViewLivingRoom().getPlayers().forEach(player -> {
                 player.getPersonalGoal().checkGoal(player);
-                player.getPersonalGoal().getPoints();
+                player.addPoints(player.getPersonalGoal().getPoints());
             });
-            printNLines(10);
-            getViewLivingRoom().getPlayers().sort((p1, p2) -> {
+            printNLines(20);
+            getViewLivingRoom().getPlayers().sort((p2, p1) -> {
                 return p1.getScore() - p2.getScore();
             });
+            centerHorizontaly("ScoreBoard: ");
+            printNLines(2);
             for(Player p : getViewLivingRoom().getPlayers()){
                 centerHorizontaly(p.getName() + ": " + p.getScore());
+                printNLines(1);
             }
-            printNLines(10);
+            printNLines(20);
 
         }
     }
