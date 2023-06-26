@@ -72,7 +72,6 @@ public class VirtualViewClientSocket implements ICommunication {
             if (response.get("command").equals("Success")) {
                 handleSuccess((List<String>) response.get("args"), (String) response.get("description"));
             } else handleError((List<String>) response.get("args"), (String) response.get("description"));
-
         }
     }
 

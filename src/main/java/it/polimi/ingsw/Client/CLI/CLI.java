@@ -23,6 +23,8 @@ public class CLI extends IUI {
     Scanner sc ;
     private boolean alreadyParsingCommands = false;
 
+    Thread parsingCommandThread = new Thread("FakeStartingThread");
+
     public CLI() {
         sc = new Scanner(System.in);
         setPick(new ArrayList<>());
@@ -240,7 +242,7 @@ public class CLI extends IUI {
     @Override
     public void disconnected() {
         stopParsingCommands();
-        createOrJoinGameChoice();
+        System.exit(0);
     }
 
     private void createOrJoinGameChoice() {
@@ -251,9 +253,6 @@ public class CLI extends IUI {
         System.out.println("                                 Create Game      Join Game");
         System.out.println("                                      c        /      j      ");
         System.out.print("                                               > ");
-        while( ! sc.hasNextLine()){
-
-        }
         String commandCreateOrJoin = sc.nextLine().split(" ")[0];
         if (commandCreateOrJoin.equals("c")) {
             printCreateGameScreen(false, "", "");
@@ -268,13 +267,14 @@ public class CLI extends IUI {
     private void startParsingCommands() {
         if(! this.alreadyParsingCommands){
             this.alreadyParsingCommands = true;
-            new Thread(() ->{
-                boolean exitIn = false;
-                while(!exitIn){
-                    String command = sc.nextLine();
-                    exitIn = parseCommand(command);
+            this.parsingCommandThread =  new Thread(() ->{
+                while(true){
+                    if(alreadyParsingCommands && parseCommand(sc.nextLine())){
+                        break;
+                    };
                 }
-            }).start();
+            });
+            this.parsingCommandThread.start();
         }
     }
 
@@ -284,9 +284,7 @@ public class CLI extends IUI {
             return true;
         }
 
-        if(getViewLivingRoom() == null){
-            return true;
-        }
+
 
         String commandPrefix = command.split(" ")[0];
         switch (commandPrefix) {
@@ -417,8 +415,18 @@ public class CLI extends IUI {
     }
 
     private void stopParsingCommands() {
-        setViewLivingRoom(null);
-        this.alreadyParsingCommands = false;
+        if(alreadyParsingCommands){
+            try {
+                Process process = Runtime.getRuntime().exec("taskkill /F /IM " + this.parsingCommandThread.getName());
+                process.waitFor();
+                System.out.println("Process killed successfully.");
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.alreadyParsingCommands = false;
+        }
+        else createOrJoinGameChoice();
+
     }
 
 

@@ -295,7 +295,7 @@ public class GameController implements Initializable {
     private void showPossibleCols() {
         Platform.runLater(() -> {
             selectableCols.setDisable(false);
-            BigShelfStackPane.getChildren().stream().filter(x -> x.getId() != null && x.getId().equals("cols_Box")).findFirst().get().toFront();
+            //BigShelfStackPane.getChildren().stream().filter(x -> x.getId() != null && x.getId().equals("cols_Box")).findFirst().get().toFront();
             Player me = guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
             List<Boolean> possibleCols = me.getMyShelf().getSelectableCols(pickTiles.size());
             ObservableList<Node> possibleColsRegions = selectableCols.getChildren();
@@ -305,7 +305,7 @@ public class GameController implements Initializable {
         });
     }
 
-    private void resetCols(){
+    void resetCols(){
         Platform.runLater(() -> {
             selectableCols.setDisable(true);
             ObservableList<Node> possibleColsRegions = selectableCols.getChildren();
@@ -336,7 +336,6 @@ public class GameController implements Initializable {
     public void placeInOne(){
         LivingRoom livingRoom = guiRef.getViewLivingRoom();
         Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 0);
     }
@@ -345,7 +344,6 @@ public class GameController implements Initializable {
     public void placeInTwo(){
         LivingRoom livingRoom = guiRef.getViewLivingRoom();
         Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 1);
     }
@@ -354,7 +352,6 @@ public class GameController implements Initializable {
     public void placeInThree(){
         LivingRoom livingRoom = guiRef.getViewLivingRoom();
         Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 2);
     }
@@ -363,7 +360,6 @@ public class GameController implements Initializable {
     public void placeInFour(){
         LivingRoom livingRoom = guiRef.getViewLivingRoom();
         Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 3);
     }
@@ -372,7 +368,6 @@ public class GameController implements Initializable {
     public void placeInFive(){
         LivingRoom livingRoom = guiRef.getViewLivingRoom();
         Player me =  guiRef.getViewLivingRoom().getPlayers().get(guiRef.getMyTurn());
-        selectableCols.getChildren().clear();
 
         guiRef.getVirtualViewClient().confirmEndTurn(livingRoom, me, pickFromItemCards(pickTiles), 4);
     }

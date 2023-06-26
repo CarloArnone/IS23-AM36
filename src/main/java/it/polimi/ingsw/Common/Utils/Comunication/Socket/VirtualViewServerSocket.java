@@ -28,6 +28,8 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
     private InetAddress clientAddress;
 
+    private boolean stop = false;
+
 
     public VirtualViewServerSocket(Socket socket, Controller controller) {
         this.clientSocket = socket;
@@ -78,7 +80,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
                     break;
                 }
 
-                if(controller == null){
+                if(stop){
                     break;
                 }
 
@@ -131,9 +133,11 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         new Thread(() -> {
             while(true){
                 try {
-                    if (!clientAddress.isReachable(20000)) {
-                        pingFailed();
-                        break;
+                    if (!clientAddress.isReachable(40000)) {
+                        if (!clientAddress.isReachable(40000)) {
+                            pingFailed();
+                            break;
+                        }
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -146,7 +150,7 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
 
     private void pingFailed() {
         disconnectedPlayer(controller.findLivingRoomWithVirtualView(this), this.name, false, this);
-        controller = null;
+        stop = true;
     }
 
 

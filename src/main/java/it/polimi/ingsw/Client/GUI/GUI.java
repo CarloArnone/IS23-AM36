@@ -156,6 +156,7 @@ public class GUI extends IUI {
     @Override 
     public void turnPassed() {
         controller.clearPick();
+        controller.resetCols();
     }
 
     /**

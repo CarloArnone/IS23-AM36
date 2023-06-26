@@ -173,15 +173,35 @@
                                        <children>
                                           <HBox fx:id="selectableCols" alignment="CENTER" prefHeight="455.0" prefWidth="516.0" spacing="10.0">
                                              <children>
-                                                <Region onMouseClicked="#placeInOne" prefHeight="430.0" prefWidth="70.0" styleClass="column" />
-                                                <Region layoutX="10.0" layoutY="10.0" onMouseClicked="#placeInTwo" prefHeight="430.0" prefWidth="72.0" styleClass="column" />
-                                                <Region layoutX="74.0" layoutY="10.0" onMouseClicked="#placeInThree" prefHeight="159.0" prefWidth="72.0" styleClass="column" />
-                                                <Region layoutX="138.0" layoutY="10.0" onMouseClicked="#placeInFour" prefHeight="430.0" prefWidth="72.0" styleClass="column" />
-                                                <Region layoutX="202.0" layoutY="10.0" onMouseClicked="#placeInFive" prefHeight="430.0" prefWidth="71.0" styleClass="column">
-                                                   <opaqueInsets>
-                                                      <Insets right="15.0" />
-                                                   </opaqueInsets>
-                                                </Region>
+                                                <VBox onMouseClicked="#placeInOne" styleClass="column">
+                                                   <children>
+                                                      <Region prefHeight="430.0" prefWidth="70.0"  />
+                                                   </children>
+                                                </VBox>
+                                                <VBox onMouseClicked="#placeInTwo" styleClass="column">
+                                                   <children>
+                                                      <Region prefHeight="430.0" prefWidth="72.0"  />
+                                                   </children>
+                                                </VBox>
+                                                <VBox onMouseClicked="#placeInThree" styleClass="column">
+                                                   <children>
+                                                      <Region prefHeight="159.0" prefWidth="72.0"  />
+                                                   </children>
+                                                </VBox>
+                                                <VBox onMouseClicked="#placeInFour" styleClass="column">
+                                                   <children>
+                                                      <Region prefHeight="430.0" prefWidth="72.0"  />
+                                                   </children>
+                                                </VBox>
+                                                <VBox onMouseClicked="#placeInFive" styleClass="column">
+                                                   <children>
+                                                      <Region prefHeight="430.0" prefWidth="71.0" >
+                                                         <opaqueInsets>
+                                                            <Insets right="15.0" />
+                                                         </opaqueInsets>
+                                                      </Region>
+                                                   </children>
+                                                </VBox>
                                              </children>
                                              <opaqueInsets>
                                                 <Insets left="15.0" right="15.0" />
