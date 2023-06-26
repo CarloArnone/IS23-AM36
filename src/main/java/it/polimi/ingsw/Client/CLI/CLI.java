@@ -410,6 +410,10 @@ public class CLI extends IUI {
         }
         else{
             stopParsingCommands();
+            getViewLivingRoom().getPlayers().forEach(player -> {
+                player.getPersonalGoal().checkGoal(player);
+                player.getPersonalGoal().getPoints();
+            });
             printNLines(10);
             getViewLivingRoom().getPlayers().sort((p1, p2) -> {
                 return p1.getScore() - p2.getScore();
@@ -721,7 +725,6 @@ public class CLI extends IUI {
         //updateEnvVar();
 
         int ROWS = Integer.parseInt(System.getenv("LINES"));
-        System.out.println(ROWS);
         int contentLength = content.length();
         List<String> toPrint = content.lines().toList();
 
@@ -739,7 +742,6 @@ public class CLI extends IUI {
     public void centerHorizontaly(String content){
         //updateEnvVar();
         int COLS = Integer.parseInt(System.getenv("COLUMNS"));
-        System.out.println(COLS);
         List<String> toPrint = content.lines().toList();
 
         for(String line : toPrint){
