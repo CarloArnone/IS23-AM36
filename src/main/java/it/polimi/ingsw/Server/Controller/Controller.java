@@ -65,6 +65,7 @@ public enum Controller implements eventObserver {
                         break;
                     }
                 }
+                addFirstScorerPoints(liv.getLivingRoom());
                 passTurn(liv.getLivingRoom());
                 liv.getLivingRoom().checkRearrangeDesk();
 
@@ -73,6 +74,14 @@ public enum Controller implements eventObserver {
             }
         }
         return true;
+    }
+
+    private void addFirstScorerPoints(LivingRoom livingRoom) {
+        List<Player> players = livingRoom.getPlayers();
+        Player me = players.get(livingRoom.getTurn());
+        if (players.stream().filter(x -> x.getMyShelf().isFull()).count() == 1 && me.getMyShelf().isFull() ){
+            me.addPoints(1);
+        }
     }
 
     private void passTurn(LivingRoom livingRoom) {
