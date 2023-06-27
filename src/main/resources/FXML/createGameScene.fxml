@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.CreateGameController">
+<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Client.GUI.CreateGameController">
    <children>
       <ImageView fitHeight="551.0" fitWidth="796.0" preserveRatio="true">
          <image>
@@ -39,7 +38,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="35.0" prefWidth="166.0" fx:id="GameID"/>
+                  <TextField fx:id="GameID" prefHeight="35.0" prefWidth="166.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="125.0" prefHeight="100.0" prefWidth="200.0">
@@ -49,11 +48,11 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ChoiceBox id="playersNum" prefWidth="150.0" fx:id="playersNum"/>
+                  <ChoiceBox id="playersNum" fx:id="playersNum" prefWidth="150.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="176.0" prefHeight="100.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" text="Create" onAction="#createGame">
+            <Button id="createButton" fx:id="createButton" mnemonicParsing="false" onAction="#createGame" text="Create">
                <font>
                   <Font size="14.0" />
                </font>

@@ -19,6 +19,8 @@ public class EndGameController implements Initializable {
     private List<String> losers = new ArrayList<>();
     private String winnerString;
     @FXML
+    private Label winnersPoints;
+    @FXML
     private Label winnerLabel;
     @FXML
     private Label bottomLabel;
@@ -27,9 +29,19 @@ public class EndGameController implements Initializable {
     @FXML
     private ImageView trophy;
 
+    @FXML
+    private ImageView chad;
+
+
+    @FXML
+    private void showTheRealDeal(){
+        chad.setVisible(true);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         trophy.setVisible(false);
+        chad.setVisible(false);
         maxScore = guiRef.getViewLivingRoom().getWinner().getScore();
         for (int i = 0; i < guiRef.getViewLivingRoom().getPlayers().size();i++){
             if(guiRef.getViewLivingRoom().getPlayers().get(i).getScore() >= maxScore){
@@ -50,5 +62,6 @@ public class EndGameController implements Initializable {
         else{
             bottomLabel.setText("Everybody won, so everybody lost");
         }
+        winnersPoints.setText(String.valueOf(guiRef.getViewLivingRoom().getWinner().getScore()) + " Points");
     }
 }

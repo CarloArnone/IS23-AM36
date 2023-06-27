@@ -38,9 +38,19 @@
             <Font name="System Bold Italic" size="54.0" />
          </font>
       </Label>
-      <ImageView fx:id="trophy" fitHeight="200.0" fitWidth="154.0" layoutX="371.0" layoutY="146.0">
+      <ImageView fx:id="trophy" fitHeight="200.0" fitWidth="154.0" layoutX="371.0" layoutY="146.0" onMouseClicked="#showTheRealDeal">
          <image>
             <Image url="@../17_MyShelfie_BGA/misc/trophy.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winnersPoints" alignment="CENTER" layoutX="334.0" layoutY="426.0" prefHeight="30.0" prefWidth="226.0" textFill="#6952ff">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="chad" fitHeight="739.0" fitWidth="940.0" layoutX="-39.0" layoutY="-43.0" onMouseClicked="#showTheRealDeal">
+         <image>
+            <Image url="@../17_MyShelfie_BGA/misc/trophy.jpg" />
          </image>
       </ImageView>
    </children>

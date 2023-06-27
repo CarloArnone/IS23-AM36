@@ -226,7 +226,7 @@ public class GUI extends IUI {
         Platform.runLater(() -> {
             getViewLivingRoom().getPlayers().forEach(player -> {
                 player.getPersonalGoal().checkGoal(player);
-                player.updateScore();
+                player.addPoints(player.getPersonalGoal().getPoints());
             });
             loadScene("/FXML/endGameScene.fxml", "End Game");
         });

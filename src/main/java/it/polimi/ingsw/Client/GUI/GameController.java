@@ -305,7 +305,9 @@ public class GameController implements Initializable {
 
         guiRef.selectTilesFromBoard(boardPositions);
     }
-
+    private boolean itsMyTurn(){
+        return guiRef.getViewLivingRoom().getPlayerTurn(guiRef.getMySelf()) == guiRef.getViewLivingRoom().getTurn();
+    }
     public void updateBoard(){
         board.getChildren().clear();
         List<Tile> boardTiles = getBoardTiles();
@@ -313,15 +315,16 @@ public class GameController implements Initializable {
                 boardTile.getImageView().setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                        boardTile.trigger();
-                        if(boardTile.isSelected()){
-                            boardTile.getImageView().getStyleClass().clear();
-                            boardTile.getImageView().getStyleClass().add("selectedCard");
-                            pickTiles.add(boardTile);
-                        }
-                        else{
-                            boardTile.getImageView().getStyleClass().clear();
-                            pickTiles.remove(boardTile);
+                        if(itsMyTurn()) {
+                            boardTile.trigger();
+                            if (boardTile.isSelected()) {
+                                boardTile.getImageView().getStyleClass().clear();
+                                boardTile.getImageView().getStyleClass().add("selectedCard");
+                                pickTiles.add(boardTile);
+                            } else {
+                                boardTile.getImageView().getStyleClass().clear();
+                                pickTiles.remove(boardTile);
+                            }
                         }
                     }
                 });
