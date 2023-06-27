@@ -407,13 +407,6 @@ public class VirtualViewServerSocket extends Thread implements ICommunication {
         if(controller.isGameEnded(livingRoom)){
             endGame(livingRoom);
         }
-        else{
-            List<String> args = new ArrayList<>();
-            args.add(0, "GameNotEnded");
-            String command = JSONInterface.generateCommand("Error", args, "");
-            out.println(command);
-            System.out.println("Sent to " + name + " : " + (char)27 + "[38;2;231;109;131m " + command + (char)27 + "[0m");
-        }
     }
 
 

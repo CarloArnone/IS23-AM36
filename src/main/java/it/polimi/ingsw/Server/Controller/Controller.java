@@ -77,11 +77,7 @@ public enum Controller implements eventObserver {
     }
 
     private void addFirstScorerPoints(LivingRoom livingRoom) {
-        List<Player> players = livingRoom.getPlayers();
-        Player me = players.get(livingRoom.getTurn());
-        if (players.stream().filter(x -> x.getMyShelf().isFull()).count() == 1 && me.getMyShelf().isFull() ){
-            me.addPoints(1);
-        }
+        livingRoom.addFirstScorerPoints();
     }
 
     private void passTurn(LivingRoom livingRoom) {
@@ -396,5 +392,10 @@ public enum Controller implements eventObserver {
 
     public void removePlayerFromServer(Player player) {
         getWaitingPlayerByName(player.getName()).setOnline(false);
+    }
+
+    public void removeLivingRoomFromServer(LivingRoom livingRoom) {
+        LobbyLivingRoom livingRoomToRemove = livingRooms.stream().filter(liv -> liv.getLivingRoom().getLivingRoomId().equals(livingRoom.getLivingRoomId())).findFirst().get();
+        livingRooms.remove(livingRoomToRemove);
     }
 }

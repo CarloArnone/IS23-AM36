@@ -408,8 +408,11 @@ public class CLI extends IUI {
 
         if(status.equals("lonelyPlayer")){
             System.out.println("You are the last in your game - disconnecting");
-            stopParsingCommands();
-            createOrJoinGameChoice();
+            if(alreadyParsingCommands){
+                stopParsingCommands();
+                System.exit(0);
+            }
+            else createOrJoinGameChoice();
         }
         else{
             stopParsingCommands();
@@ -417,6 +420,7 @@ public class CLI extends IUI {
                 player.getPersonalGoal().checkGoal(player);
                 player.addPoints(player.getPersonalGoal().getPoints());
             });
+            getViewLivingRoom().addFirstScorerPoints();
             printNLines(20);
             getViewLivingRoom().getPlayers().sort((p2, p1) -> {
                 return p1.getScore() - p2.getScore();
@@ -485,6 +489,7 @@ public class CLI extends IUI {
 
     private void updateCLI(String message) {
         printBoard();
+        printCommonGoals();
         printInfo();
         printPickIfPresent();
         printShelves();
@@ -532,6 +537,41 @@ public class CLI extends IUI {
             System.out.println("It's My Turn");
         }
         else System.out.println("It's " + getViewLivingRoom().getPlayers().get(getViewLivingRoom().getTurn()).getName() + " turn.");
+
+    }
+
+    private void printCommonGoals(){
+        printNLines(2);
+        for(int i=0;i<8;i++){
+            for(int j=0;j<2;j++){
+                List<List<String>> commonGoalRepresentation = getCommonGoalRepresentation(getViewLivingRoom().getCommonGoalSet().get(j));
+                for(int cg=0;cg<11;cg++){
+                    if(commonGoalRepresentation.get(i).get(cg).equals("whiteSpace")){
+                        System.out.print((char)27+Printer.whiteBlock.escape() + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("equalBlock")){
+                        System.out.print((char)27+Printer.equalBlock.escape() + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("hLink")){
+                        System.out.print((char)27+Printer.hLink.escape() + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("vLink")){
+                        System.out.print((char)27 + Printer.vLink.escape() + (char)27 + "[0n" );
+                    } else if(commonGoalRepresentation.get(i).get(cg).equals("GoalNameWhite")){
+                        System.out.print((char)27 + Printer.trasparentText.escape()+getViewLivingRoom().getCommonGoalSet().get(j)+ (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("GoalName")){
+                        System.out.print((char)27 + Printer.whiteBackground.escape()+getViewLivingRoom().getCommonGoalSet().get(j) + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("emptyblock")){
+                        System.out.print((char)27 + Printer.emptyBlock.escape() + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("dfrntblock")){
+                        System.out.print((char)27 + Printer.dfrntBlock.escape() + (char)27 + "[0n");
+                    }else if(commonGoalRepresentation.get(i).get(cg).equals("                      ")){
+                        System.out.print(commonGoalRepresentation.get(i).get(cg));
+                    }else {
+                        System.out.print((char)27 + Printer.whiteBackground.escape() + commonGoalRepresentation.get(i).get(cg) + (char)27 + "[0n");
+                    }
+
+                }
+            }
+            printNLines(1);
+        }
 
     }
 

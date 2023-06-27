@@ -151,6 +151,17 @@ public class LivingRoom {
         players.remove(player);
         viewList.remove(playerViewToRemove);
 
+        if(players.size() == 1){
+            JSONInterface.removeLivingRoom(this);
+        }
+
+    }
+
+    public void addFirstScorerPoints() {
+        Player me = players.get(turn);
+        if (players.stream().filter(x -> x.getMyShelf().isFull()).count() == 1 && me.getMyShelf().isFull() ){
+            me.addPoints(1);
+        }
     }
 
     public void clearLivingRoomsPlayers(){
